@@ -1,0 +1,40 @@
+---
+layout: page
+title: Development
+sidebar_num : 4
+---
+
+
+<h1>Development</h1>
+
+<div class="cats-expo">
+  <div class="cats-expo-list">
+    <!-- {% for cat in site.categories %}
+      <a href="{{site.url}}/{{ cat[0] | slugify }}/" class="post-cat">{{ cat[0] }}  |  </a>
+    {% endfor %} -->
+  </div>
+  <hr/>
+
+  <div class="cats-expo-section">
+    {% for dev in site.development_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == dev %}
+          <h2 id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+          <ul class="cats-expo-posts">
+          {% for post in cat[1] %}
+              <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              <li style="margin-bottom: -0.7rem;">
+                  <div>
+                    <h3>{{ post.title }}</h3>
+                    <!-- <p class="post-date">{{ post.date | date_to_string }}</p> -->
+                  </div>
+              </li>
+              </a></div>
+              <small>{{ post.categories | join : " | " }}</small>
+          {% endfor %}
+          </ul><br>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+</div>
