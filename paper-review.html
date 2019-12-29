@@ -15,23 +15,25 @@ sidebar_num : 3
   <hr/>
 
   <div class="cats-expo-section">
-    {% for cat in site.categories %}
-      {% if cat[0] == "paper-review" %}
-        <h2 id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
-        <ul class="cats-expo-posts">
-        {% for post in cat[1] %}
-            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-            <li style="margin-bottom: -0.7rem;">
-                <div>
-                  <h3>{{ post.title }}</h3>
-                  <!-- <p class="post-date">{{ post.date | date_to_string }}</p> -->
-                </div>
-            </li>
-            </a></div>
-            <small>{{ post.categories | join : " | " }}</small>
-        {% endfor %}
-        </ul><br>
-      {% endif %}
+    {% for pap in site.paper_review_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <h2 id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+          <ul class="cats-expo-posts">
+          {% for post in cat[1] %}
+              <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              <li style="margin-bottom: -0.7rem;">
+                  <div>
+                    <h3>{{ post.title }}</h3>
+                    <!-- <p class="post-date">{{ post.date | date_to_string }}</p> -->
+                  </div>
+              </li>
+              </a></div>
+              <small>{{ post.categories | join : " | " }}</small>
+          {% endfor %}
+          </ul><br>
+        {% endif %}
+      {% endfor %}
     {% endfor %}
   </div>
 </div>
