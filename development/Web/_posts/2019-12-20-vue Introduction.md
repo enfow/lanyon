@@ -1,11 +1,13 @@
 ---
 layout: post
-title: Vue
+title: Vue Introduction
 ---
 
-# Vue
+# Vue Introduction
 
 ## Vue installation and running
+
+추가하기
 
 ## Vue component의 구조
 
