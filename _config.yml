@@ -26,4 +26,4 @@ author:
 version:             1.0.0
 
 # category settings
-last_category_list: ["actor-critic"]
+paper_review_category_list: ["Anomaly-Detection", "Transfer-Learning", "Auto-Encoder", "Metric", "Neural-Network", "Q-Learning", "Actor-Critic", "Batch-RL", "High-Dimension-Problem"]
