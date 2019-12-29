@@ -13,7 +13,7 @@ title: Batch Norm) How does batch normalization help optimization
 ## 세 줄 요약
 
 - Batch Normalization이 줄어드는 이유로 ICS(internal covariate shift)의 감소가 제시되었지만 확인할 수 없었다.
-- ICS의 감소보다는 landscape of loss 가 보다 stable해지고 smooth 해지기 때문으로 보인다. 이는 BatchNorm을 사용했을 때 step별 step별 loss의 크기, gradient predictiveness, beta-smoothness의 크기가 작아지는 것으로 확인할 수 있다.
+- ICS의 감소보다는 landscape of loss 가 보다 stable해지고 smooth 해지기 때문으로 보인다. 이는 BatchNorm을 사용했을 때 step별 loss, gradient predictiveness, beta-smoothness의 크기가 작아지는 것으로 확인할 수 있다.
 - 그런데 BatchNorm외에 기본적인 statistics Regularization strategies, 즉 L1, L2 Regularization으로도 비슷한 효과를 볼 수 있었다.
 
 ## 내용 정리
