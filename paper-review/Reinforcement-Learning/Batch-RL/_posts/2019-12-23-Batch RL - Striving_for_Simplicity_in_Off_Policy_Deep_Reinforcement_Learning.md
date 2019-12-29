@@ -7,15 +7,14 @@ title: Batch RL) Striving for Simplicity in Off-Policy Deep Reinforcement Learni
 
 - Rishabh Agarwal 등
 - 2019
-- [paper link](<https://arxiv.org/abs/1907.04543>)
-- [git link](<https://github.com/google-research/batch_rl>)
+- [paper link](<https://arxiv.org/abs/1907.04543>) [git link](<https://github.com/google-research/batch_rl>)
 - 2019.12.23 정리
 
 ## 세 줄 요약
 
 - 환경과의 실시간 상호작용 없이 데이터셋을 통해 agent를 학습시키는 방법을 batch RL 또는 offline learning이라고 한다.
 - offline learning을 이용해 기존의 online learning 보다 더 높은 성능의 알고리즘을 만들 수 있다. DQN으로 해결하는 discrete 환경 뿐만 아니라 DDPG를 사용하는 continous 환경에서도 검증했다.
-- distributional RL 알고리즘과의 비교를 통해 일반적인 DQN 알고리즘이 exploitation 성능이 부족하다는 것을 확인하고, 나아가 알고리즘적 개선을 통해 이 부분을 해결할 수 있다는 점을 강조한다.ㄴ
+- distributional RL 알고리즘과의 비교를 통해 일반적인 DQN 알고리즘이 exploitation 성능이 부족하다는 것을 확인하고, 나아가 알고리즘적 개선을 통해 이 부분을 해결할 수 있다는 점을 강조한다.
 
 ## 내용 정리
 
