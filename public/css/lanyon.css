@@ -41,7 +41,8 @@ body {
 }
 
 html {
-  font-family: "PT Serif", Georgia, "Times New Roman", serif;
+  /* font-family: "PT Serif", Georgia, "Times New Roman", serif; */
+  font-family: "PT Sans", Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -49,6 +50,14 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   color: #313131;
   letter-spacing: -.025rem;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: bold;
+}
+
+h1, h2 {
+  margin-top: 2em;
 }
 
 
@@ -73,17 +82,24 @@ h1, h2, h3, h4, h5, h6 {
  */
 
 .container {
-  max-width: 28rem;
+  /* max-width: 28rem; */
+  max-width: 42rem;
 }
 @media (min-width: 38em) {
   .container {
-    max-width: 32rem;
+    /* max-width: 32rem; */
+    max-width: 42rem;
   }
 }
 @media (min-width: 56em) {
   .container {
-    max-width: 38rem;
+    /* max-width: 38rem; */
+    max-width: 42rem;
   }
+}
+
+.content {
+  line-height: 1.8em;
 }
 
 
