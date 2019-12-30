@@ -7,7 +7,7 @@ title: DSVDD) Deep_One_class_Classification
 
 - Patrick Schlachter 등
 - 2019
-- <https://arxiv.org/abs/1902.01194>
+- [paper link](<https://arxiv.org/abs/1902.01194>)
 - 2019.11.19 정리
 
 ## 세 줄 요약
@@ -31,7 +31,6 @@ title: DSVDD) Deep_One_class_Classification
 
 - kernel-based one-class classification의 대표적인 예시가 OC-SVM이다.
 - OC-SVM은 feature space에서 maximum margin hyperplane을 찾는 것을 목표로 한다.
-- [OC-SVM_논문](<http://users.cecs.anu.edu.au/~williams/papers/P132.pdf>)
 
 #### SVDD
 
@@ -67,9 +66,10 @@ title: DSVDD) Deep_One_class_Classification
 - One-Class DSVDD는 training 단계에서는 normal data 만을 이용하며, data representation이 매핑되는 영역의 크기, 즉 center c를 중심으로 하는 hypersphere를 최소화하는 방향으로 학습이 이뤄진다.
 - One-Class DSVDD의 loss function은 각 data representation과 center c 간의 거리가 크면 클수록 loss가 커지는 구조로 되어 있다. 앞서와 마찬가지로 center c에 가깝게 normal data representation을 매핑하는 과정에서 normal data의 특성을 네트워크가 학습하게 된다.
 
-## 추가적인 공부가 필요한 주제들
+## Additional Study
 
 - kernal based classification
   - Gaussian kernal
 - SVM
+- [OC-SVM_논문](<http://users.cecs.anu.edu.au/~williams/papers/P132.pdf>)
 - SVDD

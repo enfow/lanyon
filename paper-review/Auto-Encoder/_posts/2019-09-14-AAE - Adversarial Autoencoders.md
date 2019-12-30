@@ -47,7 +47,7 @@ title: AAE) Adversarial Autoencoders
     - pd(x)를 통해서만 q(z)를 유추한다.
     - AE와 유사하다.
 2. Gaussian posterior
-    - q(z|x)가 가우시안을 따른다고 가정한다.
+    - `q(z|x)`가 가우시안을 따른다고 가정한다.
     - stochasticity in q(z)가 data distribution 과 randomness of gaussian distribution at the output of encoder로 결정된다.
     - VAE와 마찬가지로 reparameterization trick을 사용한다.
 3. Universal approximator posterior

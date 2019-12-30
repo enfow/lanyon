@@ -59,7 +59,7 @@ title: HER) Hindsight Experience Replay
 - epsiode에서는 sample을 다음과 같이 t-1개 추출할 수 있다.
   - (s₀, a₀, r₀, s₁), (s₁, a₁, r₁, s₂), (s₂, a₂, r₂, s₃) ... , (s𝗍₋₁, a𝗍₋₁, r𝗍₋₁, s𝗍)
 - 첫 번째는 다음과 같이 최종 목표 g에 대해 state와 goal을 concatenation 한 값을 replay memory에 저장한다. 이는 standard experience replay와 동일하다.
-  - 예를 들어 (s𝗍₋₁||g, a𝗍₋₁, r𝗍₋₁, s𝗍||g) 와 같은 식이다.
+  - 예를 들어 `(s𝗍₋₁||g, a𝗍₋₁, r𝗍₋₁, s𝗍 || g)` 와 같은 식이다.
 - 다음으로는 각 sample에 대해 episode 상의 모든 state를 goal로 설정하여 concatenation 한 값을 replay memory에 저장한다.
 
   ```sudo

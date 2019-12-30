@@ -49,7 +49,7 @@ title: Wolpertinger Architecture) Deep Reinforcement Learning in Large Discrete 
 
 #### Actor of Wolpertinger Architecture
 
-- actor는 기본적으로 state를 input으로 받고 action을 output으로 내보낸다. 즉, 𝝅𝞱(a | s)라고 할 수 있다.
+- actor는 기본적으로 state를 input으로 받고 action을 output으로 내보낸다. 즉, `𝝅𝞱(a | s)`라고 할 수 있다.
 - Wolpertinger Architecture에서는 action a를 정하는데에 다음과 같은 algorithms을 사용한다.
     1. Environment로 부터 state s를 받는다.
     2. a'을 f𝞱(s)로 부터 구한다.

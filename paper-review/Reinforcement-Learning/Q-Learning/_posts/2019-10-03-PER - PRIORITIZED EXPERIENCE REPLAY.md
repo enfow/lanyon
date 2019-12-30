@@ -86,7 +86,7 @@ title: PER) PRIORITIZED EXPERIENCE REPLAY
 
 ##### rank-based prioritization
 
-- replay memory 내에 있는 sample 들의 TD error 크기(|δ|)의 순서에 따라 priority를 부여하는 방법이다.
+- replay memory 내에 있는 sample 들의 TD error 크기(`|δ|`)의 순서에 따라 priority를 부여하는 방법이다.
 
   `p𝚒 = 1 / rank(i)`
 
