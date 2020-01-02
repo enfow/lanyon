@@ -14,7 +14,6 @@ description2: "이것저것 개발합니다."
 
 url:                 https://enfow.github.io
 baseurl:             ''
-content_url:         https://enfow.github.io/contents/
 # 한 페이지에 보여지는 포스트 수
 paginate:            1
 plugins: [jekyll-paginate]
