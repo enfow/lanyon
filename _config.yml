@@ -12,9 +12,9 @@ title:               Enfow's Blog
 description1: "머신러닝을 공부합니다."
 description2: "이것저것 개발합니다."
 
-url:                 http://https://enfow.github.io
+url:                 https://enfow.github.io
 baseurl:             ''
-content_url:         http://https://enfow.github.io/contents/
+content_url:         https://enfow.github.io/contents/
 # 한 페이지에 보여지는 포스트 수
 paginate:            1
 plugins: [jekyll-paginate]
