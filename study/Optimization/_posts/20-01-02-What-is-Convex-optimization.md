@@ -3,6 +3,8 @@ layout: post
 title: 1. What is Convex Optimization
 ---
 
+- update : 2020.01.02
+
 # What is Convex Optimization
   
 ## Optimization problem
