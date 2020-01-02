@@ -36,9 +36,9 @@ title: DQN) Playing Atari with Deep Reinforcement Learning
 
 ### DQN과 Bellman equation
 
-DQN은 Network로 Bellman equation의 q value를 계산하게 되며, state를 network에 넣으면 선택 가능한 각 action의 q value가 모두 계산되어 나온다. 따라서 Network의 input dimension은 state size와 같고, output dimension은 action size와 같다. DQN은 Q network가 현재 state에서 가장 좋은 action에 대해 가장 높은 q value를 출력하도록 학습이 이뤄진다. 즉 policy는 매 state에서 q value가 가장 큰 action을 선택하는 것이며, policy의 질은 얼마나 정확한 q value를 출력하는가에 따라 결정된다.
+DQN은 네트워크로 Bellman equation의 q value를 계산하게 되며, state를 네트워크의 입력으로 넣으면 선택 가능한 각 action의 q value가 모두 계산되어 나온다. 따라서 네트워크의 input dimension은 state size와 같고, output dimension은 action size와 같다. DQN은 Q 네트워크가 현재 state에서 가장 좋은 action에 대해 가장 높은 q value를 출력하도록 학습이 이뤄진다. 즉 policy는 매 state에서 q value가 가장 큰 action을 선택하는 것이며, policy의 질은 얼마나 정확한 q value를 출력하는가에 따라 결정된다.
 
-Bellman optimality equation에 따라 action을 결정하게 되면 항상 return을 최대로 하는 action을 선택할 수 있게 된다. 이를 DQN에 적용하게 되면, Bellman optimality equation에 따라 계산된 q value를 target 으로, 현재 Q network로 계산된 q value를 expectation 으로 설정하고 둘 간의 차이(MSE)를 통해 network를 학습하면 된다.
+Bellman optimality equation에 따라 action을 결정하게 되면 항상 return을 최대로 하는 action을 선택할 수 있게 된다. 이를 DQN에 적용하게 되면 Bellman optimality equation에 따라 계산된 q value를 target 값과, 현재 Q 네트워크를 통해 계산된 q value를 expectation 값 간의 차이(MSE)로 네트워크를 학습하게 된다.
 
 이때 expectation q value는 Q network의 출력값이므로 쉽게 구할 수 있다. target Q value의 경우 위의 Bellman optimality equation 식을 한 단계 풀이하여 구할 수 있다. 즉 *q﹡(s, a) = max𝝅 q𝝅(s, a)* 는 *q﹡(s, a) = reward + 𝛾max𝗮' q𝝅(s', a')* 이 된다.
 
