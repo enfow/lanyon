@@ -38,6 +38,8 @@
 html,
 body {
   overflow-x: hidden;
+  letter-spacing: 0em;
+  word-spacing: 0.05em;
 }
 
 html {
