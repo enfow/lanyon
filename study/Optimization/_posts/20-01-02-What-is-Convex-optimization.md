@@ -57,7 +57,7 @@ $$
 
 위의 부등식의 의미를 좌표계에서 확인하면
 
-![Image]({{site.url}}/image/study/convex_function.png )
+<img src="{{site.url}}/image/study/convex_function.png" width = 700>
 
 에서 $$(x_1, f(x_1))$$ 과 $$(x_2, f(x_2))$$ 를 잇는 선분이 $$[x_1, x_2]$$ 구간에서 그래프보다 크거나 같은 곳에 위치함을 의미한다([이미지 출처 wiki](<https://en.wikipedia.org/wiki/Convex_function>)).
 
