@@ -10,7 +10,7 @@ title:               Enfow's Blog
 # 사이드 바 상단에 나오는 부분. html tag 사용이 가능
 # description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
 description1: "머신러닝을 공부합니다."
-description2: "코딩이 좋아서 이것저것 개발합니다."
+description2: "이것저것 개발합니다."
 
 url:                 http://https://enfow.github.io
 baseurl:             ''
@@ -31,5 +31,6 @@ version:             1.0.0
 # category settings
 paper_review_category_list: ["Anomaly-Detection", "Transfer-Learning", "Auto-Encoder", "Metric", "Neural-Network", "Q-Learning", "Actor-Critic", "Batch-RL", "Imitation-Learning", "High-Dimension-Problem"]
 development_category_list: ["Machine-Learning", "Web"]
+study_category_list: ["Machine-Learning", "Linear-Algebra", "Analysis", "Optimization"]
 
 markdown: kramdown
