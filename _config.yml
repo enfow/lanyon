@@ -12,7 +12,7 @@ title:               Enfow's Blog
 description1: ""
 description2: ""
 
-url:                 https://enfow.github.io
+url:                 http://https://enfow.github.io
 baseurl:             ''
 # 한 페이지에 보여지는 포스트 수
 paginate:            1
