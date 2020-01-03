@@ -27,8 +27,8 @@ title: DQN) Playing Atari with Deep Reinforcement Learning
 
 모든 강화학습의 목표는 전체 episode에서 받을 것으로 기대되는 reward의 총합인 return G를 극대화하는 것이다. 이를 수학적으로 표현하기 위해 사용되는 것이 Bellman equation 이며, 논문 또한 Bellman equation에서 시작하고 있다. Bellman equation은 expectatation exquation과 optimality equation 두 가지가 있다.
 
-- expectation equation : `q𝜋(s, a) = R𝗍₊₁ + 𝛾q𝜋(s', a')`
-- optimality equation : `q﹡(s, a) = max𝝅 q𝝅(s, a)`
+- expectation equation : $$q_\pi(s, a) = R_{t+1} + \gamma q_\pi(s', a')$$
+- optimality equation : $$ q^*(s, a) = \max_\pi q_\pi(s, a) $$
 
 여기서 q function 은 현재 policy 𝝅를 따라 state s 에서 action a 를 취했을 때 기대되는 return 의 기대값이다. expectation 식을 보면 state s 에서 action a를 했을 때 환경으로부터 주어지는 보상 R𝗍₊₁ 과 다음 state s'과 policy 𝝅에 따라 결정된 다음 action a'의 q value 값의 합으로 되어 있다. 여기서 gamma는 감가항이다. 즉, expecation equation은 현재의 policy를 따를 때 받을 것으로 기대되는 return의 크기를 의미한다.
 
@@ -42,9 +42,17 @@ Bellman optimality equation에 따라 action을 결정하게 되면 항상 retur
 
 이때 expectation q value는 Q network의 출력값이므로 쉽게 구할 수 있다. target Q value의 경우 위의 Bellman optimality equation 식을 한 단계 풀이하여 구할 수 있다. 즉 *q﹡(s, a) = max𝝅 q𝝅(s, a)* 는 *q﹡(s, a) = reward + 𝛾max𝗮' q𝝅(s', a')* 이 된다.
 
-- expectation q value : `qᵢ = Q(s, a; θᵢ₋₁)`
-- target q value : `yᵢ = r + γ max𝖺′Q(s', a'; θᵢ₋₁)`
-- MSE loss : `Lᵢ(θᵢ) = (yᵢ − Q (s, a; θᵢ))²`
+- expectation q value
+
+$$ q_i = Q(s, a; \theta_{i-1}) $$
+
+- target q value
+
+$$ y_i = r + \gamma \max_{a'}Q(s', a'; \theta_{i-1}) $$
+
+- MSE loss
+
+$$ L_i(\theta_i) = (y_i - Q(s, a; \theta_i))^2 $$
 
 ### DQN 알고리즘
 
@@ -73,11 +81,11 @@ DQN에 가장 큰 영향을 미친 방법론은 **Temporal difference(TD)** 라�
 
 Monte Carlo 를 수식으로 표현하면 다음과 같이 value function을 업데이트하게 된다.
 
-- ` V(St) <- V(St) + γ[Gt - V(St)]`
+$$ V(S_t) \leftarrow V(S_t) + \gamma(G_t - V(S_t)) $$
 
 반면 TD는 다음과 같다.
 
-- `V(St) <- V(St) + a[Rt + γV(St+1) - V(St)]`
+$$ V(S_t) \leftarrow V(S_t) + \alpha ( R_t + \gamma V(S_{t+1}) - V(S_t) ) $$
 
 Monte Carlo의 전체 episode return Gt가 Rt + γV(St+1) 로 대체되었다. 즉, 매 step의 reward를 극대화하면 결과적으로 전체 episode의 return을 크게 할 수 있을 것이라는 아이디어이다. 전체 episode를 단위로 학습할 경우 variance가 너무 커 쉽게 발산하지만 step 단위로 학습이 이뤄지는 TD 에서는 이러한 문제가 줄어들어 학습이 보다 쉬워진다. 이 과정에서 추정치를 이용하므로 overestimation bias 등이 생기기도 하나 학습이 이뤄지도록 하는 주된 방법이 된다(이를 보완하기 위해 DDQN이 나오게 되며, 나아가 Actor Critic 계열에서는 Twin critic 등의 방법들도 제안된다).
 
