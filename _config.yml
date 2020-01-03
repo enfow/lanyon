@@ -21,7 +21,7 @@ plugins: [jekyll-paginate]
 # About/contact
 author:
   name:              Enfow
-  url:               https://github.com/enfow
+  url:               http://https://enfow.github.io
   email:             wgm0601@gmail.com
 
 # Custom vars
