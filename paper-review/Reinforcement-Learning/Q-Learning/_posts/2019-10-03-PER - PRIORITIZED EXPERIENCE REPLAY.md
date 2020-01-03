@@ -1,6 +1,7 @@
 ---
 layout: post
 title: PER) PRIORITIZED EXPERIENCE REPLAY
+category_num : 4
 ---
 
 # 논문 제목 : PRIORITIZED EXPERIENCE REPLAY

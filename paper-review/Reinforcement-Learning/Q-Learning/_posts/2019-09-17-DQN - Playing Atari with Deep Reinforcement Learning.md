@@ -1,6 +1,7 @@
 ---
 layout: post
 title: DQN) Playing Atari with Deep Reinforcement Learning
+category_num: 1
 ---
 
 # 논문 제목 : Playing Atari with Deep Reinforcement Learning
@@ -25,22 +26,24 @@ title: DQN) Playing Atari with Deep Reinforcement Learning
 
 ### Bellman eqaution
 
-모든 강화학습의 목표는 전체 episode에서 받을 것으로 기대되는 reward의 총합인 return G를 극대화하는 것이다. 이를 수학적으로 표현하기 위해 사용되는 것이 Bellman equation 이며, 논문 또한 Bellman equation에서 시작하고 있다. Bellman equation은 expectatation exquation과 optimality equation 두 가지가 있다.
+모든 강화학습의 목표는 전체 episode에서 받을 것으로 기대되는 reward의 총합인 return G를 극대화하는 것이다. 이를 수학적으로 표현하기 위해 사용되는 것이 Bellman equation 이며, 논문 또한 여기서 시작하고 있다.
+
+Bellman equation은 expectatation exquation과 optimality equation 두 가지가 있다.
 
 - expectation equation : $$q_\pi(s, a) = R_{t+1} + \gamma q_\pi(s', a')$$
 - optimality equation : $$ q^*(s, a) = \max_\pi q_\pi(s, a) $$
 
-여기서 q function 은 현재 policy 𝝅를 따라 state s 에서 action a 를 취했을 때 기대되는 return 의 기대값이다. expectation 식을 보면 state s 에서 action a를 했을 때 환경으로부터 주어지는 보상 R𝗍₊₁ 과 다음 state s'과 policy 𝝅에 따라 결정된 다음 action a'의 q value 값의 합으로 되어 있다. 여기서 gamma는 감가항이다. 즉, expecation equation은 현재의 policy를 따를 때 받을 것으로 기대되는 return의 크기를 의미한다.
+여기서 q 함수는 현재 policy $$\pi$$를 따라 state $$s$$ 에서 action $$a$$ 를 취했을 때 기대되는 return 의 기대값이다. expectation 식을 보면 state $$s$$ 에서 action $$a$$를 했을 때 환경으로부터 주어지는 보상 $$R_{t+1}$$ 과 다음 state $$s'$$과 policy $$\pi$$에 따라 결정된 다음 action $$a'$$의 q value 값의 합으로 되어 있다. 여기서 $$\gamma$$는 감가항이다. 
 
-반면 optimality equation은 현재의 state s 와 action a에서 기대되는 return을 극대화하는 policy 를 따를 때 받을 것으로 기대되는 return 값이다. 이 때 optimality equation에 근사하도록 expecation equation을 학습시키면 각 state에서 최적의 action을 선택할 것이라고 기대할 수 있다.
+즉, expecation equation은 현재의 policy를 따를 때 받을 것으로 기대되는 return의 크기를 의미한다.
+
+반면 optimality equation은 현재의 state $$s$$ 와 action $$a$$에서 기대되는 return을 극대화하는 policy 를 따를 때 받을 것으로 기대되는 return 값이다. 이 때 optimality equation에 근사하도록 expecation equation을 학습시키면 각 state에서 최적의 action을 선택할 것이라고 기대할 수 있다.
 
 ### DQN과 Bellman equation
 
 DQN은 네트워크로 Bellman equation의 q value를 계산하게 되며, state를 네트워크의 입력으로 넣으면 선택 가능한 각 action의 q value가 모두 계산되어 나온다. 따라서 네트워크의 input dimension은 state size와 같고, output dimension은 action size와 같다. DQN은 Q 네트워크가 현재 state에서 가장 좋은 action에 대해 가장 높은 q value를 출력하도록 학습이 이뤄진다. 즉 policy는 매 state에서 q value가 가장 큰 action을 선택하는 것이며, policy의 질은 얼마나 정확한 q value를 출력하는가에 따라 결정된다.
 
 Bellman optimality equation에 따라 action을 결정하게 되면 항상 return을 최대로 하는 action을 선택할 수 있게 된다. 이를 DQN에 적용하게 되면 Bellman optimality equation에 따라 계산된 q value를 target 값과, 현재 Q 네트워크를 통해 계산된 q value를 expectation 값 간의 차이(MSE)로 네트워크를 학습하게 된다.
-
-이때 expectation q value는 Q network의 출력값이므로 쉽게 구할 수 있다. target Q value의 경우 위의 Bellman optimality equation 식을 한 단계 풀이하여 구할 수 있다. 즉 *q﹡(s, a) = max𝝅 q𝝅(s, a)* 는 *q﹡(s, a) = reward + 𝛾max𝗮' q𝝅(s', a')* 이 된다.
 
 - expectation q value
 
@@ -87,13 +90,13 @@ $$ V(S_t) \leftarrow V(S_t) + \gamma(G_t - V(S_t)) $$
 
 $$ V(S_t) \leftarrow V(S_t) + \alpha ( R_t + \gamma V(S_{t+1}) - V(S_t) ) $$
 
-Monte Carlo의 전체 episode return Gt가 Rt + γV(St+1) 로 대체되었다. 즉, 매 step의 reward를 극대화하면 결과적으로 전체 episode의 return을 크게 할 수 있을 것이라는 아이디어이다. 전체 episode를 단위로 학습할 경우 variance가 너무 커 쉽게 발산하지만 step 단위로 학습이 이뤄지는 TD 에서는 이러한 문제가 줄어들어 학습이 보다 쉬워진다. 이 과정에서 추정치를 이용하므로 overestimation bias 등이 생기기도 하나 학습이 이뤄지도록 하는 주된 방법이 된다(이를 보완하기 위해 DDQN이 나오게 되며, 나아가 Actor Critic 계열에서는 Twin critic 등의 방법들도 제안된다).
+Monte Carlo의 전체 episode return $$G_t$$가 $$R_t + \gamma V(S_{t+1})$$로 대체되었다. 즉, 매 step의 reward를 극대화하면 결과적으로 전체 episode의 return을 크게 할 수 있을 것이라는 아이디어이다. 전체 episode를 단위로 학습할 경우 variance가 크기 때문에 발산하지만 step 단위로 학습이 이뤄지는 TD 에서는 이러한 문제가 줄어들어 학습이 보다 쉬워진다. 이 과정에서 추정치를 이용하므로 overestimation bias 등이 생기기도 하나 학습이 이뤄지도록 하는 주된 방법이 된다(이를 보완하기 위해 DDQN이 나오게 되며, 나아가 Actor Critic 계열에서는 Twin critic 등의 방법들도 제안된다).
 
-TD 에 따르면 학습되는 크기는 target v value *Rt + γV(St+1)* 와 current v value *V(St)* 간의 차이가 된다. 이때 이 차이를 **TD error**라고 한다.
+TD 에 따르면 학습되는 크기는 target v value **$$R_t + \gamma V(S_{t+1})$$**와 current v value **$$V(S_t)$$** 간의 차이가 된다. 이때 이 차이를 **TD error**라고 한다.
 
 #### model-free
 
-DQN은 model-free와 off-policy의 특성을 띤다. "it solves the reinforcement learning task directly using samples from the emulator ℰ, without explicitly constructing an estimate of ℰ." 즉, 환경에 대한 모델을 만들어 이용하는 것이 아니라 실제 환경을 경험하고 이를 통해 얻은 샘플을 대상으로 학습이 이뤄진다.
+DQN은 model-free와 off-policy의 특성을 띤다. 정의를 그대로 옮겨 쓰자면, "it solves the reinforcement learning task directly using samples from the emulator ℰ, without explicitly constructing an estimate of ℰ." 즉, 환경에 대한 모델을 만들어 이용하는 것이 아니라 실제 환경을 경험하고 이를 통해 얻은 샘플을 대상으로 학습이 이뤄진다.
 
 #### off-policy
 

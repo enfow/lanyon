@@ -1,6 +1,7 @@
 ---
 layout: post
 title: HER) Hindsight Experience Replay
+category_num: 5
 ---
 
 # 논문 제목 : Hindsight Experience Replay
