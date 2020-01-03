@@ -61,6 +61,8 @@ $$
 
 <img src="{{site.image_url}}/study/convex_function.png" width = 700>
 
+![convex image]({{site.image_url}}/study/convex_function.png)
+
 에서 $$(x_1, f(x_1))$$ 과 $$(x_2, f(x_2))$$ 를 잇는 선분이 $$[x_1, x_2]$$ 구간에서 그래프보다 크거나 같은 곳에 위치함을 의미한다([이미지 출처 wiki](<https://en.wikipedia.org/wiki/Convex_function>)).
 
 ### affine function
