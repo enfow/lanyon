@@ -39,7 +39,8 @@ html,
 body {
   overflow-x: hidden;
   letter-spacing: 0em;
-  word-spacing: 0.05em;
+  word-spacing: 0.08em;
+  font-size:18px;
 }
 
 html {
@@ -58,10 +59,13 @@ h1, h2, h3, h4, h5 {
   font-weight: bold;
 }
 
-h1, h2 {
-  margin-top: 2em;
+h1, h2, h3{
+  margin-top: 2.5em;
 }
 
+h4{
+  margin-top: 1.5em;
+}
 
 /*
  * Wrapper
@@ -96,14 +100,18 @@ h1, h2 {
 @media (min-width: 56em) {
   .container {
     /* max-width: 38rem; */
-    max-width: 42rem;
+    max-width: 43rem;
   }
 }
 
 .content {
-  line-height: 1.8em;
+  line-height: 2em;
+  color: #313131;
 }
 
+p {
+  text-indent: 0.2em;
+}
 
 /*
  * Masthead
