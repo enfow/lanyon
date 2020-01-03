@@ -12,7 +12,7 @@ title:               Enfow's Blog
 description1: ""
 description2: ""
 
-url:                 http://https://enfow.github.io
+url:                 https://enfow.github.io
 baseurl:             ''
 # 한 페이지에 보여지는 포스트 수
 paginate:            1
@@ -21,7 +21,7 @@ plugins: [jekyll-paginate]
 # About/contact
 author:
   name:              Enfow
-  url:               http://https://enfow.github.io
+  url:               https://enfow.github.io
   email:             wgm0601@gmail.com
 
 # Custom vars
