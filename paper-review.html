@@ -20,7 +20,8 @@ sidebar_num : 3
         {% if cat[0] == pap %}
           <h2 id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
           <ul class="cats-expo-posts">
-          {% for post in cat[1] %}
+          {% assign category = cat[1] | sort: "category_num" %}
+          {% for post in category %}
               <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
               <li style="margin-bottom: -0.7rem;">
                   <div>
