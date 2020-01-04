@@ -41,7 +41,11 @@ Actor Critic 계열의 모델에서도 Critic 부분이 Q learning을 기초로 
 
 ##### 1. DDQN
 
-DDPG에서도 Q 네트워크(critic)에 overestimation bias가 발생한다면 discrete action Q learning에서 사용한 방법으로 해결할 수 있지 않을까 하는 질문이 가장 먼저 떠오른다. 하지만 DDQN([Van Hasselt et al, 2016](<http://localhost:4000/paper-review/reinforcement-learning/q-learning/2019/09/17/DDQN-Deep-Reinforcement-Learning-with-Double-Q-learning/>))과 같은 방법을 바로 적용하는 것은 DDPG를 비롯한 Actor Critic 계열의 모델에서는 충분히 효과적이지 않다(ineffective)고 한다. 이는 Actor Critic의 경우 policy가 상대적으로 천천히 변화하고, 이로 인해 current Q function과 target Q function 간의 차이가 크지 않아 단순히 두 개의 네트워크를 사용하는 것만으로는 이점이 적기 때문이다.
+DDPG에서도 Q 네트워크(critic)에 overestimation bias가 발생한다면 discrete action Q learning에서 사용한 방법으로 해결할 수 있지 않을까 하는 질문이 가장 먼저 떠오른다.
+
+$$y = r + \gamma Q_{\theta'}(s', \pi_\varnothing(s'))$$
+
+하지만 DDQN([Van Hasselt et al, 2016](<http://localhost:4000/paper-review/reinforcement-learning/q-learning/2019/09/17/DDQN-Deep-Reinforcement-Learning-with-Double-Q-learning/>))과 같은 방법을 바로 적용하는 것은 DDPG를 비롯한 Actor Critic 계열의 모델에서는 충분히 효과적이지 않다(ineffective)고 한다. 이는 Actor Critic의 경우 policy가 상대적으로 천천히 변화하고, 이로 인해 current Q function과 target Q function 간의 차이가 크지 않아 단순히 두 개의 네트워크를 사용하는 것만으로는 이점이 적기 때문이다.
 
 ##### 2. Double Q-learning
 
