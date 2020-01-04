@@ -29,7 +29,7 @@ author:
 version:             1.0.0
 
 # category settings
-paper_review_category_list: ["Anomaly-Detection", "Transfer-Learning", "Auto-Encoder", "Metric", "Neural-Network", "Q-Learning", "Actor-Critic", "Batch-RL", "Imitation-Learning", "High-Dimension-Problem"]
+paper_review_category_list: ["Neural-Network", "Q-Learning", "Actor-Critic", "Batch-RL", "Imitation-Learning", "High-Dimension-Problem", "Auto-Encoder", "Anomaly-Detection", "Transfer-Learning", "Metric"]
 development_category_list: ["Machine-Learning", "Web"]
 study_category_list: ["Machine-Learning", "Linear-Algebra", "Analysis", "Optimization"]
 
