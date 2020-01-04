@@ -1,69 +1,77 @@
 ---
 layout: post
 title: TD3) Addressing Function Approximation Error in Actor-Critic Methods
+category_num: 2
 ---
 
 # 논문 제목 : Addressing Function Approximation Error in Actor-Critic Methods
 
 - Scott Fujimoto 등
 - 2018
-- <https://arxiv.org/abs/1802.09477>
+- [논문 링크](<https://arxiv.org/abs/1802.09477>)
 - 2019.11.07 정리
 
 ## 세 줄 요약
 
+- 2018년 기준 SOTA의 성능을 보이는 **TD3** 알고리즘을 제시하고 있다. 본 논문에서는 TD3가 SAC보다 높은 성능을 보이지만, SAC 논문을 보면 TD3가 더 낮은 성능을 보인다. 2019년의 다른 논문들을 보면 두 알고리즘을 모두 SOTA로 보는 경향이 있다.
 - DDPG에는 Actor-Critic의 특성상 발생하는 Overestimation bias 문제, high variance of target value 문제, susception to local maximum of target value 문제 등이 있으며, 이로 인해 안정적인 학습이 어렵다.
-- TD3에는 두 개의 Critic을 구현하고 그 중 낮은 target value를 선택하여 overestimation bias 문제를, 민감한 policy를 Critic에 비해 덜 업데이트하는 방법으로 high variance 문제를, 그리고 target value를 계산하는 데에 사용되는 action에 노이즈를 추가하여 local maximum 문제를 해결한다.
-- 실험 결과 Hopper 기준으로 3000 점을 넘는 등 SOTA의 성능을 보였다.
+- TD3에는 두 개의 Critic을 구현하고 그 중 낮은 target value를 선택하고(Twin), 민감한 policy를 Critic에 비해 덜 업데이트하며(Delayed), 그리고 target value를 계산하는 데에 사용되는 action에 노이즈를 추가하여(noise to target policy) 이러한 문제들을 해결한다.
 
 ## 내용 정리
 
+Function approximation error와 그것의 영향으로 추정치에 bias가 생기고 높은 variance가 나타나는 문제는 강화학습에서 오랫동안 연구되어온 주제였다. TD3 알고리즘은 그 중에서도 estimation error라는 이름으로 다루어지는 두 가지, overestimation bias 문제와 high variance 문제를 해결하는 것에 초점을 맞추고 있다.
+
+Bias는 실제값과 예측값 간의 차이를 말하고, Variance는 예측값들이 흩어진 정도를 의미한다. 두 개념에서 짚고 넘어갈 점이 있다면 bias는 실제값(true value)과 예측값 간의 관계와 관련된 개념이지만 variance는 예측값들 간의 관계와 관련있다는 점이다. 이 점을 생각하면 overestimation bias 문제와 high variance 문제의 차이가 더 쉽게 와닿을 것이다.
+
 ### Overestimation bias
 
-DQN을 비롯한 Q-learning 계열의 알고리즘에서는 overestimation bias 문제가 발생한다. 이는 Q target을 구할 때 여러 action 중 q value가 가장 큰 action을 선택(greedy target)하기 때문이다.
+DQN을 비롯한 Descrete action을 학습하는 Q-learning 알고리즘에서는 overestimation bias 문제가 발생한다. 이는 Q target을 구할 때 여러 action 중 q value가 가장 큰 action을 선택(greedy target)하기 때문이다.
 
-`y = E[r + 𝛾max𝗮' Q(s', a') | s, a]`
+$$y = E[r + \gamma \max_{a'}Q(s', a') | s, a ]$$
 
-즉, 위와같은 DQN 알고리즘 수식의 `max𝗮' Q(s', a')`를 구하는 과정에서 overestimation bias가 Q value에 들어가게 되면 y를 실제보다 과도하게 높은 값으로 구하게 되거나, true maximum action이 아닌 다른 action의 값을 이용해 y를 구하는 문제가 발생한다(Trun&Schwartz, 1993). Overestimation bias 문제는 current Q value와 Q target value 간의 차이를 통해 loss를 구하는 Q-learning의 특성상 Q target value에 생긴 bias는 단일 업데이트의 문제로 끝나는 것이 아니라 누적(accumulation)된다. 결과적으로 누적된 overestimation error에 의해 안정적인 수렴이 어려워진다.
+즉, 위와같은 DQN 알고리즘 수식의 $$\max_{a'} Q(s',a')$$를 구하는 과정에서 Q value에 bias가 끼게 되면 y를 실제보다 과도하게 높은 값으로 구하게 되는 문제가 발생한다(Trun&Schwartz, 1993). 한마디로 error가 더해진 값이 그렇지 않은 값보다 커지는 경향이 있다는 것인데, 수학적으로는 다음과 같이 표현된다.
 
-DQN에서 이러한 문제를 해결하기 위해 도입된 방법이 DDQN으로, Double이라는 표현에서 알 수 있듯 Q function을 두 개 만들어 current Q value를 구하는 파라미터와 target Q value를 구하는 파라미터를 서로 달리하는 방법이 있다.
+$$E_{\epsilon}[\max_{a'}Q(s',a') + \epsilon] \geqq \max_{a'}Q(s',a')$$
+
+Overestimation bias 문제는 current Q value와 Q target value 간의 차이를 통해 loss를 구하는 Q-learning의 특성상 Q target value에 생긴 bias는 단일 업데이트의 문제로 끝나는 것이 아니라 누적(accumulation)된다. 결과적으로 누적된 overestimation error에 의해 안정적인 수렴이 어려워진다.
 
 #### Overestimation bias in Actor Critic
 
-Actor Critic 계열의 모델에서도 Critic 부분이 Q learning을 기초로 학습하기 때문에 overestimation bias에서 자유롭지 못하다. actor가 아닌 critic의 문제이므로, deterministic policy를 쓰는 DDPG에서도 동일한 문제가 발생하게 된다. 하지만 DDQN과 같이 단순히 두 개의 Q function을 만드는 것은 DDPG를 비롯한 Actor Critic 계열의 모델에서는 효과적이지 않다(ineffective)고 한다. (이와 관련된 내용은 아래 clipped Double Q-learning for Actor-Critic 부분 참조) 이는 Actor Critic의 경우 policy가 상대적으로 천천히 변화하고, 이로 인해 current Q function과 target Q function 간의 차이가 크지 않아 단순히 두 개의 네트워크를 사용하는 것만으로는 이점이 적기 때문이다. 게다가 PG 계열의 경우 policy를 직접 학습하기 때문에 overestimation bias problem이 쉽게 드러나지 않게(less clear) 된다.
+Actor Critic 계열의 모델에서도 Critic 부분이 Q learning을 기초로 학습하기 때문에 overestimation bias에서 자유롭지 못하다. 다만 Q 네트워크를 이용해 action을 바로 결정하지 않고, Q 네트워크는 critic이라는 보조적인 장치로 기능하고, policy 자체는 gradient descent 방식에 따라 업데이트 된다는 점에서 Q 네트워크에서 발생하는 over estimation error가 실제 policy에 미치는 영향은 다소 불명확한 것이 사실이다. 논문에서는 실험을 통해 DPG 모델에서도 overestimation bias 문제가 발생할 수 있음을 보이고 있다. 그리고 부정확한 value estimation은 policy update에 문제를 일으키게 된다고 주장한다.
 
-이와 관련하여 DDPG에서 overestimation bias가 발생함을 Hopper와 Walker2d 환경에서 실험을 통해 보이고 있다. 그리고 부정확한 value estimation은 policy update에 문제를 일으키게 된다고 주장한다.
+##### 1. DDQN
 
-#### Overestimation bias를 해결하는 방법
+DDPG에서도 Q 네트워크(critic)에 overestimation bias가 발생한다면 discrete action Q learning에서 사용한 방법으로 해결할 수 있지 않을까 하는 질문이 가장 먼저 떠오른다. 하지만 DDQN([Van Hasselt et al, 2016](<http://localhost:4000/paper-review/reinforcement-learning/q-learning/2019/09/17/DDQN-Deep-Reinforcement-Learning-with-Double-Q-learning/>))과 같은 방법을 바로 적용하는 것은 DDPG를 비롯한 Actor Critic 계열의 모델에서는 충분히 효과적이지 않다(ineffective)고 한다. 이는 Actor Critic의 경우 policy가 상대적으로 천천히 변화하고, 이로 인해 current Q function과 target Q function 간의 차이가 크지 않아 단순히 두 개의 네트워크를 사용하는 것만으로는 이점이 적기 때문이다.
 
-overestimation bias 문제를 해결하는 방법 중 하나는 앞서 언급한 DDQN과 같이 **current와 target을 구하는 estimator를 두 개 만드는 것**이다. 이를 통해 bias가 없는 target value 추정(unbiased value estimate)이 가능해진다.
+##### 2. Double Q-learning
 
-다른 방법으로는 **직접적으로 target value estimation의 variance를 낮추는 것**에 집중하는 방법이다. 이와 관련하여 estimation의 오버피팅을 방지하는 방법, 직접적으로 variance를 낮추는 term을 추가하는 방법들이 연구되어졌다.
+clipped Double Q-learning for Actor-Critic은 논문에서 value estimation을 줄이기 위한 방법으로 제시한 방법이다. DDQN이 아니라 그것의 이론적 바탕이 된 Double Q-learning의 아이디이를 곧바로 적용한다. 즉 아래 수식과 같이 Actor와 Critic을 각각 두 개씩 만들고 Critic1은 Actor1을 기준으로, Critic2는 Actor2를 기준으로 업데이트하는 방법이다.
 
-#### clipped Double Q-learning for Actor-Critic
+$$y_1 = r + \gamma Q_{\theta_2'}(s', \pi_{
+\varnothing_1}(s'))$$
 
-clipped Double Q-learning for Actor-Critic은 논문에서 value estimation을 줄이기 위한 방법으로 제시한 방법으로, 기존의 DDQN에서 사용한 방법과 약간의 차이가 있다.
+$$y_2 = r + \gamma Q_{\theta_1'}(s', \pi_{
+\varnothing_2}(s'))$$
 
-DDQN은 기초적인 DQN 모델에서 target을 구하는 네트워크를 별도로 두는 방법으로 overestimation bias를 줄이려고 한다. 이를 그대로 Actor-Critic 구조에 적용한다면, Actor와 Critic을 각각 두 개씩 만들고 Critic1은 Actor1을 기준으로, Critic2는 Actor2를 기준으로 업데이트하는 방법을 생각해 볼 수 있다.
+하지만 위와 같은 방법 또한 Actor-Critic 구조에서는 그렇게 효과적이지 못하다고 한다. 우선 단순히 두 개로 나누어 업데이트 할 경우 overestimation bias를 완벽하게 제거했다고 할 수 없다. 두 개의 네트워크를 사용한다는 것뿐이지 양쪽 모두에서 생기는 bias는 제거하지 못하기 때문이다. 게다가 DQN 계열에서는 target value를 구할 때에도 Q function을 사용하지만, Actor-Critic의 Critic에서는 Q function에 따라 update된 policy를 사용하기 때문에 단순히 Q function을 두 개 두는 것만으로는 그 효과가 제한적이다.
 
-```
-  y1 = r+γQθ₁′(s′,πφ₁(s′))
-  y2 = r+γQθ₂′(s′,πφ₂(s′))
-```
+##### 3. clipped Double Q-learning for Actor-Critic
 
-하지만 DDQN과는 달리 위와 같은 방법은 Actor-Critic 구조에서는 그렇게 효과적이지 못하다고 한다. 우선 단순히 나누어 업데이트 할 경우 overestimation bias를 완벽하게 제거했다고 할 수 없다. 두 개의 네트워크를 사용한다는 것뿐이지 양쪽 모두에서 생기는 bias는 제거하지 못하기 때문이다. 게다가 DQN 계열에서는 target value를 구할 때에도 Q function을 사용하지만, Actor-Critic의 Critic에서는 Q function에 따라 update된 policy를 사용하기 때문에 단순히 Q function을 두 개 두는 것만으로는 그 효과가 제한적이다.
+논문에서 제시하는 **clipped Double Q-learning**는 Double이라는 표현에서 알 수 있듯이 두 개의 Critic network를 두는 것은 위의 Double Q-learning과 동일하다. 다만 업데이트 방식에 있어 위의 방법과 차이가 있다. 즉 각각 서로 다른 Actor를 업데이트하는 것이 아니라 하나의 Actor만 업데이트하고 그 때의 Q value로는 두 개의 네트워크 아웃풋 중 작은 것을 사용한다.
 
-논문에서 제시하는 **clipped Double Q-learning**는 Double이라는 표현에서 알 수 있듯이 두 개의 Critic network를 두는 것은 DDQN과 동일하다. 다만 업데이트 방식에 있어 위의 방법과 차이가 있다. 즉 각각 서로 다른 Actor를 업데이트하는 것이 아니라 하나의 Actor만 업데이트하고 그 때의 Q value로는 두 개의 네트워크 아웃풋 중 작은 것을 사용한다.
+$$y_1 = r + \gamma \min_{i=1,2}Q_{\theta_i'}(s', \pi_{\varnothing_1} (s'))$$
 
-`y = r + γ min Qθᵢ′ (s′, πφ₁ (s′))`
-
-이러한 방법으노 `max𝗮' Q(s', a')` 값에 bias가 존재한다면 `max𝗮' Q(s', a')` 값 자체를 true value의 상한선으로 보자는 아이디어에서 시작한다. 즉, 두 개의 estimation 모두 bias가 존재한다고 가정하고, bias가 덜 존재하는 값을 true value로 설정하여, 약간이라도 bias를 줄일 수 있다는 것이다.
+이는 만약 $$\max_{𝗮'} Q(s', a')$$ 값에 bias가 존재한다면 $$\max_{𝗮'} Q(s', a')$$ 값 자체를 true value의 상한선으로 보자는 아이디어에서 시작한다. 즉, 두 개의 estimation 모두 bias가 존재한다고 가정하고, bias가 덜 존재하는 값을 true value로 설정하여, 약간이라도 bias를 줄일 수 있다는 것이다.
 
 ### variance of target value estimation
 
-Estimation의 variance가 높으면 policy 업데이트가 잘 이뤄지지 않는다고 한다(Sutton&Barto, 1998). 일반적인 Temporal Differnece 방법을 사용하면 전체 에피소드의 Return이 아닌, 다음 step의 Reward만을 이용하여 target value를 추정하기 때문에 높은 varinace가 생긴다. 이와 관련해 variance를 줄이기 위한 방법들이 제시되어 왔는데, 첫 번째는 매 step마다 error(bias)를 줄이는 방법이고 다른 방법은 한 step이 아니라 여러 step을 진행하고 이를 통해 target을 추정하는 것이다. 하지만 후자와 같이 복수의 step에서 나온 Reward의 합으로 variance 문제를 해결하려고 한다면, step이 진행됨에 따라 overestimation bias이 누적되는 문제가 발생한다. 이러한 점에서 문제를 우회(circumvent)하는 방법에 불과하다고 보아야 할 것이다.
+estimator의 variance가 높은 것은 위에서 다룬 overestimation bias를 높이는 원인이 될 수 있다는 점에서도 문제가 되지만 variance가 높다는 상황 자체만으로도 policy의 업데이트에 부정적인 영향을 미칠 수 있다. 보다 구체적으로 estimator의 variance가 높으면 policy 업데이트에 noisy gradient가 사용되기 때문에 policy의 성능이 떨어지는 원인이 된다.
 
-이와 관련해 TD3에서는 policy를 업데이트하는 횟수(step) 당 estimation의 variance를 줄이기 위해 Actor를 업데이트하는 횟수를 줄이는 방법을 사용한다.
+사실 function approximation의 특성상 variance가 발생하지 않을 수 없다. 오히려 variance가 0이라면 그 자체로 다른 문제를 내포하고 있을 가능성이 높다(variance-bias trade off). 즉 강화학습에서 개별 업데이트에 있어 어느 정도 작은 오차가 있을 것이라 기대하는 것은 이상한 것이 아니라 오히려 정상적인 것이다. 하지만 TD 방법을 이용하면 이러한 오차가 누적되기 때문에 문제가 되는 것이다.
+
+이와 관련해 TD3에서는 policy를 업데이트하는 횟수(step) 당 estimation의 variance를 줄이기 위해 Actor를 업데이트하는 횟수를 줄이는 방법을 사용한다. 이를 두고 Delayed라는 표현을 쓰고 있다. 여기에 덧붙여 TD-error가 작게 유지되기를 바라므로, target 네트워크를 업데이트하는데 있어 가중 평균을 사용하는 soft update를 도입하고 있다.
+
+soft update : $$\theta' \leftarrow \tau\theta + (1 - \tau)\theta'$$
 
 #### Delayed의 의미 - target network와 policy의 관계
 
@@ -73,7 +81,9 @@ Actor-Critic에서 policy가 좋지 않으면 overestimation bias로 인해 targ
 
 Deterministic policy의 문제점 중 하나는 value estimation의 narrow peak에 오버피팅 될 수 있다는 점이다. 즉 deterministic policy가 overestimation error에 더 민감하다(susceptable to inaccuracies). 이러한 문제를 해결하기 위해 SARSA에서 regularization strategy를 위해 사용된 방법(Sutton&Barto 1998)과 비슷한 방법을 시도한다. 간단히 말해 target value를 구할 때 사용되는 a'에 NOISE를 더하는 것이다. 이를 통해 동일한 state s와 action a에 있어 target value가 부드러워(smoothing)지는 효과가 생기게 되며, narrow peak 문제에 덜 민감해진다고 한다. Noise는 정규분포를 가정하며, original action에서 크게 벗어나지 않도록 clipping이 이뤄진다.
 
-`y=r+γQθ′(s′,πφ′(s′)+ε)` `ε ∼ clip(N (0, σ), −c, c)`
+$$y = r + \gamma Q_{\theta'}(s', \pi_{\varnothing'}(s') + \epsilon)$$
+
+$$\epsilon - clip(N(0, \sigma), -c, c)$$
 
 이 방법은 비슷한 action은 비슷한 value를 가진다는 점을 가정한다.
 
