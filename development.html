@@ -19,21 +19,22 @@ sidebar_num : 4
     {% for dev in site.development_category_list %}
       {% for cat in site.categories %}
         {% if cat[0] == dev %}
-          <h2 id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
-          <ul class="cats-expo-posts">
-          {% assign category = cat[1] | sort: "category_num" %}
-          {% for post in category %}
-            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-            <li style="margin-bottom: -0.7rem;">
-                <div>
-                  <h3>{{ post.title }}</h3>
-                  <!-- <p class="post-date">{{ post.date | date_to_string }}</p> -->
-                </div>
-            </li>
-            </a></div>
-            <small>{{ post.categories | join : " | " }}</small>
-          {% endfor %}
-          </ul><br>
+          <div class = "single-category">
+            <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <!-- <small>{{cat[1][0].categories | slice : 1,3 | join : " | "}}</small> -->
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+                <li class = "single-post-in-category">
+                    <div>
+                      <h3 class="single-post-in-category-title">{{ post.title }}</h3>
+                    </div>
+                </li>
+                </a></div>
+            {% endfor %}
+            </ul><br>
+          </div>
         {% endif %}
       {% endfor %}
     {% endfor %}

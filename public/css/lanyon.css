@@ -163,6 +163,26 @@ p {
   }
 }
 
+.single-category {
+  margin-top : -1em;
+}
+
+.single-category-title {
+  margin-top: 2em;
+}
+
+.single-post-in-category {
+  margin-top : -1em;
+  margin-bottom : -1em;
+}
+
+.single-category-title {
+  font-size: 28px;
+}
+
+.single-post-in-category-title {
+  font-size : 23px
+}
 
 /*
  * Sidebar
