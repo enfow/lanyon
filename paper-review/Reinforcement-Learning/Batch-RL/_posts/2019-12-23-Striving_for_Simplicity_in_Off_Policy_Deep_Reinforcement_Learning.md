@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Batch RL) Striving for Simplicity in Off-Policy Deep Reinforcement Learning
+title: Striving for Simplicity in Off-Policy Deep Reinforcement Learning
+category_num : 2
 ---
 
 # 논문 제목 : Striving for Simplicity in Off-Policy Deep Reinforcement Learning
