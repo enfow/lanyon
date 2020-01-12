@@ -15,7 +15,7 @@ category_num : 4
 
 - Prioritized experience replay란 TD error가 큰 것에 우선 순위를 부여하여 보다 학습이 자주 이뤄지도록 하는 방법이다.
 - replay memory에서 TD error가 큰 순서대로만 뽑는(greedy) 방법은 단점이 분명하며, TD error에 비례하여 뽑힐 확률이 높아지는(stochastic) 방법이 더 낫다.
-- random sampling이 아니므로 전체 replay memory의 sample의 분포에 비해 bias가 발생하는데 이로 발생하는 문제는 Importance Sampling을 학습에 적용하여 해결한다.
+- random sampling이 아니므로 전체 replay memory의 분포와 비교해 bias가 발생하는데 Importance Sampling을 학습에 적용하여 해결한다.
 
 ## 내용 정리
 
