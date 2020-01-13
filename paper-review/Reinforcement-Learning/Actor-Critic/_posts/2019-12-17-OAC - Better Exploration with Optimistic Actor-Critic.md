@@ -63,17 +63,17 @@ Upper bound의 기대값을 최대로 하되, target policy와 KLD를 통해 일
 
 ##### 1. ture Q value
 
-첫 번째는 true Q의 평균과 표준편차를 구하는 문제이다. 이를 정확하게 구하는 것은 쉽지 않은데 이와 관련하여 epistemic uncertainty, 즉 정보가 부족하여 불확실한 상황이라고 표현하고 계산의 효율성 등을 고려하여 가우시안 분포로 모델링하고 있다.
+첫 번째는 true Q의 평균과 표준편차를 구하는 문제이다. 두 가지를 정확하게 구하는 것은 쉽지 않는데, 그 이유를 epistemic uncertainty, 즉 정보가 부족하여 불확실한 상황이라고 표현하고 이러한 문제를 해결하기 위해 가우시안 분포로 모델링하고 있다.
 
-결과적으로 true Q의 평균과 표준편차는 부트스트랩을 이용해 다음과 같이 구해진다고 한다.
+true Q의 평균과 표준편차는 부트스트랩을 이용해 다음과 같이 구했다고 한다.
 
 $$
-\mu_Q(s,a) = {1 \over 2}(\hat Q_{LB}^1(s,a) + Q_{LB}^2(s,a))
+\mu_Q(s,a) = {1 \over 2}(\hat Q_{LB}^1(s,a) + \hat Q_{LB}^2(s,a))
 $$
 
 $$
 \sigma_Q(s,a) = \root \of {\Sigma_{i \in \{ 1,2 \} } {1 \over 2} ( Q_{LB}^i(s,a) - \mu_Q(s,a) )^2 } \\
-= {1 \over 2} | Q_{LB}^1(s,a) - Q_{LB}^2(s,a) |
+= {1 \over 2} | \hat Q_{LB}^1(s,a) - \hat Q_{LB}^2(s,a) |
 $$
 
 ##### 2. expected upper bound
