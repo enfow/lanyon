@@ -37,7 +37,7 @@ $$L(\theta | x) = Pr(X = x | \theta)$$
 
 이때 $$p(y \lvert f_\theta(x))$$이 정규분포를 따른다고 가정하면, $$f_\theta(x)$$는 정규분포의 모수, 즉 평균(표준편차는 편의상 생략)으로 볼 수 있다. 이렇게 보면 네트워크의 출력값은 미리 가정한 확률분포의 모수를 추정하는 것이 된다.
 
-<img src="{{site.image_url}}/study/maximum_likelihood.png" style="width: 20em">
+<img src="{{site.image_url}}/study/maximum_likelihood.png" style="width: 30em">
 
 위의 그림을 보면 조금 더 쉽게 이해가 되는데, 네트워크 학습 과정에서 $$\theta_1$$이 $$\theta_2$$로 변화했다고 하자. 네트워크의 출력값을 확률분포 $$p(y \lvert f_\theta(x))$$의 평균값으로 보기 때문에 위의 그림과 같이 정규분포의 형태로 표현할 수 있다. 즉 네트워크 출력값이 변화하여 평균이 $$f_{\theta_1}(x)$$에서 $$f_{\theta_2}(x)$$로 이동한 것이다. 이때 각 네트워크의 성능은 결국 해당 확률분포에서 y값의 likelihood, 그림 상의 (1)과 (2)로 표현된다. y가 나올 확률을 최대로 하는 것이 목표이므로 (1)보다는 (2)가 좋은 것이다.
 
