@@ -79,6 +79,8 @@ $$
 
 ## Loss function: MSE & Cross-Entropy
 
+### MSE
+
 위에서는 $$p(y_i \lvert f_\theta(x_i))$$를 가우시안 분포로 가정했었다. 이 경우 수식을 전개해보면 Mean Square Error와 같다는 것을 알 수 있다.
 
 $$
@@ -91,6 +93,8 @@ $$
 \shoveleft - \log p(y_i \lvert \mu_i, \sigma_i) \varpropto {(y_i - \mu_i)^2 \over 2} = {(y_i - f_\theta(x_i))^2 \over 2}
 \end{multline}
 $$
+
+### Cross Entropy
 
 가우시안 외에도 베르누이 분포로 가정할 수도 있는데 이 경우 Cross Entropy 수식과 동일해진다.
 
