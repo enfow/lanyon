@@ -106,13 +106,12 @@ Bellman operator는 수학적으로 $$\rm I\!R^n \rightarrow \rm I\!R^n$$로, �
 어떤 Bellman operator가 수축(contraction)한다는 것은 다음이 성립한다는 것을 의미한다.
 
 $$
-
 \text{for any policy} \ \pi \ \text{any initial vector} \ v, \\
 
 \lim_{k \rightarrow \infty}(\tau^\pi)^k = v_\pi, \ \lim_{k \rightarrow \infty}(\tau^*)^k = v_* \\
 
-\text{where} \ v_\pi \ \text{is the value of policy} \ \pi \ \text{and} \ v_* \ \text{is the value of an optimal policy} \ \pi_*
-
+\text{where} \ v_\pi \ \text{is the value of policy} \ \pi \\
+\text{and} \ v_* \ \text{is the value of an optimal policy} \ \pi_*
 $$
 
 즉, 수축한다는 것은 어떤 v vector에서 어떤 policy를 가지고 시작하더라도 무한히 반복하면 해당 policy의 $$v_\pi$$로 수렴하게 된다는 것을 의미한다.
