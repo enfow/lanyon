@@ -5,6 +5,8 @@ title: Bellman Operator
 
 # Bellman Operator
 
+- update date : 20.01.15
+
 ## Bellman Equation to Bellman Operator
 
 ### Expected Bellman Equation
