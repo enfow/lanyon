@@ -13,7 +13,7 @@ $$
 \theta^* = argmin_{\theta \in \Theta} L(f_\theta(x), y)
 $$
 
-이러한 점에서 딥러닝에서 loss function을 어떻게 설정할지에 관한 문제는 매우 중요하다고 할 수 있다. 하지만 딥러닝에서 사용되는 loss function의 종류는 매우 제한적인데, 이를 Maximum likelihood의 관점에서 풀어보고자 한다.
+이러한 점에서 loss function을 어떻게 설정할지에 관한 문제는 딥러닝에서 매우 중요하다고 할 수 있다. 하지만 딥러닝에서 사용되는 loss function의 종류는 매우 제한적인데, 이를 Maximum likelihood의 관점에서 풀어보고자 한다.
 
 ## likelihood
 
