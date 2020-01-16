@@ -21,27 +21,27 @@ title: 자주 쓰는 git 코드 모음
 
 - 모든 파일 추가
 
-    ```git add . ```
+    `git add . `
 
 - 특정 파일 /디렉토리 추가
 
-    ```git add <file/dir name>```
+    `git add <file/dir name>`
 
 ### stage에서 제거하기
 
 - stage 상의 모든 파일 제거
 
-    ```git reset```
+    `git reset`
 
 - stage 상의 특정 파일 제거
 
-    ```git reset <file name>```
+    `git reset <file name>`
 
 ### stage의 파일 commit
 
 - 커밋
 
-    ```git commit -m <“commit message”>```
+    `git commit -m <“commit message”>`
 
 ### 파일 상태 확인
 
@@ -56,7 +56,7 @@ title: 자주 쓰는 git 코드 모음
 
 - 브랜치 병합
 
-    'git merge <merge하고자 하는 branch>'
+    `git merge <merge_대상_branch>`
 
 - 이때 branch는 merge를 받는 branch여야 한다.
 
@@ -78,16 +78,15 @@ title: 자주 쓰는 git 코드 모음
   - git pull origin master : 원격의 master 브랜치에서 가져온다.
   - git pull origin develop_runner : 원격의 origin/develop_runner 브랜치에서 현재 브랜치로 가져와 병합한다.
 
-
 ### 보내서 업데이트하기: push
 
 - 로컬 브랜치 업데이트하기
- 
-    'git push <branch_name>'
+
+    `git push <branch_name>`
 
 - 원격 브랜치 업데이트하기
 
-    'git push origin <branch_name>'
+    `git push origin <branch_name>`
 
 ### 브랜치 확인
 
