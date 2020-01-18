@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Policy Gradient:REINFORCE & ACTOR-CRITIC(Sutton 2011)
+title: Policy Gradient - REINFORCE & ACTOR-CRITIC
 ---
 
 # Policy Gradient: REINFORCE & ACTOR-CRITIC
