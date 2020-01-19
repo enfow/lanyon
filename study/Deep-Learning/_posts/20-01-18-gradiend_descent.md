@@ -122,7 +122,7 @@ SGD에서 데이터로 $$x_1$$이 들어왔다고 가정해보자. 이때의 los
 
 <img src="{{site.image_url}}/study/gradient_descent_2.png" style="width: 32em">
 
-즉 검은 선의 기울기가 아니라 보라색 선의 기울기에 따라 업데이트의 크기와 방향을 결정해야 한다. 위의 그림에서는 $$\nabla_\theta J(\theta)$$의 값이 음수이므로, $$\theta$$값이 커진 것을 확인할 수 있다. 보다 정확하게는 그림에 나와있듯이 $$- \alpha \nabla_\theta J(\theta)$$만큼 변화한다.
+즉, 검은 선의 기울기가 아니라 보라색 선의 기울기에 따라 업데이트의 크기와 방향을 결정해야 한다. 위의 그림의 빨간 선을 의미하는데, 여기서는 $$\nabla_\theta J(\theta)$$의 값이 음수이므로, $$\theta$$값이 커진 것을 확인할 수 있다. 보다 정확하게는 그림에 나와있듯이 $$- \alpha \nabla_\theta J(\theta)$$만큼 변화한다.
 
 Minibatch와 같이 복수의 데이터를 사용하는 경우는 파란색으로 표현했다. 이 경우도 각각의 데이터에 대한 gradient를 계산할 수 있는데, 업데이트의 방향은 위의 네 점의 Gradient 간의 평균으로 구하게 된다.
 
@@ -136,7 +136,7 @@ $$
 
 즉, SGD와 같이 한 개의 데이터를 쓰는 것과 Minibatch와 같이 복수의 데이터를 쓰는 것은 $$\nabla_\theta J(\theta)$$의 크기를 구하는 방법(그대로 쓰느냐와 평균을 내서 쓰느냐)에만 차이가 있다.
 
-그리고 SGD와 같이 하나의 데이터에 따라 업데이트를 할 경우에는 variance가 커 $$\theta$$ 값의 변화 방향이 다양하게 나타날 수 있다. 이러한 이유로 SGD 또는 batch size가 작은 mini batch에서는 업데이트의 방향이 횡보하는 경우가 많다. 이것이 꼭 나쁘다고만 할 수는 없는 것이, 이 경우 local minimum에서 빠져나올 확률이 높아지기 때문이다. 이는 Batch Gradient Descent를 사용하지 않는 이유 중 하나이다.
+그리고 SGD와 같이 하나의 데이터에 따라 업데이트를 할 경우에는 $$\nabla_\theta J(\theta)$$ 값의 variance가 커 $$\theta$$ 값의 변화 방향이 다양하게 나타날 수 있다. 이러한 이유로 SGD 또는 batch size가 작은 mini batch에서는 업데이트의 방향이 횡보하는 경우가 많다. 이것이 꼭 나쁘다고만 할 수는 없는 것이, 이 경우 local minimum에서 빠져나올 확률이 높아지기 때문이다. 이는 Batch Gradient Descent를 사용하지 않는 이유 중 하나이다.
 
 #### 1. Batch Gradient Descent
 
