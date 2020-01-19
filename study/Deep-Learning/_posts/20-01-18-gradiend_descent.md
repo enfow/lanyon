@@ -12,7 +12,7 @@ title: Gradient Descent
 
 ### Objective function
 
-머신러닝에서 objective function이란 극대화 또는 극소화하고자 하는 대상 함수를 말한다. 극대화 문제는 음수를 통해 극소화 문제로 표현할 수 있으므로, 최적화 이론에서는 극소화 문제를 중심으로 다루기 때문에 여기서도 극소화 문제로만 다루고자 한다. 극소점을 표현할 때 $$x^*$$를 사용하며, 수학적으로는 다음과 같이 표현된다. 참고로 objective function은 경우에 따라서는 cost function, loss function 등으로 불리기도 한다.
+**objective function**이란 극대화 또는 극소화하고자 하는 대상 함수를 말한다. 극대화 문제는 음수를 통해 극소화 문제로 표현할 수 있으므로, 최적화 이론에서는 극소화 문제를 중심으로 다루기 때문에 여기서도 극소화 문제로만 다루고자 한다. 극소점을 표현할 때 $$x^*$$를 사용하며, 수학적으로는 다음과 같이 표현된다. 참고로 objective function은 경우에 따라서는 cost function, loss function 등으로 불리기도 한다.
 
 $$x^* = arg min f(x)$$
 
@@ -80,9 +80,9 @@ $$
 
 여기서 loss function $$L(\cdot)$$은 모델의 예측값 $$f(x;\theta)$$와 레이블 $$y$$를 통해 계산된다. 위 식을 풀이하자면 주어진 데이터셋 $$\hat p_{data}$$에 대한 expected loss가 objective function이 된다는 것이다.
 
-한 가지 눈여겨 봐두어야 할 것이 있다면 objective function의 입력값으로 $$\theta$$가 주어졌다는 것이다. 여기서 $$\theta$$란 네트워크 파라미터를 말한다. 즉, 데이터셋은 주어져있고 네트워크를 데이터셋에 맞게 업데이트하여 loss를 최소화하도록 하는 것이 딥러닝의 학습 방향이라고 할 수 있다.
+한 가지 눈여겨 봐두어야 할 것이 있다면 objective function의 입력값으로 $$\theta$$가 주어진다는 것이다. 여기서 $$\theta$$란 네트워크 파라미터를 뜻하는데, 딥러닝을 포함한 머신러닝에서는 데이터는 주어진 것으로 간주하고 이에 네트워크 등 모델을 업데이트하여 loss가 작아지도록 맞추게(fitting) 한다는 점에서 이를 이해할 수 있다.
 
-### condition of Gradient Descent Update
+### Condition of Gradient Descent Update
 
 Gradient Descent 방법을 이용하여 네트워크를 학습시키기 위해서는 조건이 있는데, 그 중 하나가 아래와 같이 전체 데이터에 대한 loss function의 기대값이 개별 데이터의 loss function 값의 합과 동일해야 한다는 점이다.
 
@@ -136,7 +136,7 @@ $$
 
 즉, SGD와 같이 한 개의 데이터를 쓰는 것과 Minibatch와 같이 복수의 데이터를 쓰는 것은 $$\nabla_\theta J(\theta)$$의 크기를 구하는 방법(그대로 쓰느냐와 평균을 내서 쓰느냐)에만 차이가 있다.
 
-그리고 SGD와 같이 하나의 데이터에 따라 업데이트를 할 경우에는 $$\nabla_\theta J(\theta)$$ 값의 variance가 커 $$\theta$$ 값의 변화 방향이 다양하게 나타날 수 있다. 이러한 이유로 SGD 또는 batch size가 작은 mini batch에서는 업데이트의 방향이 횡보하는 경우가 많다. 이것이 꼭 나쁘다고만 할 수는 없는 것이, 이 경우 local minimum에서 빠져나올 확률이 높아지기 때문이다. 이는 Batch Gradient Descent를 사용하지 않는 이유 중 하나이다.
+그리고 SGD와 같이 하나의 데이터에 따라 업데이트를 할 경우에는 전체가 아닌 일부의 data point만 사용하여 $$\nabla_\theta J(\theta)$$ 값을 결정하기 때문에 variance가 크고, 그 결과 $$\theta$$ 값의 변화 크기와 방향이 비교적 다양하게 나타난다. 이러한 이유로 SGD 또는 mini batch에서는 업데이트의 방향이 횡보하는 경우가 많다. 이것이 꼭 나쁘다고만 할 수는 없는 것이 local minimum에서 빠져나올 확률을 높여주는 방법이 되기 때문이다. 이는 보다 안정적인 수렴이 가능하다는 장점을 가지는 Batch Gradient Descent를 잘 사용하지 않는 이유 중 하나이다.
 
 #### 1. Batch Gradient Descent
 
@@ -187,4 +187,4 @@ minibatch Gradient Descent를 기본으로 하여 여러 다양한 업데이트 
 
 ## REFERENCE
 
-- gradient의 수학적 표현과 관련해서 [블로그](<https://jebae.github.io/2019/02/25/gradient-vector/>)를 참조했다.
+- gradient의 수학적 표현과 관련해서는 [이 블로그](<https://jebae.github.io/2019/02/25/gradient-vector/>)를 참조했다.
