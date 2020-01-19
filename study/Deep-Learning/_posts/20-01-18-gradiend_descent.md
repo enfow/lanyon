@@ -112,13 +112,15 @@ $$
 
 전체를 나누어 gradient를 계산해도 된다는 SGD의 개념을 생각해 볼 떄, Gradient Descent를 적용하는 데에는 한 번에 사용하는 데이터의 개수를 기준으로 크게 세 가지 방법이 가능하다는 것을 알 수 있다. 첫 번째는 전체 데이터셋을 모두 이용하여 gradient를 구하는 Batch Gradient Descent, 두 번째는 한 번에 하나의 데이터만 사용하는 Stochastic Gradient Descent, 마지막으로 정해진 개수의 데이터만을 부분적으로 사용하는 mini-batch Gradient Descent가 있다.
 
-세 가지 방법은 업데이트 방식에서 약간의 차이가 있다. 이를 위해 network $$\theta$$가 업데이트 되는 과정을 매우 간단하게 다음 그림으로 표현해보았다. 아래 그림에서 x는 네트워크의 입력 데이터를 의미하며, 총 9개를 가정하고 있다. 보라색은 SGD, 그러니까 하나의 데이터만 사용해서 업데이트 하는 방법을 표현하기 위해 사용했다. 또한 지금은 검은 실선으로 $$\theta_t$$일 때의 objective function을 나타내고 있으나, $$\theta$$ 값이 연속적인 만큼 그 값의 변화에 따라 $$J(\theta)$$도 그림의 $$\theta$$축을 따라 연속적으로 변한다고 할 수 있다.
+세 가지 방법은 업데이트 방식에서 약간의 차이가 있다. 이를 위해 network $$\theta$$가 업데이트 되는 과정을 매우 간단하게 다음 그림으로 표현해보았다. 아래 그림에서 x는 네트워크의 입력 데이터를 의미하며, 전체 데이터의 갯수는 9개이다. 또한 현재의 $$\theta$$ 값에 맞게 검은 선으로 $$\theta_t$$일 때의 objective function을 나타내고 있으나, $$\theta$$ 값이 연속적인 만큼 그 값의 변화에 따라 $$J(\theta)$$도 그림의 $$\theta$$축을 따라 연속적으로 변한다고 할 수 있다.
 
-<img src="{{site.image_url}}/study/gradient_descent1.png" style="width: 40em">
+보라색은 SGD, 그러니까 하나의 데이터만 사용해서 업데이트하는 방법을 표현하고 있다.
 
-SGD에서 데이터가 $$x_1$$이 들어왔다고 가정해보자. 이때의 loss는 위의 그림과 같이 표현된다. 업데이트는 objective function의 Gradient 값인 $$\nabla_\theta J(\theta)$$에 의해 결정되므로 이것의 기울기를 구할 필요가 있다. 여기서 중요한 것은 기울기를 구하는 방향인데, 아래와 같이 $$\theta$$축을 기준으로 구해야 한다.
+<img src="{{site.image_url}}/study/gradient_descent_1.png" style="width: 32em">
 
-<img src="{{site.image_url}}/study/gradient_descent2.png" style="width: 40em">
+SGD에서 데이터로 $$x_1$$이 들어왔다고 가정해보자. 이때의 loss는 위의 그림과 같이 표현된다. 업데이트는 objective function의 Gradient 값인 $$\nabla_\theta J(\theta)$$에 의해 결정되므로 이것의 기울기를 구할 필요가 있다. 여기서 중요한 것은 기울기를 구하는 방향인데, 아래와 같이 $$\theta$$축을 기준으로 구해야 한다.
+
+<img src="{{site.image_url}}/study/gradient_descent_2.png" style="width: 32em">
 
 즉 검은 선의 기울기가 아니라 보라색 선의 기울기에 따라 업데이트의 크기와 방향을 결정해야 한다. 위의 그림에서는 $$\nabla_\theta J(\theta)$$의 값이 음수이므로, $$\theta$$값이 커진 것을 확인할 수 있다. 보다 정확하게는 그림에 나와있듯이 $$- \alpha \nabla_\theta J(\theta)$$만큼 변화한다.
 
