@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Striving for Simplicity in Off-Policy Deep Reinforcement Learning
+title: REM) Striving for Simplicity in Off-Policy Deep Reinforcement Learning
 category_num : 2
 ---
 
@@ -15,7 +15,7 @@ category_num : 2
 
 - 환경과의 실시간 상호작용 없이 데이터셋을 통해 agent를 학습시키는 방법을 batch RL 또는 offline learning이라고 한다.
 - offline learning을 이용해 기존의 online learning 보다 더 높은 성능의 알고리즘을 만들 수 있다. DQN으로 해결하는 discrete 환경 뿐만 아니라 DDPG를 사용하는 continous 환경에서도 검증했다.
-- distributional RL 알고리즘과의 비교를 통해 일반적인 DQN 알고리즘이 exploitation 성능이 부족하다는 것을 확인하고, 나아가 알고리즘적 개선을 통해 이 부분을 해결할 수 있다는 점을 강조한다.
+- distributional RL 알고리즘과의 비교를 통해 일반적인 DQN 알고리즘이 exploitation 성능이 부족하다는 것을 확인하고, 나아가 이를 효과적으로 해결하는 새로운 알고리즘으로 **REM**을 제시한다.
 
 ## 내용 정리
 
@@ -61,4 +61,41 @@ Offline learing 실험을 위해 사용된 DQN 알고리즘에서는 ADAM을 사
 
 ### REM: Random Ensemble Mixture
 
-이 부분 추가하기
+QR-DQN을 비롯한 distributional RL의 기법들이 batch setting에서 좋은 성능을 보여주었고, 이에 따라 알고리즘의 exploiting 성능이 뛰어나다면 dataset만 가지고도 학습이 가능하다는 결론을 내리고 있다. 하지만 distributional RL은 bellman equation을 distribution으로 표현하고, 따라서 TD error 또한 scalar 값이 아닌 분포로 표현된다는 점에서 복잡하고, 최근의 연구결과를 볼 때 distributional RL의 기여가 불분명한 측면이 있다고 한다. 따라서 논문에서는 exploiting 성능이 높은 새로운 알고리즘을 제시하고 있는데 이것이 **REM**이다.
+
+#### Ensenble-DQN
+
+REM은 Ensenble-DQN에서 아이디어를 얻었다고 한다. Ensenble-DQN은 앙상블이라는 표현에서 느낌이 오듯 여러 개의 agent를 동시에 학습시키고, 각각의 네트워크에서 얻을 수 있는 q value를 평균을 내어 action을 선택하는 DQN이다. 이때 모든 agent들이 동일한 mini-batch 순서에 따라 학습된다는 점이 특징이다. Ensenble-DQN의 loss function은 다음과 같다.
+
+$$
+L(\theta) = {1 \over K} \Sigma_{k=1}^K E_{s,a,r,s' \backsim D} [ l_\delta ( Q_\theta^k(s,a) -r -\gamma \max_{a'} Q_{\theta'}^k (s', a') ) ]
+$$
+
+여기서 $$l_\delta$$는 Huber Loss이다.
+
+#### REM Algorithm
+
+앙상블 모델에서는 agent의 갯수가 많아지면 많아질수록 성능이 높아지는 경향이 있다고 한다. 이러한 점을 고려해 볼 때 많은 agent들을 효율적으로 학습시키는 방법 또한 중요하다고 할 수 있는데, REM은 이를 drop out과 유사한 방법으로 해결하려고 하는 알고리즘이다.
+
+우선 REM 또한 복수의 agent를 사용한다는 점은 Ensenble-DQN과 동일하다. 하지만 모든 agent가 동일하게 학습되는 Ensenble-DQN과는 달리 REM은 매 학습마다 업데이트되는 agent가 다르고, 그 크기 또한 서로 다르다. 즉 n개의 agent가 있다면, 각각이 학습될 확률을 $$\alpha$$라는 random drawed categorical distribution으로 매 step마다 정하고 그 크기에 맞춰 loss를 구하게 된다. 정확한 REM의 Loss function은 다음과 같다.
+
+$$
+L(\theta) = E_{s,a,r,s' \backsim D} [ E_{\alpha_1, ... \alpha_K \backsim P_\Delta} [ l_\delta ( \Sigma_k \alpha_k Q_\theta^k (s,a) - r - \gamma \max_{a'} \Sigma_k \alpha_k Q_{\theta'}^k (s',a') ) ] ]
+$$
+
+여기서 $$P_\Delta$$는
+
+$$
+\begin{multline}
+standard \ (K-1) \ simplex \ \Delta^{K-1}\\
+= \{ \alpha \in \rm I\!R : \alpha_1 + \alpha_2 + \alpha_3 + ... + \alpha_K = 1, \alpha_k \geqq 0, k = 1, ..., K \}
+\end{multline}
+$$
+
+의 확률 분포를 의미한다.
+
+논문에서는 실험을 위해 가장 기본적인 $$P_\Delta$$를 사용했다고 하는데, 구체적으로는 각 $$\alpha_k$$ 값을 구하기 위해 우선 $$\alpha' \backsim U((0,1)$$ 구한 뒤 $$ \alpha_k = \alpha'_k / \Sigma \alpha'_i $$로 정했다고 한다.
+
+#### performance of REM
+
+논문에서는 REM과 함께 pure DQN, Ensenble-DQN, Bootstrapped-DQN 그리고 distributional RL의 한 종류인 QR-DQN에 대해 60개의 Atari game 환경에서 Online, Offline 실험했고, 그 결과 Online 환경에서는 QR-DQN이 REM에 비해 약간 더 좋지만, Offline 환경에서는 REM이 가장 좋은 성능을 보였다고 한다.
