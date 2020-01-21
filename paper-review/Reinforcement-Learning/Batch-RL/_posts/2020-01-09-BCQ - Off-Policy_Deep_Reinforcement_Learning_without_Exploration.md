@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Off-Policy Deep Reinforcement Learning without Exploration
+title: BCQ) Off-Policy Deep Reinforcement Learning without Exploration
 category_num : 1
 ---
 
@@ -65,7 +65,7 @@ off-policy에서는 현재의 policy와 상관성이 높은 데이터들이 buff
 
 실험 셋팅 중 가장 중요한 것은 buffer(dataset)를 어떻게 얻을 것인가에 관한 것으로 논문에서는 다음 세 가지 방법을 사용했다고 한다. 첫 번째는 Gaussian noise를 다소 크게 부과하여 탐색의 정도를 높인 DDPG모델로 100만 step 동안 축적한 최종 buffer를 그대로 저장하여 off-policy 모델을 학습하는데 사용하는 방법이다. 최종적으로 저장된 buffer를 batch로 사용한다는 점에서 **final buffer 방법**이라고 한다. 두 번째는 상대적으로 낮은 Gaussian noise를 가지고 있는 behavior에 의해 buffer가 축적되는 과정에 off-policy 모델이 함께 학습되는 방법이다. 이 방법의 경우 behavior와 off-policy 모델이 완전히 동일한 buffer로 학습한 것이 된다. 동시에 학습하므로 **Concurrent 방법**이라고 한다. 마지막 세 번째는 **imiation learning 방법**이라 이름 붙인 것으로, 이미 완전히 학습된 DDPG가 고정된 채로 100만 step 동안 쌓은 buffer를 사용하여 off-policy 모델을 학습하는 방법이다.
 
-<img src="{{site.image_url}}/paper-review/extrapolation_error.png">
+<img src="{{site.image_url}}/paper-review/extrapolation_error.png" style="width: 30em">
 
 실험을 결과를 보면 세 가지 모든 경우에서 behavior 모델보다 off-policy 모델의 성능이 좋지 않았다. 특히 두 번째 경우와 같이 동일한 buffer를 이용해 학습이 이뤄진 경우에도 잘 되지 못했는데, 이러한 점에서 policy의 초기값(initial policy) 간의 차이 정도만으로도 exploratione error가 발생하여 학습이 되지 않는다는 것을 알 수 있다.
 
