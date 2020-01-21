@@ -41,7 +41,7 @@ offline learning의 대표적인 문제는 다른 policy에 따라 수집된 tra
 
 각각의 atari game에 대해 기본 DQN 알고리즘을 이용해 seed를 바꿔가며 5번씩 실험을 했고, 5천만 step을 진행하며 얻은 모든 (state, action, reward, next state) tuple 을 저장해 데이터셋을 구성했다. 그리고 이를 이용하여 DQN과 QR-DQN을 이용한 offline learning을 학습시켜 online DQN과 비교하는 실험을 진행했다고 한다.
 
-<img src="{{site.image_url}}/paper-review/Striving_for_Simplicity_in_Off_Policy_Deep_Reinforcement_Learning_fig2.png" style="width: 30em">
+<img src="{{site.image_url}}/paper-review/Striving_for_Simplicity_in_Off_Policy_Deep_Reinforcement_Learning_fig2.png" style="width: 50em">
 
 위의 그림은 offline QR-DQN, offline DQN의 성능을 online DQN을 0으로 하여 로그 스케일로 비교한 것이다. 왼쪽의 그림이 offline DQN이고, 오른쪽의 그림이 offline QR-DQN인데 왼쪽은 0보다 낮은 경우가 많고, 오른쪽은 0보다 큰 경우가 많다. 이를 두고 `offline QR-DQN > online DQN > offline DQN` 순으로 성능이 좋았다고 평가한다. 논문에서는 이러한 결과를 두고 두 가지 결론을 내리고 있다. 하나는 DQN의 off-policy data exploiting이 비효율적이라는 것이고, 다른 하나는 offline 알고리즘 만으로도 강력한 Atari game agent를 만드는 것이 가능하다는 것이다.
 
