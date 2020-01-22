@@ -160,6 +160,18 @@ $ git push -u origin master
 
     `git diff<branch_name> origin/<branch_name>`
 
+### 충돌의 해결
+
+- 원격에서 pull 받을 때 conflict가 예상되어 Aborting되는 경우
+
+    - commit 되지 않은 파일 중 conflict가 발생하는 경우이다. 아래와 같이 해결한다.
+    - 1. git stash로 충돌 예상 파일 숨기기
+    - 2. pull을 받는다.
+    - 3. git stash pop으로 변경 파일을 복구한다.
+    - 4. 복구하게 되면 충돌 예상 파일에 conflict log가 뜬다.
+    - 5. conflict를 해결한다.
+    - 6. 해결 후 해당 파일을 commit하면 완료
+
 ### 변경 파일 숨기기: stash
 
 - 현재 branch의 변경사항을 일시적으로 숨김
@@ -194,9 +206,3 @@ $ git push -u origin master
 
 - ex)
     - 원격의 develop/model 브랜치를 가져오고 싶은 경우 -> git checkout -b origin/develop/model  
-
-
-
-
-
-
