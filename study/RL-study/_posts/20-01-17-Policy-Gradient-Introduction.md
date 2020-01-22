@@ -10,7 +10,7 @@ title: Policy Gradient - REINFORCE & ACTOR-CRITIC
 
 ## Policy Gradient
 
-Policy Gradient(PG)란 value function을 학습하고 그 값에 따라 action을 선택하는 것이 아니라 직접 action 값을 선택하는 policy parameter를 학습하는 알고리즘을 말한다. 수학적으로는 다음과 같이 표현된다.
+Policy Gradient(PG)란 value function을 이용해 action을 선택하는 것이 아니라 직접 action 값을 선택할 수 있도록 하는 policy parameter를 업데이트하는 방법을 말한다. 수학적으로는 다음과 같이 표현된다.
 
 - $$\theta \in R^{d'}$$ : policy parameter
 
@@ -28,7 +28,7 @@ $$
 
 ## Policy Gradient Theorem
 
-PG 방법론의 핵심은 policy의 파라미터 $$\theta$$를 performance measure $$J$$가 극대화되는 방향으로 학습시키는 것이다. 하지만 업데이트 방향을 찾는 것이 쉽지 않다. 왜냐하면 return을 최대로 하기 위해서는 현재 state에서 action을 선택하는 것과 더불어 현재 policy가 가지고 있는 state의 분포를 모두 고려해야 하지만 reward를 최대로 하는 action은 곧바로 확인할 수 있다 하더라도 state의 분포는 agent로서는 알 수 없는 환경에 영향을 받는 만큼 알 수 없기 때문이다. 따라서 어떤 방향으로 업데이트 한다고 할 때 그것이 성능을 높이는 방향인지 알기 어려운 것이 PG의 가장 큰 문제였다. 그리고 이러한 문제를 해결하는 Policy Gradient Theorem이 등장한 이후 PG가 본격적으로 발전할 수 있었다.
+PG 방법론의 핵심은 policy의 파라미터 $$\theta$$를 직접 학습하여 performance measure $$J$$가 극대화되도록 하는 것이다. 하지만 policy의 업데이트 방향을 찾는 것이 쉽지 않다. 왜냐하면 return을 최대로 하기 위해서는 현재 policy가 가지고 있는 state의 분포를 고려해야 하는데, agent로서는 이를 알기 어렵기 때문이다. 이러한 상황에서 항상 현재 state에서 최고의 reward를 갖는 action만 선택하도록 하면 장기적으로는 return을 증가시키지 못하고 빠르게 죽는 policy가 학습될 수 있다. 따라서 어떤 방향으로 policy를 업데이트한다고 할 때 그것이 실제로 성능을 높이는 방향인지 알기 어려운 것이 PG의 가장 큰 문제였다. Policy Gradient Theorem은 이러한 문제를 해결하기 위해 제시되었고, 이후 PG 방법론이 본격적으로 발전할 수 있었다.
 
 Policy Gradient Theorem은 다음과 같다.
 
