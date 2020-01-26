@@ -51,7 +51,7 @@ tensor는 2차원 이상으로 이뤄진 배열을 말한다. tensor의 일반�
 
 ## Transpose
 
-transpose matrix란 다음과 같이 행과 열을 뒤집은 행렬을 말한다. 정확하게는 주 대각선을 축으로 반사 대칭을 가하여 얻은 행렬([wiki](<https://ko.wikipedia.org/wiki/%EC%A0%84%EC%B9%98%ED%96%89%EB%A0%AC>))이다. 기존 행렬에 T를 씌워 표현한다.
+전치행렬(transpose matrix)이란 다음과 같이 행과 열을 뒤집은 행렬을 말한다. 정확하게는 주 대각선을 축으로 반사 대칭을 가하여 얻은 행렬([wiki](<https://ko.wikipedia.org/wiki/%EC%A0%84%EC%B9%98%ED%96%89%EB%A0%AC>))이다. 기존 행렬에 T를 씌워 표현한다.
 
 $$
 A =
@@ -72,31 +72,31 @@ $$
 
 ## matrix 간의 곱셈
 
-matrix와 vector를 곱한다고 하면 아래 두 가지 방법으로 가능하다.
+행렬과 벡터를 곱한다고 하면 아래 두 가지 방법으로 가능하다.
 
 #### 1. dot product
 
 dot product는 scalar product, 내적(inner product)이라고도 하며 가장 기본적인 곱셈 방법이다. 즉, 일반적으로 선형대수에서 matrix 또는 vector를 곱한다고 하면 dot product를 수행한다고 생각해도 된다.
 
-앞에 위치한 matrix의 각 row와 뒤에 위치한 matrix의 각 column을 서로 곱하고 모두 더해 하나의 element를 구성하는 방식으로 수행된다. $$A, B, C$$ 세 개의 matrix가 있다고 할 때 $$C = AB$$를 수학적으로 표현하면 다음과 같다.
+앞에 위치한 행렬의 각 row와 뒤에 위치한 행렬의 각 column을 서로 곱하고 모두 더해 하나의 element를 구성하는 방식으로 수행된다. $$A, B, C$$ 세 개의 행렬이 있다고 할 때 $$C = AB$$를 수학적으로 표현하면 다음과 같다.
 
 $$
 C_{l,j} = \Sigma_k A_{i,k}B_{k,j}
 $$
 
-따라서 dot product가 이뤄지려면 앞에 위치한 matrix $$A$$의 column의 크기와 뒤에 위치한 matrix $$B$$의 row의 크기가 일치해야 한다. 만약 $$A \in \rm l\!R^{mxn}$$, $${B \in \rm l\!R^{nxp}}$$라면 $$C$$는 $$C \in \rm l\!R^{mxp}$$가 된다.
+따라서 dot product가 이뤄지려면 앞에 위치한 행렬 $$A$$의 column의 크기와 뒤에 위치한 행렬 $$B$$의 row의 크기가 일치해야 한다. 만약 $$A \in \rm l\!R^{mxn}$$, $${B \in \rm l\!R^{nxp}}$$라면 $$C$$는 $$C \in \rm l\!R^{mxp}$$가 된다.
 
-vetor 간 dot product도 가능한데, 이를 위해서는 어느 한 vector를 transpose해주어야 한다. 즉, 다음과 같이 가능하다.
+벡터 간 dot product도 가능한데, 이를 위해서는 어느 한 벡터를 전치해주어야 한다. 즉, 다음과 같이 가능하다.
 
 $$x^T y$$
 
-이 경우에도 서로 크기가 맞아야하므로, $$x,y$$는 동일한 크기의 vector여야 한다.
+이 경우에도 서로 크기가 맞아야하므로, $$x,y$$는 동일한 크기의 벡터여야 한다.
 
 #### 2. element-wise product
 
-element-wise product는 이름과 같이 앞의 matrix와 뒤의 matrix를 곱할 때 서로 동일한 위치의 element를 곱하는 것을 의미한다. 일반적으로는 사용되지 않으므로 $$A \bigodot B$$와 같이 특별한 표기법을 사용한다.
+element-wise product는 이름과 같이 앞의 행렬과 뒤의 행렬를 곱할 때 서로 동일한 위치의 element를 곱하는 것을 의미한다. 일반적으로는 사용되지 않으므로 $$A \bigodot B$$와 같이 특별한 표기법을 사용한다.
 
-동일한 위치의 element 간의 곱이므로 앞의 matrix와 뒤의 matrix의 크기가 서로 일치해야 한다.
+동일한 위치의 element 간의 곱이므로 앞의 행렬과 뒤의 행렬의 크기가 서로 일치해야 한다.
 
 #### Matrix간 곱셈과 transpose
 
@@ -179,3 +179,51 @@ $$
 
 - $$(A^{-1})^T = (A^T)^{-1}$$, 역행렬의 전치행렬은 전치행렬의 역행렬과 같다.
 - $$(ABC)^{-1} = C^{-1}B^{-1}A^{-1}$$, 행렬 간의 곱에 대한 역행렬은 각 행렬의 역행렬을 역순으로 곱한 것과 같다.
+
+## special kinds of matrices and vectors
+
+### 대각행렬(Diagonal matrix)
+
+대각행렬이란 주대각선의 요소 외에 다른 요소들은 모두 0인 행렬을 말한다. 주대각행렬의 요소가 모두 1인 identity matrix $$I$$ 또한 대각행렬의 일종이라고 할 수 있다. $$diag(v)$$로 대각행렬을 표기하기도 하는데 이는 정방행렬 중 주대각행렬의 요소가 벡터 $$v$$인 경우를 의미한다.
+
+대각행렬은 계산상 편의성이 많은데, 대각행렬과 벡터 간의 곱은 $$diag(v)x = v \bigodot x$$로 쉽게 계산된다. 또한 대각행렬의 요소가 모두 0이 아닌 경우에는 역행렬의 계산은 아래와 같다.
+
+$$
+diag(v)^{-1} = diag([1/v_1, 1/v_2, ... ,1/v_n]^T)
+$$
+
+### 대칭행렬(symmetric matrix)
+
+대칭행렬이란 다음과 같이 전치를 하여도 동일한 행렬을 말한다.
+
+$$
+A = A^T
+$$
+
+### 단위 벡터(unit vector)
+
+단위 벡터란 벡터의 크기(L^2 norm)가 1인 경우를 말한다.
+
+$$
+\| x \|_2 = 1
+$$
+
+단위 벡터를 구하기 위해서는 전체 벡터의 요소 합을 각 요소에 나누게 되는데, 이러한 점에서 정규화 벡터(normalized vector)라고도 한다.
+
+### 직교(orthogonal)
+
+벡터 $$x$$와 $$y$$가 서로 직교한다는 것은 $$x^Ty = 0$$이 성립한다는 것을 의미한다. 이때 기하학적으로 두 벡터는 서로 직각을 이루게 된다. n 차원 공간에 정의된 벡터는 최대 n개의 직교행렬을 가질 수 있다. 직교하면서도 벡터의 크기가 1인 경우를 orthonormal이라고 한다.
+
+직교 행렬(orthogonal matrix)란 정방행렬 중 row와 column vector가 각각 다른 row, 다른 column vector와 직교하는 행렬을 말한다. 직교행렬은
+
+$$
+A^TA = AA^T = I
+$$
+
+의 특성을 가지는데, 이는
+
+$$
+A^{-1} = A^T
+$$
+
+를 의미한다.
