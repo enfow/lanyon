@@ -40,7 +40,7 @@ body {
   overflow-x: hidden;
   letter-spacing: 0em;
   word-spacing: 0.08em;
-  font-size:18px;
+  font-size:17px;
 }
 
 html {
@@ -102,19 +102,18 @@ h5 {
  */
 
 .container {
-  /* max-width: 28rem; */
-  max-width: 42rem;
+  max-width: 28rem;
 }
 @media (min-width: 38em) {
   .container {
     /* max-width: 32rem; */
-    max-width: 42rem;
+    max-width: 32rem;
   }
 }
 @media (min-width: 56em) {
   .container {
     /* max-width: 38rem; */
-    max-width: 43rem;
+    max-width: 45rem;
   }
 }
 
