@@ -11,7 +11,7 @@ title: pyenv, virtualenv, autoenv
 
 pyenv는 한 시스템에 여러 개의 파이썬을 설치하고 사용자가 필요할 때마다 빠르게 파이썬 환경을 전환할 수 있도록 도와주는 도구이다.
 
-### Installation & settings
+### 0. Installation & settings
 
 ```
 $
@@ -22,9 +22,7 @@ echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nf
 source ~/.profile
 ```
 
-### Basic command
-
-#### 1. python installation
+### 1. python installation
 
 **python 설치 전 기본 환경 설정**
 
@@ -46,7 +44,7 @@ pyenv install 3.7.4
 pyenv install -list
 ```
 
-#### 2. check available python versions
+### 2. check available python versions
 
 **현재 사용 중인 파이썬 버전 확인**
 
@@ -64,7 +62,7 @@ pyenv versions
 
 - 현재 사용 중인 파이썬 버전은 `*`로 확인 가능
 
-#### 3. change python version
+### 3. change python version
 
 **파이썬 3.7.4 버전으로 파이썬 환경 전환**
 
@@ -84,7 +82,7 @@ pyenv global 3.7.4
 
 **virtualenv**는 격리된 파이썬 환경을 만들어주는 도구라고 할 수 있다. 프로젝트에 따라 특수한 파이썬 패키지 및 환경 설정이 필요한 경우가 있는데 virtualenv를 통해 충돌을 방지하면서도 빠른 환경 전환이 가능하다. **pyenv-virtualenv**는 pyenv 플러그인으로 pyenv에서 virtualenv를 사용할 수 있도록 해주는 도구이다.
 
-### Installation & settings
+### 0. Installation & settings
 
 pyenv-virtualenv를 사용하기 위해서는 pyenv를 먼저 설치해야 한다.
 
@@ -93,9 +91,7 @@ $
 git clone https://github.com/pyenv/pyenv-virtualenv.git $(pyenv root)/plugins/pyenv-virtualenv
 ```
 
-### Basic command
-
-#### 1. create virtuelenv
+### 1. create virtuelenv
 
 **파이썬 3.7.4 버전을 사용하는 virtualenv 환경 생성**
 
@@ -105,7 +101,7 @@ pyenv shell 3.7.4
 pyenv virtualenv <virtualenv_name>
 ```
 
-#### 2. check virtualenv list
+### 2. check virtualenv list
 
 **설치된 virtualenv 목록 확인**
 
@@ -113,7 +109,7 @@ pyenv virtualenv <virtualenv_name>
 pyenv virtualenvs
 ```
 
-#### 3. activate virtualenv
+### 3. activate virtualenv
 
 **특정 virtualenv 환경 진입**
 
@@ -133,7 +129,7 @@ pyenv deactivate
 
 autoenv는 특정 디렉토리 진입 시 자동으로 환경 설정이 가능하도록 도와주는 기능을 제공한다.
 
-### Installation & Settings
+### 0. Installation
 
 ```
 $
@@ -142,7 +138,7 @@ echo 'source ~/.autoenv/activate.sh' >> ~/.bash_profile
 source ~/.bash_profile
 ```
 
-### Basic command
+### 1. Usage
 
 autoenv는 `.env`파일을 사용하며, 해당 디렉토리에 `.env`파일이 있으면 파일의 스크립트를 자동으로 실행해주는 것으로 이해하면 쉽다.
 
