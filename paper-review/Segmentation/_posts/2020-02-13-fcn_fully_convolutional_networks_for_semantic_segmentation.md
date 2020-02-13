@@ -64,7 +64,7 @@ convolution과 pooling 과정을 거치게 되면 입력값보다 출력값의 �
 
 여기서 활용한다는 것은 각각의 출력값을 더해 이를 최종 출력값으로 활용하겠다는 것이다. 하지만 어느 위치에서 가지고 왔는가에 따라 출력값의 크기가 다르기 때문에 바로 더할 수 없다는 문제가 있다. 따라서 논문에서는 뒤에서 나타난 출력값(크기가 작다)에 **bilinear interpolation**으로 upsampling을 진행한 후 더해준다. deconvolution은 이렇게 더해진 값에 대해서 실시하게 된다.
 
-<img src="{{site.image_url}}/paper-review/sfcn_skip_architecture.png" style="width: 30em">
+<img src="{{site.image_url}}/paper-review/fcn_skip_architecture.png" style="width: 35em">
 
 - FCN-32 : Conv7의 출력값 X 32 upsampling
 - FCN-16 : Conv7의 출력값 + pooling4의 출력값 X 16 upsampling
