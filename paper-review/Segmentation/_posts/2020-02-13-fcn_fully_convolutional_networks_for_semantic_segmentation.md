@@ -12,6 +12,10 @@ title: FCN) Fully Convolutional Networks for Semantic Segmentation
 
 ## 세 줄 요약
 
+- **Semantic Segmentation**이란 픽셀 단위로 물체를 인식/구분하는 것을 말한다.
+- FCN은 **VGG16**의 FC layer를 **1x1 convolution**로 대체하고, **transpose deconvolution**으로 upsampling을 수행하여 이미지의 크기에 구애받지 않고 원본과 동일한 크기로 semantic segmentation을 가능하게 한다.
+- 또한 이전 출력값을 최종 출력값에 더하는 **skip architecture**로 성능을 높였다.
+
 ## 내용 정리
 
 ### Semantic Segmentation
