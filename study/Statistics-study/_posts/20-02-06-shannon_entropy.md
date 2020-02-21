@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Shannon Entropy
-category_num: 3
+category_num: 5
 ---
 
 # Shannon Entropy

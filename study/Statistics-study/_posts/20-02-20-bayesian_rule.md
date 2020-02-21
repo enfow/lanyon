@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Bayesian Rule
-category_num: 5
+category_num: 3
 ---
 
 # Bayesian Rule
