@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 자주 쓰는 git 코드 모음
+title: git commands
 ---
 
 # 자주 쓰는 git 코드 모음

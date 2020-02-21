@@ -5,6 +5,8 @@ title: linux remote server settings
 
 # 리눅스 원격 서버 셋팅하기
 
+- update date : 20.02.03
+
 ## 0. ENVIRONMENT
 
 - server : ubuntu linux 18.04
