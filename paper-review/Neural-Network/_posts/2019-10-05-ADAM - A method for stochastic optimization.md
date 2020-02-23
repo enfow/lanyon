@@ -68,7 +68,7 @@ title: ADAM) A method for stochastic optimization
 
 - ADAM의 알고리즘은 다음과 같다.
 - 이때 $$\beta_1$$ 로는 0.9, $$\beta_2$$ 로는 0.999 를 일반적으로 사용한다고 한다.
-
+- first moment $$m$$과 second moment $$v$$ 를 사용한다.
 $$
 \eqalign{
   &m_t = \beta_1 \cdot m_{t-1} + (1 - \beta_1)g_t \\
@@ -76,19 +76,17 @@ $$
 }
 $$
 
-- first moment $$m$$과 second moment $$v$$ 를 사용한다.
+- bias를 제거하기 위해 위와 같이 나누기를 실시한다.
 
 $$
 \hat m_t = {m_t \over 1 - \beta_1^t } \qquad \hat v_t = {v_t \over 1 - \beta_2^t}
 $$
 
-- bias를 제거하기 위해 위와 같이 나누기를 실시한다.
+- 결과적으로 RMSProp에서 $$G_t$$ 를 $$\hat v_t$$으로, $$g_t$$ 를 $$m_t$$ 로 바꾼 것과 동일하다.
 
 $$
 \theta_t = \theta_{t-1} - \alpha ({\hat m_t \over \root \of {\hat v_t + \epsilon}})
 $$
-
-- RMSProp에서 G𝗍 를 v𝗍hat으로, $$g_t$$ 를 $$m_t$$ 로 바꾼 것과 동일하다.
 
 #### ADAM의 upate rule
 
@@ -118,7 +116,7 @@ $$
 - 그런데 RMSProp와 같이 가중평균을 이용하게 되면 gradient를 직접적으로 사용하지 않아 bias가 발생한다. 구체적으로 가중평균의 첫 번째 값이 0이기 때문에 실제 gradient의 분포와 업데이트 되는 값의 분포가 달라진다.
   - ADAM 또한 가중평균을 사용하므로 이러한 문제를 해결해야 한다.
   - ADAM의 알고리즘을 보면 $$g_t$$ 를 $$\hat v_t$$ 으로 대신하는 것을 알 수 있다. 그리고 $$\hat v_t$$ 은 $$v_t$$에서 $$(1-\beta_2^t)$$ 를 나눈 값이다.
-  - 즉 $$v_t$$의 분포를 $$g_t$$ 에 맞추기 위해, 그리고 bias를 제거하기 위해 $$1-\beta_2^t$ 를 나눈 것이라고 할 수 있다. 구체적인 이유는 아래에서 확인할 수 있다.
+  - 즉 $$v_t$$의 분포를 $$g_t$$ 에 맞추기 위해, 그리고 bias를 제거하기 위해 $$1-\beta_2^t$$ 를 나눈 것이라고 할 수 있다. 구체적인 이유는 아래에서 확인할 수 있다.
 
 #####  $$1-\beta_2^t$$ 를 나누어 주는 이유
 
