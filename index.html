@@ -70,15 +70,13 @@ title: Home
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
-              <div>
-                <a class="post-title" href="{{ site.baseurl }}{{ post.url }}"></a>
-                <li class = "single-post-in-category">
-                    <div>
-                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
-                    </div>
-                </li>
-                </a>
-              </div>
+            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+              <li class = "single-post-in-category">
+                  <div>
+                    <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
+                  </div>
+              </li>
+              </a></div>
             {% endfor %}
             </ul><br>
           </div>
@@ -86,6 +84,5 @@ title: Home
       {% endfor %}
     {% endfor %}
   </div>
-
   {% endfor %}
 </div>
