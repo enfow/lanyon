@@ -6,35 +6,86 @@ title: Home
 <!-- 여기에서 각 페이지의 기본값을 설정한다 -->
 
 <div class="posts">
+  <h1 style="margin-bottom: 2em;">POSTS</h1>
   {% for post in paginator.posts %}
-  <div class="post">
-    <!-- <h1 class="post-title">
-      <a href="{{ site.baseurl }}/{{ post.url }}">
-        {{ post.title }}
-      </a>
-    </h1> -->
 
-    <!-- <span class="post-date">{{ post.date | date_to_string }}</span> -->
-
-    {{ post.content }}
+  <div class="cats-expo-section">
+    {% for pap in site.paper_review_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <div class = "single-category">
+            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
+            <small>paper-review</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+                <li class = "single-post-in-category">
+                    <div>
+                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
+                    </div>
+                </li>
+                </a></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
   </div>
+
+  <div class="cats-expo-section">
+    {% for pap in site.study_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <div class = "single-category">
+            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
+            <small>study</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+                <li class = "single-post-in-category">
+                    <div>
+                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
+                    </div>
+                </li>
+                </a></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+
+  <div class="cats-expo-section">
+    {% for dev in site.development_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == dev %}
+          <div class = "single-category">
+            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
+            <small>development</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+              <div>
+                <a class="post-title" href="{{ site.baseurl }}{{ post.url }}"></a>
+                <li class = "single-post-in-category">
+                    <div>
+                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
+                    </div>
+                </li>
+                </a>
+              </div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
   {% endfor %}
 </div>
-
-<div class="pagination">
-  {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}/page{{paginator.next_page}}">Older</a>
-  {% else %}
-    <span class="pagination-item older">Older</span>
-  {% endif %}
-  {% if paginator.previous_page %}
-    {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}/">Newer</a>
-    {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}/page{{paginator.previous_page}}">Newer</a>
-    {% endif %}
-  {% else %}
-    <span class="pagination-item newer">Newer</span>
-  {% endif %}
-</div>
-
