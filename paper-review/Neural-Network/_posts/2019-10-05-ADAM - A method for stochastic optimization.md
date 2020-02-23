@@ -7,7 +7,7 @@ title: ADAM) A method for stochastic optimization
 
 - Kingma 등
 - 2014
-- <https://arxiv.org/abs/1412.6980>
+- [논문 링크](<https://arxiv.org/abs/1412.6980>)
 - 2019.10.05 정리
 
 ## 세 줄 요약
@@ -76,19 +76,13 @@ $$
 }
 $$
 
-- first moment m과 second moment v 를 사용한다.
-
-  `m𝗍hat = m𝗍 / (1 - β₁ᵗ)`
-
-  `v𝗍hat = v𝗍 / (1 - β₂ᵗ)`
+- first moment $$m$$과 second moment $$v$$ 를 사용한다.
 
 $$
 \hat m_t = {m_t \over 1 - \beta_1^t } \qquad \hat v_t = {v_t \over 1 - \beta_2^t}
 $$
 
 - bias를 제거하기 위해 위와 같이 나누기를 실시한다.
-
-  `Θ𝗍 = Θ𝗍₋₁ - ⍺ (m𝗍hat / √(v𝗍hat) + ϵ)`
 
 $$
 \theta_t = \theta_{t-1} - \alpha ({\hat m_t \over \root \of {\hat v_t + \epsilon}})
