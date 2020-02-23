@@ -69,6 +69,7 @@ title: ADAM) A method for stochastic optimization
 - ADAM의 알고리즘은 다음과 같다.
 - 이때 $$\beta_1$$ 로는 0.9, $$\beta_2$$ 로는 0.999 를 일반적으로 사용한다고 한다.
 - first moment $$m$$과 second moment $$v$$ 를 사용한다.
+
 $$
 \eqalign{
   &m_t = \beta_1 \cdot m_{t-1} + (1 - \beta_1)g_t \\
