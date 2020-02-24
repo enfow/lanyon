@@ -96,7 +96,7 @@ python에 비유하면 image는 class로, container는 class를 가지고 만든
 
 git hub와 유사하게 docker 또한 생성한 image를 repository에 저장하고 다른 사람들과 공유할 수 있다. ubuntu와 같은 공식 어플리케이션 또한 docker hub에서 관리되고 있다.
 
-## 5. 대표적인 docker 명령어
+## 5. 기본적인 docker 명령어
 
 ### image 관련 명령어
 
@@ -122,6 +122,12 @@ git hub와 유사하게 docker 또한 생성한 image를 repository에 저장하
 
 - mysql이라는 이름을 가진 image를 docker hub에서 검색해 그 결과를 알려준다.
 
+#### rmi
+
+- 이미지 삭제
+
+  `$ docker rmi <image_name>:<image_version>`
+
 ### container 관련 명령어
 
 #### run
@@ -134,7 +140,9 @@ git hub와 유사하게 docker 또한 생성한 image를 repository에 저장하
   - 이때 ubuntu:16.04라는 이름의 image가 없는 경우에는 해당 이름의 image를 다운로드(pull)한 뒤 이를 가지고 container를 생성한다.
 
   `$ docker run -it ubuntu:16.04 /bin/bash`
- 
+
+  `$ docker run -it ubuntu:16.04 bash`
+
 - -it option을 전달하면 container 생성 후 command 입력 모드로 설정된다.
 - `/bin/bash` 와 같이 image 뒤에 command가 입력되면 container 생성 후 해당 command가 실행된다.
 - 결과적으로 위와 같은 명령어를 입력하면 bash shell이 실행된 리눅스 환경이 docker container로 실행된다.
@@ -181,6 +189,24 @@ git hub와 유사하게 docker 또한 생성한 image를 repository에 저장하
 - container 제거
   
   `$ docker rm <container_id>`
+
+#### diff
+
+- image와 비교해 container의 변경사항 확인
+
+  `$ docker diff <container_id>`
+  
+#### commit
+
+- 현재 container를 image로 만들기
+
+  `$ docker commit <container_id> <new_image_name>:<new_version>`
+
+- 예를 들어 ubuntu에 git을 설치한 후 이를 ubuntu:git으로 저장하고 싶다면 다음과 같이 하면 된다.
+
+  `$ docker commit <container_id> ubuntu:git`
+
+- 참고로 container_id의 경우 모두 입력하지 않고 중복되지 않는 선에서 최소한만 전달해도 인식한다.
 
 ## reference
 

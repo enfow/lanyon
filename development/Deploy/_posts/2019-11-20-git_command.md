@@ -1,9 +1,9 @@
 ---
 layout: post
-title: git commands
+title: Git commands
 ---
 
-# 자주 쓰는 git 코드 모음
+# 자주 쓰는 Git 코드 모음
 
 - update at 19.11.20
 
