@@ -18,6 +18,7 @@ image_url:           https://enfow.github.io/image
 # 한 페이지에 보여지는 포스트 수
 paginate:            1
 plugins: [jekyll-paginate]
+gems: [jekyll-paginate]
 
 # About/contact
 author:
