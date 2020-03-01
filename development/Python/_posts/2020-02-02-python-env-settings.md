@@ -28,9 +28,11 @@ source ~/.profile
 
 ```
 $
-sudo apt-get install -y libsqlite3-dev zlib1g-dev libssl-dev libffi-dev
+sudo apt-get install -y libsqlite3-dev zlib1g-dev libssl-dev libffi-dev libbz2-dev liblzma-dev
 sudo apt-get install -y python3-setuptools python3-pip
 ```
+
+- 파이썬 설치 전에 해주는 것이 좋다.
 
 **python 3.7.4 설치**
 
@@ -121,6 +123,14 @@ pyenv activate <virtualenv_name>
 
 ```
 pyenv deactivate
+```
+
+### 4. virtualenv remove
+
+**virtualenv 삭제**
+
+```
+pyenv uninstall <virtualenv_name>
 ```
 
 ## AUTOENV
