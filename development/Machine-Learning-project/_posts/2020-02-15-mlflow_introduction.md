@@ -5,6 +5,8 @@ title: mlflow Introduction
 
 # MLFLOW INTRODUCTION
 
+- update date : 2020.02.15
+
 - [mlflow quick start](<https://mlflow.org/docs/latest/quickstart.html>)
 - [mlflow python API](<https://mlflow.org/docs/latest/python_api/mlflow.html#>)
 - [mlflow command line interface](<https://mlflow.org/docs/latest/cli.html#cli>)
