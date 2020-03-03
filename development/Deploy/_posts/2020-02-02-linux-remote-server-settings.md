@@ -1,6 +1,6 @@
 ---
 layout: post
-title: linux remote server settings
+title: Linux remote server settings
 ---
 
 # 리눅스 원격 서버 셋팅하기
