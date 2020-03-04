@@ -11,15 +11,41 @@ category_num: 2
 
 ## Bernoulli Distribution
 
-**베르누이 분포** 또는 **이항 분포**는 0,1 확률 변수 $$X$$의 값이 1(성공) 또는 0(실패)인 이산확률분포를 말한다. 베르누이 분포는 단 하나의 파라미터만 가지는데, 바로 1이 나올 확률인 $$\emptyset \in [0,1]$$이다. 구체적으로 아래와 같은 성질을 갖는다.
+이산 확률 변수 문제의 가장 대표적인 예시는 동전 던지기이다. 확률 변수 $$x$$가 있을 때 앞면이 나오면 $$x=1$$, 뒷면이 나오면 $$x = 0$$이라 하고 앞면이 나올 확률을 다음과 같이 표현하는 것이다.
 
 $$
-P(X = 1) = \emptyset \\
-P(X = 0) = 1 - \emptyset \\
-P(X = x) = \emptyset^x(1 - \emptyset)^{1-x} \\
-E_X[X] = \emptyset \\
-Var_X(X) = \emptyset(1 - \emptyset)
+p(x = 1 \lvert \mu) = \mu
 $$
+
+여기서 $$\mu$$는 $$x = 1$$인 사건, 즉 동전을 던졌을 때 앞면이 나올 확률을 뜻한다. 이와 같은 확률 분포를 베르누이 분포라고 한다. 베르누이 분포의 구체적인 정의는 다음과 같다.
+
+$$
+Bern(x \lvert \mu) = \mu^x (1 - \mu)^{1-x}
+$$
+
+베르누이 분포는 다음과 같은 특성을 갖는다.
+
+- mean: $$E[x] = \mu$$
+- variance: $$var[x] = \mu (1-\mu)$$
+
+## Binomial Distribution
+
+이항분포는 베르누이 시행을 여러 번 반복했을 때 성공횟수를 확률변수로 하는 확률 분포를 말한다. 예를 들어 동전 던지기를 10번 수행했을 때 앞면이 총 6번 나올 확률을 다룬다. 이항분포는 다음과 같이 표현할 수 있다.
+
+$$
+Bin(m \lvert N, \mu) = \begin{pmatrix} N \\ m \end{pmatrix} \mu^m (1 - \mu)^{N - m}
+$$
+
+참고로 이항계수 $$\begin{pmatrix} N \\ m \end{pmatrix}$$는 다음과 같이 정의된다.
+
+$$
+\begin{pmatrix} N \\ m \end{pmatrix} = {N! \over (N - m)! m!}
+$$
+
+이항분포는 다음과 같은 특성을 갖는다.
+
+- mean: $$E[m] = N\mu$$
+- variance: $$var[m] = N\mu(1-\mu)$$
 
 ## Multinoulli Distribution
 
