@@ -7,7 +7,7 @@ title: Git commands
 
 - update at 19.11.20
 
-## 기본적인 사용 방법
+### 기본적인 사용 방법
 
 깃허브의 원격 저장소를 이용하여 작업할 때에는 다음과 같은 과정을 따른다.
 
@@ -206,3 +206,17 @@ $ git push -u origin master
 
 - ex)
     - 원격의 develop/model 브랜치를 가져오고 싶은 경우 -> git checkout -b origin/develop/model  
+
+### commit 취소하기
+
+- commit history 확인하기
+
+    `git log`
+
+- commit 취소하기
+
+    `git reset HEAD^`
+
+- commit 취소하기 + 취소된 commit을 stage에 올린 상태로 전환하기
+
+    `git reset --soft HEAD^`
