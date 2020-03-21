@@ -6,6 +6,8 @@ category_num: 7
 
 # ROC Curve for Binary Classification
 
+- update date: 2020.03.22
+
 ## Binary Classification
 
 이진 분류 문제는 class가 2개 있는 상황에서의 분류 문제를 말한다. 이진 분류 문제의 대표적인 예로 의사가 X-ray를 보고 암 환자를 판별하는 경우를 생각해 볼 수 있다. X-ray 사진을 보며 의사가 환자에게 말하는 상황에서는 경우의 수가 총 4가지가 있다. 즉, 암환자의 사진을 보고 암환자로 판별하거나 건강한 사람으로 판별하는 2가지 경우가 있을 것이고, 정상인의 사진에 대해서도 똑같이 2가지 경우를 생각해 볼 수 있다. 통계적으로는 이를 True Positive, False Positive, True Negetive, False Negative 라고 표현한다.
