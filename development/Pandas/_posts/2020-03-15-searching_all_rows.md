@@ -1,18 +1,22 @@
 ---
 layout: post
-title: Pandas Tips
+title: Column의 모든 row 값 변경하기
+category_num: 1
+subtitle: pandas에서 for문이 아닌 apply(), vectorization을 사용해야 하는 이유
 ---
 
-# Pandas Tips
-
-## 1. Column의 모든 row 값 변경하기
+# Column의 모든 row 값 변경하기
 
 - [참고 링크](<https://engineering.upside.com/a-beginners-guide-to-optimizing-pandas-code-for-speed-c09ef2c6a4d6>)
+- update data : 2020.03.15
+
 - 한 줄 요약 : pandas에서 각 row를 반복문으로 하나씩 탐색하는 것은 매우 비효율적인 만큼 `apply()` 또는 `vectorization`을 적극 활용하자.
 
-pandas를 사용하면서 가장 쉽게 하는 실수 중 하나는 모든 row를 하나씩 탐색하도록 하는 것이다. 가장 직관적이고, list와 같은 파이썬의 자료형을 다루는 것과 유사하기 때문에 가장 쉽게 떠오르는 방법이지만, 이 경우 속도가 매우 느리다고 한다. 참고한 블로그에서는 이에 대한 대안으로 `iterrows()`, `apply()`와 같은 pandas 내장 함수를 사용하거나 vectorization 방법을 사용하는 것을 권장하고 있다.
+pandas를 사용하면서 가장 쉽게 하는 실수 중 하나는 반복문을 이용하여 모든 row를 하나씩 탐색하는 것이다. 가장 직관적이면서도 list 등 파이썬의 기본 자료형을 다루는 것과 유사하기 때문에 가장 쉽게 떠오르는 방법이지만 이렇게 하면 속도가 매우 느리다고 한다. 참고한 블로그에서는 이에 대한 대안으로 `iterrows()`, `apply()`와 같은 pandas 내장 함수를 사용하거나 vectorization 방법을 권장하고 있다.
 
 이를 확인하기 위해 Kaggle의 [Credit Card Fraud Detection](<https://www.kaggle.com/mlg-ulb/creditcardfraud/data#>)데이터를 사용하여 간단한 실험을 진행했다.
+
+## Methods
 
 ### 1) 모든 row를 반복문으로 탐색하기
 
@@ -154,7 +158,7 @@ num of positive num : 143351.0
 operation time : 0.0626070499420166
 ```
 
-if-else statement를 포함하는 함수를 vectorize하기 위해 np.vectorize() 함수를 사용했다. 속도는 apoly()와 크게 차이가 없어 보이나, [stack overflow](<https://stackoverflow.com/questions/24870953/does-pandas-iterrows-have-performance-issues>) 등에서는 항상 vectorization하는 것이 좋다고 한다.
+if-else statement를 포함하는 함수를 `vectorize`하기 위해 `np.vectorize()` 함수를 사용했다. 위의 실험에서는 `apply()`와 속도 면에서 크게 차이 없어 보이나, [stack overflow](<https://stackoverflow.com/questions/24870953/does-pandas-iterrows-have-performance-issues>) 등에서는 항상 vectorization하는 것이 좋다고 한다.
 
 참고로 위의 stack overflow 링크에서는 iterrows()와 동일한 결과를 내는 방법들 간의 성능을 다음과 같이 줄세우고 있다.
 
