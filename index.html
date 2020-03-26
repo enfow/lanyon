@@ -9,31 +9,7 @@ title: Home
   <h1 style="margin-bottom: 2em;">POSTS</h1>
   {% for post in paginator.posts %}
 
-  <div class="cats-expo-section">
-    {% for pap in site.paper_review_category_list %}
-      {% for cat in site.categories %}
-        {% if cat[0] == pap %}
-          <div class = "single-category">
-            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
-            <small>paper-review</small>
-            <ul class="post_in_category">
-            {% assign category = cat[1] | sort: "category_num" %}
-            {% for post in category %}
-                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-                <li class = "single-post-in-category">
-                    <div>
-                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
-                    </div>
-                </li>
-                </a></div>
-            {% endfor %}
-            </ul><br>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  </div>
-
+  <!-- study -->
   <div class="cats-expo-section">
     {% for pap in site.study_category_list %}
       {% for cat in site.categories %}
@@ -60,6 +36,34 @@ title: Home
   </div>
 
 
+  <!-- paper-review -->
+  <div class="cats-expo-section">
+    {% for pap in site.paper_review_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <div class = "single-category">
+            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
+            <small>paper-review</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+                <li class = "single-post-in-category">
+                    <div>
+                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
+                    </div>
+                </li>
+                </a></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+
+  <!-- developmemt -->
   <div class="cats-expo-section">
     {% for dev in site.development_category_list %}
       {% for cat in site.categories %}
@@ -84,5 +88,6 @@ title: Home
       {% endfor %}
     {% endfor %}
   </div>
+
   {% endfor %}
 </div>
