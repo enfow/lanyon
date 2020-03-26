@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Gym Documentation
+category_num : 10
 ---
 
 # Gym Documentation
