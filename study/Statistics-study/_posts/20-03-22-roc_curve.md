@@ -37,7 +37,7 @@ confusion matrix란 아래 그림과 같이 binary classification에서 예측 �
 어떤 모델의 성능을 판단한다고 할 때 가장 쉽게 떠오르는 것이 있다면 정확도(Accuray)일텐데, 정확도는 다음과 같이 표현할 수 있다.
 
 $$
-Accuray = {TP + TN \over TP + TN + FP + FN}
+Accuracy = {TP + TN \over TP + TN + FP + FN}
 $$
 
 정확도는 전체 예측 중 옳은 예측의 비율을 나타내는 것으로, Positive, Negative 각각에 대해 옳은 예측을 의미하는 TP, TN이 분자에 있는 것을 확인할 수 있다.
