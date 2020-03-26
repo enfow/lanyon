@@ -35,23 +35,23 @@ print("operation time : {}".format(end-start))
 
 **에러 코드**
 
-    ```
-    .pyenv/versions/3.7.4/lib/python3.7/site-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame
+```
+.pyenv/versions/3.7.4/lib/python3.7/site-packages/ipykernel_launcher.py:5: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
 
-    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
-    """
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/user_guide/indexing.html#returning-a-view-versus-a-copy
+"""
 
-    ```
+```
 
 **출력값**
 
-    ```
-    num of positive num : 143351
-    operation time : 14.673181056976318
-    ```
+```
+num of positive num : 143351
+operation time : 14.673181056976318
+```
 
-    우선 이렇게 하니 위와 같은 에러코드가 출력되었고, 시간은 14초 정도 걸린 것을 확인할 수 있다.
+우선 이렇게 하니 위와 같은 에러코드가 출력되었고, 시간은 14초 정도 걸린 것을 확인할 수 있다.
 
 ### 2) iterrows()
 
