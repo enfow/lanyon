@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Batch Norm) How does batch normalization help optimization
+category_num : 2
 ---
 
 # 논문 제목 : How does batch normalization help optimization

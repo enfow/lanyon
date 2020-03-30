@@ -1,7 +1,7 @@
 ---
 layout: post
 title: AAE) Adversarial AutoEncoders
-category_num : 3
+category_num : 4
 ---
 
 # 논문 제목 : AAE) Adversarial AutoEncoders
