@@ -1,13 +1,14 @@
 ---
 layout: post
 title: AAE) Adversarial AutoEncoders
+category_num : 3
 ---
 
-# 논문 제목 : Adversarial AutoEncoders
+# 논문 제목 : AAE) Adversarial AutoEncoders
 
 - Alireza Makhzani 등
 - 2016
-- <https://arxiv.org/abs/1511.05644>
+- [논문 링크](<https://arxiv.org/abs/1511.05644>)
 - 2019.09.14 정리
 
 ## 세 줄 요약
