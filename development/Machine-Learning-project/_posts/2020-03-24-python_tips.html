@@ -1,10 +1,12 @@
 ---
 layout: page
-title: Python Tips
+title: Python, Pandas, Pytorch
 category_num : 1
 ---
 
-<h1> Python Tips </h1>
+<h1> Python, Pandas, Pytorch </h1>
+
+<h2> Python Tips </h2>
 
 <div class="cats-expo">
   <div class="cats-expo-list">
@@ -14,6 +16,75 @@ category_num : 1
   <div class="cats-expo-section">
     {% for cat in site.categories %}
     {% if cat[0] == "Python-tips" %}
+        <div class = "single-category">
+        <!-- <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2> -->
+        <ul class="post_in_category">
+        {% assign category = cat[1] | sort: "category_num" %}
+        {% for post in category %}
+            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+            <li class = "single-post-in-category">
+                <div>
+                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
+                    <small>{{ post.subtitle }}</small>
+                </div>
+            </li>
+            </a></div>
+        {% endfor %}
+        </ul><br>
+        </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<h2> Pandas Tips </h2>
+
+<div class="cats-expo">
+  <div class="cats-expo-list">
+    <!-- {% for cat in site.categories %}
+      <a href="{{site.url}}/{{ cat[0] | slugify }}/" class="post-cat">{{ cat[0] }}  |  </a>
+    {% endfor %} -->
+  </div>
+  <hr/>
+
+  <div class="cats-expo-section">
+    {% for cat in site.categories %}
+    {% if cat[0] == "Pandas-tips" %}
+        <div class = "single-category">
+        <!-- <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2> -->
+        <ul class="post_in_category">
+        {% assign category = cat[1] | sort: "category_num" %}
+        {% for post in category %}
+            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+            <li class = "single-post-in-category">
+                <div>
+                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
+                    <small>{{ post.subtitle }}</small>
+                </div>
+            </li>
+            </a></div>
+        {% endfor %}
+        </ul><br>
+        </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+
+<h2> Pytorch Tips </h2>
+
+<div class="cats-expo">
+  <div class="cats-expo-list">
+    <!-- {% for cat in site.categories %}
+      <a href="{{site.url}}/{{ cat[0] | slugify }}/" class="post-cat">{{ cat[0] }}  |  </a>
+    {% endfor %} -->
+  </div>
+  <hr/>
+
+  <div class="cats-expo-section">
+    {% for cat in site.categories %}
+    {% if cat[0] == "Pytorch-tips" %}
         <div class = "single-category">
         <!-- <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2> -->
         <ul class="post_in_category">
