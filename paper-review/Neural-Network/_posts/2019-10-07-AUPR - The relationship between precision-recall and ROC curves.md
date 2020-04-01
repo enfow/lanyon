@@ -1,13 +1,14 @@
 ---
 layout: post
 title: AUPR) The relationship between precision-recall and ROC curves
+category_num : 10
 ---
 
 # 논문 제목 : The relationship between precision-recall and ROC curves
 
 - Jesse Davis 등
 - 2006
-- <https://www.biostat.wisc.edu/~page/rocpr.pdf>
+- [paper link](<https://www.biostat.wisc.edu/~page/rocpr.pdf>)
 - 2019.10.07 정리
 
 ## Summary
