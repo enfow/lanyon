@@ -39,8 +39,8 @@ html,
 body {
   overflow-x: hidden;
   letter-spacing: 0em;
-  word-spacing: 0.08em;
-  font-size:16.5px;
+  word-spacing: 0.07em;
+  font-size:17.8px;
 }
 
 html {
@@ -67,22 +67,23 @@ h1 {
 h2 {
   font-size: 27px;
   margin-top: 2.5em;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 h3 {
-  font-size: 23px;
+  font-size: 22px;
   margin-top: 2em;
   margin-bottom: 0.5em;
 }
 
 h4{
   font-size: 20px;
-  margin-top: 1.8em;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 h5 {
-  font-size: 18px;
+  font-size: 19px;
   margin-top: 1.5em;
 }
 
