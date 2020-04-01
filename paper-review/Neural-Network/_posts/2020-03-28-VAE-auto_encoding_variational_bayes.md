@@ -17,6 +17,8 @@ category_num : 3
 - VAE의 **Encoder** 부분은 **regularizer**로, variational inference approximate posterior $$q(z \lvert x)$$를 prior $$p(z)$$에 근사시키는 것과 관련되며, **Decoder** 부분은 latent variable $$z$$를 입력으로 받아 encoder의 입력값으로 주어진 데이터와 비교해 **reconstruction error**를 줄이는 방향으로 업데이트 된다.
 - latent variable $$z$$를 직접 샘플링하게 되면 미분이 불가능해 backpropagation이 이뤄질 수 없으며, 이러한 문제를 해결하기 위해 **reparameterization trick**을 사용한다.
 
+<img src="{{site.image_url}}/paper-review/vae.png" style="width: 30em">
+
 ## Problem Scenario
 
 **i.i.d condition**을 만족하는 데이터셋 $$X$$가 있고, **latent variable** $$z$$를 이용하여 이를 만들어내는 generative model이 있다면, 아래 수식과 같이 표현할 수 있다.
@@ -191,8 +193,6 @@ $$
 $$\epsilon^{(l)} \backsim p(\epsilon) \quad \text{and} \quad z^{(i,l)} = g_\phi(\epsilon^{(i,l)}, x^{(i)})$$
 
 즉, encoder의 출력값에 reparameterization trick을 적용하여 구한 $$z$$를 decoder의 입력으로 넣어주게 된다.
-
-<img src="{{site.image_url}}/paper-review/vae.png" style="width: 30em">
 
 ## Variational Auto Encoder
 
