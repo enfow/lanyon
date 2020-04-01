@@ -11,7 +11,7 @@ category_num: 10
 - <https://arxiv.org/abs/1711.08946>
 - 2019.10.15 정리
 
-## 세 줄 요약
+## Summary
 
 - 여러 개의 action을 동시에 결정해야하는 문제에서는 기존의 discrete action algorithm으로 해결하는 데에 어려움이 있다.
 - Branching Dueling Q-learning(BDQ) 이러한 문제를 해결하기 위해 결정해야 하는 action 만큼 neural network를 만드는 방법이다.

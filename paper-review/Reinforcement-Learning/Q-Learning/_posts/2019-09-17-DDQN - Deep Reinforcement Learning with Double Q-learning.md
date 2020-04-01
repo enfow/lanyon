@@ -11,15 +11,13 @@ category_num : 2
 - [논문 링크](<https://arxiv.org/abs/1509.06461>)
 - 2019.09.17 정리
 
-## 세 줄 요약
+## Summary
 
 - DQN의 경우 action의 value를 overestimation하는 문제가 빈번히 발생하는데, 이는 policy의 질을 떨어뜨리는 원인이 된다.
 - DQN에서 action을 선택할 때 사용하는 Q function과 action을 평가할 때 사용하는 Q function을 분리하는 방법으로 이러한 문제를 줄일 수 있는데, 이를 Double Q-learning(2010)이라고 한다.
 - 논문에서 제시하는 **DDQN(Double DQN)**은 네트워크를 하나만 학습하는 DQN의 구조적 특성은 유지하면서 동시에 Double Q-learning의 아이디어를 실현하는 알고리즘이다.
 
-## 내용 정리
-
-### over-estimation problem
+## over-estimation problem
 
 DQN을 비롯한 Q-learning 알고리즘이 가지는 대표적인 문제 중 하나는 과대평가된 값을 선호한다는 것이다. 이를 **overestimation problem**이라고 한다. overestimation problem은 새로운 문제가 아니며 오히려 오랫동안 그 원인에 대한 연구가 이뤄졌었다.
 
@@ -29,7 +27,7 @@ DQN을 비롯한 Q-learning 알고리즘이 가지는 대표적인 문제 중 �
 
 overestimation error 문제는 DQN 계열의 순수 Q-learning 알고리즘 뿐만 아니라 Actor-Critic 계열의 알고리즘의 발전 과정에서도 꾸준이 등장하는 문제이다. overestimation error와 관련해서는 [TD3 논문 리뷰](<https://enfow.github.io/paper-review/reinforcement-learning/actor-critic/2019/11/07/TD3-Addressing-Function-Approximation-Error-in-Actor-Critic-Methods/>)에서도 자세하게 다루고 있다.
 
-### Double Q-learning
+## Double Q-learning
 
 Double Q-learning의 관점에서 overestimation이 발생하는 원인은 action의 value를 측정하고 선택할 때 max operator를 사용하는 데에 있다. 이러한 문제를 해결하기 위해서는 action selection과 action evaluation을 분리(decoupling)할 필요가 있다는 것이 Double Q-learning의 기본 아이디어다.
 
@@ -47,7 +45,7 @@ $$\max$$와 $$argmax$$의 표현의 의미와 함께 두 수식의 차이를 살
 
 그렇다면 Double Q-learning은 업데이트를 어떻게 할 지가 궁금해진다. 여러가지 방법이 가능할 것 같은데, 논문에 따르면 $$\theta, \theta'$$ 의 역할을 바꾸어가며 symmetric하게 업데이트하는 방법을 이용한다고 한다.
 
-### Double DQN
+## Double DQN
 
 Double Q-learning을 구현하려면 이론적으로는 action을 선택할 때 사용할 네트워크와 평가할 때 사용하는 네트워크 두 개가 필요하다. 하지만 DQN의 구조적 특성을 이용해 본래의 DQN 구조를 최대한 지키면서 double Q-learning의 장점을 살릴 수 있는 알고리즘을 제안하고자 한다. 이를 **Double DQN**이라고 하는데 업데이트 방식은 기본적으로 동일하지만 target value를 구하는데 있어 다음과 같이 기존 DQN과는 차이가 있다.
 
@@ -59,19 +57,19 @@ DDQN의 target value식에서 가장 눈에 띄는 것이 있다면 **$$\theta_t
 
 논문에 제시된 방법 외에도 DDQN을 구현하는 방법은 다양하다.
 
-### 실험 환경 및 결과
+## Experiment
 
-#### 환경
+### experiment environmemt
 
 - Mnih(2015)이 사용한 실험 환경과 network 구조를 거의 그대로 사용했다.
 - 3개의 convolution layers와 1개의 FC를 사용한다.
 - 6개의 Atari game에 대해서 DQN, DDQN 각각의 실험을 진행했다.
 
-#### 결과
+### experiment results
 
 성능적으로 Double DQN이 DQN보다 value의 정확도와 policy의 질적인 면 모두에서 우수했다고 한다. 6번에 걸쳐 시드를 달리하며 실험해본 결과 학습 또한 Double DQN에서 보다 안정적으로 이뤄졌다고 한다.
 
-### 결론
+## Result
 
 1. 문제의 크기가 큰 경우(large scale problem)에는 Q-learning에서 overestimation problem이 발생할 가능성이 높다.
 2. 과거에 알려진 것보다 overestimation problem은 생각보다 크고 광범위하게 발생한다.

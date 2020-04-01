@@ -10,15 +10,13 @@ title: TRPO) Trust Region Policy Optimization
 - [논문 링크](<https://arxiv.org/abs/1502.05477>)
 - 2020.03.01 정리
 
-## 세 줄 요약
+## Summary
 
 - PG의 가장 큰 문제 중 하나는 정확한 업데이트 방향을 알기 위해서는 매우 많은 sample이 필요하다는 것이다.
 - **conservative policy iteration**(Kakade&Langford)처럼 제한된 범위 내에서 업데이트를 하면 적어도 성능이 유지되는 업데이트를 반복적으로 할 수 있다.
 - **TRPO**는 mixture policy가 아닌 **stochastic policy**에 conservative policy iteration 방법론을 적용하고 있으며, 그 과정에서 **trust region update**와 **monte carlo estimation**을 사용한다.
 
-## 내용 정리
-
-### Policy Update
+## Policy Update
 
 강화학습 알고리즘의 목표는 **expected return**을 극대화하는 policy를 찾는 것이다. 즉 아래 $$\eta$$ 식을 극대화하는 것이다.
 
@@ -34,11 +32,11 @@ $$
 
 이와 관련하여 Kakade&Langford는 2002년 논문 Approximately Optimal Approximate Refinforcement Learning에서 **Conservative Policy Iteration**을 제시했었다. TRPO의 알고리즘은 이 논문에서 출발하고 있다.
 
-### Before TRPO - Conservative Policy Iteration
+## Before TRPO - Conservative Policy Iteration
 
 Kakade&Langford는 자신의 논문에서 policy gradient 방법은 정확한 업데이트 방향(gradient)를 구하는 데에 너무 많은 sample을 확보해야 하며, 심지어 한 번 policy를 업데이트한 후에는 더 이상 과거에 사용한 sample을 사용할 수 없기 때문에 알고리즘적 비용이 너무 많이 든다고 한다. 이러한 문제를 해결하기 위해 업데이트의 크기를 제한하면서 policy의 expected return을 지속적으로 향상시키는 방법으로 Conservative Policy Iteration을 제시하고 있다.
 
-#### Expected return and Advantage
+### Expected return and Advantage
 
 $$
 \eta(\tilde \pi) = \eta(\pi) + E_{s_0, a_0, ... \backsim \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t A_\pi (s_t, a_t)]
@@ -66,7 +64,7 @@ $$
 
 하지만 이를 곧바로 적용하는 것에는 문제가 있다. estimation과 approximation에 따른 오차의 가능성 때문에 negative value가 포함될 수 있고, $$\rho_{\tilde \pi}(s)$$를 사용한다는 점에서 새로운 policy가 어떤 state에 자주 가는지 곧바로 알기 어렵기 때문에 즉각적인 업데이트도 불가능하다.
 
-#### Local approximation
+### Local approximation
 
 이러한 문제를 해결하기 위해 아래와 같은 식을 도입하고 있으며, 이를 **local approximation** 이라고 한다.
 
@@ -85,7 +83,7 @@ $$
 
 즉 충분히 작은 업데이트 크기를 정하게 되면 $$L_{\pi_\theta}$$를 기준으로 업데이트하는 것만으로도 $$\eta$$의 향상을 보장할 수 있다.
 
-#### Conservative Policy Iteration
+### Conservative Policy Iteration
 
 위의 이론적 논의를 바탕으로 Kakade&Langford는 다음과 같은 **mixture policy update** 방법을 제시한다.
 
@@ -104,9 +102,9 @@ $$
 
 TRPO는 이와같은 Kakade&Langford의 Conservative Policy Iteration를 개선한 것이라고 할 수 있다.
 
-### Trust Region Policy Optimization
+## Trust Region Policy Optimization
 
-#### Monotonic Improvement Guarantee for General Stochastic Policy
+### Monotonic Improvement Guarantee for General Stochastic Policy
 
 Conservative Policy Iteration에서는 새롭게 구한 policy와 기존 policy를 적당한 크기로 가중평균하고 있다. 하지만 이와 같이 mixture를 통해 새로운 policy를 구하는 것은 stochastic policy에는 적용하기 어렵다. TRPO는 stochastic policy에서도 Conservative Policy Iteration와 유사한 방법론을 적용하여 policy를 업데이트하는 방법이라고 할 수 있다.
 
@@ -149,11 +147,11 @@ $$
 
 이를 적용하여 다음과 같은 algorithm을 도출할 수 있다.
 
-<img src="{{site.image_url}}/paper-review/trpo_algorithm.png" style="width: 35em">
+<img src="{{site.image_url}}/paper-review/trpo_algorithm.png" style="width: 28em">
 
 여기까지가 TRPO의 이론적인 업데이트 방식이라고 할 수 있다. 하지만 이를 곧바로 적용하기에는 연산량 등을 고려하여 보다 구체화해야 할 부분들이 남아있다.
 
-#### Trust region contraint Not Penalty
+### Trust region contraint Not Penalty
 
 위에서는 $$C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$의 크기만큼 penalty를 부여하는 방식을 사용하고 있다. 하지만 $$C$$에 포함되어 있는 $$\epsilon$$의 정의 $$\max_{s, a} \lvert A_\pi (s,a) \rvert$$를 고려하면 결국 매 state에서 새롭게 구해야 한다. 이를 대신하여 충분히 작은 $$\delta$$ 값 내에서만 변화할 수 있도록 constraint를 주는 방법을 생각해 볼 수 있다.
 
@@ -181,7 +179,7 @@ $$
 
 heuristic approximation이기 때문에 항상 최적은 아닐 수 있지만 효율적으로 적당한 업데이트 크기를 정하는 데에 있어 도움이 된다.
 
-#### Monte Carlo approximation
+### Monte Carlo approximation
 
 위의 최적화 식에서 $$L$$을 전개하면 다음과 같다.
 
@@ -215,22 +213,22 @@ $$
 }
 $$
 
-#### Two scheme for sampling
+### Two scheme for sampling
 
 마지막으로 한 가지 남은 것이 있다면 Monte Carlo를 통해 위의 최적화 식에서 expectation을 sampling으로 구하는 것이다. 이때 sampling 방법과 관련해 **single path**와 **vine** 두 가지가 있다.
 
-##### 1. single path
+#### 1. single path
 
 - 개개의 episode trajectory를 그대로 사용하는 방법
 - 전형적인 policy gradient estimation 방법
 
-##### 2. vine
+#### 2. vine
 
 - rollout을 통해 하나의 state에서 여러 action을 취해보는 방법
 - single path와 비교해 variance가 낮다는 장점
 - real world에 적용하기 어렵다는 단점
 
-#### TRPO PROCESS
+### TRPO PROCESS
 
 TRPO는 다음과 같은 순서로 policy를 업데이트한다.
 

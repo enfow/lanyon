@@ -11,13 +11,11 @@ category_num: 0
 - [논문 링크](<https://arxiv.org/pdf/1205.4839.pdf>)
 - 2019.11.07 정리
 
-## 세 줄 요약
+## Summary
 
 - 처음으로 Actor-Critic 알고리즘에 off-policy를 적용한 논문이다.
 
-## 내용 정리
-
-### On-policy & Off-policy
+## On-policy & Off-policy
 
 on-policy와 off-policy는 agent의 학습 방법에 관한 차이로, on-policy는 현재 policy의 행동에 의해서 결정된 transaction으로만 학습을 하는 것이고, off-policy는 그렇지 않은 경우를 말한다. 지금까지 online setting, 즉 환경과 agent가 실시간으로 데이터를 주고 받는 상황에서는 on-policy 방법으로만 수렴성이 보장되었고 off-policy로는 학습에 어려움이 많았다.
 
@@ -27,7 +25,7 @@ on-policy와 off-policy는 agent의 학습 방법에 관한 차이로, on-policy
 2. demonstration에 대해 학습할 수 있다.
 3. 병렬적인 복수의 작업을 수행하며 학습을 진행할 수 있다.
 
-#### off policy의 수렴성 문제
+### off policy의 수렴성 문제
 
 대표적인 off-policy 알고리즘이 Q-learning(Watkins&Dayan 1992)인데, 이 경우 근사를 사용하지 않는 tabular 환경에서는 수렴하지만 선형 근사를 사용하는 경우에는 발산할 수 있다는 문제(Baird)를 가지고 있다. 이러한 문제를 해결하는 알고리즘으로 Least-squares 계열의 LSTD, LSPI 등이 있었지만, 선형 근사를 이루기 위해 많은 처리 비용이 든다는 점에서 좋은 해결 방법은 아니었다고 논문에서는 지적하고 있다. 최근에는 gradient-TD 방법을 사용하는 Greedy GQ 등의 알고리즘이 제시되었다고 한다.
 
@@ -39,9 +37,9 @@ on-policy와 off-policy는 agent의 학습 방법에 관한 차이로, on-policy
 
 이러한 문제를 해결하는 방법 중 하나는 PG 계열의 알고리즘인 actor-critic을 사용하는 것이다. 실제로 on-poicy PG 계열의 actor-critic은 연속적인 action space를 갖는 환경에서 많은 문제를 성공적으로 해결할 수 있음을 보였다. 그리고 본 논문에서는 여기서 나아가 off-policy를 적용한 actor-critic 모델을 제시하고 있다.
 
-### Problem Setting
+## Problem Setting
 
-#### 1. value function $$V^{\pi, \gamma}(s)$$
+### 1. value function $$V^{\pi, \gamma}(s)$$
 
 $$\pi : S X A \rightarrow (0,1]$$에 대한 value finction은 다음과 같이 정의된다. 이때 시작 시점은 $$t$$이고, 마지막 시점은 $$t+T$$인데 이는 $$\gamma: S \rightarrow [0,1]$$에 따라 결정된다. 그리고 유한한 step을 가정한다.
 
@@ -49,7 +47,7 @@ $$
 V^{\pi, \gamma}(s) = E[r_{t+1} + ... + r_{t+T} \lvert s_t = s] \ \text{for all} \ s \in S
 $$
 
-#### 2. action value function $$Q^{\pi, \gamma}(s,a)$$
+### 2. action value function $$Q^{\pi, \gamma}(s,a)$$
 
 action value function은 다음과 같이 정의된다.
 
@@ -65,7 +63,7 @@ $$
 
 가 성립한다.
 
-#### 3. objective function
+### 3. objective function
 
 다음 scalar objective function $$J(\cdot)$$을 극대화하는 policy를 선택하는 것이 강화학습의 목표가 된다.
 
@@ -77,17 +75,17 @@ $$
 
 이때 policy $$\pi_u : A X S \rightarrow [0,1]$$은 미분 가능한 임의의 weight vector $$u \in \rm I\!R^{N_u}, \ N_u \in \rm I\!N$$를 가지고 있고, $$\pi_u (a \lvert s) > 0$$이 성립한다. 그리고 $$d^b(s)$$는 b에 의해 제약되는 state 분포를 의미하고, $$P(s_t = s \lvert s_0, b)$$는 $$s_0$$에서 시작하고 $$b$$를 실행했을 때 $$s_t = s$$가 성립할 확률을 뜻한다.
 
-### Off-PAC
+## Off-PAC
 
 논문에서는 Off-poicy Actor-Critic을 줄여서 Off-PAC이라고 부르고 있다. Actor-Critic을 기본으로 하는 만큼 Policy weight 값을 업데이트하는 Actor 부분과 계산에 필요한 value function을 추정하는 Critic 부분 두 가지로 나누어져 있다.
 
 전체적으로 Off-Policy 알고리즘의 유도과정은 아래 세 단계를 따른다.
 
-#### 1. Critic: Policy Evaluation
+### 1. Critic: Policy Evaluation
 
 Off-PAC의 critic의 업데이트는 Maei(2011)의 GTD(Gradient TD)방식을 사용한다고 한다. 자세한 내용은 현재 사용하고 있는 방식과는 크게 차이가 있는 것 같아 건너뛰기로 한다.
 
-#### 2. Off-policy Policy-Gradient Theorem
+### 2. Off-policy Policy-Gradient Theorem
 
 다른 PG 방식과 마찬가지로 off-PAC 또한 objective의 기울기에 비례하여 업데이트가 이뤄진다.
 
@@ -114,7 +112,7 @@ $$
 
 그리고 이러한 근사가 가능한 이유를 보이기 위해 아래 두 Theorem을 제시한다.
 
-##### 1. Theorem 1: Policy Improvement
+#### 1. Theorem 1: Policy Improvement
 
 $$
 \begin{multline}
@@ -133,7 +131,7 @@ policy parameter $$u$$를 갖는 objective function approximation $$g(u)$$가 �
 
 간단히 말해서 objective function의 gradient라고 가정하는 방향($$g(\cdot)$$)이 실제 objective function을 maximize 하는 방향과 동일하다는 것을 의미한다.
 
-##### 2. Off-Policy Policy-Gradient Theorem
+#### 2. Off-Policy Policy-Gradient Theorem
 
 "Given $$U \subset \rm I\!R^{N_u}$$ a non-empty, compact set, let
 
@@ -156,4 +154,4 @@ $$
 
 즉, $$Z$$가 objective function $$J_\gamma$$의 관점에서 $$\tilde Z$$ 내의 모든 largest local maxima를 의미한다. 이 경우 random start와 같은 local optimization 방법들이 larger maxima로 수렴을 돕게 된다. objective function $$J_\gamma$$가 convex하지 않기 때문에 이러한 방법이 더욱 도움이 된다.
 
-#### 3. Actor: Incremental Update Algorithm with Eligibility Traces
+### 3. Actor: Incremental Update Algorithm with Eligibility Traces
