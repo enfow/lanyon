@@ -192,6 +192,8 @@ $$\epsilon^{(l)} \backsim p(\epsilon) \quad \text{and} \quad z^{(i,l)} = g_\phi(
 
 즉, encoder의 출력값에 reparameterization trick을 적용하여 구한 $$z$$를 decoder의 입력으로 넣어주게 된다.
 
+<img src="{{site.image_url}}/paper-review/vae.png" style="width: 30em">
+
 ## Variational Auto Encoder
 
 VAE에서는 latent variable $$z$$의 prior $$p_\theta (z)$$를 가우시안 분포로, 그리고 $$p_\theta(x \lvert z)$$를 가우시안 분포 또는 베르누이 분포로 가정할 수 있다. 이렇게 되면 이에 대해 variational inference를 통해 근사하는 approximate posterior $$q_\phi(\cdot)$$ 또한 가우시안 분포로 가정하고 다음과 같이 표현할 수 있다.
