@@ -10,7 +10,7 @@ category_num: 200
 
 ## Introduction
 
-**Compiler**란 프로그램 번역기로, **어떤 프로그램을 입력으로 받아 다른 언어로 작성된 동일한 프로그램을 반환하는 프로그램**을 지칭한다. 일반적으로 컴파일러를 말한다면 C, C++, JAVA 등의 High Level Language(HLL)로 작성된 프로그램을 x86, arm 과 같은 Low Level Language로 변환하여 프로세서가 이해할 수 있는 machine code로 변환해주는 프로그램을 의미한다.
+**Compiler**란 **어떤 프로그램을 입력으로 받아 다른 언어로 작성된 동일한 프로그램을 반환하는 프로그램**으로, 쉽게 말해 프로그램 번역기라고 할 수 있다. 일반적으로 컴파일러를 말한다면 C, C++, JAVA 등의 High Level Language(HLL)로 작성된 프로그램을 x86, arm 과 같은 Low Level Language로 변환하여 프로세서가 이해할 수 있는 machine code로 변환해주는 프로그램을 의미한다.
 
 ## Compiler Structure
 
