@@ -1,6 +1,7 @@
 ---
 layout: post
 title: (OS) Batch processing 부터 Time sharing 까지 
+category_num: 0
 ---
 
 # Batch processing 부터 Time sharing 까지
