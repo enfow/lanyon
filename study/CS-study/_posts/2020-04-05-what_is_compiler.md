@@ -23,7 +23,7 @@ category_num: 200
 
 ## 1. FrontEnd
 
-컴파일러 프론트엔드의 역할은 입력으로 들어온 프로그램에 문법적/의미적 문제가 없는지 검사하고, 미들엔드와 백엔드에서 사용하기 쉽도록 구조화하여 전달하는 역할을 갖는다. 구체적으로 프론트엔드의 출력물인 **Intermediate Representation(IR)**은 그 하위 부분인 Lexical Analyzer, Syntax Analyzer, Semantic Analyzer, IR translator 를 순차적으로 통과한 결과라고 할 수 있다.
+컴파일러 프론트엔드의 역할은 입력으로 들어온 프로그램에 문법적/의미적 문제가 없는지 검사하고, 미들엔드와 백엔드에서 사용하기 쉽도록 구조화하여 전달하는 것이다. 구체적으로 프론트엔드는 Lexical Analyzer, Syntax Analyzer, Semantic Analyzer, IR translator 등 네 가지로 구성되며 프론트 앤드를 통과하면**Intermediate Representation(IR)**이라는 형태로 다음 단계에 전달된다.
 
 ---
 
