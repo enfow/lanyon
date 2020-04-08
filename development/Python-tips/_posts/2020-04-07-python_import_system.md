@@ -48,7 +48,7 @@ Relative imports use a module's __name__ attribute to determine that module's po
 ```
 
 - 상대경로는 `__name__`을 기준으로 결정된다.
-- `__name__`이 `"__main__"`인 경우를 비롯하여 패키지의 정보를 담고 있지 않으면 해당 모듈을 파일 시스템의 최상단에 위치한 것으로 간주한다. 
+- `__name__`이 **"__main__"**인 경우를 비롯하여 패키지의 정보를 담고 있지 않으면 해당 모듈을 파일 시스템의 최상단에 위치한 것으로 간주한다. 
 
 #### PEP 338
 
@@ -200,17 +200,15 @@ ImportError: attempted relative import with no known parent package
 - 첫 번째의 경우 `ModuleNotFoundError` 로, 이는 `__main__.module11` 라는 파일이 존재하지 않기 때문에 생기는 문제이다.
 - 두 번째는 `ImportError` 이다. 이는 에러 코드에서도 명시되어 있듯이 `pkg1/` 디렉토리를 찾을 수 없어 생기는 문제이다.
 
-**PEP 338**에서는 실행되는 모듈의 `__name__`은 `"__main__"`이 된다고 정의하고 있으며, 이러한 이유로 첫 번째 에러가 발생하는 것이다. 두 번째 에러는 **PEP 328**의 내용과 관련된 것으로, `__name__`에서 상위 디렉토리인 `pkg1/`를 찾을 수 없기 때문에 최상단으로 간주되고, 이로 인해 동일한 디렉토리에 위치한 다른 module을 찾을 수 없는 경우이다.
+**PEP 338**에서는 실행되는 모듈의 `__name__`은 **"__main__"**이 된다고 정의하고 있으며, 이러한 이유로 첫 번째 에러가 발생하는 것이다. 두 번째 에러는 **PEP 328**의 내용과 관련된 것으로, `__name__`에서 상위 디렉토리인 `pkg1/`를 찾을 수 없기 때문에 최상단으로 간주되고, 이로 인해 동일한 디렉토리에 위치한 다른 module을 찾을 수 없는 경우이다.
 
 ---
 
 ### 2. Execute out of package
 
-`main.py`와 같이 package 외부에 있는 파일에서 import 한다면 어떻게 될지 확인해 보았다.
+`main.py`와 같이 package 외부에 있는 파일에서 import 한다면 어떻게 될지도 실험을 통해 확인해보았다.
 
----
-
-#### 2.1. Absolute path + Execute in package => (X, O)
+#### 2.1. Absolute path + Execute out of package => (X, O)
 
 ```python
 # pkg1/module1.py
@@ -262,7 +260,7 @@ ModuleNotFoundError: No module named 'module11'
 
 ---
 
-#### 2.2. Relative path + Execute in package => (O)
+#### 2.2. Relative path + Execute out of package => (O)
 
 아래와 같이 `pkg1/` 내의 모든 모듈에서 절대 경로를 상대 경로로 바꾸면 에러 없이 잘 동작한다.
 
