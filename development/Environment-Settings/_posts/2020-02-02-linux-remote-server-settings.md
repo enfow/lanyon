@@ -129,9 +129,11 @@ ssh-keygen -t dsa
 ssh-copy-id <host_name>@<host_id_address> -p <port_number>
 ```
 
+단 SERVER에서 password 로 ssh 접속을 막아둔 경우라면 `ssh-copy-id` 로 불가능하다. `etc/ssh/sshd-config` 에서 설정을 바꾸어주어야 한다.
+
 ### 3) CLIENT: config file
 
-Client의 `~/.ssh/` 디렉토리에 저장되어 있는 `config` 파일에서 호스트 정보를 설정할 수 있다. 이를 통해 간편하게 접속이 가능하다.
+Client의 `~/.ssh/` 디렉토리에 저장되어 있는 `config` 파일에서 호스트 정보를 설정할 수 있다. 이를 통해 `ssh <host_name>` 으로 간편하게 서버에 접속할 수 있다.
 
 ```
 # ~/.ssh/config
@@ -140,7 +142,6 @@ Host <host_name>
     Host <host_ip_address/url>
     User <host_user>
     Port <port_number>
-    PreferredAuthentications publickey
     IdentityFile ~/.ssh/id_rsa
 ```
 
@@ -204,5 +205,3 @@ sudo ufw delete allow 22
   ```
   ssh <host_name>
   ```
-
-## 4. PORT FORWARDING
