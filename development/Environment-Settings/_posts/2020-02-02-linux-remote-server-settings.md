@@ -114,14 +114,16 @@ Public Key는 client가 보내는 Public Key를 server가 허용하고 있는 Pu
 root 계정을 사용하여 `~./ssh/` 디렉토리에서 Key를 생성한다.
 
 ```
-ssh-keygen -t dsa
+ssh-keygen -t rsa
 ```
 
-위의 명령어를 실행하면 `id_dsa`, `id_dsa.pub` 두 개의 파일이 생성된다. 이 중 Public Key는 `id_dsa.pub`이며, 여기에 담긴 내용을 서버에 저장해야 한다.
+위의 명령어를 실행하면 `id_rsa`, `id_rsa.pub` 두 개의 파일이 생성된다. 이 중 Public Key는 `id_rsa.pub`이며, 여기에 담긴 내용을 서버에 저장해야 한다. 
+
+참고로 `$ ssh-kegen -t dsa` 를 통해 dsa 암호를 만들 수도 있다. 하지만 dsa는 rsa보다 보안성이 떨어지므로 사용하지 않는 것이 좋고, openssh 버전에 따라서는 따로 설정을 바꾸어주어야 한다([link](<https://unix.stackexchange.com/questions/247612/ssh-keeps-skipping-my-pubkey-and-asking-for-a-password>)).
 
 #### (2) SERVER - Save Public Key as authorized_keys
 
-클라이언트의 `id_dsa.pub` 파일을 사용자 디렉토리 내에 저장해야 한다. root의 `/etc/ssh/` 디렉토리에 저장한다고 해서 사용자별 접속 시에 적용되지 않는다. 개별 사용자를 단위로 해야 하며, 이를 위해 `.ssh\` 디렉토리를 사용자 디렉토리에 생성하고 내부에 authorized_keys 파일을 생성한 후 복사 붙여넣기 해 준다.
+클라이언트의 `id_rsa.pub` 파일을 사용자 디렉토리 내에 저장해야 한다. root의 `/etc/ssh/` 디렉토리에 저장한다고 해서 사용자별 접속 시에 적용되지 않는다. 개별 사용자를 단위로 해야 하며, 이를 위해 `.ssh\` 디렉토리를 사용자 디렉토리에 생성하고 내부에 authorized_keys 파일을 생성한 후 복사 붙여넣기 해 준다.
 
 이 과정은 client에서 아래 명령어를 통해서도 가능하다. 사용자 디렉토리에 `.ssh\` 디렉토리의 생성부터 `authroized_keys`로 파일 명을 변환하여 저장하는 것까지 된다.
 
