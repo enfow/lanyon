@@ -120,7 +120,7 @@ h6 {
 @media (min-width: 56em) {
   .container {
     /* max-width: 38rem; */
-    max-width: 45rem;
+    max-width: 48rem;
   }
 }
 
@@ -425,7 +425,10 @@ a.sidebar-nav-item:focus {
   list-style: none;
 }
 .related-posts h3 {
-  margin-top: 0;
+  font-size: 23.5px;
+  font-weight: 600;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
 }
 .related-posts li small {
   font-size: 75%;
