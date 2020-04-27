@@ -51,11 +51,7 @@ html {
 h1, h2, h3, h4, h5, h6 {
   font-family: "PT Sans", Helvetica, Arial, sans-serif;
   font-weight: 400;
-  color: #313131;
   letter-spacing: -.025rem;
-}
-
-h1, h2, h3, h4, h5 {
   font-weight: bold;
 }
 
@@ -83,6 +79,11 @@ h4{
 }
 
 h5 {
+  font-size: 20px;
+  margin-top: 1.5em;
+}
+
+h6 {
   font-size: 20px;
   margin-top: 1.5em;
 }
@@ -179,7 +180,7 @@ p {
 }
 
 .single-category-title-on-index {
-  font-size: 25px;
+  font-size: 29px;
   margin-top: 1em;
   margin-bottom: 0em;
 }
@@ -190,12 +191,21 @@ p {
 }
 
 .single-post-in-category-title {
-  font-size : 23px
+  font-size : 23px;
+  margin-top : 1em;
+  margin-bottom : 1em;
 }
 
 .single-post-in-category-title-on-index {
-  font-size : 21px
+  font-size : 25px;
 }
+
+.single-post-in-category-title-in-page {
+  font-size : 23px;
+  margin-top : 1.5em;
+  margin-bottom : 0em;
+}
+
 
 /*
  * Sidebar
@@ -411,7 +421,7 @@ a.sidebar-nav-item:focus {
   border-top: 1px solid #eee;
 }
 .related-posts {
-  padding-left: 0;
+  padding-left: 1.5em;
   list-style: none;
 }
 .related-posts h3 {
@@ -513,6 +523,26 @@ a.pagination-item:hover {
  * Apply custom color schemes by adding the appropriate class to the `body`.
  * Based on colors from Base16: http://chriskempson.github.io/base16/#default.
  */
+
+ /* EnfoW */
+
+.theme-base-enfow .container a {
+  color: #313131;
+}
+
+.theme-base-enfow .post a {
+  color: #036635;
+  font-weight: 600;
+}
+
+.theme-base-enfow .sidebar,
+.theme-base-enfow .sidebar-toggle:active,
+.theme-base-enfow #sidebar-checkbox:checked ~ .sidebar-toggle,
+.theme-base-enfow .sidebar-toggle,
+.theme-base-enfow .cats-expo-section a:hover,
+.theme-base-enfow .related-posts li a:hover {
+  color: #3eb97c;
+}
 
 /* Red */
 .theme-base-08 .sidebar,

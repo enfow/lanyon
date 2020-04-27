@@ -35,7 +35,7 @@
  * Update the foundational and global aspects of the page.
  */
 
-* {
+ * {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
@@ -67,18 +67,13 @@ body {
 
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  color: #366353;
   text-decoration: none;
 }
 a strong {
   color: inherit;
 }
 /* `:focus` is linked to `:hover` for basic accessibility */
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
-
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
@@ -87,6 +82,21 @@ h1, h2, h3, h4, h5, h6 {
   color: #313131;
   text-rendering: optimizeLegibility;
 }
+
+a h1:hover, 
+a h2:hover, 
+a h3:hover, 
+a h4:hover, 
+a h5:hover, 
+a h6:hover,
+a p:hover,
+a small:hover
+a:hover,
+a:focus {
+  color: #3eb97c;
+  text-decoration: none;
+}
+
 h1 {
   font-size: 2rem;
 }
@@ -108,6 +118,7 @@ p {
   margin-top: 0;
   margin-bottom: 1rem;
 }
+
 
 strong {
   color: #303030;
@@ -154,8 +165,9 @@ pre {
 }
 code {
   padding: .25em .5em;
-  font-size: 85%;
-  color: #bf616a;
+  font-size: 90%;
+  color: #036635;
+  font-weight: 520;
   background-color: #f9f9f9;
   border-radius: 3px;
 }
