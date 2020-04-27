@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CNN) Convolution Neural Network
+title: Convolution Neural Network
 ---
 
 # Convolution Neural Network
