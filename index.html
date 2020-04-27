@@ -21,6 +21,7 @@ title: Home
         <li>
           <h3>
             <small>{{ post.date | date:"%F" }}</small>
+            <small>{{ post.categories[-1] }}</small>
             <div>
             <a href="{{ site.baseurl }}{{ post.url }}">
               {{ post.title }}
