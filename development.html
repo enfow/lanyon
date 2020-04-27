@@ -26,11 +26,11 @@ sidebar_num : 4
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
                 <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-                <li class = "single-post-in-category">
-                    <div>
-                      <h3 class="single-post-in-category-title">{{ post.title }}</h3>
-                    </div>
-                </li>
+                <p class = "single-post-in-category">
+                  <div>
+                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
+                  </div>
+                </p>
                 </a></div>
             {% endfor %}
             </ul><br>

@@ -21,14 +21,14 @@ category_num : 1
         <ul class="post_in_category">
         {% assign category = cat[1] | sort: "category_num" %}
         {% for post in category %}
-            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-            <li class = "single-post-in-category">
-                <div>
-                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
-                    <small>{{ post.subtitle }}</small>
-                </div>
-            </li>
-            </a></div>
+          <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
+            <p class="single-post-in-category">
+              <div>
+                <h3 class="single-post-in-category-title-in-page">{{ post.title }}</h3>
+                <small>{{ post.subtitle }}</small>
+              </div>
+            </p>
+          </a></div>
         {% endfor %}
         </ul><br>
         </div>
@@ -56,12 +56,12 @@ category_num : 1
         {% assign category = cat[1] | sort: "category_num" %}
         {% for post in category %}
             <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-            <li class = "single-post-in-category">
+              <p class = "single-post-in-category">
                 <div>
-                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
+                  <h3 class="single-post-in-category-title-in-page">{{ post.title }}</h3>
                     <small>{{ post.subtitle }}</small>
                 </div>
-            </li>
+              </p>
             </a></div>
         {% endfor %}
         </ul><br>
@@ -71,14 +71,11 @@ category_num : 1
   </div>
 </div>
 
-
+<!-- 
 <h2> Pytorch Tips </h2>
 
 <div class="cats-expo">
   <div class="cats-expo-list">
-    <!-- {% for cat in site.categories %}
-      <a href="{{site.url}}/{{ cat[0] | slugify }}/" class="post-cat">{{ cat[0] }}  |  </a>
-    {% endfor %} -->
   </div>
   <hr/>
 
@@ -86,7 +83,6 @@ category_num : 1
     {% for cat in site.categories %}
     {% if cat[0] == "Pytorch-tips" %}
         <div class = "single-category">
-        <!-- <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2> -->
         <ul class="post_in_category">
         {% assign category = cat[1] | sort: "category_num" %}
         {% for post in category %}
@@ -104,4 +100,4 @@ category_num : 1
     {% endif %}
     {% endfor %}
   </div>
-</div>
+</div> -->

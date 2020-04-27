@@ -3,91 +3,30 @@ layout: default
 title: Home
 ---
 
-<!-- 여기에서 각 페이지의 기본값을 설정한다 -->
-
 <div class="posts">
-  <h1 style="margin-bottom: 2em;">POSTS</h1>
-  {% for post in paginator.posts %}
+  <h1 style="margin-bottom: 2em;">Home</h1>
 
-  <!-- study -->
-  <div class="cats-expo-section">
-    {% for pap in site.study_category_list %}
-      {% for cat in site.categories %}
-        {% if cat[0] == pap %}
-          <div class = "single-category">
-            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
-            <small>study</small>
-            <ul class="post_in_category">
-            {% assign category = cat[1] | sort: "category_num" %}
-            {% for post in category %}
-                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-                <li class = "single-post-in-category">
-                    <div>
-                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
-                    </div>
-                </li>
-                </a></div>
-            {% endfor %}
-            </ul><br>
+  <div class="recent">
+    
+    <a class="post-title" href="{{ site.baseurl }}/post">
+      <p class = "single-post-in-category">
+          <div>
+            <h2>Recent Posts</h2>
           </div>
-        {% endif %}
+      </p>
+    </a>
+
+    <ul class="related-posts">
+      {% for post in site.posts limit:5 %}
+        <li>
+          <h3>
+            <a href="{{ site.baseurl }}{{ post.url }}">
+              {{ post.title }}
+              <small>{{ post.date | date_to_string }}</small>
+            </a>
+          </h3>
+        </li>
       {% endfor %}
-    {% endfor %}
-  </div>
+    </ul>
 
-
-  <!-- paper-review -->
-  <div class="cats-expo-section">
-    {% for pap in site.paper_review_category_list %}
-      {% for cat in site.categories %}
-        {% if cat[0] == pap %}
-          <div class = "single-category">
-            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
-            <small>paper-review</small>
-            <ul class="post_in_category">
-            {% assign category = cat[1] | sort: "category_num" %}
-            {% for post in category %}
-                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-                <li class = "single-post-in-category">
-                    <div>
-                      <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
-                    </div>
-                </li>
-                </a></div>
-            {% endfor %}
-            </ul><br>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  </div>
-
-
-  <!-- developmemt -->
-  <div class="cats-expo-section">
-    {% for dev in site.development_category_list %}
-      {% for cat in site.categories %}
-        {% if cat[0] == dev %}
-          <div class = "single-category">
-            <h5 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h5>
-            <small>development</small>
-            <ul class="post_in_category">
-            {% assign category = cat[1] | sort: "category_num" %}
-            {% for post in category %}
-            <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-              <li class = "single-post-in-category">
-                  <div>
-                    <h5 class="single-post-in-category-title-on-index">{{ post.title }}</h5>
-                  </div>
-              </li>
-              </a></div>
-            {% endfor %}
-            </ul><br>
-          </div>
-        {% endif %}
-      {% endfor %}
-    {% endfor %}
-  </div>
-
-  {% endfor %}
 </div>

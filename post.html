@@ -1,0 +1,90 @@
+---
+layout: page
+title: Posts
+sidebar_num : 1
+---
+
+<!-- 여기에서 각 페이지의 기본값을 설정한다 -->
+
+<div class="posts">
+  <h1 style="margin-bottom: 2em;">POSTS</h1>
+
+  <hr style="margin-bottom: 4em;"/>
+
+  <!-- study -->
+  <div class="cats-expo-section">
+    {% for pap in site.study_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <div class = "single-category">
+            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <small>study</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+              <div><h3 class="single-post-in-category-title">
+                <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}
+                <small style="font-size: 17.4px;">{{post.subtitle}}</small>
+                </a>
+              </h3></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <hr style="margin-top: 0em; margin-bottom: 3em;"/>
+
+  <!-- paper-review -->
+  <div class="cats-expo-section">
+    {% for pap in site.paper_review_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == pap %}
+          <div class = "single-category">
+            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <small>paper-review</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+              <div><h3 class="single-post-in-category-title">
+                <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}
+                <small style="font-size: 17.4px;">{{post.subtitle}}</small>
+                </a>
+              </h3></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <hr style="margin-top: 0em; margin-bottom: 3em;"/>
+
+  <!-- developmemt -->
+  <div class="cats-expo-section">
+    {% for dev in site.development_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == dev %}
+          <div class = "single-category">
+            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <small>development</small>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+              <div><h3 class="single-post-in-category-title">
+                <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}
+                <small style="font-size: 17.4px;">{{post.subtitle}}</small>
+                </a>
+              </h3></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+</div>
