@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Convolution Neural Network
+category_num: 3
 ---
 
 # Convolution Neural Network

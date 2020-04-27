@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Gradient Descent
+category_num: 1
 ---
 
 # Gradient Descent

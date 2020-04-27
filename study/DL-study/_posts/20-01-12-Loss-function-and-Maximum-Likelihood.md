@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Loss function과 Maximum likelihood
+title: Loss function and Maximum likelihood
+category_num: 5
 ---
 
 # Loss function과 Maximum likelihood
