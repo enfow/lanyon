@@ -24,13 +24,11 @@ sidebar_num : 3
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
-                <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-                <p class = "single-post-in-category">
-                  <div>
-                    <h3 class="single-post-in-category-title">{{ post.title }}</h3>
-                  </div>
-                </p>
-                </a></div>
+            <div><h3 class="single-post-in-category-title">
+              <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}
+              <small style="font-size: 17.4px;">{{post.subtitle}}</small>
+              </a>
+            </h3></div>
             {% endfor %}
             </ul><br>
           </div>

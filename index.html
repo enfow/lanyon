@@ -20,10 +20,12 @@ title: Home
       {% for post in site.posts limit:5 %}
         <li>
           <h3>
+            <small>{{ post.date | date:"%F" }}</small>
+            <div>
             <a href="{{ site.baseurl }}{{ post.url }}">
               {{ post.title }}
-              <small>{{ post.date | date_to_string }}</small>
             </a>
+            </div>
           </h3>
         </li>
       {% endfor %}
