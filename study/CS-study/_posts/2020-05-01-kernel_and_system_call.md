@@ -1,10 +1,10 @@
 ---
 layout: post
-title: (OS) Kerenl and System call
+title: (OS) Kernel and System call
 category_num: 1
 ---
 
-# Kerenl and System Call
+# Kernel and System Call
 
 - update date : 2020.05.01
 - 본 포스팅은 고려대학교 컴퓨터학과 유혁 교수님의 2020년 1학기 Operating system을 수강하고, 이를 바탕으로 작성했습니다. 수업 내용 복습을 목적으로 작성하였기 때문에 내용 중 부족한 점이 있을 수 있습니다.
