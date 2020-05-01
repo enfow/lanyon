@@ -73,7 +73,7 @@ h3 {
 }
 
 h4{
-  font-size: 22px;
+  font-size: 21px;
   margin-top: 1.5em;
   margin-bottom: 0.5em;
 }
@@ -84,7 +84,7 @@ h5 {
 }
 
 h6 {
-  font-size: 20px;
+  font-size: 19px;
   margin-top: 1.5em;
 }
 
@@ -192,12 +192,12 @@ p {
 
 .single-post-in-category-title {
   font-size : 23px;
-  margin-top : 1em;
-  margin-bottom : 1em;
+  margin-top : 0.8em;
+  margin-bottom : 0.8em;
 }
 
 .single-post-in-category-title-on-index {
-  font-size : 25px;
+  font-size : 23.5px;
 }
 
 .single-post-in-category-title-in-page {
