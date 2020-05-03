@@ -7,6 +7,12 @@ category_num: 2
 # Ocaml Basic grammar
 
 - update date : 2020.04.11
+- ocaml 공식 페이지와 관련 블로그를 참고하여 작성하였습니다. 주요 Reference는 다음과 같습니다.
+    - [ocaml](<https://ocaml.org/>)
+    - [ocaml tutorial](<https://ocaml.org/learn/tutorials/if_statements_loops_and_recursion.ko.html>)
+    - [ocaml example codes](<https://ocaml.org/learn/taste.html>)
+    - [OCaml for the Skeptical](<https://www2.lib.uchicago.edu/keith/ocaml-class/data.html>)
+    - [polychoron 7.6 Patterns](<https://www.polychoron.fr/ocaml-beta-manual/4.06/patterns.html>)
 
 ## 0. Contents
 
@@ -21,6 +27,8 @@ category_num: 2
 ---
 
 ## 1. Data Type
+
+### 6 types
 
 ocaml은 다음 6가지의 기본 type 을 제공한다.
 
