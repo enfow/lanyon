@@ -1,52 +1,26 @@
 ---
 layout: post
-title: Ocaml Introduction - install and data types
-category_num: 1
+title: Ocaml Basic grammar
+category_num: 2
 ---
 
-# Ocaml Introduction - install and data types
+# Ocaml Basic grammar
 
 - update date : 2020.04.11
 
-## 1. Installation
+## 0. Contents
 
-- [Install OCAML](<https://ocaml.org/docs/install.html>)
+1. Data Type
+2. let : naming value
+3. tuple and list
+4. if … then … else
+5. Pattern Matching
+6. Function Declaration
+7. Recursion not For/While
 
-### MAC
+---
 
-ocaml과 ocaml에서 패키지 등을 관리해주는 opam을 설치해준다.
-
-```
-$ brew install ocaml
-$ brew install opam
-$ eval `opam config env`
-```
-
-opam은 python의 pip와 유사한 방식으로 동작한다. 예를 들어 utop 이라는 ocaml REPL(read-eval-print loop)를 설치한다고 한다면 다음과 같이 하면 된다.
-
-```
-$ opam install utop
-```
-
-설치를 확인하기 위해 다음과 같이 실행할 수 있다.
-
-```
-$ utop
-```
-
-기본으로 설치되는 occaml REPL의 경우 사용상 불편한 점이 많아 [utop](<https://opam.ocaml.org/blog/about-utop/>) 을 사용하는 것을 추천한다.
-
-### UBUNTU
-
-ubuntu에서도 mac에서와 크게 다를 것 없이 간단하게 설치할 수 있다.
-
-```
-$ apt install ocaml
-$ apt install opam
-$ eval $(opam env)
-```
-
-## 2. Data Type
+## 1. Data Type
 
 ocaml은 다음 6가지의 기본 type 을 제공한다.
 
@@ -84,7 +58,9 @@ type contry = Korea | England | Egypt
 Error: Syntax error
 ```
 
-## 3. let : naming value
+---
+
+## 2. let : naming value
 
 let keyword는 다음과 같이 어떤 값의 이름을 정해줄 때 사용한다.
 
@@ -130,7 +106,9 @@ let name = expr1 in expr2
 
 이렇게 in keyword를 사용하게 되면 let keyword로 정의된 name 은 in keyword에 속하는 expression에서만 사용할 수 있다. scope를 제한하는 것이라고 이해하면 쉽다.
 
-## 4. tuple and list
+---
+
+## 3. tuple and list
 
 ocaml에도 tuple과 list와 같은 Data type이 존재한다.
 
@@ -181,7 +159,9 @@ Error: This expression has type float
        but an expression was expected of type int
 ```
 
-## if ... then ... else
+---
+
+## 4. if ... then ... else
 
 ocaml에도 if else 가 있다. 정확하게 `if then else`이다.
 
@@ -194,6 +174,8 @@ val ie : int = 1
 ```
 
 `tf`가 `true` 이므로, `then` 키워드의 값인 integer 1이 `ie`가 되었다. 반대로 `tf`가 `false`였다면 `else` 키워드의 값인 integer  0으로 되었을 것이다.
+
+---
 
 ## 5. Pattern Matching
 
@@ -232,6 +214,8 @@ val mat : bool = true
 
 val mat : bool = true
 ```
+
+---
 
 ## 6. Function Declaration
 
@@ -272,6 +256,8 @@ val sum : int -> int -> int = <fun>
 ```
 
 다른 언어와 차이 중 하나는 함수의 파라미터를 전달할 때 소괄호 `()`, comma `,` 등을 사용하지 않는다는 것이다.
+
+---
 
 ## 7. Recursion not For/While
 
