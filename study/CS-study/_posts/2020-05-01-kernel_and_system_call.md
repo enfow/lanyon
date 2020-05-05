@@ -24,7 +24,7 @@ Kernel은 개념적으로 사용자의 User Application 과 컴퓨터의 하드�
 - `Kernel Mode` : 운영체제가 실행되는 상태, 모든 하드웨어 자원에 접근할 수 있는 상태
 - `User Mode` : 사용자 프로그램이 실행되는 상태, 제한된 하드웨어 자원에만 접근할 수 있는 상태
 
-이때 User application이 동작하는 상태를 `User Mode`라고 하고, Kernel이 작업을 수행하는 상태, 운영체제가 실행되는 상태를 `Kernel Mode`라고 한다. Kernel Mode는 모든 하드웨어 장치에 대한 접근 권한을 가지고 있는 상태로, User Mode에서 사용할 수 없는 명령어와 레지스터에도 접근할 수 있다. 반대로 User Mode는 특정 User application을 수행하는 상태이므로 다소 제한된 권한을 가지고 있다.
+이때 User application이 동작하는 상태를 `User Mode`라고 하고, Kernel이 작업을 수행하는 상태를 `Kernel Mode`라고 한다. 각 Mode에 따라 하드웨어에 대한 접근과 사용 가능한 명령어에도 차이가 있는데, Kernel Mode는 모든 하드웨어 장치에 대한 접근 권한을 가지고 있다. 반면 User Mode는 특정 User application을 수행하는 만큼 Kernel Mode에 비해 다소 제한된 권한을 가지고 있다.
 
 이렇게 Mode에 따라 권한이 다르게 부여되고, 접근 가능한 장치 및 명령어가 제한된다는 것은 하드웨어 상에서도 확인이 가능한데, CPU의 Mode bit 이다. 두 가지 Mode를 나누는 것은 컴퓨터의 안정성을 위해 필수적인 만큼 CPU에서 하드웨어 적으로 사용할 수 있는 명령어를 제한하는 것이다. 참고로 CPU 제조사에 따라 mode bit의 크기도 다양한데 Intel의 경우 4 종류를, AMD의 경우 2 종류를 지원한다고 한다.
 
