@@ -1,9 +1,10 @@
 ---
 layout: post
-title: DSVDD) Deep_One_class_Classification
+title: DSVDD) Deep One class Classification
+category_num : 1
 ---
 
-# 논문 제목 : DSVDD) Deep_One_class_Classification
+# 논문 제목 : DSVDD) Deep One class Classification
 
 - Patrick Schlachter 등
 - 2019
