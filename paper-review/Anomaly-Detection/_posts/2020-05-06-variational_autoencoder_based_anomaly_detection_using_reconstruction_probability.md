@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Variational Autoencoder based Anomaly Detection using Reconstruction Probability
+title: Variational AutoEncoder based Anomaly Detection using Reconstruction Probability
 category_num: 2
 ---
 
-# 논문 제목 : Variational Autoencoder based Anomaly Detection using Reconstruction Probability
+# 논문 제목 : Variational AutoEncoder based Anomaly Detection using Reconstruction Probability
 
 - Jinwon An, Sungzoon Cho
 - 2015
@@ -14,8 +14,8 @@ category_num: 2
 ## Summary
 
 - VAE를 사용하여 구하는 데이터별 Reconstruction Probability를 기준으로 이상 데이터를 탐지하는 알고리즘을 제시한다.
-- 하나의 데이터에 있어 복수의 latent를 샘플링하고, 각각의 reconstruction probabilty를 평균한 값을 Reconstruction Probability로 사용한다.
-- Encoder와 Decoder 모두 확률 분포를 반환하기 때문에 여러가지 상황에 유연하게 대처하며 이상 데이터를 탐지하는 것이 가능하다.
+- 하나의 데이터에 있어 복수의 latent를 샘플링하고, 각각에 대한 Decoder의 출력 값을 parameter로 하는 확률 분포를 만든다. 이러한 확률 분포로 reconstruction probability를 구하게 되며, 한 데이터 샘플에 대한 reconstruction probability는 이를 평균한 것으로 한다.
+- Encoder와 Decoder 모두 확률 분포를 반환하기 때문에 selective sensitivity 등의 장점을 가지며 이에 따라 여러가지 상황에 유연하게 대처하며 이상 데이터를 탐지하는 것이 가능하다.
 
 ## Introduction: Anomaly detection
 
@@ -33,7 +33,7 @@ Proximity based anomaly detection은 `proximity`라는 표현에서도 알 수 �
 
 #### (3) Deviation based Method
 
-마지막 Deviation based anomaly detection은 차원 축소와 복원의 과정에서 복원 데이터와 원 데이터 간의 차이, 즉 `reconstruction error`를 기준으로 이상치를 찾아내는 방법이다. 정상 데이터를 잘 복원하는 모델을 만들었다면, 정상 데이터에 대해서는 reconstruction errror가 낮게 나오지만, 정상 데이터와는 다른 분포를 가지는 이상 데이터의 경우 reconstruction error가 높게 나오게 될 것이다. Deviation based Method는 이러한 차이를 통해 이상치를 찾는다. 차원 축소에 사용되는 방법으로는 대표적으로 PCA, AutoEncoder가 있다.
+마지막 Deviation based anomaly detection은 차원 축소와 복원의 과정에서 복원 데이터와 원 데이터 간의 차이, 즉 `reconstruction error`를 기준으로 이상치를 찾아내는 방법이다. 정상 데이터를 잘 복원하는 모델을 만들었다면 정상 데이터에 대해서는 reconstruction errror가 낮게 구해질 것이지만, 정상 데이터와는 다른 분포를 가지는 이상 데이터의 경우 reconstruction error가 높게 나오게 될 것이다. Deviation based Method는 이러한 차이를 기준으로 이상치를 찾는다. 차원 축소에 사용되는 방법으로는 대표적으로 PCA, AutoEncoder가 있다.
 
 ## Anomaly Detection with AutoEncoder
 
@@ -50,13 +50,15 @@ $$
 }
 $$
 
-학습은 입력 값과 복원 값 간의 차이인 $$\lvert x - \hat x \rvert$$ 를 최소화하는 방향으로 이뤄지는데, 이때 차이를 **reconstruction error**라고 한다. AutoEncoder로 이상치 탐지를 실시하는 경우에는 기본적으로 정상 데이터만을 이용하여 학습을 진행해 우선 정상 데이터를 잘 복원하는 모델을 만든 후, 추론 과정에서는 정상 데이터와 이상 데이터를 함께 넣어 reconstruction error가 크게 나오는 것을 이상 데이터로 판단하는 방법을 따른다.
+학습은 입력 값과 복원 값 간의 차이인 $$\lvert x - \hat x \rvert$$ 를 최소화하는 방향으로 이뤄지는데, 이때 차이를 **reconstruction error**라고 한다. 
+
+AutoEncoder로 이상치 탐지를 실시하는 경우에는 기본적으로 정상 데이터만을 이용하여 학습을 진행해 우선 정상 데이터를 잘 복원하는 모델을 만든 후, 추론 과정에서는 정상 데이터와 이상 데이터를 함께 넣어 reconstruction error가 크게 나오는 것을 이상 데이터로 판단하는 방법을 따른다.
 
 ### With Variational AutoEncoder
 
-`Variational AutoEncoder(VAE)`에 관해서는 [링크](<https://enfow.github.io/paper-review/neural-network/2020/03/28/VAE-auto_encoding_variational_bayes/>)에도 정리해 두었다. 사실 VAE의 경우에는 AutoEncoder와 형태만 비슷할 뿐 발전 과정이나 수식의 면에서 큰 차이가 있다. 하지만 AutoEncoder와 유사하게 차원 축소가 이뤄지고, 이를 복원하여 구해지는 reconstruction error를 사용하여 학습이 이뤄진다는 점에서 유사하기 때문에 동일한 방법으로 이상치 탐지에 사용할 수 있다.
+`Variational AutoEncoder(VAE)`에 관해서는 [링크](<https://enfow.github.io/paper-review/neural-network/2020/03/28/VAE-auto_encoding_variational_bayes/>)에도 정리해 두었다. 사실 VAE의 경우에는 AutoEncoder와 형태만 비슷할 뿐 발전 과정이나 수식의 면에서 큰 차이가 있다. 하지만 AutoEncoder와 마찬가지로 Encoder에 의해 차원 축소가 이뤄지고, 바로 뒤의 Decoder로 이를 복원하며, reconstruction error를 사용하여 학습이 이뤄진다는 점에서 유사하기 때문에 동일한 방법으로 이상치 탐지에 사용할 수 있다.
 
-VAE의 기본 수식은 다음과 같다.
+VAE의 loss function은 다음과 같다.
 
 $$
 \eqalign{
@@ -74,11 +76,11 @@ $$
 
 ### Algorithm
 
-1) Encoder에서 평균과 분산을 구한다 
+1) Encoder에서 평균과 분산을 구한다
 
 $$\mu_z^{(i)}, \sigma_z^{(i)} = f_\theta(z\lvert x^{(i)})$$
 
-2) 정규분포에서 latent variable을 L개 추출한다 
+2) 정규분포에서 latent variable을 L개 추출한다
 
  $$\text{draw L samples from} z \backsim N( \mu_z^{(i)}, \sigma_z^{(i)} )$$
 
@@ -102,13 +104,13 @@ $$\text{recon probability(i)} = {1 \over L} \Sigma_{l=1}^L p_\theta (x^{(i)} \lv
 
 #### (1) latent variables are stochastic variables
 
-위에서도 잠깐 언급하였지만 AutoEncoder를 사용하는 경우에는 Encoder의 출력 값이 그 자체로 latent variable 이 된다(deterministic). 반면 논문에서 제시하는 방법의 경우 Encoder의 출력 값이 확률 분포의 parameter가 되기 때문에 정확하게 Encoder의 출력 값이 latent variable이 아니라 **latent variable의 확률 분포**라고 할 수 있다(stochastic). 
+위에서도 잠깐 언급하였지만 AutoEncoder를 사용하는 경우에는 Encoder의 출력 값이 그 자체로 latent variable 이 된다(deterministic). 반면 논문에서 제시하는 방법의 경우 Encoder의 출력 값이 확률 분포의 parameter가 되기 때문에 정확하게 Encoder의 출력 값이 latent variable이 아니라 **latent variable의 확률 분포**라고 할 수 있다(stochastic).
 
 이러한 차이는 정상 데이터와 이상 데이터의 평균이 동일하거나 매우 근접할 때 높은 효과를 보인다. 즉, 정상 데이터와 이상 데이터의 평균이 유사하다면, deterministic method 에서는 latent 또한 같이 유사해진다. 하지만 stochastic method는 mean과 함께 variance 또한 사용하기 때문에 둘 간의 차이를 찾을 수 있게 될 것이다. 논문의 알고리즘에서 latent variable을 복수로 추출하여 모두 사용하는 이유가 variance에서 오는 차이를 잡기 위해서라고 생각할 수 있는 부분이다.
 
 #### (2) reconstructions are stochastic variables
 
-latent variable 뿐만 아니라 reconstruction, 즉 Decoder의 출력 값 또한 확률 분포라는 점에서도 기존의 방법과 다르다. 논문에서는 이것의 장점을 `selective sensitivity`라고 표현한다. 이것이 가능한 이유 또한 variance 덕분인데 variance가 높은 경우에는 평균과의 차이가 어느 정도 있더라도 reconstruction probability 가 높게 나올 수도 있는 반면, variance가 낮은 경우에는 평균과의 차이가 조금만 나더라도 reconstruction probability 가 크게 낮아질 수 있기 때문이다. 이렇게 되면 데이터에 따라 정상 이상을 구별하는데 있어 중요한 것과 그렇지 않은 것을 학습할 수 있고, 이에 대한 정보를 추론에도 사용할 수 있다.
+latent variable 뿐만 아니라 reconstruction, 즉 Decoder의 출력 값 또한 확률 분포라는 점에서도 기존의 방법과 다르다. 논문에서는 이것의 장점을 `selective sensitivity`라고 표현한다. 이것이 가능한 이유 또한 variance 덕분인데 variance가 높은 경우에는 mean과의 차이가 어느 정도 있더라도 reconstruction probability 가 높게 나올 수도 있는 반면, variance가 낮은 경우에는 mean과의 차이가 작아도 reconstruction probability 가 크게 낮아질 수 있기 때문이다. 이렇게 되면 데이터에 따라 정상 이상을 구별하는데 있어 중요한 것과 그렇지 않은 것을 학습할 수 있고, 이에 대한 정보를 추론에도 사용할 수 있다.
 
 #### (3) reconstructions are probability measures
 
