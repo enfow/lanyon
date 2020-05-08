@@ -10,7 +10,7 @@ category_num: 200
 
 ## Introduction
 
-**Compiler**란 **어떤 프로그램을 입력으로 받아 다른 언어로 작성된 동일한 프로그램을 반환하는 프로그램**으로, 쉽게 말해 프로그램 번역기라고 할 수 있다. 일반적으로 컴파일러를 말한다면 C, C++, JAVA 등의 High Level Language(HLL)로 작성된 프로그램을 x86, arm 과 같은 Low Level Language로 변환하여 프로세서가 이해할 수 있는 machine code로 변환해주는 프로그램을 의미한다.
+`Compiler`란 **어떤 프로그램을 입력으로 받아 다른 언어로 작성된 동일한 프로그램을 반환하는 프로그램**으로 일종의 메타 프로그램이자, 쉽게 표현하면 프로그램 번역기라고 할 수 있다. 일반적으로 컴파일러를 말한다면 C, C++, JAVA 등의 High Level Language(HLL)로 작성된 프로그램을 x86, arm 과 같이 프로세서가 이해할 수 있는 Low Level Language(machine code)로 변환해주는 프로그램을 지칭한다. 이러한 점에서 컴파일러는 가장 많이 사용되는 프로그램이라고 할 수 있다.
 
 ## Compiler Structure
 
@@ -23,7 +23,7 @@ category_num: 200
 
 ## 1. FrontEnd
 
-컴파일러 프론트엔드의 역할은 입력으로 들어온 프로그램에 문법적/의미적 문제가 없는지 검사하고, 미들엔드와 백엔드에서 사용하기 쉽도록 구조화하여 전달하는 것이다. 구체적으로 프론트엔드는 Lexical Analyzer, Syntax Analyzer, Semantic Analyzer, IR translator 등 네 가지로 구성되며 프론트 앤드를 통과하면**Intermediate Representation(IR)**이라는 형태로 다음 단계에 전달된다.
+컴파일러 프론트엔드의 역할은 입력으로 들어온 프로그램에 문법적/의미적 문제가 없는지 검사하고 미들엔드와 백엔드에서 사용하기 쉽도록 구조화하여 전달하는 것이다. 구체적으로 프론트엔드는 Lexical Analyzer, Syntax Analyzer, Semantic Analyzer, IR translator 등 네 가지로 구성되며, 이를 모두 통과한 프론트 엔드의 출력은 **Intermediate Representation(IR)** 이라고 한다.
 
 ---
 
