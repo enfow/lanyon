@@ -40,7 +40,7 @@ $$L(\theta | x) = Pr(X = x | \theta)$$
 
 이때 $$p(y \lvert f_\theta(x))$$이 정규분포를 따른다고 가정하면, $$f_\theta(x)$$는 정규분포의 모수, 즉 평균(표준편차는 편의상 생략)으로 볼 수 있다. 이렇게 보면 네트워크의 출력값은 미리 가정한 확률분포의 모수를 추정하는 것이 된다.
 
-<img src="{{site.image_url}}/study/maximum_likelihood.png" style="width:35em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/maximum_likelihood.png" style="width:28em; display: block; margin: 0px auto;">
 
 위의 그림을 보면 조금 더 쉽게 이해가 되는데, 네트워크 학습 과정에서 $$\theta_1$$이 $$\theta_2$$로 변화했다고 하자. 네트워크의 출력값을 확률분포 $$p(y \lvert f_\theta(x))$$의 평균값으로 보기 때문에 위의 그림과 같이 정규분포의 형태로 표현할 수 있다. 즉 네트워크 출력값이 변화하여 평균이 $$f_{\theta_1}(x)$$에서 $$f_{\theta_2}(x)$$로 이동한 것이다. 이때 각 네트워크의 성능은 결국 해당 확률분포에서 y값의 likelihood, 그림 상의 (1)과 (2)로 표현된다. y가 나올 확률을 최대로 하는 것이 목표이므로 (1)보다는 (2)가 좋은 것이다.
 
@@ -84,30 +84,26 @@ $$
 
 ### MSE
 
-위에서는 $$p(y_i \lvert f_\theta(x_i))$$를 가우시안 분포로 가정했었다. 이 경우 수식을 전개해보면 Mean Square Error와 같다는 것을 알 수 있다.
+위에서는 $$p(y_i \lvert f_\theta(x_i))$$를 `가우시안 분포`로 가정했었다. 이 경우 수식을 전개해보면 `MSE`와 같다는 것을 알 수 있다.
 
 $$
 \begin{multline}
 \shoveleft if \ f_\theta(x_i) = \mu_i, \sigma_i = 1, \\
 \shoveleft p(y_i \lvert \mu_i, \sigma_i) = {1 \over \root \of {2\pi\sigma_i}} \exp(- {(y_i - \mu_i)^2 \over {2 \sigma_i^2}}) \\
-.\\
-.\\
-.\\
+\shoveleft \ \ ...\\
 \shoveleft - \log p(y_i \lvert \mu_i, \sigma_i) \varpropto {(y_i - \mu_i)^2 \over 2} = {(y_i - f_\theta(x_i))^2 \over 2}
 \end{multline}
 $$
 
 ### Cross Entropy
 
-가우시안 외에도 베르누이 분포로 가정할 수도 있는데 이 경우 Cross Entropy 수식과 동일해진다.
+가우시안 외에도 `베르누이 분포`로 가정할 수도 있는데 이 경우 `Cross Entropy` 수식과 동일해진다.
 
 $$
 \begin{multline}
 \shoveleft if \ f_\theta(x_i) = p_i, \\
 \shoveleft p(y_i \lvert p_i) = p_i^{y_i}(1-p_i)^{1 - y_i} \\
-.\\
-.\\
-.\\
+\shoveleft \ \ ...\\
 \shoveleft - \log p(y_i \lvert p_i) = - [y_i \log(p_i) + (1 -y_i) \log(1 - p_i)]
 \end{multline}
 $$
