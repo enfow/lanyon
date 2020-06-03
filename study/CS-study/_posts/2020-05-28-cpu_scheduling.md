@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (OS) CPU Scheduling
-category_num: 4
+category_num: 5
 ---
 
 # CPU Scheduling
