@@ -32,7 +32,7 @@ title: RNN encoder-decoder) Learning Phrase Representations using RNN Encoder–
 
 ## RNN Encoder-Decoder architecture
 
-<img src="{{site.image_url}}/paper-review/rnn_endoer_decoder.png" style="width:35em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/paper-review/rnn_encoder_decoder.png" style="width:35em; display: block; margin: 0px auto;">
 
 ### RNN(Recurrnet Neural Network)
 
