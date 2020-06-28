@@ -24,7 +24,7 @@ title: RNN encoder-decoder) Learning Phrase Representations using RNN Encoder–
 
 - 이 문장은 Sequence to Sequence 모델을 통해 번역되는 것입니다.
 
-를 영어 문장이자 영어 단어의 sequence인 
+영어 문장이자 영어 단어의 sequence인 
 
 - This sentence is translated through the Sequence to Sequence model.
 
