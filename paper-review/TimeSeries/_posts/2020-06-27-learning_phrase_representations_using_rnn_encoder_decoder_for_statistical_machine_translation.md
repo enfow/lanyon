@@ -1,6 +1,7 @@
 ---
 layout: post
 title: RNN encoder-decoder) Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
+category_num: 1
 ---
 
 # 논문 제목 : Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
@@ -18,15 +19,21 @@ title: RNN encoder-decoder) Learning Phrase Representations using RNN Encoder–
 
 ## Sequence to Sequence
 
-<img src="{{site.image_url}}/paper-review/papago.png" style="width:35em; display: block; margin: 0px auto;">
+`Sequence to Sequence model`이란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 모델을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다. 
 
-`Sequence to Sequence model`이란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 모델을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다. 예를 들어 한국어 단어의 sequence라 할 수 있는 다음 문장을
+<img src="{{site.image_url}}/paper-review/papago.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
 
-- 이 문장은 Sequence to Sequence 모델을 통해 번역되는 것입니다.
+예를 들어 한국어 단어의 sequence라 할 수 있는 다음 문장을
+
+```
+이 문장은 Sequence to Sequence 모델을 통해 번역되는 것입니다.
+```
 
 영어 문장이자 영어 단어의 sequence인 
 
-- This sentence is translated through the Sequence to Sequence model.
+```
+This sentence is translated through the Sequence to Sequence model.
+```
 
 로 바꿔주는 것이다. 논문에서 해결하고자 하는 문제 또한 영어를 불어로 번역하는 것이다.
 
