@@ -71,8 +71,6 @@ $$
 
 #### Context Vector
 
-<img src="{{site.image_url}}/paper-review/attention.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
-
 어텐션에서 Context Vector $$c_i$$가 도출되는 식은 다음과 같다.
 
 $$
@@ -92,6 +90,10 @@ e_{ij} = a(s_{i-1}, h_j)
 $$
 
 Attention Score를 구할 때 사용되는 함수 a는 두 개의 vector $$s_{i-1}$$과 $$h_j$$간의 유사도를 계산하는 것이라고 할 수 있다. 이와 관련하여 논문에서는 디코더의 이전 hidden state $$s_{i-1}$$의 관점에서 인코더의 hidden state의 중요성을 판단하고 그에 따라 next hidden state $$s_i$$, 나아가 출력값인 $$y_i$$를 결정하는 것이라고 표현한다.
+
+#### Attention Architecture
+
+<img src="{{site.image_url}}/paper-review/attention.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
 
 #### Alignment Model
 
