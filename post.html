@@ -18,7 +18,6 @@ sidebar_num : 1
         {% if cat[0] == pap %}
           <div class = "single-category">
             <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
-            <small>study</small>
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
@@ -44,7 +43,6 @@ sidebar_num : 1
         {% if cat[0] == pap %}
           <div class = "single-category">
             <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
-            <small>paper-review</small>
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
@@ -70,7 +68,6 @@ sidebar_num : 1
         {% if cat[0] == dev %}
           <div class = "single-category">
             <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
-            <small>development</small>
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
