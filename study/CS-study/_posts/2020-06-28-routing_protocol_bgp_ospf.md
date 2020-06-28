@@ -40,7 +40,6 @@ AS는 크게 Stub AS와 Transit AS 두 가지로 나누어 볼 수 있다. 먼�
 
 위에서 말한 것과 같이 BGP는 AS 간에 사용되는 (거의 유일한) 라우팅 프로토콜로, 위에서 언급한 것과 같이 BGP의 역할은 특정 IP를 가진 패킷을 어떤 AS에게 전달하면 되는지 알려주는 것이다. 이를 위해 BGP는 다른 AS의 라우터와 연결 세션을 맺고 자신을 통해 도달할 수 있는 IP prefix들을 주기적으로 알린다.
 
-이미지 - bgp as path
 <img src="{{site.image_url}}/study/bgp_aspath.png" style="width:35em; display: block; margin: 0px auto;">
 
 위의 그림과 같이 ip prefix 180.100.100.0/24를 가지고 있는 stub AS에 연결된 transit AS(ASN 200)는 해당 IP prefix로 보내어진 패킷을 자신에게 오도록 해야 한다. 이를 위해 BGP 프로토콜을 사용하여 자신과 연결된 모든 다른 AS 들에게 180.100.100.0/24에 가기 위해서는 자신을 통해야 한다는 BGP 패킷을 전달한다. 이를 받은 다른 AS(ASN 201, 204)들은 또다시 자신과 연결된 다른 AS들에게 180.100.100.0/24로 가기 위해서는 자신을 통과해야 한다는 내용을 담아 알리게 된다. 이를 반복적으로 수행하면 모든 AS가 어떤 IP prefix에 도달하기 위한 AS 경로를 알 수 있게 된다. 
@@ -53,7 +52,6 @@ AS는 크게 Stub AS와 Transit AS 두 가지로 나누어 볼 수 있다. 먼�
 
 BGP가 제대로 동작하기 위해서는 AS와 Peering을 맺고 있는 다른 모든 AS에 BGP 패킷을 전달해야 한다. 하지만 Peering을 맺고 있는 BGP Speaker는 연결되어있는 AS 마다 개별적으로 존재한다. 즉 AS 200에 연결된 라우터와 AS 201에 연결된 라우터가 다를 수 있다는 것이다. 따라서 BGP 패킷을 제대로 전달하기 위해서는 AS 내부에서 브로드캐스팅을 통해 모든 BGP Speaker에 전달할 수 있어야 한다. 이와 같이 AS 내부에서 BGP 패킷을 전달하는 것을 Internal BGP라고 한다. 반대로 AS 간에 BGP 패킷을 주고 받는 것을 External BGP라고 한다.
 
-이미지 - Internal BGP
 <img src="{{site.image_url}}/study/internal_bgp.png" style="width:35em; display: block; margin: 0px auto;">
 
 Internal BGP의 경우 위의 그림과 같이 AS 내의 다른 모든 BGP Speaker들과 모두 서로 직접 연결(**full-meshed**, directly connected)되어 있어야 한다. BGP Speaker가 아닌 다른 AS 라우터는 얼마든지 거쳐도 되지만 어떤 BGP Speaker로 가기 위해 다른 BGP Speaker를 거처야 하는 경우는 허용되지 않는다. 왜냐하면 내부 loop를 방지하기 위해 Internal BGP로 받은 패킷에 대해서는 BGP Speaker들이 더 이상 전파하지 않기 때문이다.
@@ -91,7 +89,6 @@ OSPF의 제1목적은 Dijkstra algorithm을 풀기 위한 정보를 AS 내부 �
 
 ### Hierarchical Network
 
-이미지 - ospf backbone
 <img src="{{site.image_url}}/study/ospf_backbone.png" style="width:35em; display: block; margin: 0px auto;">
 
 Dijkstra algorithm의 시간 복잡도가 상대적으로 낮다고 하더라도 라우터와 링크의 숫자가 크게 늘어난다면 느릴 수 밖에 없다. 이러한 문제를 해결하기 위해 AS 내부에서도 계층 구조를 형성하고, 특정 영역 내에서만 최단 거리를 찾는 연산을 수행하게 된다.
