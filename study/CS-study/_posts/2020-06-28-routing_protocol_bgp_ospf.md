@@ -1,7 +1,7 @@
 ---
 layout: post
 title: (IP) Routing Protocol BGP & OSPF
-category_num: 200
+category_num: 510
 ---
 
 # Routing Protocol: BGP & OSPF
