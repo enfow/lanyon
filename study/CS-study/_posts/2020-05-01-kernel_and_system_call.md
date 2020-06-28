@@ -11,7 +11,7 @@ category_num: 1
 
 ## Introduction: Kernel
 
-<img src="{{site.image_url}}/study/kernel_location.png" style="width:35em">
+<img src="{{site.image_url}}/study/kernel_location.png" style="width:35em; display: block; margin: 0px auto;">
 
 Kernel은 개념적으로 사용자의 User Application 과 컴퓨터의 하드웨어 사이에 위치한다. 그리고 두 가지를 이어주는 과정에서 하드웨어를 보다 효율적으로 사용하고, 여러 user application 이 원할하게 동작할 수 있도록 관리하는 역할을 수행한다. File system이나 I/O system과 같이 데이터를 다루는 것부터 시작하여 CPU Scheduling, Virtual Memory 등 하드웨어 자원을 보다 효율적으로 사용하기 위한 방법들이 모두 kernel에서 이뤄진다. 이러한 점에서 kernel은 운영체제의 가장 핵심적인 부분이라고 할 수 있다.
 
@@ -39,7 +39,7 @@ Kernel은 개념적으로 사용자의 User Application 과 컴퓨터의 하드�
 5. 함수의 결과를 User Application으로 전달한다.
 6. Kernel mode에서 User mode로 전환한다.
 
-<img src="{{site.image_url}}/study/system_call.png" style="width:35em">
+<img src="{{site.image_url}}/study/system_call.png" style="width:40em; display: block; margin: 0px auto;">
 
 위의 그림은 Operating System Concept 를 참조하여 그렸다. 그림에는 routine 에는 등장하지 않는 것이 두 가지 있는데, libc.a와 IDT이다. 먼저 **libc.a** 는 C언어 표준 라이브러리로, C언어에서 기본적으로 사용할 수 있는 함수를 포함한다. 기본적인 C 언어 프로그램을 작성할 때 system call에 관한 내용을 작성하지 않아도 되는 이유는 사용하는 C 언어의 기본 함수 정의의 이미 system call과 관련된 내용이 모두 포함되어 있기 때문이다.
 
