@@ -13,7 +13,7 @@ category_num: 2
 
 ## 세 줄 요약
 
-- RNN Encoder-Decoder 구조는 sequence의 길이가 길어지면 길어질수록 context vector에 모든 정보를 담지 못하는 문제를 가지고 있다. Attention은 이를 해결하는 방법이다.
+- RNN Encoder-Decoder 구조는 sequence의 길이가 길어지면 길어질수록 context vector에 모든 정보를 담지 못하는 문제를 가지고 있다. 이를 해결하기 위한 방법으로 **Attention Mechanism**을 제시한다.
 - Decoder의 이전 hidden state $$s_{i-1}$$를 Encoder의 모든 hidden state $$h_j$$와 비교하여 유사도가 높은 hidden state가 context vector에 보다 많이 반영될 수 있도록 한다. 이때 $$s_{i-1}$$와 $$h_j$$ 간의 유사도를 Attention Score라고 한다.
 - Attention Score를 구하기 위해 $$s_{i-1}$$가 아닌 $$s_{i}$$를 사용하기도 한다. 본 논문의 방식을 Bahdanau Attention이라고 하고 $$s_{i}$$를 사용하는 방식을 Loung Attention이라고 한다.
 

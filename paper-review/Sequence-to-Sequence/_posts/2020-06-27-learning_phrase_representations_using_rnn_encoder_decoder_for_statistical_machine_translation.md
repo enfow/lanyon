@@ -19,7 +19,7 @@ category_num: 1
 
 ## Sequence to Sequence
 
-`Sequence to Sequence model`이란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 모델을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다. 
+`Sequence to Sequence`란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 것을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다. 
 
 <img src="{{site.image_url}}/paper-review/papago.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
 
@@ -49,7 +49,7 @@ $$
 h_t = f(h_{t-1}, x_t)
 $$
 
-위의 수식에서도 확인할 수 있듯 RNN은 $$t$$시점의 입력 $$x_t$$과 함께 순환적(Recurrent)으로 이전 시점 $$t-1$$의 hidden state $$h_{t-1}$$이 $$t$$ 시점의 hidden state $$h_t$$를 결정하는 데에 사용된다. 따라서 **hidden state $$h_t$$에는 과거의 입력 sequence 전체에 대한 정보가 들어있다**고 할 수 있다. 이러한 RNN의 특성에 대해 논문에서는 sequence에 대한 확률분포를 학습할 수 있다라고 표현하고 있다.
+위의 수식에서도 확인할 수 있듯 RNN은 $$h_t$$를 결정하기 위해 이전 시점의 hidden state인 $$h_{t-1}$$과 현 시점의 input $$x_t$$를 사용한다. 그리고 이렇게 결정된 $$h_t$$는 다시 $$h_{t+1}$$을 위해 사용된다. 매 시점의 입력이 hidden state에 영향을 미치고 순환적으로 다음 hidden state에 사용된다는 점에서 **hidden state $$h_t$$에는 과거의 입력 sequence 전체에 대한 정보가 들어있다**고 할 수 있다. RNN의 이러한 특성에 대해 논문에서는 sequence에 대한 확률분포를 학습할 수 있다라고 표현한다.
 
 - An RNN can learn a probability distribution over a sequence by being trained to predict the next symbol in a sequence.
 
@@ -61,7 +61,7 @@ Encoder Decoder 구조는 이러한 특성을 반영하고 있다. 즉 Encoder�
 
 - Variable-length sequence to fixed length vector
 
-Encoder는 입력 sequence의 특성을 반영하는 fixed-length vector를 추출하게 된다. 이를 위해 Encoder는 입력 sequence의 길이에 상관없이 처음부터 끝까지 순차적으로 입력 값을 받게 된다. 그런데 RNN의 hidden state는 최근 입력 값의 영향을 많이 받는다는 특성을 가지고 있으며, 이는 입력 sequence의 길이가 길어질수록 전체 문장의 특성을 최종 hidden state가 제대로 반영할 수 없다는 문제로 이어진다. 이러한 한계를 해결하기 위해 제시된 방법이 Attention mechanism이다.
+Encoder는 입력 sequence 전체의 특성을 담고 있는 fixed-length vector를 추출하는 역할을 가지고 있다. 이를 위해 Encoder는 입력 sequence의 길이에 상관없이 처음부터 끝까지 순차적으로 입력 값을 받는다. 그런데 RNN의 hidden state는 최근 입력 값의 영향을 많이 받는다는 특성을 가지고 있으며, 이는 입력 sequence의 길이가 길어질수록 전체 문장의 특성을 최종 hidden state가 제대로 반영할 수 없다는 문제로 이어진다. 이러한 한계를 해결하기 위해 제시된 방법이 [Attention mechanism](<https://enfow.github.io/paper-review/sequence-to-sequence/2020/06/28/neural_machine_translation_by_jointly_learning_to_align_and_translate/>)이다.
 
 참고로 마지막 hidden state vector를 부르는 이름은 논문에 따라 다양한데 입력 sequence의 길이에 상관없이 고정적인 길이를 가진다는 점에서 fixed length vector라고 하기도 하고, 전체 문장의 특성을 가지고 있다 하여 context vector라 부르기도 한다. Encoder Decoder 구조에 집중하여 latent라고도 한다.
 
@@ -74,6 +74,14 @@ Decoder는 Encoder에서 추출된 context를 통해 새로운 sequence를 만�
 $$
 h_t = g(h_{t-1}, y_{t-1}, c)
 $$
+
+Decoder의 hidden state 또한 다른 RNN과 마찬가지로 순환적으로 결정되므로 최초 hidden state로 $$c$$가 주어지면 전체 Decoder의 출력에 반영된다. 각 시점의 출력은 다음과 같이 결정된다.
+
+$$
+P(y_t \lvert y_{y-1}, ... y_1, c) = g(h_t, y_{t-1}, c)
+$$
+
+### Update
 
 Encoder와 Decoder는 하나로 묶여 학습이 이뤄진다. 업데이트 식은 다음과 같이 conditional log-likelihood로 표현된다.
 
