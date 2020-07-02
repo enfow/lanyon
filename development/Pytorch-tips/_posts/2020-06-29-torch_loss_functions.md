@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Pytorch Loss Functions
+subtitle: pytorch에서 자주 사용되는 Loss function
 ---
 
 # Pytorch Loss Functions
