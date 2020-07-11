@@ -106,7 +106,7 @@ $$
 \begin{bmatrix}
 2\\0
 \end{bmatrix}
-$$ 은 다음과 같이 표현된다.
+$$ 은 다음과 같이 크기와 방향을 가진 화살표로 표현된다.
 
 <img src="{{site.image_url}}/study/2d_vector.png" style="width:35em; display: block; margin: 0px auto;">
 
