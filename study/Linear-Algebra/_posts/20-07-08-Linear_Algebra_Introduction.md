@@ -108,13 +108,19 @@ $$
 \end{bmatrix}
 $$ 은 다음과 같이 크기와 방향을 가진 화살표로 표현된다.
 
-<img src="{{site.image_url}}/study/2d_vector.png" style="width:35em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/2d_vector.png" style="width:22em; display: block; margin: 0px auto;">
 
-3차원 공간 혹은 그 이상도 가능하다.
+3차원 공간에서도 가능하다. $$\begin{bmatrix}
+1\\1\\2
+\end{bmatrix},
+\begin{bmatrix}
+2\\2\\0
+\end{bmatrix}
+$$의 경우 아래 그림과 같다. 4차원, 그 이상도 가능하지만 평면의 그림으로 그리기에는 어려움이 있다.
 
-<img src="{{site.image_url}}/study/3d_vector.png" style="width:35em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/3d_vector.png" style="width:25em; display: block; margin: 0px auto;">
 
-벡터 간의 덧셈의 경우 다음과 같이 표현된다.
+벡터 간의 덧셈이 이뤄지는 과정은 다음과 같이 평행사변형 꼴로 표현된다.
 
 $$
 \begin{bmatrix}
@@ -130,4 +136,4 @@ $$
 \end{bmatrix}
 $$
 
-<img src="{{site.image_url}}/study/2d_vector_add.png" style="width:35em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/2d_vector_add.png" style="width:22em; display: block; margin: 0px auto;">
