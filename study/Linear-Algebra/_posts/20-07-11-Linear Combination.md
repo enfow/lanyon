@@ -186,7 +186,7 @@ column vector 간의 관계가 선형 독립인지, 선형 의존인지 중요�
 
 #### case 1: Linear Dependence
 
-<img src="{{site.image_url}}/study/linear_dependence.png" style="width:28em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/linear_dependence.png" style="width:40em; display: block; margin: 0px auto;">
 
 #### case 2: Linear Independence
 
