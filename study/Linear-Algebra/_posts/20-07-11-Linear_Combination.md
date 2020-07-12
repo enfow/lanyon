@@ -6,7 +6,7 @@ category_num : 2
 
 # Linear Combination
 
-- Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book을 참고하여 작성했습니다. 따라서 선형대수를 깊게 다루지는 않고 머신러닝에 있어 중요한 내용들로 이뤄져 있습니다.
+- Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book과 주재걸 교수님의 강의 인공지능을 위한 선형대수를 듣고 작성했습니다.
 - update at : 2020.07.11
 
 ## Linear Combination
@@ -186,8 +186,44 @@ column vector 간의 관계가 선형 독립인지, 선형 의존인지 중요�
 
 #### case 1: Linear Dependence
 
-<img src="{{site.image_url}}/study/linear_dependence.png" style="width:40em; display: block; margin: 0px auto;">
+$$
+\boldsymbol{v_1} = \begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix} \qquad
+\boldsymbol{v_2} = \begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix} \qquad
+\boldsymbol{v_3} = \begin{bmatrix}
+1\\
+1\\
+0
+\end{bmatrix}
+$$
+
+<img src="{{site.image_url}}/study/linear_dependence.png" style="width:45em; display: block; margin: 0px auto;">
 
 #### case 2: Linear Independence
 
-<img src="{{site.image_url}}/study/linear_independence.png" style="width:28em; display: block; margin: 0px auto;">
+$$
+\boldsymbol{v_1} = \begin{bmatrix}
+0\\
+1\\
+0
+\end{bmatrix} \qquad
+\boldsymbol{v_2} = \begin{bmatrix}
+1\\
+0\\
+0
+\end{bmatrix} \qquad
+\boldsymbol{v_3} = \begin{bmatrix}
+0\\
+0\\
+1
+\end{bmatrix}
+$$
+
+<img src="{{site.image_url}}/study/linear_independence.png" style="width:30em; display: block; margin: 0px auto;">
