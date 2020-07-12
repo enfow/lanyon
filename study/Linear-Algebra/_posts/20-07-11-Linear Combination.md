@@ -182,7 +182,7 @@ column vector가 3차원이고, 세 개의 column vector가 주어져 있다면 
 
 ### Unique Solution
 
-column vector 간에 선형 독립인가, 선형 의존인가가 중요한 이유는 이것이 해의 갯수와 관련되기 때문이다. 정답부터 이야기하자면 선형 독립인 경우에만 해가 유일하다.
+column vector 간의 관계가 선형 독립인지, 선형 의존인지 중요한 이유는 이것이 해의 갯수와 관련되기 때문이다. 정답부터 이야기하자면 선형 독립인 경우에만 해가 유일하다.
 
 #### case 1: Linear Dependence
 
