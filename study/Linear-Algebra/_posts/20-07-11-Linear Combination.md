@@ -190,4 +190,4 @@ column vector 간의 관계가 선형 독립인지, 선형 의존인지 중요�
 
 #### case 2: Linear Independence
 
-<img src="{{site.image_url}}/study/linear_inpendence.png" style="width:28em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/linear_independence.png" style="width:28em; display: block; margin: 0px auto;">
