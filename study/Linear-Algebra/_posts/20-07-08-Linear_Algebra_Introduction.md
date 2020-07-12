@@ -26,8 +26,8 @@ $$
 
 $$
 \eqalign{
-1. \ 6(ax) = a(6x)
-2. \ 6(x+y) = 6x + 6y
+&1. \ 6(ax) = a(6x) \\
+&2. \ 6(x+y) = 6x + 6y
 }
 $$
 
@@ -137,3 +137,122 @@ $$
 $$
 
 <img src="{{site.image_url}}/study/2d_vector_add.png" style="width:22em; display: block; margin: 0px auto;">
+
+## Linear Equation
+
+아래와 같은 형태를 갖는 방정식을 **선형 방정식**(linear equation)이라고 부른다.
+
+$$
+a_1x_1 + a_2x_2 + ... + a_nx_n = b
+$$
+
+위와 같은 선형 방정식은 선형대수의 구성요소인 Vector들 간의 곱으로 보다 간단하게 나타낼 수 있다.
+
+$$
+\boldsymbol{a}^T \boldsymbol{x} = b \qquad when \
+
+\boldsymbol{a} =
+\begin{bmatrix}
+a_1 \\
+a_2 \\
+... \\
+a_n
+\end{bmatrix},
+
+\boldsymbol{x} =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+... \\
+x_n
+\end{bmatrix}
+$$
+
+연립 선형 방정식 또한 선형대수에서는 보다 간단하게 표현할 수 있다. 아래와 같은 연립 선형 방정식은
+
+$$
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 = b_{1}\\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 = b_2\\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 = b_3\\
+$$
+
+vector와 matrix를 사용하여 간단하게 표현할 수 있다.
+
+$$
+\boldsymbol{A} \boldsymbol{x} = \boldsymbol{b} \qquad when \
+\boldsymbol{A} =
+\begin{bmatrix}
+a_{11} && a_{12} && a_{13} \\
+a_{21} && a_{22} && a_{23} \\
+a_{31} && a_{32} && a_{33} \\
+\end{bmatrix}, \
+
+\boldsymbol{x} =
+\begin{bmatrix}
+x_1\\
+x_2\\
+x_3
+\end{bmatrix},
+
+\boldsymbol{b} =
+\begin{bmatrix}
+b_1\\
+b_2\\
+b_3
+\end{bmatrix}
+$$
+
+### Inverse Matrix
+
+위와 같은 방정식의 해를 구하는 것은 곧 matrix $$A$$의 **역행렬(Inverse Matrix)**을 구하는 것과 같다. 역행렬이란 아래 식과 같이 원행렬과 곱했을 때 **항등행렬(Identity Matrix)**가 되는 것을 말한다.
+
+$$
+\boldsymbol{A^{-1}} \boldsymbol{A} = \boldsymbol{A} \boldsymbol{A^{-1}} = \boldsymbol{I}
+$$
+
+#### Identity Matrix
+
+항등행렬(단위행렬)은 아래와 같이 대각 원소는 모두 1이고 이외 다른 원소는 모두 0인 정방행렬을 의미한다.
+
+$$
+\boldsymbol{I} =
+\begin{bmatrix}
+1 && 0 && 0\\
+0 && 1 && 0\\
+0 && 0 && 1\\
+\end{bmatrix}
+$$
+
+항등행렬은 행렬 간 곱셈 연산에 있어 항등원의 성질을 띈다. 즉 $$
+AI = IA = A
+$$ 이 성립한다.
+
+#### Inverse Matrix and Linear Equation
+
+선형 방정식 $$\boldsymbol{A} \boldsymbol{x} = b$$에 역행렬과 항등행렬의 특성을 적용하면 다음과 같이 $$\boldsymbol{x}$$를 구할 수 있다.
+
+$$
+\eqalign{
+&\boldsymbol{A} \boldsymbol{x} = \boldsymbol{b} \\
+&\boldsymbol{A^{-1}}\boldsymbol{A} \boldsymbol{x} = \boldsymbol{A^{-1}}\boldsymbol{b} \\
+&\boldsymbol{I} \boldsymbol{x} = \boldsymbol{A^{-1}}\boldsymbol{b} \\
+&\boldsymbol{x} = \boldsymbol{A^{-1}}\boldsymbol{b}\\
+}
+$$
+
+#### Inverse Matrix is not always available
+
+$$\boldsymbol{A}$$에 대한 역행렬을 구할 수 있다면 쉽게 해를 찾을 수 있지만 그렇지 못한 경우도 많다. $$2 \times 2$$ 정방행렬에서는 어떤 행렬 $$\boldsymbol{A}$$에 대한 역행렬을 다음 공식에 따라 구할 수 있다.
+
+$$
+\boldsymbol{A^{-1}} = {1 \over {ad - bc}} \begin{bmatrix}
+d && -b \\
+-c && a\\
+\end{bmatrix}
+$$
+
+이 경우 우변의 분모 $$ad - bc$$가 0이라면 역행렬을 구할 수 없는 상황이 된다. 이때 $$ad - bc$$를 역행렬의 존재 여부를 판단하는 식이라 하여 우리말로는 판별식, 영어로는 determinant라고 하며 줄여서 $$det \boldsymbol{A}$$라고 표현하기도 한다. 참고로 역행렬을 구할 수 없다는 것은 연립 방정식의 해가 하나도 없거나, 무수히 많다는 것을 의미한다.
+
+정방행렬이 아닌 직사각형 행렬(rectangular matrix)은 row의 개수와 column의 개수가 일치하지 않는 행렬을 의미한다. 위의 연립 방정식과 연결하여 생각해 본다면 식의 개수와 미지수의 개수가 일치하지 않는 경우라고 할 수 있다.
+
+일반적으로 연립 방정식에서 구하고자 하는 미지수의 개수보다 식의 개수가 더 많은 경우에는 해가 없고, 구하고자 하는 미지수의 개수보다 식의 개수가 적은 경우에는 해가 무수히 많아진다. 이러한 점을 생각해 볼 때 직사각형 행렬 $$\boldsymbol{A}$$의 row의 개수가 column의 개수보다 작은 경우에는 해가 없고, row의 개수가 column의 개수보다 큰 경우에는 해가 무수히 많다고 할 수 있다.
