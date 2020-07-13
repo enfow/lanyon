@@ -107,3 +107,11 @@ $$
 뉴럴넷은 기본적으로 벡터와 행렬의 곱셈으로 표현된다. 물론 activation function 등에 의해 연산 과정에서 선형성은 보존할 수 없지만 weight를 곱하는 것은 결국 Matrix와 Vector를 곱해 새로운 Vector로 변환하는 것이므로 뉴럴넷에서 하나의 레이어를 통과하는 것은 선형 변환이라고 할 수 있다.
 
 <img src="{{site.image_url}}/study/linear_transfomation_and_nueral_net.png" style="width:32em; display: block; margin: 0px auto;">
+
+### Example: AutoEncoder
+
+AutoEncoder는 기본적인 뉴럴넷 구조 중 하나로 차원 축소를 진행하는 Encoder와 이를 다시 원래의 차원으로 복원하는 Decoder로 구성된다. Encoder의 출력값이자 Decoder의 입력값을 일반적으로 latent라고 부르는데 latent의 차원 수는 원데이터의 차원 수보다 작기 때문에 Decoder의 역할은 원데이터의 차원 속에서 이를 잘 표현할 수 있는 작은 차원의 공간을 찾는 것이 된다.
+
+예를 들어 원데이터가 3차원이고 latent가 2차원이라면 Decoder는 3차원 공간 속에서 데이터를 가장 잘 모사하는 2차원 평면을 찾도록 학습한다. 하지만 아무리 잘 학습한다 하여도 3차원 전체 공간을 2차원 평면으로 표현하는 데에는 한계가 있을 수 밖에 없는데 잘 학습된 Decoder라면 불필요한 요소는 버리고 중요한 특징을 커버하는 평면을 선택하게 될 것이다.
+
+경우에 따라서는 3차원 공간 속에서 2차원 평면으로는 표현할 수 없는 형태로 특징들이 분포하고 있을 수도 있다. 이때 평면을 구부릴 수 있다면 보다 표현력이 좋아질 것이라 기대할 수 있는데 이것이 가능하도록 해 주는 것이 딥러닝에서 필수적으로 사용되는 sigmoid, relu와 같은 non-linear activation function들이다. 즉 Linear transformation으로는 선형 공간만 모사할 수 있었던 반면 non-linear function을 더하여 구불구불한 공간까지도 표현할 수 있게 된 것이다. 이때 구불구불한 공간을 **Manifold**라고 한다.
