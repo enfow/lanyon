@@ -18,7 +18,7 @@ category_num : 3
     - Fully spnas the given subspace H
     - Linear Independent
 
-쉽게 말해 subspace란 어떤 vector 집합에 포함되어 있는 모든 vector 간 선형 결합에 대해 닫혀있는 벡터 공간을 말한다. 여기서 선형 결합에 닫혀있다는 것은 집합 내의 어떤 vector 간에 선형 결합을 하더라도 집합 내에 포함되어 있는 vector가 구해진다는 것을 의미한다. 그리고 **기저(Basis)**는 이러한 subspace를 선형 결합을 통해 완전히 커버할 수 있는(span) 선형 독립 벡터들의 집합이 된다.
+subspace란 어떤 vector 집합에 포함되어 있는 모든 vector 간 선형 결합에 대해 닫혀있는 벡터 집합을 말한다. 여기서 선형 결합에 닫혀있다는 것은 집합 내의 어떤 vector 간에 선형 결합을 하더라도 집합 내에 포함되어 있는 vector가 구해진다는 것을 의미한다. 그리고 **기저(Basis)**는 이러한 subspace를 선형 결합을 통해 완전히 커버할 수 있는(span) 선형 독립 벡터들의 집합이 된다.
 
 아래 두 예시의 경우 모두 기저의 조건을 만족하지 못한다. 구체적으로 왼쪽 예시는 두 vector가 subspace를 모두 커버하지 못하기 때문이고 오른쪽 예시에서는 세 개의 vector가 선형 의존의 관계를 가지기 때문이다.
 
