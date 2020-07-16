@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 5. Orthogonality
-category_num : 5
+title: 6. Orthogonality
+category_num : 6
 ---
 
 # Orthogonality
