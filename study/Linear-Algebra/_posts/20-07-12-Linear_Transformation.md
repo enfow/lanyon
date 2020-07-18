@@ -55,7 +55,7 @@ $$
 - 임의의 두 벡터 $$u, v \in V$$에 대하여 $$T(u+v) = T(u) + T(v)$$
 - 임의의 스칼라 $$a \in K$$ 및 벡터 $$v \in V$$에 대하여 $$T(av) = a T(v)$$ [위키피디아](<https://ko.wikipedia.org/wiki/%EC%84%A0%ED%98%95_%EB%B3%80%ED%99%98>)
 
-### Matrix of Linear Transformation
+### Matrix Multiplication and Linear Transformation
 
 선형 변환을 쉽게 하는 방법은 기저 벡터들의 선형 변환을 Matrix 형태로 만들어 변환하고자 하는 vector에 곱해주는 것이다. 예를 들어 2차원의 벡터 공간 $$V$$ 상의 vector $$v$$를 3차원의 벡터 공간 $$W$$의 벡터로 변환한다고 해 보자. 이때 $$V$$의 기저벡터가 다음과 같이 주어져 있고
 
@@ -101,6 +101,18 @@ $$
 $$
 
 참고로 여기서 사용되는 Matrix는 Identity Matrix $$I$$를 선형 변환한 결과로 쉽게 구할 수 있다.
+
+### Meaning of Matrix Multiplication
+
+이와 같이 본다면 어떤 벡터 $$\boldsymbol{x}$$에 행렬 $$\boldsymbol{A}$$를 곱해준다는 것은 벡터 $$\boldsymbol{x}$$를 행렬 $$\boldsymbol{A}$$ column 벡터들이 기저 벡터가 되는 공간 $$\text{Col}\boldsymbol{A}$$에 매핑하는 것이 된다.
+
+<img src="{{site.image_url}}/study/matrix_multiplication.png" style="width:20em; display: block; margin: 0px auto;">
+
+$$
+\boldsymbol{b} = \boldsymbol{C_1}\boldsymbol{x_1} + \boldsymbol{C_2}\boldsymbol{x_2} + \boldsymbol{C_3}\boldsymbol{x_3} + \boldsymbol{C_4}\boldsymbol{x_4}
+$$
+
+위 식을 통해 벡터에 행렬을 곱한 결과는 행렬의 column 벡터 간의 선형 결합(Linear Combination)이라는 것을 알 수 있다.
 
 ## Linear Transformation and Nueral Network
 
