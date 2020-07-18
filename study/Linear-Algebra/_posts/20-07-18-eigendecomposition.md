@@ -235,7 +235,7 @@ $$
 
 여기서 $$\boldsymbol{a}$$는 $$\boldsymbol{V}$$의 칼럼 벡터를 얼마나 사용할 것인지를 의미한다고 했었다. 만약 $$\boldsymbol{V}$$가 $$\boldsymbol{A}$$의 고유 벡터들로 구성되어 있다면 위 식을 통해 각 고유 벡터를 얼마나 사용할 것인가를 구할 수 있게 된다.
 
-따라서 $$\boldsymbol{V}^{-1} \boldsymbol{x}$$ 원 벡터 $$\boldsymbol{x}$$를 $$\boldsymbol{A}$$의 고유벡터로 나타낸다고 할 때 각 고유벡터가 필요한 정도를 나타낸다.
+따라서 $$\boldsymbol{V}^{-1} \boldsymbol{x}$$는 원 벡터 $$\boldsymbol{x}$$를 $$\boldsymbol{A}$$의 고유벡터로 나타낸다고 할 때 각 고유벡터가 필요한 정도를 나타낸다.
 
 #### 2) Linear Transformation with $$D$$
 
