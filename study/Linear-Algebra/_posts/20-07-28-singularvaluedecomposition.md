@@ -135,13 +135,13 @@ $$
 
 와 같이 Symmetric Positive Definite Matrix $$AA^T, A^TA$$에서는 모두 만족하는 것을 확인할 수 있다.
 
-정리하자면 대칭성을 가지면서 Positive Definite한 행렬 $$\boldsymbol{AA^T}$$에 대해 다음 식이 성립하게 되고 이것이 SVD $$A = U \Sigma V^T$$의 $$U$$가 된다. 만약 $$A^TA$$에 대해 전개하면 $$V$$를 구할 수 있다.
+정리하자면 대칭성을 가지면서 Positive Definite한 행렬 $$\boldsymbol{AA^T}$$에 대해 EigenDecomposition을 수행하게 되면 다음과 같은 식이 도출되고, 이것이 SVD $$A = U \Sigma V^T$$의 $$U$$가 된다. 똑같은 과정을 $$A^TA$$에 대해 수행하면 $$V$$도 구할 수 있다.
 
 $$
 \eqalign{
-\boldsymbol{AA^T} 
+\boldsymbol{AA^T}
 &= \boldsymbol{UDU^T} \\
-& = [\boldsymbol{u_1 u_2 ... u_n}] 
+& = [\boldsymbol{u_1 u_2 ... u_n}]
 \begin{bmatrix}
 \lambda_1 && 0 && ... && 0 \\
 0 && \lambda_2 && ... && 0 \\
@@ -162,7 +162,7 @@ $$
 
 ### Summary
 
-SVD의 계산과 관련해서 다음과 같이 정리할 수 있다. 
+SVD의 계산과 관련해서 다음과 같이 정리할 수 있다.
 
 - EigenDecompostion과 달리 직사각 행렬에 대해 SVD는 항상 가능하다.
 - 정사각 행렬 중 대칭성을 가지면서 Positive Definite한 특성을 가진다면 Eigen Decomposition의 결과와 SVD의 결과가 일치한다.
