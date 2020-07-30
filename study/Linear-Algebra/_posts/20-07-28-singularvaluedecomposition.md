@@ -7,7 +7,7 @@ category_num : 8
 # SVD, Singular Value Decomposition
 
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book과 주재걸 교수님의 강의 인공지능을 위한 선형대수를 듣고 작성했습니다.
-- update at : 2020.07.18
+- update at : 2020.07.28
 
 ## 0. Summary
 
