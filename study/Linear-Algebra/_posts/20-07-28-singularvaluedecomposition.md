@@ -9,6 +9,13 @@ category_num : 8
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book과 주재걸 교수님의 강의 인공지능을 위한 선형대수를 듣고 작성했습니다.
 - update at : 2020.07.18
 
+## 0. Summary
+
+- SVD는 어떤 행렬 $$A$$를 $$A = U \Sigma V^T$$와 같이 분해하는 것이다.
+- $$U, V$$는 칼럼 벡터들이 orthonormal 한 특성을 가지는 행렬이고 $$\Sigma$$는 대각 행렬이다.
+- SVD 식을 $$AV = U \Sigma$$와 같이 표현하면, SVD는 서로 직교하는 $$V$$의 칼럼 벡터들을 $$A$$로 선형 변환했을 때 그 결과 또한 서로 직교하는 벡터들로 이뤄진 행렬 $$U \Sigma$$이 되는 경우를 찾는 것이라 할 수 있다.
+- SVD의 $$U, \Sigma, V$$를 구하기 위해 $$AA^T, A^TA$$를 고유값 분해하여 얻은 결과를 이용한다. $$U, V$$는 고유 벡터로, $$\Sigma$$는 고유 값으로 구성한다.
+
 ## 1. Introduction
 
 행렬을 분해하여 그 특성을 알아보는 방법으로 고유값 분해가 있었다. 하지만 고유값 분해는 대상이 되는 행렬이 정사각 행렬이어야 한다는 점과 같이 여러 제약 사항을 가지고 있다. Singular Value Decomposition은 고유값 분해와 마찬가지로 주어진 행렬을 분해하는 방법이다. 고유값 분해에 비해 다소 복잡하지만 제약 사항이 적다는 점에서 활용 가능성이 높다.
