@@ -9,14 +9,14 @@ category_num : 5
 - Ian J. Goodfellow, Jean Pouget-Abadie, Mehdi Mirza, Bing Xu, David Warde-Farley, Sherjil Ozair, Aaron Courville, Yoshua Bengio
 - 2014
 - [논문 링크](<https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>)
-- [튜토리얼 링크]()<https://arxiv.org/abs/1701.00160>
+- [튜토리얼 링크](<https://arxiv.org/abs/1701.00160>)
 - 2020.07.31 정리
 
 ## Summary
 
--
--
--
+- GAN은 새로운 생성 모델 중 하나로서 Generator와 Discriminator라는 두 모델이 서로 경쟁하며 발전하는 모델이다.
+- Discriminator는 실제 데이터인지, 생성된 데이터인지 구별하는 역할을 하고 Generator는 실제 데이터와 유사한 데이터를 만들어 Discrimininator를 속이는 것을 목표로 한다.
+- Generator, Discriminator 모두 완벽히 학습되면 Discriminator는 $$1/2$$를 출력하며 실제 데이터와 생성 모델의 데이터를 구별하지 못하게 되는 것이 수학적으로 증명되어 있다.
 
 ## Generative Models
 
