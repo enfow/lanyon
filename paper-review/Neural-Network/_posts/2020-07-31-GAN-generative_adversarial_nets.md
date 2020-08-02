@@ -14,8 +14,8 @@ category_num : 5
 
 ## Summary
 
-- Adversarial Training이란 Generator와 Discriminator라는 두 모델이 서로 경쟁하며 발전하는 모델이다.
-- Discriminator는 실제 데이터인지, 생성된 데이터인지 구별하는 역할을 하고 Generator는 실제 데이터와 유사한 데이터를 만들어 Discrimininator를 속이는 것을 목표로 한다.
+- Adversarial Training이란 Generator와 Discriminator라는 두 모델이 서로 경쟁하며 발전하는 방식이다.
+- Discriminator는 실제 데이터인지, 생성된 데이터인지 구별하는 역할을 하고 Generator는 실제 데이터와 유사한 데이터를 만들어 Discriminator를 속이는 것을 목표로 한다.
 - Generator, Discriminator 모두 완벽히 학습되면 Discriminator는 $$1/2$$를 출력하며 실제 데이터와 생성 모델의 데이터를 구별하지 못하게 되는 것이 수학적으로 증명되어 있다.
 
 ## Generative Models
