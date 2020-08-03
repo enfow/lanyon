@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Policy Gradient -
+title: Policy Gradient
 subtitle: REINFORCE & ACTOR-CRITIC
 ---
 
@@ -11,7 +11,7 @@ subtitle: REINFORCE & ACTOR-CRITIC
 
 ## Policy Gradient
 
-Policy Gradient(PG)란 value function을 이용해 action을 선택하는 것이 아니라 직접 action 값을 선택할 수 있도록 하는 policy parameter를 업데이트하는 방법을 말한다. 수학적으로는 다음과 같이 표현된다.
+Policy Gradient(PG)란 value function을 이용해 action을 선택하는 것이 아니라 직접 action 값을 선택할 수 있도록 policy parameter를 업데이트하는 방법을 말한다.
 
 - $$\theta \in R^{d'}$$ : policy parameter
 
@@ -19,7 +19,7 @@ Policy Gradient(PG)란 value function을 이용해 action을 선택하는 것이
 
 - $$J(\theta)$$ : objective function, policy parameter $$\theta$$를 사용할 때 성능 함수(performance measure)
 
-위와 같은 표기법을 사용할 때 PG는 $$J(\theta)$$를 극대화하는 문제가 되며, 따라서 업데이트는 아래와 같이 $$J$$에 대해 gradient ascent를 진행하여 최적점을 찾는 방식으로 진행된다.
+위와 같은 표기법을 사용할 때 PG를 포함한 강화학습의 목표는 $$J(\theta)$$를 극대화하는 것이다. 따라서 업데이트는 아래와 같이 $$J$$에 대해 gradient ascent를 진행하여 최적점을 찾는 방식으로 진행된다.
 
 $$
 \theta_{t+1} = \theta_t + \alpha \nabla \hat J(\theta_t)
@@ -37,11 +37,11 @@ $$
 \nabla J(\theta) \varpropto \Sigma_s \mu(s) \Sigma_a q_\pi (s,a) \nabla_\theta \pi(a \lvert s, \theta)
 $$
 
-여기서 $$\nabla J(\theta)$$는 $$\theta$$의 요소에 따른 $$J$$의 편미분 vector를 의미한다. 그리고 $$\mu$$는 on-policy distribution으로, $$\mu(s) = {n(s) \over {\Sigma_s} n(s) }, \ for \ all \ s \in S$$, 즉 전체 에피소드에서 어떤 state s를 방문할 확률의 기대값을 의미한다.
+여기서 $$\nabla J(\theta)$$는 $$\theta$$의 요소에 따른 $$J$$의 편미분 벡터(gradient)를 의미한다. 그리고 $$\mu$$는 on-policy distribution으로, $$\mu(s) = {n(s) \over {\Sigma_s} n(s) }, \ for \ all \ s \in S$$, 즉 전체 에피소드에서 어떤 state s를 방문할 확률을 의미한다.
 
-비례식으로도 충분한 이유는 어떤 수가 되더라도 step size $$\alpha$$에 의해 곱해진 값이 사용되기 때문이며, 그 비율은 step size를 조절하는 것과 동일한 효과이기 때문이다. 따라서 방향이 정확하고 크기는 비례하기만 하면 된다.
+위의 식이 비례식으로도 충분한 이유는 어떤 수가 되더라도 step size $$\alpha$$에 의해 곱해진 값이 사용되기 때문이며, 그 비율은 step size를 조절하는 것과 동일한 효과이기 때문이다. 따라서 방향이 정확하고 크기는 비례하기만 하면 된다.
 
-증명에서는 $$\nabla J(\theta) = \nabla V_\pi(s)$$에서 시작하며, 이를 위해 우선 $$\nabla V_\pi(s)$$를 product rule과 repeated rolling에 따라 전개하고 있다.
+증명은 $$\nabla J(\theta) = \nabla V_\pi(s)$$에서 시작하며 $$\nabla V_\pi(s)$$에 대해 product rule과 repeated rolling를 사용하여 전개하는 방식으로 진행된다.
 
 ## REINFORCE
 
@@ -54,7 +54,7 @@ $$
 }
 $$
 
-즉 어느 state에 있을 것인가의 문제를 기대값으로 표현하는 것이다. 여기서 나아가 action $$a$$ 또한 $$A_t$$로 표현하기 위해 다음과 같이 식을 전개할 수 있다.
+즉 어느 state에 있을 것인가를 기대값으로 표현하는 것이다. 여기서 나아가 action $$a$$ 또한 $$A_t$$로 표현하기 위해 다음과 같이 식을 전개할 수 있다.
 
 $$
 \eqalign {
