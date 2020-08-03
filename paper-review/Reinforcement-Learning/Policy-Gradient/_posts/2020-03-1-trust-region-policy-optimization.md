@@ -38,11 +38,19 @@ Kakade&Langford는 자신의 논문에서 policy gradient 방법은 정확한 �
 
 ### Expected return and Advantage
 
+위에서 확인한
+
+$$
+\eta(\pi) = E_{s_0, a_0 ...} [\Sigma_{t+0}^\infty \gamma^t r(s_t)]
+$$
+
+식은 현재 가지고 있는 policy $$\pi$$가 가지는 expected return 이라고 했었다. 이때 policy가 $$\pi$$에서 $$\tilde \pi$$로 업데이트 되었다면 다음과 같이 Advantage $$A_\pi(s, a) = Q_{\pi}(s, a) - V_\pi(s)$$에 대한 식으로 업데이트 이전과 이후의 관계를 표현할 수 있다.
+
 $$
 \eta(\tilde \pi) = \eta(\pi) + E_{s_0, a_0, ... \backsim \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t A_\pi (s_t, a_t)]
 $$
 
-기존의 policy $$\pi$$에서 새로운 policy $$\tilde \pi$$로 업데이트되었다고 할 때 이 때 expected return의 변화는 모든 시점에서 $$\gamma$$-discounted advantage $$A_\pi$$ 총합의 기대값이라고 할 수 있다. 즉 이 기대값이 음수이면 return이 줄어들고, 양수이념 return이 늘어나는 것으로 예상하는 것이다.
+기존의 policy $$\pi$$에서 새로운 policy $$\tilde \pi$$로 업데이트되었다고 할 때 expected return의 변화는 모든 시점에서 $$\gamma$$-discounted advantage $$A_\pi$$의 총합의 기대값이라고 할 수 있기 때문이다. 이때 그 값이 음수면 업데이트의 결과 return이 줄어들고, 양수면 return이 늘어나는 것으로 예상할 수 있다.
 
 이때 state visitation frequency $$\rho_\pi (s)$$를 아래와 같이 정의하면
 
@@ -62,7 +70,7 @@ $$
 
 위의 식에서 $$\Sigma_a \tilde \pi (a \lvert s) A_\pi (s,a) \geqq 0$$ 이 성립하면 $$\eta$$가 증가하는 것을 보장할 수 있다. 이렇게 policy를 업데이트하는 대표적인 방법이 deterministic policy $$\tilde \pi(s) = \arg \max_a A_\pi (s,a)$$를 사용하는 policy iteration 이며, 이렇게 하면 optimal policy에 수렴할 수 있다.
 
-하지만 이를 곧바로 적용하는 것에는 문제가 있다. estimation과 approximation에 따른 오차의 가능성 때문에 negative value가 포함될 수 있고, $$\rho_{\tilde \pi}(s)$$를 사용한다는 점에서 새로운 policy가 어떤 state에 자주 가는지 곧바로 알기 어렵기 때문에 즉각적인 업데이트도 불가능하다.
+하지만 이를 곧바로 적용하는 것에는 문제가 있다. 기본적으로 근사하여 구하는 것이고, 이에 따른 오차로 negative value가 업데이트 과정에 포함될 수 있다. 그리고 $$\rho_{\tilde \pi}(s)$$를 사용한다는 점에서 새로운 policy가 어떤 state에 자주 가는지 곧바로 알기 어렵기 때문에 즉각적인 업데이트도 불가능하다.
 
 ### Local approximation
 
@@ -100,7 +108,7 @@ $$
 \text{where} \ \epsilon = \max_s \lvert E_{a \backsim \pi'(a \rvert s)} [A_\pi (s,a)] \lvert
 $$
 
-TRPO는 이와같은 Kakade&Langford의 Conservative Policy Iteration를 개선한 것이라고 할 수 있다.
+TRPO는 이와같은 Kakade&Langford의 Conservative Policy Iteration를 개선하여 적용하는 것에서 출발한다.
 
 ## Trust Region Policy Optimization
 
@@ -138,18 +146,18 @@ $$
 
 $$
 \eqalign{
-    &\eta(\pi_{\text{new}}) \geqq L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}, \pi_{\text{new}}})\\
+    &\eta(\pi_{\text{new}}) \geqq L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})\\
     & \text{where} \ C = {4 \epsilon \gamma \over (1 - \gamma)^2}
 }
 $$
 
-여기서 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}, \pi_{\text{new}}})$$를 극대화하는 $$\pi_{\text{new}}$$를 다음 policy로 업데이트하면 지속적인 성능 개선이 보장되는 policy update가 가능하다.
+여기서 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$를 극대화하는 $$\pi_{\text{new}}$$를 다음 policy로 업데이트하면 지속적인 성능 개선이 보장되는 policy update가 가능하다.
 
 이를 적용하여 다음과 같은 algorithm을 도출할 수 있다.
 
 <img src="{{site.image_url}}/paper-review/trpo_algorithm.png" style="width: 28em">
 
-여기까지가 TRPO의 이론적인 업데이트 방식이라고 할 수 있다. 하지만 이를 곧바로 적용하기에는 연산량 등을 고려하여 보다 구체화해야 할 부분들이 남아있다.
+여기까지가 TRPO의 이론적인 업데이트 방식이다. 하지만 이를 적용하기 위해서는 연산량 등을 고려하여 보다 구체화해야 할 부분들이 남아있다.
 
 ### Trust region contraint Not Penalty
 
@@ -190,7 +198,7 @@ $$
 }
 $$
 
-아직 많이 남은 것을 알 수 있다. 위의 식을 그대로 해결하려면 모든 state, action에 대한 값을 구해야 하므로 연산량이 매우 커진다. 따라서 Monte Carlo를 적용해 근사하는 방법을 생각할 수 있다.
+위의 식을 그대로 해결하려면 모든 state, action에 대한 값을 구해야 하므로 연산량이 매우 커진다. 따라서 Monte Carlo를 적용해 근사하는 방법을 생각할 수 있다.
 
 보다 구체적으로 논문에서는 다음 세 가지를 도입하였다고 한다.
 
