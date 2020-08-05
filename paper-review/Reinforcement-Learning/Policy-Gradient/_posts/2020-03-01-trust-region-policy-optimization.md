@@ -1,6 +1,7 @@
 ---
 layout: post
 title: TRPO) Trust Region Policy Optimization
+category_num: 1
 ---
 
 # 논문 제목 : Trust Region Policy Optimization
