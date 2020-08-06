@@ -1,7 +1,7 @@
 ---
 layout: post
 title: GAN) Generative Adversarial Nets
-category_num : 5
+category_num : 2
 ---
 
 # 논문 제목 : GAN) Generative Adversarial Nets
