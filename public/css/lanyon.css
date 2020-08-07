@@ -241,6 +241,33 @@ p {
   font-size : 23.5px;
 }
 
+.single-post-in-category-title-on-index_subtitle {
+  font-size: 17.4px;
+}
+
+@media (max-width: 767px) {
+
+  .single-category-title-on-index {
+    font-size: 23.5px;
+    margin-top: 1em;
+    margin-bottom: 0em;
+  }
+  
+  .single-post-in-category-title {
+    font-size : 22px;
+    margin-top : 0.4em;
+    margin-bottom : 0.6em;
+  }
+
+  .single-post-in-category-title-on-index {
+    font-size : 21.5px;
+  }
+
+  .single-post-in-category-title-on-index_subtitle {
+    font-size: 15.4px;
+  }
+}
+
 
 .single-post-in-category-title-in-page {
   font-size : 23px;
