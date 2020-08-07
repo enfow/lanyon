@@ -1,7 +1,8 @@
 ---
 layout: post
-title: (OS) from Batch processing to Time sharing
+title: from Batch processing to Time sharing
 category_num: 0
+keyword: '[OS]'
 ---
 
 # Batch processing 부터 Time sharing 까지

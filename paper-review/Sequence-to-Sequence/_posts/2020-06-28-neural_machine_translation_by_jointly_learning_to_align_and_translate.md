@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Attention) Neural Machine Translation by Jointly Learning to Align and Translate
+title: Neural Machine Translation by Jointly Learning to Align and Translate
 category_num: 2
+keyword: '[Attention]'
 ---
 
 # 논문 제목 : Neural Machine Translation by Jointly Learning to Align and Translate

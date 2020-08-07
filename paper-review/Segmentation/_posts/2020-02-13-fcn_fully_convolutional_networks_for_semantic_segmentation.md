@@ -1,6 +1,7 @@
 ---
 layout: post
-title: FCN) Fully Convolutional Networks for Semantic Segmentation
+title: Fully Convolutional Networks for Semantic Segmentation
+keyword: '[FCN]'
 ---
 
 # 논문 제목 : Fully Convolutional Networks for Semantic Segmentation

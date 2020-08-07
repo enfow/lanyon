@@ -1,6 +1,7 @@
 ---
 layout: post
-title: C51) A Distributional Perspective on Reinforcement Learning
+title: A Distributional Perspective on Reinforcement Learning
+keyword: '[C51]'
 ---
 
 # 논문 제목 : A Distributional Perspective on Reinforcement Learning

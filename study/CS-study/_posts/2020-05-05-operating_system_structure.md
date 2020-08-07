@@ -1,7 +1,8 @@
 ---
 layout: post
-title: (OS) Monolithic kernel and MicroKernel
+title: Monolithic kernel and MicroKernel
 category_num: 2
+keyword: '[OS]'
 ---
 
 # Monolithic Kernel and MicroKernel

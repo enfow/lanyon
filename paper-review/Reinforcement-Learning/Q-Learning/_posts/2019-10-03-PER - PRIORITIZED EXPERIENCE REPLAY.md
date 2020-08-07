@@ -1,7 +1,8 @@
 ---
 layout: post
-title: PER) PRIORITIZED EXPERIENCE REPLAY
+title: Prioritized Experience Replay
 category_num : 4
+keyword: '[PER]'
 ---
 
 # 논문 제목 : PRIORITIZED EXPERIENCE REPLAY

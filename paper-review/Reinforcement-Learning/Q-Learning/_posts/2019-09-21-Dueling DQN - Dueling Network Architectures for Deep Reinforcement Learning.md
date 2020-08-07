@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Dueling DQN) Dueling Network Architectures for Deep Reinforcement Learning
+title: Dueling Network Architectures for Deep Reinforcement Learning
 category_num : 3
+keyword: '[Dueling DQN]'
 ---
 
 # 논문 제목 : Dueling Network Architectures for Deep Reinforcement Learning

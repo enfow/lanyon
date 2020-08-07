@@ -1,7 +1,8 @@
 ---
 layout: post
-title: BCQ) Off-Policy Deep Reinforcement Learning without Exploration
+title: Off-Policy Deep Reinforcement Learning without Exploration
 category_num : 1
+keyword: '[BCQ]'
 ---
 
 # 논문 제목 : Off-Policy Deep Reinforcement Learning without Exploration
