@@ -2,7 +2,7 @@
 layout: post
 title: Action Branching Architectures for Deep Reinforcement Learning
 category_num: 10
-keyword: '[Branching]'
+keyword: '[Branching DQN]'
 ---
 
 # 논문 제목 : Action Branching Architectures for Deep Reinforcement Learning
