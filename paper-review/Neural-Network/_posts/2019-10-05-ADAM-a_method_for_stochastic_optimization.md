@@ -1,7 +1,8 @@
 ---
 layout: post
-title: ADAM) A method for stochastic optimization
+title: A method for stochastic optimization
 category_num : 1
+keyword: '[ADAM]'
 ---
 
 # 논문 제목 : ADAM) A method for stochastic optimization

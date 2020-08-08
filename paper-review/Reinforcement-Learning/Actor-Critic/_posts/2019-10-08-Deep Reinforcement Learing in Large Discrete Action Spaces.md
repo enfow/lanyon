@@ -1,7 +1,8 @@
 ---
 layout: post
-title: Wolpertinger Architecture) Deep Reinforcement Learning in Large Discrete Action Spaces
+title: Deep Reinforcement Learning in Large Discrete Action Spaces
 category_num: 10
+keyword: '[Wolpertinger Architecture]'
 ---
 
 # 논문 제목 : Deep Reinforcement Learning in Large Discrete Action Spaces

@@ -1,7 +1,8 @@
 ---
 layout: post
-title: RNN encoder-decoder) Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
+title: Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation
 category_num: 1
+keyword: '[RNN Encoder-Decoder]'
 ---
 
 # 논문 제목 : Learning Phrase Representations using RNN Encoder–Decoder for Statistical Machine Translation

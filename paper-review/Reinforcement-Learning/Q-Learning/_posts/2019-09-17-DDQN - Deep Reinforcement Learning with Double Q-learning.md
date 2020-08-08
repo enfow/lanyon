@@ -1,7 +1,8 @@
 ---
 layout: post
-title: DDQN) Deep Reinforcement Learning with Double Q-learning
+title: Deep Reinforcement Learning with Double Q-learning
 category_num : 2
+keyword: '[DDQN]'
 ---
 
 # 논문 제목 : Deep Reinforcement Learning with Double Q-learning

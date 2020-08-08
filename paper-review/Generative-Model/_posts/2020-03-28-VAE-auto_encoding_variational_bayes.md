@@ -1,7 +1,8 @@
 ---
 layout: post
-title: VAE) Auto-Encoding Variational Bayes
+title: Auto-Encoding Variational Bayes
 category_num : 1
+keyword: '[VAE]'
 ---
 
 # 논문 제목 : VAE) Auto-Encoding Variational Bayes

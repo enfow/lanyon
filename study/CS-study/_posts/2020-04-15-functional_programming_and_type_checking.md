@@ -1,7 +1,8 @@
 ---
 layout: post
-title: (Programming) Functional Programming and Static Type Checking With Ocaml
+title: Functional Programming and Static Type Checking With Ocaml
 category_num: 400
+keyword: '[Programming]'
 ---
 
 # Functional Programming and Static Type Checking With Ocaml

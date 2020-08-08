@@ -1,7 +1,8 @@
 ---
 layout: post
-title: 3D segmentation) Deep Neural Networks for Anatomical Brain Segmentation
+title: Deep Neural Networks for Anatomical Brain Segmentation
 category_num : 5
+keyword: '[3D Segmentation]'
 ---
 
 # 논문 제목 : Deep Neural Networks for Anatomical Brain Segmentation

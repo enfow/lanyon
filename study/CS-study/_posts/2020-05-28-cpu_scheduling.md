@@ -1,7 +1,8 @@
 ---
 layout: post
-title: (OS) CPU Scheduling
+title: CPU Scheduling
 category_num: 5
+keyword: '[OS]'
 ---
 
 # CPU Scheduling

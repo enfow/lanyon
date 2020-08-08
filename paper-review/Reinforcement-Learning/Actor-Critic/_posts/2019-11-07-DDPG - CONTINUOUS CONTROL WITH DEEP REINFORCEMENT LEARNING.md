@@ -1,7 +1,8 @@
 ---
 layout: post
-title: DDPG) continuous control with deep reinforcement learning
+title: continuous control with deep reinforcement learning
 category_num: 1
+keyword: '[DDPG]'
 ---
 
 # 논문 제목 : DDPG) continuous control with deep reinforcement learning

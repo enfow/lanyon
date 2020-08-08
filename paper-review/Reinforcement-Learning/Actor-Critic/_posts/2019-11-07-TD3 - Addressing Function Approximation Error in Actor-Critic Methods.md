@@ -1,7 +1,8 @@
 ---
 layout: post
-title: TD3) Addressing Function Approximation Error in Actor-Critic Methods
+title: Addressing Function Approximation Error in Actor-Critic Methods
 category_num: 2
+keyword: '[TD3]'
 ---
 
 # 논문 제목 : Addressing Function Approximation Error in Actor-Critic Methods

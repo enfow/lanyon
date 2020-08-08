@@ -1,6 +1,8 @@
 ---
 layout: post
-title: TRPO) Trust Region Policy Optimization
+title: Trust Region Policy Optimization
+category_num: 1
+keyword: '[TRPO]'
 ---
 
 # 논문 제목 : Trust Region Policy Optimization
@@ -8,7 +10,7 @@ title: TRPO) Trust Region Policy Optimization
 - John Schulman, Sergey Levine 등
 - 2015
 - [논문 링크](<https://arxiv.org/abs/1502.05477>)
-- 2020.03.01 정리
+- 2020.03.01 정리 / 2020.08.05 업데이트
 
 ## Summary
 
@@ -165,7 +167,7 @@ $$
 }
 $$
 
-여기서 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$를 극대화하는 $$\pi_{\text{new}}$$를 다음 policy로 업데이트하면 지속적인 성능 개선이 보장되는 policy update가 가능하다. 식 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$를 Surrogate Function 이라고 하며 이를 이용하여 다음과 같은 알고리즘을 도출할 수 있다.
+여기서 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$를 극대화하는 $$\pi_{\text{new}}$$를 다음 policy로 업데이트하면 지속적인 성능 개선이 보장되는 policy update가 가능하다. 이때 $$\eta(\pi_{new})$$를 식 $$L_{\pi_{\text{old}}}(\pi_{\text{new}}) - C D_{KL}^{\max}(\pi_{\text{old}}, \pi_{\text{new}})$$로 근사하기 때문에 [Surrogate Function](<https://kr.mathworks.com/help/gads/what-is-surrogate-optimization.html>)이라고 할 수 있으며 이를 이용하여 다음과 같은 알고리즘을 도출할 수 있다.
 
 <img src="{{site.image_url}}/paper-review/trpo_algorithm.png" style="width: 30em">
 

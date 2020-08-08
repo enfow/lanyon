@@ -1,7 +1,8 @@
 ---
 layout: post
-title: DQN) Playing Atari with Deep Reinforcement Learning
+title: Playing Atari with Deep Reinforcement Learning
 category_num: 1
+keyword: '[DQN]'
 ---
 
 # 논문 제목 : Playing Atari with Deep Reinforcement Learning

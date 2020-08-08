@@ -1,7 +1,8 @@
 ---
 layout: post
-title: OAC) Better Exploration with Optimistic Actor-Critic
+title: Better Exploration with Optimistic Actor-Critic
 category_num: 4
+keyword: '[OAC]'
 ---
 
 # 논문 제목 : Better Exploration with Optimistic Actor-Critic

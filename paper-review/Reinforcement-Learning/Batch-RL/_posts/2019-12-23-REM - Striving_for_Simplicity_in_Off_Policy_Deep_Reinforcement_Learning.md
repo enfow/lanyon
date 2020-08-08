@@ -1,7 +1,8 @@
 ---
 layout: post
-title: REM) Striving for Simplicity in Off-Policy Deep Reinforcement Learning
+title: Striving for Simplicity in Off-Policy Deep Reinforcement Learning
 category_num : 2
+keyword: '[REM]'
 ---
 
 # 논문 제목 : Striving for Simplicity in Off-Policy Deep Reinforcement Learning

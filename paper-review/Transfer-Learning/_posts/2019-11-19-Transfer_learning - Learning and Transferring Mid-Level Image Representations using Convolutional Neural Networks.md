@@ -1,6 +1,7 @@
 ---
 layout: post
-title: Transfer Learning) Learning and Transferring Mid-Level Image Representations using Convolutional Neural Networks
+title: Learning and Transferring Mid-Level Image Representations using Convolutional Neural Networks
+keyword: '[Transfer Learning]'
 ---
 
 # 논문 제목 : Learning and Transferring Mid-Level Image Representations using Convolutional Neural Networks
