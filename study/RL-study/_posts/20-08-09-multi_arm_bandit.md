@@ -9,13 +9,23 @@ category_num: 2
 - Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
 - update at : 2020.08.09
 
+## Keywords
+
+본문에서 다루고 있는 강화학습의 주요 키워드들은 다음과 같다.
+
+- **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)을 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가하는 것을 학습한다.
+- **Action Value**: 어떤 action을 수행했을 때 얻을 수 있는 Reward를 의미한다.
+- **Greedy Action**: 선택 가능한 Action 중 Action Value가 가장 큰 Action을 의미한다.
+- **Exploitation & Exploration**: Exploitation은 현재 추정 Action Value가 가장 큰 Action을 선택하고, Exploration은 그 이외의 Action을 선택하고 학습하는 것을 말한다.
+- **$$\epsilon$$-Greedy Method**: $$\epsilon$$만큼 Exploration을, $$1 - \epsilon$$만큼 Exploitation을 수행하는 방법을 말한다.
+
 ## Evaluation Aspact of Reinforcement Learning
 
 Sutton은 책에서 강화학습이 머신러닝의 다른 방법들과 가지는 가장 큰 차이점을 다음과 같이 표현하고 있다.
 
 - It uses training information that **evaluates** the actions taken rather than **instructs** by giving correct actions
 
-여기서 두 가지 키워드 Evaluation과 Instruction이 나오는데 **Instruction**은 무엇이 가장 좋은 것인지, 무엇을 해야하는지 미리 정해져있고 그것에 따라 학습을 진행하는 것을 말한다. 반면 **Evaluation**은 자신이 선택한 것이 가장 좋은 것인지에 문제가 아니라 좋다면 얼마나 좋고, 나쁘다면 얼마나 나쁜지에 관한 것이다.
+여기서 두 가지 키워드 Evaluation과 Instruction이 나오는데 **Instruction**은 무엇이 가장 좋은 것인지, 무엇을 해야하는지 미리 정해져있고 그것에 따라 학습을 진행하는 것을 말한다. 반면 **Evaluation**은 자신이 선택한 것이 좋다면 얼마나 좋고, 나쁘다면 얼마나 나쁜지에 관한 것에 대해 알아가도록 학습을 진행하는 것을 말한다.
 
 예를 들어 Supervised learning의 대표적인 문제인 image classification 모델을 학습한다고 하면 강아지 사진은 0번으로, 고양이 사진은 1번으로 분류하도록 label이 미리 정해져 있고 그것에 따라서만 학습하게 된다. 이러한 점에서 instruction이 존재한다고 할 수 있다. 반면 강화학습은 강아지 사진을 보았을 때 0을 선택한 경우와 1을 선택한 경우를 경험해보고 그것이 주는 보상에 따라 학습한다. 이러한 점에서 evaluation의 특성을 가진다고 하는 것이다.
 
@@ -132,12 +142,12 @@ $$
 $$
 \eqalign{
 &= \Sigma_b \pi_t(b)(q(b)-X_t) {\partial \pi_t (b) \over \partial H_t(a)} / \pi_t (b) \\
-&= E[(q(A_t) - X_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (b)] \\
-&= E[(R_t - \tilde R_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (b)] \\
+&= E[(q(A_t) - X_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (A_t)] \\
+&= E[(R_t - \tilde R_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (A_t)] \\
 }
 $$
 
-와 같이 바꿀 수 있다. 이때 $$\Sigma_b \pi_t(b)$$를 기대값으로 바꾸면서 임의의 어떤 action $$A_t$$에 대한 식으로 바꾸었다. $$I_{a=b}$$를 $$a=b$$가 맞으면 1, 그렇지 않으면 1인 조건식이라고 한다면 $${\partial \pi_t(b) \over \partial H_t (a)} = \pi_t(b) (I_{a=b} - \pi_t(a))$$로 정리할 수 있다.
+와 같이 바꿀 수 있다. 이때 $$\Sigma_b \pi_t(b)$$를 $$b$$에 대한 기대값으로 바꾸면서 임의의 어떤 action $$A_t$$에 대한 식으로 바꾸었다. $$I_{a=b}$$를 $$a=b$$가 맞으면 1, 그렇지 않으면 0인 조건식이라고 한다면 $${\partial \pi_t(b) \over \partial H_t (a)} = \pi_t(b) (I_{a=b} - \pi_t(a))$$로 정리할 수 있다.
 
 $$
 \eqalign{
