@@ -13,7 +13,7 @@ category_num: 2
 
 본문에서 다루고 있는 강화학습의 주요 키워드들은 다음과 같다.
 
-- **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)을 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가하는 것을 학습한다.
+- **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)을 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가(Evaluation)하는 것을 학습한다.
 - **Action Value**: 어떤 action을 수행했을 때 얻을 수 있는 Reward를 의미한다.
 - **Greedy Action**: 선택 가능한 Action 중 Action Value가 가장 큰 Action을 의미한다.
 - **Exploitation & Exploration**: Exploitation은 현재 추정 Action Value가 가장 큰 Action을 선택하고, Exploration은 그 이외의 Action을 선택하고 학습하는 것을 말한다.
