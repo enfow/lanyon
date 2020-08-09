@@ -15,7 +15,7 @@ keyword: '[Activation]'
 ## Summary
 
 - Smooth Activation Function이란 Gradient가 연속함수인 경우를 의미한다.
-- Adversarial Training에서 ReLU가 아닌 Smooth한 특성을 가지는 Activation Function을 쓰면 Accuracy를 낮추지 않고도 Adversarial Robustness를 높일 수 있다.
+- Adversarial Training에서 ReLU가 아닌 Smooth한 특성을 가지는 Activation Function을 쓰면 Accuracy를 낮추지 않고도 Adversarial Robustness를 높일 수 있다. 이는 Gradient의 질이 보다 좋기 때문이다.
 - 논문의 실험은 Adversarial Training이라는 특수한 상황에서 진행되었다. 하지만 기본적으로 사용하는 ReLU가 아닌 다른 Activation Function을 사용하면 성능(Accuracy)이 높아질 수 있다는 점을 보이고 있으므로 GELU, CELU와 같은 다른 Activation Function을 사용해보는 것도 고려해 볼 필요가 있다.
 
 ## Adversarial Training
