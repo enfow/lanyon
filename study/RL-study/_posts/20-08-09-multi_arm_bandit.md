@@ -137,12 +137,12 @@ $$
 }
 $$
 
-여기서 $$\Sigma_b {\partial \pi_t (b) \over \partial H_t(a)} = 0$$이므로 임의의 scalar 값 $$X_t$$를 빼주는 것이 가능하다. 위의 식에서 조금 더 진행하면 
+여기서 $$\Sigma_b {\partial \pi_t (b) \over \partial H_t(a)} = 0$$이므로 임의의 scalar 값 $$X_t$$를 빼주는 것이 가능하다. 위의 식에서 $$X_t$$를 전체 Action에 대한 Expected Reward $$\tilde R$$로 대체하면
 
 $$
 \eqalign{
-&= \Sigma_b \pi_t(b)(q(b)-X_t) {\partial \pi_t (b) \over \partial H_t(a)} / \pi_t (b) \\
-&= E[(q(A_t) - X_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (A_t)] \\
+&= \Sigma_b \pi_t(b)(q(b)-R_t) {\partial \pi_t (b) \over \partial H_t(a)} / \pi_t (b) \\
+&= E[(q(A_t) - R_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (A_t)] \\
 &= E[(R_t - \tilde R_t) {\partial \pi_t (A_t) \over \partial H_t(a)} / \pi_t (A_t)] \\
 }
 $$
@@ -174,4 +174,4 @@ $$
 H_{t+1}(a) = H_t(a) - \alpha (R_t - \tilde R_t) \pi_t(a)
 $$
 
-에 따라 업데이트된다. 만약 $$(R_t - \tilde R_t) > 0$$이 성립한다면 다른 action들을 선택했을 때보다 더 큰 Reward를 기대할 수 있다는 것을 의미하므로 $$H(a)$$는 보다 커지게 되고, 이에 맞춰 다른 action들에 대한 선호는 줄어들게 된다. 이와 같이 Gradient에 따라 업데이트하며 어떤 action을 할 지 정하는 방법을 Gradient Bandit Algorithm이라고 한다.
+에 따라 업데이트된다. 만약 $$(R_t - \tilde R_t) > 0$$, 즉 Action $$A_t$$에 따른 Reward가 전체 Action의 Expected Reward $$\tilde R$$보다 크다면 다른 action들을 선택했을 때보다 더 큰 Reward를 기대할 수 있다는 것을 의미하므로 $$H(a)$$는 보다 커지게 되고, 이에 맞춰 다른 action들에 대한 선호는 줄어들게 된다. 이와 같이 Gradient에 따라 업데이트하며 어떤 action을 할 지 정하는 방법을 Gradient Bandit Algorithm이라고 한다.
