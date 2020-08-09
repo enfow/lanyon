@@ -2,6 +2,7 @@
 layout: post
 title: Policy Gradient
 subtitle: REINFORCE & ACTOR-CRITIC
+category_num: 10
 ---
 
 # Policy Gradient: REINFORCE & ACTOR-CRITIC

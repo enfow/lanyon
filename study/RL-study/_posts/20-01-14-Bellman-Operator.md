@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Bellman Operator
+category_num: 20
 ---
 
 # Bellman Operator
@@ -31,7 +32,7 @@ $$
 
 ### Bellman Operator
 
-Bellman Operator는 기본적으로 위와 같은 Bellman equation과 내용적으로는 동일하지만 수학적으로 보다 편리하게 사용하기 위해 Operator의 형태로 표현한 것이라고 할 수 있다. 
+Bellman Operator는 기본적으로 위와 같은 Bellman equation과 내용적으로는 동일하지만 수학적으로 보다 편리하게 사용하기 위해 Operator의 형태로 표현한 것이라고 할 수 있다.
 
 우선 어떤 state space $$S$$의 state 개수가 $$n$$개라고 하자. 그럼 위의 식을 다음과 같이 벡터 간의 연산으로 표현할 수 있다.
 
