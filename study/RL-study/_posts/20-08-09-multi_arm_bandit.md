@@ -13,7 +13,7 @@ category_num: 2
 
 본문에서 다루고 있는 강화학습의 주요 키워드들은 다음과 같다.
 
-- **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)을 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가(Evaluation)하는 것을 학습한다.
+- **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)를 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가(Evaluation)하는 것을 학습한다.
 - **Action Value**: 어떤 action을 수행했을 때 얻을 수 있는 Reward를 의미한다.
 - **Greedy Action**: 선택 가능한 Action 중 Action Value가 가장 큰 Action을 의미한다.
 - **Exploitation & Exploration**: Exploitation은 현재 추정 Action Value가 가장 큰 Action을 선택하고, Exploration은 그 이외의 Action을 선택하고 학습하는 것을 말한다.
@@ -25,9 +25,9 @@ Sutton은 책에서 강화학습이 머신러닝의 다른 방법들과 가지�
 
 - It uses training information that **evaluates** the actions taken rather than **instructs** by giving correct actions
 
-여기서 두 가지 키워드 Evaluation과 Instruction이 나오는데 **Instruction**은 무엇이 가장 좋은 것인지, 무엇을 해야하는지 미리 정해져있고 그것에 따라 학습을 진행하는 것을 말한다. 반면 **Evaluation**은 자신이 선택한 것이 좋다면 얼마나 좋고, 나쁘다면 얼마나 나쁜지에 관한 것에 대해 알아가도록 학습을 진행하는 것을 말한다.
+여기서 두 가지 키워드 Evaluation과 Instruction이 나오는데 **Instruction**은 무엇이 가장 좋은 것인지, 무엇을 해야하는지 미리 정해져있고 그것에 따라 학습을 진행하는 것을 의미한다. 반면 **Evaluation**은 자신이 선택한 것이 좋다면 얼마나 좋고, 나쁘다면 얼마나 나쁜지에 관한 것에 대해 알아가도록 학습을 진행하는 것을 말한다.
 
-예를 들어 Supervised learning의 대표적인 문제인 image classification 모델을 학습한다고 하면 강아지 사진은 0번으로, 고양이 사진은 1번으로 분류하도록 label이 미리 정해져 있고 그것에 따라서만 학습하게 된다. 이러한 점에서 instruction이 존재한다고 할 수 있다. 반면 강화학습은 강아지 사진을 보았을 때 0을 선택한 경우와 1을 선택한 경우를 경험해보고 그것이 주는 보상에 따라 학습한다. 이러한 점에서 evaluation의 특성을 가진다고 하는 것이다.
+예를 들어 Supervised learning의 대표적인 문제인 image classification을 위해 모델을 학습한다고 하면 강아지 사진은 0번, 고양이 사진은 1번으로 label이 미리 정해져 있고 그것에 따라 학습하게 된다. 이러한 점에서 instruction이 존재한다고 할 수 있다. 반면 강화학습은 강아지 사진을 보았을 때 0을 선택한 경우와 1을 선택한 경우를 경험해보고 그것이 주는 보상을 평가하는 방향으로 학습한다. 이러한 점에서 evaluation의 특성을 가진다고 하는 것이다.
 
 ## Multi-armed Bandit Problem
 
@@ -53,7 +53,7 @@ $$
 
 ### 1) $$\epsilon$$-Greedy Method
 
-$$Q_t(a)$$가 가장 클 것으로 기대되는 action을 **Greedy Action**이라고 하고 그 이외의 action들을 **Non-Greedy Action**이라고 한다. Greedy Action만을 선택하는 것은 현재 가지고 있는 지식을 이용한다는 점에서 **Exploitation**이라고 하고, Non-Greedy Action을 선택하는 것은 최선이 아닌 action들의 value를 확인한다는 점에서 **Exploration**이라고 한다.
+$$Q_t(a)$$가 가장 큰 action을 **Greedy Action**이라고 하고 그 이외의 action들을 **Non-Greedy Action**이라고 한다. Greedy Action만을 선택하는 것은 현재 가지고 있는 지식을 이용한다는 점에서 **Exploitation**이라고 하고, Non-Greedy Action을 선택하는 것은 최선이 아닌 action들의 value를 확인한다는 점에서 **Exploration**이라고 한다.
 
 위에서 말한 것과 같이 action value $$Q_t(a)$$는 정확한 값이 아니라 어디까지나 추정치일 뿐이다. 따라서 현재 Greedy Action보다 더 좋은 True Action Value $$q(a)$$를 가지는 action이 존재할 가능성이 있다. Exploration이 필요한 이유는 이러한 불확실성에 있다.
 
