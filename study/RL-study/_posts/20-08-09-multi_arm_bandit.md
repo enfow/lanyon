@@ -31,15 +31,15 @@ Sutton은 책에서 강화학습이 머신러닝의 다른 방법들과 가지�
 
 ## Multi-armed Bandit Problem
 
-**Multi-arm Bandit Problem**은 강화학습의 Evaluation 특성을 잘 보여주는 문제다. 책에서는 $$n$$-Armed Bandit이라고 하여 $$n$$개의 선택 가능한 action이 주어져 있을 때 정해진 시간 내에 Total Reward를 극대화할 수 있는 방법을 찾는 문제로 설명한다. 일반적인 강화학습 문제에서는 현재 state가 존재하고 action을 수행하게 되면 reward를 받는 것과 동시에 새로운 state가 주어지게 되는데 Multi-armed Bandit에서는 이와 같이 state는 변화하지 않는 상황을 가정하고 있다.
+**Multi-arm Bandit Problem**은 강화학습의 Evaluation 특성을 잘 보여주는 문제다. 책에서는 $$n$$-Armed Bandit이라고 하여 $$n$$개의 선택 가능한 action이 주어져 있을 때 정해진 시간 내에 Total Reward를 극대화할 수 있는 방법을 찾는 문제로 설명한다. 일반적인 강화학습 문제에서는 현재 state가 존재하고 action을 수행하게 되면 reward를 받는 것과 동시에 새로운 state가 주어지게 되는데 Multi-armed Bandit에서는 state가 변화하지 않고 action을 반복적으로 수행하는 상황을 가정한다.
 
-이러한 점에서 $$n$$-Armed Bandit 문제를 슬롯 머신에 비유하기도 한다. $$n$$개의 슬롯 머신이 있고 각각의 슬롯 머신에서 잭팟이 터질 확률과 당첨금이 모두 다르다고 하자. 이때 한 번에 하나의 슬롯 머신만을 동작시킬 수 있다면 주어진 시간 동안 당첨금을 극대화할 수 있는 방법을 찾는 것으로 볼 수 있다는 것이다.
+이러한 점에서 $$n$$-Armed Bandit 문제를 슬롯 머신에 비유하기도 한다. $$n$$개의 슬롯 머신이 있고 각각의 슬롯 머신에서 잭팟이 터질 확률과 당첨금이 모두 다르다고 하자. 그렇다면 어떤 슬롯 머신을 동작시키느냐에 따라 받을 수 있는 당첨금의 기대값이 달라지게 될 것이다. Multi-armed Bandit 문제는 이러한 상황에서 주어진 시간동안 한 번에 하나의 슬롯머신을 동작시킬 때 당첨금을 극대화할 수 있는 방법을 찾는 것으로 볼 수 있다.
 
-### Action Value Estimation
+### Action Value Estimationㅔ
 
-이때 어떤 슬롯 머신을 동작시킬 것인지 고르는 것은 어떤 action을 선택할 것인지 선택하는 것이 되고, 그에 따른 당첨금은 해당 action에 대한 reward가 된다. 그런데 문제는 각 슬롯 머신이 가지는 당첨금의 확률 분포를 알지 못한다는 점이다. 강화학습의 표현에 따르면 각 action의 정확한 **value**를 알지 못하는 상태이다. 그런데 각 action의 value를 정확히 알 수 있다면 이 문제는 매우 쉬워진다. value가 가장 높은 action만을 반복적으로 선택하면 당첨금의 기대값이 가장 커지기 때문이다. 
+이를 강화학습적으로 표현하자면, 어떤 슬롯 머신을 동작시킬 것인지 고르는 것은 어떤 action을 선택할 것인지 선택하는 것이 되고 그에 따른 당첨금은 해당 action에 대한 reward가 된다고 할 수 있다. 이때 각 action의 reward를 정확히 알 수 있다면 이 문제는 매우 쉬워진다. 받을 수 있는 reward가 가장 높은 action만을 반복적으로 선택하면 당첨금의 기대값이 가장 커지기 때문이다. 
 
-강화학습에서는 각 action의 value를 추정(estimate)하고 추정치에 따라 action을 결정하며 그 결과를 학습하여 보다 정확하게 action value를 추정할 수 있도록 모델을 업데이트하는 작업을 반복하게 된다.
+그런데 문제는 각 슬롯 머신이 가지는 당첨금의 확률 분포를 알지 못한다는 점이다. 이러한 문제를 해결하기 위해 강화학습에서는 각 action의 기대 reward를 추정(estimate)하고 추정치에 따라 action을 결정하며 그 결과를 학습하여 보다 정확하게 action value를 추정할 수 있도록 모델을 업데이트하는 작업을 반복하게 된다.
 
 ## 1. Action Value Method
 
