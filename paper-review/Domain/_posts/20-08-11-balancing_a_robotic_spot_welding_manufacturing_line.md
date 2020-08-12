@@ -70,7 +70,7 @@ Body Shop은 형태가 갖춰진 부품들을 받아 차체로 만드는 과정�
 
 ## Problem Statement
 
-논문에서는 자동차 산업에서 balancing of robotic spot welding lines 최적화 문제와 관련하여 다음 9개의 제약 조건을 제시한다.
+논문에서는 자동차 산업에서 balancing of robotic spot welding lines 최적화 문제와 관련하여 다음 9개의 제약 조건을 제시한다. 즉 최적화를 위해서는 아래의 제약 조건들을 고려해야 한다.
 
 #### C0 Occurence Constraint
 
