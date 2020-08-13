@@ -16,7 +16,7 @@ category_num: 2
 - **Evaluation & Instruction**: 강화학습은 어떤 action이 좋다는 지시(Instruction)를 학습하는 것이 아니라 어떤 action이 얼마나 좋은지 정확하게 평가(Evaluation)하는 것을 학습한다.
 - **Action Value**: 어떤 action을 수행했을 때 얻을 수 있는 Reward를 의미한다.
 - **Greedy Action**: 선택 가능한 Action 중 Action Value가 가장 큰 Action을 의미한다.
-- **Exploitation & Exploration**: Exploitation은 현재 추정 Action Value가 가장 큰 Action을 선택하고, Exploration은 그 이외의 Action을 선택하고 학습하는 것을 말한다.
+- **Exploitation & Exploration**: Exploitation은 현재 추정 Action Value가 가장 큰 Action을 선택하는 것을, Exploration은 그 이외의 Action을 선택하고 학습하는 것을 말한다.
 - **$$\epsilon$$-Greedy Method**: $$\epsilon$$만큼 Exploration을, $$1 - \epsilon$$만큼 Exploitation을 수행하는 방법을 말한다.
 
 ## Evaluation Aspact of Reinforcement Learning
@@ -35,7 +35,7 @@ Sutton은 책에서 강화학습이 머신러닝의 다른 방법들과 가지�
 
 이러한 점에서 $$n$$-Armed Bandit 문제를 슬롯 머신에 비유하기도 한다. $$n$$개의 슬롯 머신이 있고 각각의 슬롯 머신에서 잭팟이 터질 확률과 당첨금이 모두 다르다고 하자. 그렇다면 어떤 슬롯 머신을 동작시키느냐에 따라 받을 수 있는 당첨금의 기대값이 달라지게 될 것이다. Multi-armed Bandit 문제는 이러한 상황에서 주어진 시간동안 한 번에 하나의 슬롯머신을 동작시킬 때 당첨금을 극대화할 수 있는 방법을 찾는 것으로 볼 수 있다.
 
-### Action Value Estimationㅔ
+### Action Value Estimation
 
 이를 강화학습적으로 표현하자면 어떤 슬롯 머신을 동작시킬 것인지 고르는 것은 어떤 action을 선택할 것인지 선택하는 것이 되고 그에 따른 당첨금은 해당 action에 대한 reward가 된다고 할 수 있다. 이때 각 action의 reward를 정확히 알 수 있다면 이 문제는 매우 쉬워진다. 받을 수 있는 reward가 가장 높은 action만을 반복적으로 선택하면 당첨금의 기대값이 가장 커지기 때문이다. 
 
