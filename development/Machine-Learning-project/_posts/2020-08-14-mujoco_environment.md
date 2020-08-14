@@ -72,7 +72,7 @@ chmod u+x getid_linux
 
 <img src="{{site.image_url}}/development/mujoco_download.png" style="width:40em; display: block;">
 
-위의 그림에서 사용하고자 하는 컴퓨터의 운영체제에 맞게 다운로드하면 된다. 여기서 숫자는 버전이라고 생각할 수 있다. 명령어로도 받을 수 있는데 linux의 경우 아래와 같다.
+Products 탭에 들어가면 위의 그림과 같이 다운로드 화면이 나오며 사용하고자 하는 컴퓨터의 운영체제에 맞게 다운로드하면 된다. 여기서 숫자는 버전이라고 생각할 수 있다. 명령어로도 받을 수 있는데 linux의 경우 아래와 같다.
 
 ```
 curl -o mujoco200.zip https://www.roboti.us/download/mujoco200_linux.zip
