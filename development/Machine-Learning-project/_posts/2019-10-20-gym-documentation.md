@@ -1,7 +1,8 @@
 ---
 layout: post
 title: Gym Documentation
-category_num : 10
+category_num : 5
+keyword: '[RL]'
 ---
 
 # Gym Documentation

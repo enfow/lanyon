@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Mujoco Environment
+keyword: '[RL]'
 category_num : 4
 ---
 

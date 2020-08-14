@@ -1,7 +1,8 @@
 ---
 layout: post
 title: mlflow Introduction
-category_num : 5
+category_num : 10
+keyword: '[MlFlow]'
 ---
 
 # MLFLOW INTRODUCTION
