@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Git commands
+category_num : 4
+keyword: '[Git]'
 ---
 
 # 자주 쓰는 Git 코드 모음

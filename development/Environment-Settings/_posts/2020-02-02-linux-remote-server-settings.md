@@ -1,6 +1,8 @@
 ---
 layout: post
 title: Linux remote server settings
+category_num : 1
+keyword: '[Linux]'
 ---
 
 # 리눅스 원격 서버 셋팅하기

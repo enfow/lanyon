@@ -1,6 +1,8 @@
 ---
 layout: post
 title: pyenv, virtualenv, autoenv
+category_num : 3
+keyword: '[Python]'
 ---
 
 # 파이썬 환경설정하기

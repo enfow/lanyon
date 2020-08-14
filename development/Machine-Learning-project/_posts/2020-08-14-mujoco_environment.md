@@ -13,13 +13,13 @@ category_num : 4
 
 mujoco를 사용하기 위해서는 라이센스가 필요하다. 라이센스는 mjkey.txt 라는 파일로 관리되는데 이를 받기 위해서는 [mujoco license](<https://www.roboti.us/license.html>) 페이지에서 **Account Number**와 **Computer Id**를 입력해야 한다.
 
-<img src="{{site.image_url}}/study/mujoco_get_mjkey.png" style="width:40em; display: block;">
+<img src="{{site.image_url}}/development/mujoco_get_mjkey.png" style="width:40em; display: block;">
 
 ### Account Number
 
 Account Number를 받기 위해서는 같은 페이지의 파란색 박스에 정보를 입력해야 한다.
 
-<img src="{{site.image_url}}/study/mujoco_get_student.png" style="width:40em; display: block;">
+<img src="{{site.image_url}}/development/mujoco_get_student.png" style="width:40em; display: block;">
 
 학생용으로 하는 경우 무료로 1년 간 사용할 수 있는데 이 경우 메일 주소는 반드시 학생용 메일 계정으로 해야한다. 입력을 완료하고 `Request license` 버튼을 누르면 성공 여부를 알려주는 페이지로 이동하게 된다. Account Number는 입력한 메일 주소로 오게 되는데 곧바로 받을 수 있는 것은 아니고 최대 3일 정도 기다려야 한다.
 
@@ -57,11 +57,11 @@ chmod u+x getid_linux
 
 이러한 과정을 거치면 아래와 같이 Computer id를 확인할 수 있다.
 
-<img src="{{site.image_url}}/study/mujoco_get_computer_id.png" style="width:35em; display: block;">
+<img src="{{site.image_url}}/development/mujoco_get_computer_id.png" style="width:35em; display: block;">
 
 ### Get mjkey.txt
 
-<img src="{{site.image_url}}/study/mujoco_get_mjkey.png" style="width:40em; display: block;">
+<img src="{{site.image_url}}/development/mujoco_get_mjkey.png" style="width:40em; display: block;">
 
 위의 입력 정보를 모두 넣고 `Request Computer`를 하게 되면 mjkey.txt를 메일로 받을 수 있다.
 
@@ -69,7 +69,7 @@ chmod u+x getid_linux
 
 ### download and unzip
 
-<img src="{{site.image_url}}/study/mujoco_download.png" style="width:40em; display: block;">
+<img src="{{site.image_url}}/development/mujoco_download.png" style="width:40em; display: block;">
 
 위의 그림에서 사용하고자 하는 컴퓨터의 운영체제에 맞게 다운로드하면 된다. 여기서 숫자는 버전이라고 생각할 수 있다. 명령어로도 받을 수 있는데 linux의 경우 아래와 같다.
 
