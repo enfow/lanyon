@@ -78,7 +78,6 @@ sidebar_num : 1
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
               <div><h3 class="single-post-in-category-title">
-                <small>{{post.keyword}}</small>
                 <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">
                   <small>{{post.keyword}}</small>
                   {{ post.title }}
