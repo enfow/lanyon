@@ -22,7 +22,7 @@ Account Number를 받기 위해서는 같은 페이지의 파란색 박스에 �
 
 <img src="{{site.image_url}}/development/mujoco_get_student.png" style="width:40em; display: block;">
 
-학생용으로 하는 경우 무료로 1년 간 사용할 수 있는데 이 경우 메일 주소는 반드시 학생용 메일 계정으로 해야한다. 입력을 완료하고 `Request license` 버튼을 누르면 성공 여부를 알려주는 페이지로 이동하게 된다. Account Number는 입력한 메일 주소로 오게 되는데 곧바로 받을 수 있는 것은 아니고 최대 3일 정도 기다려야 한다.
+학생이면 무료로 1년 간 사용할 수 있는데, 이 경우 메일 주소는 반드시 학생용 메일로 해야한다. 입력을 완료하고 `Request license` 버튼을 누르면 성공 여부를 알려주는 페이지로 이동하게 된다. Account Number는 입력한 메일 주소로 오게 되는데 곧바로 받을 수 있는 것은 아니고 최대 3일 정도 기다려야 한다.
 
 ### Computer id
 
