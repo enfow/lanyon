@@ -5,7 +5,9 @@ category_num : 3
 keyword: '[Python]'
 ---
 
-# 파이썬 환경설정하기
+# pyenv, virtualenv, autoenv
+
+- update at: 2020.02.02, 2020.08.18
 
 ## PYENV
 
@@ -34,7 +36,12 @@ sudo apt-get install -y libsqlite3-dev zlib1g-dev libssl-dev libffi-dev libbz2-d
 sudo apt-get install -y python3-setuptools python3-pip
 ```
 
-- 파이썬 설치 전에 해주는 것이 좋다.
+파이썬 설치 전에 해주는 것이 좋다. 만약 파이썬 설치에 실패하면 다음 명령어도 실행한다.
+
+```
+$
+sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev
+```
 
 **python 3.7.4 설치**
 
