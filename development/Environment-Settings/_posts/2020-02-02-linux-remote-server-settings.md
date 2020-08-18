@@ -5,16 +5,16 @@ category_num : 1
 keyword: '[Linux]'
 ---
 
-# 리눅스 원격 서버 셋팅하기
+# Linux remote server settings
 
-- update date : 20.02.03
+- update date : 2020.02.03, 2020.08.18
 
-## 0. ENVIRONMENT
+## 0. Environment
 
-- server : ubuntu linux 18.04
-- client : macOS Mojave
+- server : Ubuntu linux 18.04
+- client : MacOS Mojave
 
-## 1. SSH SERVER INSTALLATION
+## 1. SSH Server Installation
 
 SSH는 Secure shell의 약자로, 네트워크에 연결된 원격 시스템에 접속할 수 있도록 해준다. Talnet 등 비슷한 기능을 제공하는 프로토콜이 있지만, 보안 상의 문제로 SSH를 많이 사용한다.
 
@@ -26,7 +26,35 @@ SSH는 Secure shell의 약자로, 네트워크에 연결된 원격 시스템에 
 sudo apt-get install openssh-server
 ```
 
-## 2. SSH CONFIGURATION SETTINGS
+## 2. Port Forwarding
+
+공유기를 사용하는 경우 공유기가 IP를 점유하고 Ethernet 혹은 WiFi로 접속하는 사용자에게 자신의 Port를 열어주어 인터넷에 접속하도록 하는 구조로 동작한다. 이렇게 공유기를 통해 인터넷에 접속하는 경우 `ifconfig` 등의 명령어를 사용하여 자신의 IP 주소를 확인해보면 
+
+```
+inet 192.168.0.16 netmask 0xffffff00 broadcast 192.168.0.255
+```
+
+와 같이 나온다. 그런데 ssh 명령어를 통해 `192.168.0.16`에 접속하려해도 되지 않는다. 왜냐하면 `192.168.0.1`부터 `192.168.0.255`까지는 사설 IP라고 불리는 IP 주소 영역으로 인터넷이 아닌 사설 내부망을 구축하기 위해 사용되는 IP이기 때문이다. 즉, 사설 내부망인 공유기를 거치지 않고 외부에서는 `192.168.0.16` 만으로는 접속하고자 하는 컴퓨터를 특정할 수 없다(같은 공유기를 사용하는 경우에는 가능하다). 따라서 이 경우 공유기가 점유하고 있는 IP를 먼저 확인하고 연결하고자 하는 내부 IP 주소와 공유기 간에 Port를 설정하여 연결해주어야 한다. 이를 **Port Forwarding**이라고 한다.
+
+<img src="{{site.image_url}}/development/port_forwarding.png" style="width:35em; display: block; margin: 0em auto">
+
+Port Forwarding을 위해서는 우선 공유기 관리 페이지에 접속해야 한다. 접속 IP는 공유기 제조사마다 다른데 IpTime의 경우 브라우저에서 `192.168.0.1`을 입력하면 된다. 아이디와 비밀번호를 입력한 뒤, 
+
+- `고급 설정/NAT 라우터 관리/포트포워드 설정`
+
+으로 들어가면 다음과 같은 페이지를 확인할 수 있다.
+
+<img src="{{site.image_url}}/development/iptime_port_forwarding.png" style="width:35em; display: block; margin: 0em auto; margin-bottom: 3em; margin-top: 3em">
+
+여기서부터는 다음 순서대로 하면 된다.
+
+1. `새규칙 추가` 버튼을 누른다.
+2. `규칙 이름`을 임의로 설정한다.
+3. `내부 IP 주소`에는 Server에서 `ifconfig`를 통해 확인한 IP 주소를 입력한다. 사설 IP이므로 192.168.0 까지는 자동으로 입력되어 있음을 알 수 있다.
+4. `외부 포트`는 공유기에서 나오는 포트를, `내부 포트`는 Server에서 나오는 포트를 의미한다. 충돌을 방지하기 위해 5자리 숫자로 해주는 것이 좋다.
+5. `적용` 버튼을 누른다.
+
+## 3. SSH Configuration Settings
 
 ### 1) SERVER: sshd_config file
 
@@ -49,7 +77,7 @@ SSH의 기본 포트 번호는 22이다. 보안 상의 이유로 변경하는 �
 #Port 22
 ```
 
-복수의 포트 번호를 입력하기 위해서는 다음과 같이 여러 개를 사용한다.
+복수의 포트 번호를 입력하기 위해서는 다음과 같이 여러 개를 사용한다. 이때 포트 번호는 `내부 포트`, 즉 Server에서 나오는 포트를 의미한다.
 
 ```
 # /etc/ssh/sshd_config
@@ -196,12 +224,12 @@ sudo ufw delete allow 22
 
 - 22번 포트를 허용하는 룰이 있을 때 이를 삭제하는 명령어이다.
 
-## 3. ACCESS
+## 4. ACCESS
 
   **ip 주소로 접속하기**
 
   ```
-  ssh <host_user>@<host_ip_address> -p <port_num>
+  ssh <host_user>@<host_ip_address> -p <Port_Num>
   ```
 
   **config file 설정값 이용하기**
@@ -209,3 +237,28 @@ sudo ufw delete allow 22
   ```
   ssh <host_name>
   ```
+
+Linux, Mac OS에서 접속하는 경우에는 
+
+- `.ssh/config`
+
+에 다음과 같은 내용을 저장해두면
+
+```
+Host desktop
+        HostName <Host_IP_Address>
+        User <User Name>
+        Port <Port_Num>
+        ServerAliveCountMax 3       # 접속이 오랫동안 끊기지 않도록
+        ServerAliveInterval 15      # 접속이 오랫동안 끊기지 않도록
+        PubKeyAuthentication yes
+        IdentityFile <SSH_KEY_Location>
+```
+
+아래와 같이 같이 임의로 설정한 `Host`만으로 간단히 접속이 가능하다.
+
+```
+
+ssh desktop
+
+```
