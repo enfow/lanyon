@@ -229,7 +229,7 @@ sudo ufw delete allow 22
 #### ip 주소로 접속하기
 
 ```
-ssh <host_user>@<host_ip_address> -p <Port_Num>
+ssh <User_Name>@<Host_IP_Address> -p <Port_Num>
 ```
 
 #### config file 설정값 이용하기
@@ -243,7 +243,7 @@ Linux, Mac OS에서 접속하는 경우에는
 ```
 Host desktop
         HostName <Host_IP_Address>
-        User <User Name>
+        User <User_Name>
         Port <Port_Num>
         ServerAliveCountMax 3       # 접속이 오랫동안 끊기지 않도록
         ServerAliveInterval 15      # 접속이 오랫동안 끊기지 않도록
