@@ -13,11 +13,11 @@ category_num : 1
 
 ## Install Unity
 
-Unity를 다운로드 하기 위해서 [Unity Download](<https://unity3d.com/kr/get-unity/download>)페이지에서 `Unity Hub`를 다운로드 한다. Unity Hub는 Unity 버전 관리, 프로젝트 관리 등을 도와주는 관리 프로그램이라고 생각하면 된다.
+Unity를 다운로드 하기 위해서 [Unity Download](<https://unity3d.com/kr/get-unity/download>) 페이지에서 `Unity Hub`를 다운로드 한다. Unity Hub는 Unity 버전 관리, 프로젝트 관리 등을 도와주는 관리 프로그램이라고 생각하면 된다.
 
 ### Get License
 
-Unity Hub를 설치하고 실행했을 때 가장 먼저 해야하는 것은 Unity License를 얻는 것이다. Hub의 우측 상단에 있는 `Preferences` 아이콘을 클릭하고 `Lisence Management`로 이동하면 다음 페이지를 확인할 수 있다.
+Unity Hub를 설치하고 실행하고 가장 먼저 해야하는 것은 Unity License를 만드는 것이다. Hub의 우측 상단에 있는 `Preferences` 아이콘을 클릭하고 `Lisence Management`로 이동하면 다음 페이지를 확인할 수 있다.
 
 <img src="{{site.image_url}}/development/unity_get_lisence_page.png" style="width:35em; display: block; margin: 0em auto; margin-top: 2.5em; margin-bottom: 2.5em">
 
