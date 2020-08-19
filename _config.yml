@@ -31,7 +31,7 @@ version:             1.0.0
 
 # category settings
 paper_review_category_list: ["Neural-Network", "Generative-Model", "Q-Learning", "Actor-Critic", "Policy-Gradient", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Imitation-Learning", "Real-world-RL", "Anomaly-Detection", "Sequence-to-Sequence", "Segmentation", "Transfer-Learning", "Metric", "Domain"]
-development_category_list: ["Machine-Learning-project", 'Embedded', "Environment-Settings", "Web-project", "Language", "C-language"]
+development_category_list: ["Machine-Learning-project", 'Embedded', "Unity", "Environment-Settings", "Web-project", "Language", "C-language"]
 study_category_list: ["DL-study", "RL-study", "Statistics-study", "Linear-Algebra", "CS-study"]
 
 markdown: kramdown
