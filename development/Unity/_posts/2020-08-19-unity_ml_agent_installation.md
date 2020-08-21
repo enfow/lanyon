@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Unity & ML-Agent Installation
-keyword: '[unity]'
+keyword: '[Unity]'
 category_num : 1
 ---
 
