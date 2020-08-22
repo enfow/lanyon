@@ -35,7 +35,7 @@ Agent는 Environment로부터 현재 State를 전달받아 그에 맞춰 적절�
 
 Reward는 Scalar 값으로, 매 time step 마다 주어지며, 이전 시점에서의 State, Action 조합이 얼마나 좋았는지 알려주는 지표라고 할 수 있다. 실제 문제에 강화학습을 적용할 때 학습에 큰 영향을 미치는 요소 중 하나가 Reward Shaping, 즉 Reward를 언제 어떻게 줄 것인가이다. 이와 관련하여 몇 가지 유의해야 할 특성으로는 다음과 같은 요소들이 있다. 
 
-- Reward는 Agent에 의해 게산되는 것이 아닌 Environment에 의해 주어지는 것이어야 한다.
+- Reward는 Agent에 의해 계산되는 것이 아닌 Environment에 의해 주어지는 것이어야 한다.
 - Reward는 우리가 진정으로 달성하고자 하는 것을 알려줘야 한다. 어떻게 해야하는지 지식을 알려주는 방향으로 설정하면 안 된다.
 - Sub Goal을 여러 개 설정하면 비교적 쉬운 Sub Goal만 반복적으로 달성하고 Real Goal을 찾으려는 노력을 하지 않게 된다. 즉 Chess를 예로 들면 승리한 경우에만 Reward를 받아야 한다.
 
