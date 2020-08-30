@@ -114,13 +114,21 @@ $$
 어떤 State의 정확한 Value를 알기 위해서는 다음에 어떤 Action을 취할 것인지 알아야 한다. 이러한 점에서 Value Function은 특정한 Policy 하에서 정의된다. State Value Function $$v$$는 특정 State가 얼마나 좋은지를 알려주는 함수로, 다음과 같이 구해진다.
 
 $$
-v_\pi (s) = E_\pi [G_t \lvert s_t = s] = E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s]
+\eqalign{
+v_\pi (s) 
+&= E_\pi [G_t \lvert s_t = s]\\ 
+&= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s]
+}
 $$
 
 특정 State에서 어떤 Action을 하는 것이 얼마나 좋은지 알려주는 Action Valun Function $$q$$는 다음과 같다.
 
 $$
-q_\pi (s, a) = E_\pi [G_t \lvert s_t = s, a_t = a] = E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s, a_t = a]
+\eqalign{
+q_\pi (s, a) 
+&= E_\pi [G_t \lvert s_t = s, a_t = a]\\ 
+&= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s, a_t = a]
+}
 $$
 
  Environment와 최대한 많이 상호작용하고 이를 통해 Value function을 추정할 수 있다. 즉 여러 번 반복을 통해 value function의 seperate average를 구하고, 이를 value function의 값으로 사용하는 것이다. 이러한 방법을 **Monte Carlo**라고 한다.
@@ -152,13 +160,13 @@ $$
 \pi \geq \pi' \qquad \text{ if and only if } v_\pi(s) \geq v_{\pi'}(s) \text{ for all } s \in S
 $$
 
-다른 모든 Policy보다 좋은 Policy를 **Optimal Policy**라고 하고 $$\pi^*$$로 표기한다. 그리고 Optimal Policy를 따를 때 Value Function을 Optimal State-Value Function이라 하고 다음과 같이 정의된다.
+다른 모든 Policy보다 좋은 Policy를 **Optimal Policy**라고 하고 $$\pi^*$$로 표기한다. 그리고 Optimal Policy를 따를 때의 Value Function을 **Optimal State-Value Function**이라 하고 다음과 같이 정의된다.
 
 $$
 v^*(s) = \max_\pi v_\pi(s)
 $$
 
-Optimal Action-Value Function은 다음과 같다.
+**Optimal Action-Value Function**은 다음과 같다.
 
 $$
 q^*(s, a) = \max_\pi q_\pi(s, a)
@@ -170,7 +178,7 @@ $$
 q^*(s, a) = E[r_{t+1} + \gamma v^*(s_{t+1}) \lvert s_t = s, a_t = a]
 $$
 
-마지막으로 어떤 state $$s$$에서 Optimal Action-Value Function $$q^*$$에 따라 그 값이 가장 큰 Action $$a$$를 결정하면 기대 Return을 극대화할 것으로 기대할 수 있다. 이러한 점에서 Optimal Policy $$\pi^*$$는 다음과 같이 정의할 수 있다.
+마지막으로 어떤 state $$s$$에서 Optimal Action-Value Function $$q^*$$에 따라 그 값이 가장 큰 Action $$a$$를 결정한다면 기대 Return을 극대화할 것으로 기대할 수 있다. 이러한 점에서 Optimal Policy $$\pi^*$$는 다음과 같이 정의할 수 있다.
 
 $$
 \pi^*= \eqalign{
@@ -178,6 +186,8 @@ $$
 & 0 \qquad \text{ otherwise}
 }
 $$
+
+즉, Optimal Value Function을 계산한다면 Optimal Policy를 알 수 있다.
 
 ### Bellman Optimality Equation
 
@@ -206,7 +216,7 @@ Optimal에서의 Back-up Diagram은 다음과 같다.
 
 ### Optimality and Approximation
 
-강화학습 문제는 결국 Optimal Policy가 무엇인지 알아내는 과정으로 볼 수 있다. 하지만 Optimal Policy를 정확하게 구하기 위해서는 매우 많은 비용이 든다. 이와 관련해서는 구체적으로 다음 두 가지 문제를 생각해 볼 수 있다.
+강화학습 문제는 결국 Optimal Policy가 무엇인지 알아내는 과정이다. 하지만 Optimal Policy를 정확하게 구하기 위해서는 매우 많은 비용이 든다. 이와 관련해서는 구체적으로 다음 두 가지 문제를 생각해 볼 수 있다.
 
 - Environment에 대해 완벽하고 정확하게 알고 있더라고 Optimal Policy를 구하는 것은 어렵다.
 - 정확히 Optimal을 알아내기 위해서는 매우 큰 메모리가 필요하다.
