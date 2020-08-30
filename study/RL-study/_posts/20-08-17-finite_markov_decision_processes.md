@@ -195,7 +195,7 @@ Optimal을 가정하게 되면 위와 같이 State $$s$$에서 $$q(s, a)$$의 �
 
 $$
 \eqalign{
-v_\pi(s)^* &= \max_{a \in A(s)} q_{\pi^*}(s, a) \\
+v(s)^* &= \max_{a \in A(s)} q_{^*}(s, a) \\
 &= \max_{a \in A(s)} \Sigma_{s', r} p(s', a \lvert s, a) [r + \gamma v^*(s')]
 }
 $$
