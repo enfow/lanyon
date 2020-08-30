@@ -52,7 +52,7 @@ Chip Placement에서 해결해야 하는 것은 아래 두 가지 요소를 적�
 
 #### 2. Macro
 
-SRAM, 레지스터 등과 같이 특정 기능을 수행하는 구성요소를 지칭한다. Macro 자체가 수백 수천 개의 Standard Cell로 구성되기 때문에 Standard Cell과 비교해 크기가 크다.
+SRAM, 레지스터 등과 같이 고유의 기능을 가지고 있으면서 기능,효율 상의 이유 또는 외부 IP 구매 계약 상의 이유로 설계가 고정적인 덩어리를 말한다. Macro 자체가 수백 수천 개의 Standard Cell로 구성되기 때문에 Standard Cell과 비교해 크기가 크다.
 
 ---
 
