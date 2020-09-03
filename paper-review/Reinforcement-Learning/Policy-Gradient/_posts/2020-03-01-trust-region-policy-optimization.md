@@ -282,7 +282,7 @@ $$
 \eqalign{
 E_{x \backsim p}[f(x)] 
 &= \int f(x)p(x) dx\\
-&= \int (f(x) {p(x) \over q(x)})q(x dx) \qquad \forall q \text{ s.t. } q(x) = 0 \rightarrow p(x) \\
+&= \int (f(x) {p(x) \over q(x)})q(x) dx \qquad \forall q \text{ s.t. } q(x) = 0 \rightarrow p(x) \\
 &= E_{x \backsim q} [f(x) {p(x) \over q(x)}] \\
 & \approx {1 \over n} \Sigma_{i=1}^n f(x_i) {p(x_i) \over q(x_i)} \qquad x_i \backsim q
 }
