@@ -53,6 +53,14 @@ plt.legend()
 plt.show()
 ```
 
+#### beautiful legend
+
+- legend under the plot 
+
+```python
+plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.13),fancybox=True, shadow=False, ncol=5)
+```
+
 ### with marker
 
 - Not dot plot
@@ -77,6 +85,23 @@ plt.title("title")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.show()
+```
+
+### small dot plot
+
+```python
+plt.figure(figsize=(10,10))
+plt.plot([1, 4, 9, 16], [1,2,3,4], ",") # x: [1,4,9,16] y: [1,2,3,4]
+plt.title("title")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.show()
+```
+
+## save image
+
+```python
+plt.savefig(file.png, dpi=100, bbox_inches='tight')
 ```
 
 ## Matplotlib Font Setting
