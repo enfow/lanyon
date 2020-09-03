@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1. Meta Learning & Multi-task Learning
+title: Meta Learning & Multi-task Learning
 category_num : 1
 ---
 
