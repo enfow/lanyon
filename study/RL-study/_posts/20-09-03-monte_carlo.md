@@ -45,7 +45,7 @@ Monte Carlo Method와 관련하여 한 가지 짚고 넘어가야 할 점이 있
 
 ### 2.1. Monte Carlo ES
 
-Monte Carlo Method는 Value Function을 추정하는 방법이라고 할 수 있는데, 이를 활용하여 Policy Evaluation을 진행하고 업데이트 된 Value Function에 따라 Policy를 업데이트하는 Policy Improvement를 진행하게 되면(Policy Iteration) 환경에 대한 정보 없이도((Model)-Free) 충분히 Optimal Policy를 찾을 수 있다. 다양한 $$q(s,a)$$에 대해 충분히 정확하게 알기 위해 Exploring Start, Infinite Episode Sample 두 가지를 가정하며 이러한 점에서 **Monte Carlo ES(Exploring Start)**라고 한다. 알고리즘은 아래와 같다.
+Monte Carlo Method는 Value Function을 추정하는 방법이라고 할 수 있는데, 이를 활용하여 Policy Evaluation을 진행하고 업데이트 된 Value Function에 따라 Policy를 업데이트하는 Policy Improvement를 진행하게 되면(Policy Iteration) 환경에 대한 정보 없이도((Model-Free) 충분히 Optimal Policy를 찾을 수 있다. 다양한 $$q(s,a)$$에 대해 충분히 정확하게 알기 위해 Exploring Start, Infinite Episode Sample 두 가지를 가정하며 이러한 점에서 **Monte Carlo ES(Exploring Start)**라고 한다. 알고리즘은 아래와 같다.
 
 <img src="{{site.image_url}}/study/monte_carlo_es_algorithm.png" style="width:34em; display: block; margin: 0px auto;">
 
