@@ -11,7 +11,7 @@ category_num : 7
 
 ## 1. EigenValue & EigenVector
 
-**고유값 분해(EigenDecomposition)**는 주어진 행렬의 특성을 찾아내기 위해 사용하는 방법 중 하나이다. 고유값 분해를 이해햐기 위해서는 고유벡터와 고유값에 대해서 먼저 알야야 하는데, **고유벡터(EigenVector)**는 어떤 행렬의 곱에 의한 선형 변환으로 방향이 변화하지 않는 특이한 성질을 가지는 벡터를 말한다. 고유벡터를 구하기 위해서는 주어진 행렬이 정방행렬이어야 하며 다음과 같은 공식을 만족해야 한다.
+**고유값 분해(EigenDecomposition)**는 주어진 행렬의 특성을 찾아내기 위해 사용하는 방법 중 하나이다. 고유값 분해를 이해하기 위해서는 고유벡터와 고유값에 대해서 먼저 알야야 하는데, **고유벡터(EigenVector)**는 어떤 행렬의 곱에 의한 선형 변환으로 방향이 변화하지 않는 특이한 성질을 가지는 벡터를 말한다. 고유벡터를 구하기 위해서는 주어진 행렬이 정방행렬이어야 하며 다음과 같은 공식을 만족해야 한다.
 
 $$
 \boldsymbol{A}\boldsymbol{x} = \lambda\boldsymbol{x}
@@ -21,7 +21,7 @@ $$
 
 ### EigenVector and Linear Dependence
 
-그렇다면 행렬 $$\boldsymbol{A}$$가 있을 때 행렬의 고유벡터와 고유값은 어떻게 알 수 있을까. 이를 위해 위의 식을 다음과 같은 방정식과 같이 표현할 수 있다.
+그렇다면 행렬 $$\boldsymbol{A}$$가 있을 때 행렬의 고유벡터와 고유값은 어떻게 알 수 있을까. 이를 위해 위의 식을 아래와 같이 전개해 볼 수 있다.
 
 $$
 \eqalign{
@@ -31,9 +31,9 @@ $$
 }
 $$
 
-위의 식의 가장 쉬운 답은 $$\boldsymbol{x}$$가 $$\boldsymbol{0}$$인 경우(trivial solution)일 것이다. 하지만 고유 벡터가 0인 경우는 의미가 없기 때문에 일반적으로 고려하지 않는다. 그런데 $$\boldsymbol{x} \neq \boldsymbol{0}$$와 $$( \boldsymbol{A} - \lambda\boldsymbol{I} ) \boldsymbol{x} = \boldsymbol{0}$$를 동시에 만족하기 위해서는 $$( \boldsymbol{A} - \lambda\boldsymbol{I} )$$가 선형 의존이어야 한다. $$( \boldsymbol{A} - \lambda\boldsymbol{I} )$$이 선형 독립이라는 것은 각 칼럼 벡터가 다른 칼럼 벡터로는 줄일 수 없는 차원 축을 가지고 있다는 것을 의미하는데 이렇게 되면 $$\boldsymbol{x} = 0$$인 경우에만 가능하기 때문이다.
+위의 식을 만족하는 가장 쉬운 해는 $$\boldsymbol{x}$$가 $$\boldsymbol{0}$$인 경우(trivial solution)일 것이다. 하지만 고유 벡터가 0인 경우는 의미가 없기 때문에 일반적으로 고려하지 않는다. 그런데 $$\boldsymbol{x} \neq \boldsymbol{0}$$와 $$( \boldsymbol{A} - \lambda\boldsymbol{I} ) \boldsymbol{x} = \boldsymbol{0}$$를 동시에 만족하기 위해서는 $$( \boldsymbol{A} - \lambda\boldsymbol{I} )$$가 선형 의존이어야 한다. $$( \boldsymbol{A} - \lambda\boldsymbol{I} )$$이 선형 독립이라는 것은 각 칼럼 벡터가 다른 칼럼 벡터로는 줄일 수 없는 차원 축을 가지고 있다는 것을 의미하는데 이렇게 되면 $$\boldsymbol{x} = 0$$인 경우에만 가능하기 때문이다.
 
-역행렬의 유무와 관련지어 생각해보면 판별식 $$det ( \boldsymbol{A} - \lambda\boldsymbol{I} ) \neq 0$$인 경우, 즉 역행렬이 있는 경우라면 가능한 $$\boldsymbol{x}$$가 단 하나 밖에 없다는 것을 의미하고 이는 곧 $$\boldsymbol{x} = \boldsymbol{0}$$인 경우가 된다. 반면 $$det ( \boldsymbol{A} - \lambda\boldsymbol{I} ) = 0$$ 이라면 해가 없거나 무수히 많게 된다. 그런데 여기서 $$\boldsymbol{x} = \boldsymbol{0}$$라는 해가 존재한다는 것을 알고 있으므로 이 경우 해는 무수히 많다고 할 수 있다. 결과적으로 역행렬이 존재하지 않는 경우에만 $$\boldsymbol{0}$$외에 다른 해가 존재하게 된다.
+역행렬의 유무와 관련지어 생각해보면 판별식 $$det ( \boldsymbol{A} - \lambda\boldsymbol{I} ) \neq 0$$인 경우, 즉 역행렬이 있는 경우라면 가능한 $$\boldsymbol{x}$$가 단 하나 밖에 없다는 것을 의미하는데 우리는 이미 그 하나의 해가 $$\boldsymbol{x} = \boldsymbol{0}$$이라는 것을 알고 있다. 따라서 역행렬이 존재하는 경우는 의미가 없다. 반면 $$det ( \boldsymbol{A} - \lambda\boldsymbol{I} ) = 0$$ 이라면 해가 없거나 무수히 많다는 것을 의미하고 $$\boldsymbol{x} = \boldsymbol{0}$$라는 해를 알고 있으므로 결과적으로 해는 무수히 많다고 할 수 있다. 이를 종합해보면 역행렬이 존재하지 않는 경우에만 $$\boldsymbol{x}=\boldsymbol{0}$$외에 다른 해가 존재하게 된다.
 
 정방행렬에서는
 
