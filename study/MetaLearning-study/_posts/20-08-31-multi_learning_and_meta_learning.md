@@ -10,16 +10,13 @@ category_num : 1
 - 포스팅에 사용된 이미지 또한 동일한 강의의 PPT를 활용했습니다.
 - Update at: 2020.08.30
 
-## 0. Introduction: Problem of Deep Learning
+## Introduction: Problem of Deep Learning
 
-딥러닝은 일반적으로 학습을 위해 큰 데이터 셋이 필요하다. 분류 알고리즘의 성능을 확인하기 위해 가장 일반적으로 사용되는 Dataset인 MNIST도 6만 장으로 이뤄져있다. 하지만 현실에서는 방대한 데이터를 확보하는 것이 어려운 경우가 많고, 이러한 점은 딥러닝을 적용하는데 있어 걸림돌이 되어왔다. Multi Task Learning과 Meta Learning은 개별 task를 처음부터(from scratch) 배우는 것은 비효율적이라 지적하며, Data의 수가 적은 경우에 대해서도 효과적으로 문제를 해결할 수 있는 방법을 찾아내는 것에 관심을 가지는 분야라고 할 수 있다.
-
-
-### Shared Structure
-
-이러한 문제와 관련하여 Multi-Task Learning과 Meta Learning에서는 많은 문제들이 유사한 특성을 공유한다는 점에 집중한다. 쉽게 생각해 물병을 따는 로봇 알고리즘을 개발했다면 약간의 튜닝을 통해 딸기잼 뚜껑을 따거나 참치캔을 여는 알고리즘을 빠르게 학습시킬 수 있을 것이라 보는 것이다. 이를 보다 딱딱하게 표현하면 Task 간의 공통된 구조(Shared Structure)를 찾고 이를 통해 보다 효율적으로 네트워크를 구성하거나 학습하는 문제에 관심을 가진다고 말할 수 있다.
+딥러닝은 일반적으로 학습을 위해 큰 데이터 셋이 필요하다. 분류 알고리즘의 성능을 확인하기 위해 가장 일반적으로 사용되는 Dataset인 MNIST도 6만 장으로 이뤄져있다. 하지만 현실에서는 방대한 데이터를 확보하는 것이 어려운 경우가 많고, 이러한 점은 딥러닝을 활용하는데 있어 걸림돌이 되어왔다. Multi Task Learning과 Meta Learning은 개별 task를 처음부터(from scratch) 배우는 것은 비효율적이라 지적하며, Data의 수가 적은 경우에 대해서도 효과적으로 문제를 해결할 수 있는 방법을 찾아내는 것에 관심을 가지는 분야라고 할 수 있다.
 
 ## 1. Multi-Task Learning & Meta Learning
+
+이러한 문제와 관련하여 Multi-Task Learning과 Meta Learning에서는 많은 문제들이 유사한 특성을 공유한다는 점에 집중한다. 쉽게 생각해 물병을 따는 로봇 알고리즘을 개발했다면 약간의 튜닝을 통해 딸기잼 뚜껑을 따거나 참치캔을 여는 알고리즘을 빠르게 학습시킬 수 있을 것이라 보는 것이다. 이를 보다 딱딱하게 표현하면 Task 간의 공통된 구조(Shared Structure)를 찾고 이를 통해 보다 효율적으로 네트워크를 구성하거나 학습하는 문제에 관심을 가진다고 말할 수 있다.
 
 여러 문제들이 가지는 공통 구조에 관심을 가진다는 점에서 두 가지는 비슷하지만 구체적으로는 다음과 같은 차이를 가지고 있다.
 
@@ -120,11 +117,11 @@ $$
 }\\
 $$
 
-예시를 통해 이해하면 보다 쉽게 이해할 수 있는데, Meta Learning을 통해 풀고자 하는 문제를 Dataset $$D$$에 들어있는 사진만을 사용하여 Test Data를 분류하는 것이라고 하자. 문제는 Dataset $$D$$에 포함된 사진의 숫자가 매우 적어 일반적인 방법으로는 학습이 어렵다는 것이다. 이를 해결하기 위해 Meta Learning은 풀고자 하는 문제와 유사한 Task, 즉 데이터는 다르지만 적은 데이터로 구성된 $$D_{\text{meta-train}}$$에 대해 분류하는 방법을 먼저 학습하고 그렇게 얻어낸 Parameter, $$\theta^*$$를 사용한다. 이를 도식화하면 다음과 같다.
+예시를 통해 이해하면 보다 쉽게 이해할 수 있는데, Meta Learning을 통해 풀고자 하는 문제를 레이블이 갖춰진 Dataset $$D$$(개와 고양이)만을 사용하여 Test Data(개와 고양이)를 분류하는 것이라고 하자. 문제는 Dataset $$D$$에 포함된 사진의 숫자가 매우 적어 일반적인 방법으로는 학습이 어렵다는 것이다. 이를 해결하기 위해 Meta Learning은 풀고자 하는 문제와 유사한 Task, 즉 데이터($$D_{\text{meta-train}}$$ - 닭과 오리, 코끼리와 사자 등)는 $$D$$와 다르지만 분류 문제로서 비슷한 Task들을 먼저 학습하여 분류 문제들에 general하게 학습된 Parameter $$\theta^*$$를 우선 확보하고 이를 원 문제(개와 고양이)를 해결하는 데에 사용한다면 보다 적은 숫자의 데이터로도 효율적으로 분류 문제를 해결할 수 있다는 것이다. 이를 도식화하면 다음과 같다.
 
 <img src="{{site.image_url}}/study/quick_example_of_meta_learning.png" style="width:30em; display: block; margin: 0px auto;">
 
-전체적으로 구조를 보게 되면 $$D_{\text{meta-train}}$$으로 미리 학습된 모델 $$\theta^*$$에서 $$D$$를 입력으로 받아들이고 여기서 얻은 정보를 활용하여 Test Input을 정확하게 분류할 수 있도록 $$D$$를 분류하는 데에 특화된 $$\phi$$를 학습하도록 하게 된다. 이때 미리 $$\theta$$를 학습하는 과정을 **Meta Learning Process**, 각 Task에 맞게 $$\phi$$를 학습하도록 하는 것을 **Adaptation Process**라고 한다.
+전체적으로 구조를 보게 되면 $$D_{\text{meta-train}}$$으로 미리 학습된 모델 $$\theta^*$$에서 $$D$$를 입력으로 받아들이고 여기서 얻은 정보를 활용하여 Test Input을 정확하게 분류할 수 있도록 $$D$$를 분류하는 데에 특화된 $$\phi$$를 학습하게 된다. 이때 미리 $$\theta$$를 학습하는 과정을 **Meta Learning Process**, 각 Task에 맞게 $$\phi$$를 학습하도록 하는 것을 **Adaptation Process**라고 한다.
 
 ### Test and Train Conditions Must Match
 
