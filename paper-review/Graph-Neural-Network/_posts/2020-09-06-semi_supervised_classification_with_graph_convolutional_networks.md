@@ -14,6 +14,10 @@ keyword: '[GCN]'
 
 ## Summary
 
+- 일반적인 형태의 Graph에 대해 곧바로 Convolution 연산을 수행하는 것은 어려움이 많다.
+- **GCN**에서는 **Spectral Convolution**를 적용하여 Graph에 대해서도 적용이 가능한 효율적인 Convolution 연산 방법을 제시한다.
+- 이를 통해 논문에서는 Node를 분류하는 문제를 해결하고 있지만 Graph를 입력으로 받는 다양한 문제에 대해서도 적용이 가능하다.
+
 ## Introduction
 
 **Graph Convolution Network(GCN)**이란 이미지에 많이 사용되는 Convolution 연산을 Graph의 특징을 추출하는 데에 사용하는 방법이라고 할 수 있다. 이미지라는 것은 격자(Grip)의 Node들이 서로 일정하게 연결되어 있는 Graph의 특수한 형태로 볼 수 있는데, 이를 격자 구조가 아닌 일반적인 Graph에서도 사용할 수 있도록 하겠다는 것이다.
