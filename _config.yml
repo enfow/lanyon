@@ -35,12 +35,3 @@ development_category_list: ["Machine-Learning-project", 'Embedded', "Unity", "En
 study_category_list: ["DL-study", "RL-study", "MetaLearning-study", "Statistics-study", "Linear-Algebra", "CS-study"]
 
 markdown: kramdown
-
-# Google Analytics
-analytics:
-  provider: "google"
-  google:
-    tracking_id: "UA-150415411-1"
-    anonymize_ip: false
-
-google_analytics: "UA-150415411-1"
