@@ -42,3 +42,5 @@ analytics:
   google:
     tracking_id: "UA-150415411-1"
     anonymize_ip: false
+
+google_analytics: "UA-150415411-1"
