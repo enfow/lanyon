@@ -14,6 +14,10 @@ keyword: '[DeepDyna Q]'
 
 ## Summary
 
+- Dyna-Q 알고리즘 자체는 1990년 Sutton이 제안한 것으로 고전적인 방법론이다.
+- 대화 시스템과 같은 언어 모델은 시뮬레이터로 만들어 강화학습 알고리즘을 학습시키기에는 적합하지 않다.
+- 실제 사용자를 대상으로 강화학습 알고리즘에 대한 학습을 진행하되, 데이터의 효율성을 높이기 위해 사용자를 시뮬레이팅하는 World Model을 Agent 내부에서 Policy와 동시에 학습시키고, 이를 다시 Policy를 업데이트하는 데에 사용할 수 있다.
+
 ## Making Dialogue System with RL
 
 MDP(Markov Decision Process)에 맞게 수식화를 할 수 있다면 강화학습을 적용하여 문제를 푸는 것이 가능하다. 논문에서는 어떤 Task를 완수하는 내용의 대화(Task Completion Dialogue)를 MDP로 보고 강화학습 알고리즘으로 해결하고자 시도하는데, 구체적인 예시는 다음과 같다.
