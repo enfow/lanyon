@@ -28,21 +28,21 @@ $$
 p_{\theta}(x) = \int p_{\theta}(x \lvert z)p_{\theta}(z) dz
 $$
 
-좋은 생성 모델을 만들기 위해서는 $$p_{\theta}(x)$$를 극대화하는 latent variable $$p_{\theta}(z)$$와 parameter $$\theta$$를 찾아야하는데, 논문에서는 이와 관련하여 아레 세 가지 모두 intractable 한 상황을 가정한다. 이로 인해 EM algirithm 과 같은 방법으로는 최적의 경우를 찾을 수 없다.
+좋은 생성 모델을 만들기 위해서는 $$p_{\theta}(x)$$를 극대화하는 latent variable $$p_{\theta}(z)$$와 parameter $$\theta$$를 찾아야하는데, 논문에서는 이와 관련하여 아래 세 가지 모두 다루기 힘든(Intractable) 상황을 가정한다. 이로 인해 EM algirithm 과 같은 방법으로는 최적의 경우를 찾을 수 없다.
 
-- marginal likelihood: $$\int p_{\theta}(x \lvert z)p_{\theta}(z) dz$$
-- true posterior: $$p_\theta(z \lvert x) = {p_\theta(x \lvert z) p_\theta(z) \over p_\theta(x)}$$
-- integral for reasonable mean-field VB algorithm
+- Marginal Likelihood: $$\int p_{\theta}(x \lvert z)p_{\theta}(z) dz$$
+- True Posterior: $$p_\theta(z \lvert x) = {p_\theta(x \lvert z) p_\theta(z) \over p_\theta(x)}$$
+- Integral for Reasonable Mean-Field VB Algorithm
 
 또한 매우 큰 데이터셋을 가정하기 때문에 Monte Carlo 와 같은 샘플링 기반의 방법론을 곧바로 적용하기에는 시간이 너무 오래 걸리는 상황을 상정한다.
 
 ## Variational Inference
 
-marginal likelihood를 곧바로 해결할 수도, $$z$$에 대한 true posterior $$p_\theta(z \lvert x)$$를 구하는 것도 어려운 상황에서 문제를 해결하기 위해 논문의 저자들은 recognition model $$q_\phi(z \lvert x)$$를 도입하여 true posterior $$p_\theta(z \lvert x)$$에 근사시키는 방법을 제시한다. 그리고 이때 사용하는 것이 **VAE**에서 **V**를 의미하는 **Variational Inference** 이다.
+Marginal Likelihood를 곧바로 해결할 수도, $$z$$에 대한 True Posterior $$p_\theta(z \lvert x)$$를 구하는 것도 어려운 상황에서 문제를 해결하기 위해 논문의 저자들은 Recognition Model $$q_\phi(z \lvert x)$$를 도입하여 True Posterior $$p_\theta(z \lvert x)$$에 근사시키는 방법을 제시한다. 그리고 이때 사용하는 것이 **VAE**에서 **V**를 의미하는 **Variational Inference** 이다.
 
-Variational Inference는 사후확률분포를 가우시안과 같이 다루기 쉬운 확률 분포로 근사하는 방법이라고 할 수 있다. 베타 분포와 같은 conjugate prior를 가정하지 않는다면 사후확률분포를 구하는 것이 불가능할 정도로 어려운 경우가 많은데, 정확한 사후확률분포를 대신하여 다루기 쉬우면서도(eg. 가우시안) 최대한 실제 사후확률분포와 가까운 것을 찾는 방법 중 하나라고 할 수 있다.
+**Variational Inference**는 일반적으로 구하기 어려운 사후 확률 분포를 가우시안 분포와 같이 다루기 쉬운 확률 분포로 근사하는 방법이다. 베타 분포와 같은 Conjugate Prior를 가정하지 않는다면 사후 확률 분포를 구하는 것은 사실상 불가능할 정도로 어려운 경우가 많은데, 정확한 사후 확률 분포를 대신하여 다루기 쉬우면서도 최대한 실제 사후 확률 분포와 가까운 것을 찾아 사용하겠다는 것이다.
 
-### VI 수식
+### VI Equation
 
 Variational Inference의 식은 다음과 같다.
 
