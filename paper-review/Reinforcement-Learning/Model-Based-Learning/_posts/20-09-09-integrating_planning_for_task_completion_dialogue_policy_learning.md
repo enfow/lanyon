@@ -14,9 +14,10 @@ keyword: '[DeepDyna Q]'
 
 ## Summary
 
-- Dyna-Q 알고리즘 자체는 1990년 Sutton이 제안한 것으로 고전적인 방법론이다.
 - 대화 시스템과 같은 언어 모델은 시뮬레이터로 만들어 강화학습 알고리즘을 학습시키기에는 적합하지 않다.
-- 실제 사용자를 대상으로 강화학습 알고리즘에 대한 학습을 진행하되, 데이터의 효율성을 높이기 위해 사용자를 시뮬레이팅하는 World Model을 Agent 내부에서 Policy와 동시에 학습시키고, 이를 다시 Policy를 업데이트하는 데에 사용할 수 있다.
+- Deep Dyna-Q에서는 실제 사용자를 대상으로 직접 Policy를 업데이트하면서 데이터의 효율성을 높이기 위해 사용자를 시뮬레이팅하는 **World Model**을 Agent 내부에서 Policy와 함께 학습시키고, 이를 다시 Policy를 업데이트 하기 위해 사용한다.
+- Policy로 DQN 알고리즘을 사용하고 학습 방법도 동일하지만 실제 사용자와의 Transaction과 World Model의 Transaction을 분리하여 관리하기 위해 Replay Buffer를 두 개 두고 있다.
+
 
 ## Making Dialogue System with RL
 
