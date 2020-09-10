@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Temporal Difference Learning
+title: Temporal Difference
 category_num: 6
 ---
 
-# Temporal Difference Learning
+# Temporal Difference
 
 - Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
 - update at : 2020.09.10
@@ -99,7 +99,7 @@ $$
 Q(s_t, a_t) \leftarrow Q(s_t, a_t) + \alpha [r_{t+1} + \gamma \max_a Q(s_{t+1},a) - Q(s_t, a_t)]
 $$
 
-$$\gamma Q(s_{t+1}, a_{t+1}$$가 $$\gamma \max_a Q(s_{t+1},a)$$로 바뀌었다. 이제는 $$s_t$$에서 Action $$a_t$$를 결정할 때와 $$s_{t+1}$$에서 $$a_{t+1}$$을 결정할 때 사용하는 Policy의 종류가 달라졌다. 구체적으로 $$s_t$$에서는 $$\epsilon$$-Greedy Policy로 결정했지만 $$s_{t+1}$$에서는 항상 Q Value가 가장 클 때의 Action을 선택하고 있다. 이러한 점에서 Off-Policy라는 것이다.
+Target을 계산할 때 사용되는 Term이 $$\gamma Q(s_{t+1}, a_{t+1})$$에서 $$\gamma \max_a Q(s_{t+1},a)$$로 바뀌었다. 이제는 $$s_t$$에서 Action $$a_t$$를 결정할 때와 $$s_{t+1}$$에서 $$a_{t+1}$$을 결정할 때 사용하는 Policy의 종류가 달라졌다. 보다 명확하게 $$s_t$$에서는 SARSA와 동일하게 $$\epsilon$$-Greedy Policy로 결정했지만 $$s_{t+1}$$에서는 항상 Q Value가 가장 클 때의 Action을 선택하고 있다. 이러한 점에서 Off-Policy라는 것이다.
 
 <img src="{{site.image_url}}/study/td_q_learning_algorithm.png" style="width:34em; display: block; margin: 0px auto;">
 
