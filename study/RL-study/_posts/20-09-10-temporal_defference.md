@@ -11,15 +11,15 @@ category_num: 6
 
 ## Introduction
 
-Dynamic Programming(DP), Monte Carlo(MC) Method와 함께 **Temporal-Difference(TD) Leanring**는 강화학습의 대표적인 업데이트 방식이라고 할 수 있다. 그 중에서도 TD는 DP, MC와 비교해 많은 장점을 가지고 있으며 현재 유행하는 많은 강화학습 알고리즘에서 사용하는 방법론이다. 이와 관련하여 Sutton은 책에서 다음과 같이 표현하고 있다.
+Dynamic Programming(DP), Monte Carlo(MC) Method와 함께 **Temporal-Difference(TD) Learning**는 강화학습의 대표적인 업데이트 방식이다. 그 중에서도 TD는 DP, MC와 비교해 많은 장점을 가지고 있으며 현재 유행하는 많은 강화학습 알고리즘에서 사용하는 방법론이다. 이와 관련하여 Sutton은 책에서 다음과 같이 표현한다.
 
 - "If one had to identify one idea as **central and novel to reinforcement learning**, it would undoubtedly be temporal-difference (TD) learning"
 
-큰 틀에서 보면 세 가지 방법론은 모두 Policy Evaluation과 Policy Improvement를 반복하는 **Generalized Policy Iteration(GPI)**에 따라 동작하는데, 다만 그 과정에서 어떻게 Value Function을 추정할 것인가, Policy Evaluation을 수행하는 방식에서 차이가 있다고 할 수 있다.
+큰 틀에서 보면 세 가지 방법론은 모두 Policy Evaluation과 Policy Improvement를 반복하는 **Generalized Policy Iteration(GPI)**에 따라 동작한다. 다만 그 과정에서 어떻게 Value Function을 추정할 것인가, Policy Evaluation을 수행하는 방식에서 차이가 있다.
 
 ## TD learning
 
-TD는 DP, MC와 분명 다른 방법으로 업데이트하지만 책에서 언급하고 있듯이 두 방법 간의 Combination으로서 두 가지 방법의 장점을 취하고 있다. 결론부터 말하자면 TD는 DP와 같이 **BootStrapping**을 통해 업데이트 하기 때문에 Return을 알 필요가 없어 MC와 달리 에피소드가 끝나기를 기다리지 않아도 된다는 점에서 효율적이다. 그리고 MC와 같이 **Sampling**을 가정하기 때문에 DP와 달리 Model을 알지 못해도 된다는 점에서 자유롭다.
+TD는 DP, MC와 분명 다른 방법으로 Value Function을 업데이트하면서도 두 방법 간의 Combination으로 두 가지 방법의 장점을 함께 취하고 있다. 결론부터 말하자면 TD는 DP와 같이 **BootStrapping**을 통해 업데이트 하기 때문에 Return을 알 필요가 없어 MC와 달리 에피소드가 끝나기를 기다리지 않아도 된다는 점에서 효율적이다. 그리고 MC와 같이 **Sampling**을 가정하기 때문에 DP와 달리 Model을 알지 못해도 된다는 점에서 자유롭다.
 
 ### BootStrapping
 
