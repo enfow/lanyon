@@ -2,6 +2,7 @@
 layout: post
 title: Useful Methods for Data Science
 category_num: 1
+subtitle: 복사 붙여넣기
 ---
 
 # Useful Methods for Data Science
