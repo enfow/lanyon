@@ -215,7 +215,7 @@ $$
 $$
 
 - $$i,j$$ 번째 Node를 연결하는 Edge $$e_{ij}$$는 $$v_i$$, $$v_j$$를 Fully Connected Network $$fc_0$$에 각각 통과시켜 얻은 출력값과 Edge별 $$1 \times 1$$의 웨이트 $$w^e_{ij}$$를 모두 Concat하고, 이를 $$fc_1$$에 통과시켜 얻은 출력값으로 업데이트 한다.
-- Node $$v_i$$는 자신과 연결되어 있는 모든 Edge의 $$e_{i,k}$$값의 평균으로 업데이트한다.
+- Node $$v_i$$는 자신과 연결되어 있는 모든 Edge의 Feature $$e_{i,j}$$값의 평균으로 업데이트한다.
 
 이러한 과정을 통해 두 가지를 얻을 수 있는데, 하나는 Model 이미지에서 파란 색으로 표현되는 **Edge Embeddings**이고, 다른 하나는 빨간 색으로 되어있는 **Macro(Node) Embeddings**이다.
 
