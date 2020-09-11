@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pytorch-Geometric Introduction
-subtitle: pytorch에서 GCN 사용하기
+subtitle: pytorch-geometric 설치부터 GCN 사용까지
 ---
 
 # Pytorch-Geometric Introduction
