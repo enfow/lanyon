@@ -63,7 +63,7 @@ torch-spline-conv (1.2.0)
 
 Torch-Geometric에서 Graph를 만드는 가장 기본적인 방법은 다음과 같이 [Data Class](<https://pytorch-geometric.readthedocs.io/en/latest/modules/data.html>)를 사용하는 것이다. 예제에 사용된 코드는 모두 [PyTorch geometric Example](<https://pytorch-geometric.readthedocs.io/en/latest/notes/introduction.html>)를 참고했다.
 
-이미지 - torch_geometric_graph1
+<img src="{{site.image_url}}/development/torch_geometric_graph1.png" style="width:48em; display: block; margin: 0em auto;">
 
 ```python
 import torch
