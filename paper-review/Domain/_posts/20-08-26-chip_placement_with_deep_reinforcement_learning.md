@@ -186,7 +186,7 @@ Macro를 어떠한 순서대로 배치할 것인지 또한 중요하다. 이와 
 
 Policy Network가 정확하게 상황을 판단하기 위해서는 `Feature Embeddings`에서 본 적이 없는 State에 대해서도 충분한 의미를 추출할 수 있어야 한다. 이를 위해 논문에서는 Transfer Learning, 즉 Feature Embeddings를 미리 학습시키고 이를 전이(Transfer)하는 방법을 사용한다.
 
-### 1. Dataset for Supervised Model
+### Dataset for Supervised Model
 
 구체적으로 논문에서는 State를 받아 특정 값의 Label을 예측하는 Supervised Model을 사용한다. Supervised Model이므로 각각의 Chip Place State과 이에 매치되는 Reward로 구성된 Dataset을 확보해야 한다. 이를 위해 5개의 서로 다른 Netlist를 사용하여 2,000번의 배치를 수행하게 되는데 이 과정에서 다양한 데이터를 확보하기 위해 다음 세 가지를 적용했다고 한다.
 
@@ -196,11 +196,11 @@ Policy Network가 정확하게 상황을 판단하기 위해서는 `Feature Embe
 
 그리고 각 Placement에 대한 Label은 Reward Function에서 언급한 것과 마찬가지로 WireLength와 Routing Congestion의 평균 제곱의 가중 합으로 구하게 된다.
 
-### 2. Architecture of Feature Embeddings
+### Architecture of Feature Embeddings
 
 State의 특성을 추출하는 Feature Embedding는 다음과 같이 세 단계로 이뤄져 있다.
 
-#### 2.1. Node Feature & Node Adjacency
+#### - Node Feature & Node Adjacency
 
 우선 전체 Netlist와 배치의 대상이 되는 Macro에 대해서는 **Graph Neural Network**를 사용한다.
 
@@ -219,20 +219,20 @@ $$
 
 이러한 과정을 통해 두 가지를 얻을 수 있는데, 하나는 Model 이미지에서 파란 색으로 표현되는 **Edge Embeddings**이고, 다른 하나는 빨간 색으로 되어있는 **Macro(Node) Embeddings**이다.
 
-#### 2.2. Feature Embeddings: Netlist MetaData
+#### - Feature Embeddings: Netlist MetaData
 
-Nelist MetaData는 다음과 같은 정보들로 구성되며 Fully Connected Network로 정보를 추출한다고 한다.
+Nelist MetaData는 다음과 같은 정보들로 구성되며 Fully Connected Network로 정보를 추출하게 된다.
 
 - Horizontal and Vertical Routing Capacity
 - Total Number of Edges, Macro, Standard Cell Clusters
 - Chip Canvas Size
 - Number of Row and Columns of Grid
 
-#### 2.3. Concatnation
+#### - Concatnation
 
 Feature Embedding의 마지막 단계는 지금까지 언급한 Edge Embeddings, Macro Embeddings, Netlist MetaData Embeddings를 모두 Concat하여 **State Embedding**을 만드는 것이다. 이때 Edge Embeddings와 Macro Embeddings는 통째로 사용하지는 않고 Edge Embeddings의 경우 reduce mean한 결과값을, Macro Embeddings에서는 현재 Macro Id에 맞는 정보만을 사용한다.
 
-### 3. Training Feature Embeddings
+### Training Feature Embeddings
 
 Feature Embeddings에 대한 학습은 regression으로 각 Placement에 대한 오차가 최소화가 되도록 하는 방향으로 이뤄진다.
 
@@ -246,6 +246,51 @@ Policy Network는 State의 정보가 담긴 State Embedding을 받아 적절한 
 
 ---
 
+## Experiments & Results
+
+논문에서는 제시하고 있는 방법론과 관련하여 다양한 실험을 진행하고 그 결과를 정리하고 있다. 배치 대상이 되는 Google TPU의 구체적인 사양에 관해서는 보안 문제로 공개하지 않고 있으며, TPU 한 블럭 당 수백 개의 Macro Module과 수백만 개의 Standard Cell이 있다고만 되어 있다.
+
+### Pre-Training
+
+첫 번째는 Feature Embedding을 위해 Pre-Training이 효과적인지 검증하는 실험이다. 이를 위해 논문에서는 다음 네 가지 경우에 대한 실험 결과를 비교하고 있다.
+
+|Setting| Pre-Training | Fine Tuning |
+|:------:|:---:|:---:|
+|Zero-Shot| O | X |
+|2hr Fine Tuning| O | O(2Hour) |
+|12hr Fine Tuning| O | O(12Hour) |
+|24hr From Scratch | X | X |
+
+결과는 다음과 같다. y축이 Placement Cost이므로 작으면 작을 수록 좋다.
+
+<img src="{{site.image_url}}/paper-review/chip_pre_training_is_need.png" style="width:40em; display: block; margin: 0px auto;">
+
+x축의 오른쪽으로 갈수록 문제의 복잡도가 높아진다. 가장 왼쪽의 TPU Block 하나만 가지고 Test를 진행한 경우에는 성능 차이가 크지 않으나 문제가 복잡해질수록 각각의 성능 차이가 커진다는 것을 알 수 있다. 모든 경우에서 성능은 12시간 동안 Test 문제에 대해 Fine Tuning을 실시한 Pre-trained Model이었다.
+
+<img src="{{site.image_url}}/paper-review/chip_pre_training_make_it_faster.png" style="width:40em; display: block; margin: 0px auto;">
+
+그리고 성능 뿐만 아니라 수렴 속도와 관련해서도 Pre-Trained Model을 사용하는 것이 좋다고 한다. 위의 그림을 보면 초록선으로 표현되는 Pre-Trained Model이 파란선의 From-Scrach 방법보다 더 빠르게 수렴하고 있음을 보여준다. From Scratch를 24시간으로 설정하여 비교한 것 또한 수렴 속도가 느려 보다 적은 학습량으로는 성능을 확보하기 어려웠기 때문이라고 한다. 이러한 점에서 Test Dataset 뿐만 아니라 다른 Design에 대해서도 학습하는 것이 성능과 학습 속도에 중요한 요인이 된다.
+
+### Large Dataset
+
+다른 Design에 대해 학습하는 것이 성능과 학습 속도에 영향을 미친다면 Pre-Training에 사용하는 데이터 셋의 크기 또한 학습의 양상에 중요한 요인이 될 수도 있을 것이다. 논문에서는 이와 관련하여 TPU Block의 갯수를 2, 5, 20 Block으로 하여 실험을 진행했다고 한다.
+
+<img src="{{site.image_url}}/paper-review/chip_large_dataset_is_better.png" style="width:40em; display: block; margin: 0px auto;">
+
+결과를 보게 되면 거의 모든 경우에서 Train Set의 크기가 클수록 성능이 높은 경향을 보이며 Fine-Tuning을 적게 수행했을 때 그 차이가 더욱 도드라진다. 이에 대해 논문에서는 Train Set의 크기가 작으면 OverFitting 문제가 생기는 것으로 보며, Policy Network에 다양한 Block의 가능성을 보여줘야 Train Set에 OverFitting 되는 문제를 방지하고 Test Set으로 들어오는 새로운 Data에 대해서도 잘 해결할 수 있다고 언급한다.
+
+### Comparing with Other Methods
+
+마지막으로 SOTA로 알려져 있는 **RePLAce**와 논문에서 제시하는 방법, 그리고 전문가가 직접 수행하는 방법으로 나누어 비교하는 실험을 진행하였고, 아래와 같은 결과를 얻었다고 한다. 참고로 **Ours**로 표기된 것이 논문에서 제시하고 있는 방법을 사용한 것으로, 20개의 TPU Block을 대상으로 Pre-Training을 진행하고 5개의 Test TPU Block에 대해 FineTuning 한 것이라고 한다. 그리고 **Manual**이 전문가 팀이 직접 EDA tool을 사용하여 반복적으로 개선하여 얻은 결과이다.
+
+<img src="{{site.image_url}}/paper-review/chip_comparing_with_other_method.png" style="width:40em; display: block; margin: 0px auto;">
+
+Table을 처음 보았을 때 RePLAce가 더 좋은 것 같아 보이지만 논문에서는 (당연히도) 자신들이 제시하고 있는 방법이 더 좋다(outperform)고 주장한다. 이와 관련하여 반도체 기술상 WNS가 100ps 이상이거나 Horizontal/Vertical Congestion이 1%를 넘기면 적용이 불가능한데, Block 1,2,3에서 회색으로 표기된 RePLAce의 경우 이를 초과하고 있기 때문에 사용할 수 없기 때문이라고 언급하고 있다. RePLAce 방법론의 장점 중 하나는 학습 시간이 적게 걸린다는 것으로 논문의 방법이 3~6시간 정도 걸리는 데 반해 RePLAce는 1~3.5시간이면 학습이 완료된다고 한다.
+
+### Oppertunity
+
+논문에서 제시하고 있는 방법은 Standard Cell을 배치하는 데 있어 속도를 이유로 Force-Directed Method를 사용했으나 RePLace, DREAMPlace 등과 같이 최신의 배치 알고리즘을 사용하면 보다 성능이 높아질 것으로 기대할 수 있다.
+
 ## Additional Study
 
-### Force-Directed Method
+- **Force-Directed Method**에 대해서는 [VLSI Cell Placement Technique](<https://enfow.github.io/paper-review/domain/2020/09/07/vlsi_cell_placement_technique/>)논문 리뷰에 정리해 두었다.
