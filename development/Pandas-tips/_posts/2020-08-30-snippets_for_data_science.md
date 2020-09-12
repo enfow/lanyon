@@ -117,6 +117,25 @@ font = {'family' : 'normal',
 matplotlib.rc('font', **font)
 ```
 
+## save DataFrame as Pickle
+
+```python
+import pickle
+
+row_dict = {"a" : 1}
+
+log_file = os.path.join(".", ".", "file_name") + ".pkl"
+if os.path.exists(log_file):
+        with open(log_file, 'rb') as file:
+        prev_df = pickle.load(file)
+        new_df = pd.concat([pd.DataFrame([row_dict]), prev_df]).reset_index(drop=True)
+else:
+        new_df = pd.DataFrame([row_dict])
+
+with open(log_file, 'wb') as f:
+        pickle.dump(new_df, f)
+```
+
 ## PCA
 
 ```python
