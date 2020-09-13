@@ -6,19 +6,19 @@ category_num: 3
 
 # Bayesian Rule
 
-- update date : 2020.02.20
+- update date : 2020.02.20, 2020.09.14
 
-## 베이즈 정리
+## Bayesian Rule
 
-베이즈 정리는 prior, likelihood, posterior 간의 관계를 표현하는 식으로, 아래와 같다.
+베이즈 정리는 Prior, Likelihood, Posterior 간의 관계를 표현하는 식으로, 아래와 같다.
 
 $$
 P(A \lvert B) = {P(B \lvert A) P(A) \over P(B)}
 $$
 
-여기서 $$P(A)$$를 **prior**, $$P(B \lvert A)$$를 **likelihood** 그리고 $$P(A \lvert B)$$를 **posterior**라고 한다.
+여기서 $$P(A)$$를 **Prior**, $$P(B \lvert A)$$를 **Likelihood** 그리고 $$P(A \lvert B)$$를 **Posterior**라고 한다.
 
-## 사전 확률, 가능도, 사후 확률
+## Prior, Likelihood, Posterior
 
 Prior, Likelihood, Posterior는 베이지언 확률에서 가장 기초가 되는 개념으로, 우리말로 사전 확률, 가능도(우도), 사후 확률로 불린다.
 
@@ -28,57 +28,47 @@ Prior, Likelihood, Posterior는 베이지언 확률에서 가장 기초가 되�
 
 위와 같은 정의만 보아서는 무엇을 의미하는지 추상적으로만 들린다. 다음과 같은 구체적인 예시를 생각하면 이해하는 데에 도움이 된다.
 
-### 사과 박스에 돈 뭉치
+### Show Me the Money
 
-어떤 박스가 있을 때 사과라고 쓰여 있으면 $$A=a_1$$, 돈이라고 쓰여 있으면 $$A=a_2$$라고 하자. 그리고 어떤 박스에 사과가 들어 있으면 $$B=b_1$$, 돈이 들어 있으면 $$B=b_2$$라고 하자. 그렇다면 아래 각각의 확률 함수의 의미는 다음과 같다.
+<img src="{{site.image_url}}/study/bayesian_money_in_the_box.jpg" style="width:40em; display: block; margin: 2px auto;">
 
-- $$P(A = a_1)$$ : 어떤 박스에 사과가 들어 있을 확률
-- $$P(B = b_1)$$ : 어떤 박스에 사과라고 쓰여 있을 확률
-- $$P(A = a_1, B = b_1)$$ : 어떤 박스에 사과라고 쓰여 있으면서 사과가 들어 있을 확률
+여러 개의 케리어 중에 중에 돈 뭉치가 들어있는 것이 숨겨져 있다고 하자. 공항 보안검색대 직원은 수많은 케리어 중에서 돈 뭉치가 들어 있는 것을 찾아내야 한다. 이때 아래 각각의 확률 함수의 의미는 다음과 같다고 하자.
 
-조건부 확률의 의미를 고려하면 $$P(A = a_1 \lvert B = b_1)$$는 다음과 같다.
+- $$P(\text{money} = \text{True})$$: 케리어에 돈이 들어 있을 확률
+- $$P(\text{alarm} = \text{True})$$: 보안 검색대에 알람이 울릴 확률
+- $$P(\text{alarm} = \text{True} \lvert \text{money} = \text{True})$$: 돈이 들어 있는 캐리어에 대해 보안 검색대 알람이 울릴 확률
 
-- $$P(B = b_1 \lvert A = a_1)$$ : 사과가 들어 있을 때 박스에 사과라고 쓰여 있을 확률
-
-이때 조건부 확률은 그 정의에 따라 다음과 같이 쓸 수 있다.
+이때 조건부 확률 $$P(X \lvert Y)$$는 그 정의에 따라 다음과 같이 쓸 수 있다.
 
 $$
 P(X|Y) = {P(X, Y) \over P(Y) }
 $$
 
-이를 적용하면 $$P(B = b_1 \lvert A = a_1)$$는 다음과 같이 풀어 쓸 수 있다.
+이를 돈다발 문제에 적용하면 $$P(\text{alarm} = \text{True} \lvert \text{money} = \text{True})$$는 다음과 같이 풀어 쓸 수 있다.
 
 $$
 \eqalign{
-P(B = b_1 \lvert A = a_1)
-&= {P(A = a_1, B = b_1) \over P(A = a_1)} \\
-&= {P(A = a_1 \lvert B = b_1) P(B = b_1) \over P(A = a_1)}
+P(\text{alarm} = \text{True}\lvert \text{money} = \text{True})
+&= {P(\text{money} = \text{True}, \text{alarm} = \text{True}) \over P(\text{money} = \text{True})} \\
+&= {P(\text{money} = \text{True} \lvert \text{alarm} = \text{True}) P(\text{alarm} = \text{True}) \over P(\text{money} = \text{True})}
 }
 $$
 
-이를 prior, likelohood, posterior로 분리해 그 의미를 생각해보면 다음과 같다.
+이를 Prior, likelohood, Posterior로 분리해 그 의미를 생각해보면 다음과 같다.
 
-- **prior**: 어떤 박스에 사과라고 쓰여 있을 확률
-- **likelihood**: 사과라고 쓰여 있는 박스를 열었을 때 사과가 들어 있을 확률
-- **posterior**: 사과가 들어 있는 박스를 보니 사과라고 쓰여 있을 확률
+- **Prior**: 어떤 케리어에 대해 알람이 울릴 확률
+- **Likelihood**: 알람이 울린 케리어에 돈다발이 들어있을 확률
+- **Posterior**: 돈다발이 들어 있는 케리어에서 알람이 울릴 확률
 
-## 머신러닝과 베이즈 정리
+## Machine Learning and Bayesian Rule
 
-예시를 아래와 같이 바꾸어보자. 이제 우리의 목표는 돈이 들어 있는 박스를 찾는 것이다.
+여기서 문제가 있다면 보안 검색대가 완벽하지 못해 돈다발이라고 판단한 것 중에 돈이 없는 경우가 많아 항의가 많이 들어온다는 것이다. 이를 해결하기 위해 보안 검색대의 성능을 개선해야 해야하는데, 가장 쉽게 생각할 수 있는 것이 경험을 토대로 학습하는 것이다.
 
-- **prior**: 스캐너가 돈다발이 들어 있다고 판단할 확률
-- **likelihood**: 돈다발로 판단된 박스를 열었을 때 돈다발이 들어 있을 확률
-- **posterior**: 돈다발이 들어 있는 박스를 보니 돈다발로 판단되었을 확률
+### Learning with Experience
 
-이전 예시와 비교해 바뀐 점이 있다면 스캐너가 새롭게 추가되었다는 것이다.
+만약 10개의 케리어 $$X = {x_1, x_2, ... x_{10}}$$가 있고 그 중 실제로 돈다발이 들어 있는 케리어는 $$x_1, x_2, x_9$$라고 하자. 이때 보안 검색대에서 전체 케리어 중 $$x_2, x_5$$에 돈다발이 들어 있다고 판단했다면, **Prior**는 $$P(alarm) = 0.2$$가 된다. 그런데 돈다발이 들어 있다고 판단된 케리어 두 개를 열어보니 $$x_2$$에는 돈다발이 있었지만, $$x_5$$에는 사과가 있었다. 따라서 **Likelihood** $$P(money \lvert alarm)$$는 0.5이다.
 
-그런데 문제가 있다면 스캐너가 완벽하지 못해 돈다발이라고 판단한 것 중에 사과가 들어있는 경우가 많이 있다는 것이다. 이러한 문제를 해결하기 위해 스캐너를 업데이트 해야하는데, 가장 쉽게 생각할 수 있는 방법이 돈다발로 판단한 모든 박스를 열어보고 그것을 토대로 반복된 실수를 하지 않도록 하는 것이다. 즉, 경험을 토대로 학습하는 것이다.
-
-### 경험을 통한 학습
-
-만약 박스가 $$X = {x_1, x_2, ... x_{10}}$$로 총 10개 있고, 그 중 실제로 돈다발이 들어 있는 박스는 $$x_1, x_2, x_9$$라고 하자. 이때 스캐너가 전체 박스 중 $$x_2, x_5$$에 돈다발이 들어 있다고 판단했다면, **prior**는 $$P(alarm) = 0.2$$가 된다. 그런데 돈다발이 들어 있다고 판단된 박스 두 개를 열어보니 $$x_2$$에는 돈다발이 있었지만, $$x_5$$에는 사과가 있었다. 즉, **likelihood** $$P(money \lvert alarm)$$는 0.5이다.
-
-prior와 likelihood를 모두 구했지만 posterior를 구하기 위해서는 분모 $$p(money)$$를 구해야 한다.
+Prior와 Likelihood를 모두 구했지만 Posterior를 구하기 위해서는 분모 $$p(money)$$를 구해야 한다.
 
 $$
 P(money) = P(money \lvert alarm) P(alarm) + P(money \lvert \backsim alarm) P(\backsim alarm)
@@ -90,6 +80,4 @@ $$
 {P(money \lvert alarm) P(alarm) \over P(money)} = { 0.5 * 0.2 \over 0.3} = {1 \over 3}
 $$
 
-결과적으로 **posterior** $$P(alarm \lvert money)$$는 $$1 \over 3$$으로 구해지며, 이를 또다시 동일한 박스 10개를 테스트할 때 prior로 사용하는 것을 학습이라고 할 수 있다. 실제 optimal한 prior가 0.3임을 감안하면 학습의 결과로 optimal 값에 보다 가까워진 것이라고 할 수 있다.
-
-조금 어렵게 말한 감이 있지만 결국에는 다음 예측을 할 때에는 $$alarm$$이 울렸을 때 $$money$$가 들어 있었는지 아닌지 확인해보고 결정한 $$P(alarm \lvert money)$$을 토대로 $$P(alarm)$$를 고려하면 보다 정확하다는, 다소 상식적인 이야기가 된다.
+결과적으로 **Posterior** $$P(alarm \lvert money)$$는 $$1 \over 3$$를 Prior로 업데이트하여 성능을 개선할 수 있는데 이를 학습이라고 할 수 있다. 전체 10개의 케리어 중 3개에 돈이 있었으므로, 실제 True Prior가 0.3임을 감안하면 학습의 결과로 Optimal 값에 보다 가까워진 것이라고 할 수 있다. 조금 어렵게 말한 감이 있지만 다음 예측을 할 때에는 이전에 배운 Posterior $$P(alarm \lvert money)$$를 고려하여 Prior $$P(alarm)$$를 결정하면 보다 정확도를 높일 수 있다는 것이다.

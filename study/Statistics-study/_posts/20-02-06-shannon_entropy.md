@@ -19,22 +19,20 @@ Elements of information theory(Cover&Thomas)에서는 엔트로피를 다음과 
 
 - measure of the uncertainty of a random variable
 
-어떤 확률 변수의 불확실성의 정도를, 즉 얼마나 무작위적인가를 수치화한 것이라고 할 수 있다. 어떤 확률 변수의 불확실성의 정도를 확인하기 위해서는 우선 개별 사건들이 가지는 정보량을 파악해야 한다. 이를 information gain이라고 한다.
+어떤 확률 변수의 불확실성의 정도를, 즉 얼마나 무작위적인가를 수치화한 것이라고 할 수 있다. 어떤 확률 변수의 불확실성의 정도를 확인하기 위해서는 우선 개별 사건들이 가지는 정보량을 파악해야 한다. 이를 Information Gain이라고 한다.
 
-### information gain
+### Information Gain
 
 기본적으로 정보이론은 다음 세 가지 가정을 바탕으로 한다.
 
-1) 발생 빈도가 높은 사건이 관찰되었다는 것은 적은 정보를 가지고 있다.
+1. 발생 빈도가 높은 사건이 관찰되었다는 것은 적은 정보를 가지고 있다.
+2. 발생 빈도가 낮은 사건이 관찰되었다는 것은 많은 정보를 가지고 있다.
+3. 독립 사건은 추가적인 정보가 된다.
 
-2) 발생 빈도가 낮은 사건이 관찰되었다는 것은 많은 정보를 가지고 있다.
-
-3) 독립 사건은 추가적인 정보가 된다.
-
-이때 어떤 특정한 사건 $$x$$가 가지는 information gain을 평가하는 함수 $$h(x)$$가 있다고 하자. 위의 첫 번째, 두 번째 가정에 따르면 즉 $$h(x)$$는 사건의 발생 빈도, 즉 확률 $$p(x)$$에 대한 단조 함수(monotonic function)이다. 그리고 확률 값이 높으면 information gain은 적다는 점에서 다음과 같은 특성을 띈다.
+이때 어떤 특정한 사건 $$x$$가 가지는 Information Gain을 평가하는 함수 $$h(x)$$가 있다고 하자. 위의 첫 번째, 두 번째 가정에 따르면 즉 $$h(x)$$는 사건의 발생 빈도, 즉 확률 $$p(x)$$에 대한 단조 함수(monotonic function)이다. 그리고 확률 값이 높으면 Information Gain은 적다는 점에서 다음과 같은 특성을 띈다.
 
 $$
-if \ p(x) > p(y) \qquad then \ h(x) < h(y)
+\text{if} \ p(x) > p(y) \qquad \text{then} \ h(x) < h(y)
 $$
 
 두 개의 독립적인 사건이 발생했다고 하면 정보량은 각 사건의 정보량을 합한 것이라는 점은 다음과 같이 표현이 가능하다.
@@ -53,9 +51,9 @@ $$
 
 이와 같이 확률 값에 음의 로그를 취하게 되면 확률이 높으면 높을수록 낮은 값을, 낮으면 낮을수록 높은 값을 반환하게 되므로 위의 가정에 부합한다고 할 수 있다.
 
-### Shannon entropy
+### Shannon Entropy
 
-위에서 정의한 information gain은 말 그대로 어떤 사건이 발생했다는 정보가 가지는 정보량이다. 단일 사건이 갖는 정보량을 이용하면 어떤 분포를 따르는 확률 변수 $$X$$의 정보량을 구할 수 있다.
+위에서 정의한 Information Gain은 말 그대로 어떤 사건이 발생했다는 정보가 가지는 정보량이다. 단일 사건이 갖는 정보량을 이용하면 어떤 분포를 따르는 확률 변수 $$X$$의 정보량을 구할 수 있다.
 
 $$
 \eqalign{
@@ -65,9 +63,9 @@ $$
 
 위의 식은 확률 변수 $$X$$가 따르는 확률 분포 $$P$$의 정보량이라는 뜻에서 $$H(P)$$로 표기하기도 하며, 어떤 분포에 따라 사건이 발생했다는 것을 알았을 때 기대되는 정보량으로 정의된다. 이와 같이 어떤 확률 분포가 가지는 정보량을 **Shannon Entropy**라고 한다.
 
-### Shannon entropy의 특성
+### Characteristics of Shannon Entropy
 
-#### 1) uniform sampling has maximum entropy
+#### 1) Uniform Sampling has Maximum Entropy
 
 확률 값 $$p(x)$$는 $$0 \leqq p(x) \leqq 1$$의 범위를 가진다. 일단 음수가 될 수 없기 때문에 어떤 확률 값에 대해 $$p(x_i) = 1$$가 성립하면 다른 확률 값들은 모두 0이 된다. 이러한 점을 고려할 때 $$p(x)$$ 분포가 뾰족하게 튀어나와 있는 것보다 편평하게 퍼져 있는 형상을 띌 때 엔트로피가 보다 높다. 그리고 동일한 확률 공간에서 **엔트로피가 극대화되는 분포는 확률 변수가 균등 분포를 따를 때**라고 할 수 있다.
 
@@ -85,7 +83,7 @@ $$
 
 위 식은 $$p(x_i) = 1 / M$$이 성립할 때 극대화 되며, 이때의 정확한 엔트로피 값 $$H(P) = \log M$$이 성립한다. $$M$$은 $$x_i$$의 개수, bin의 개수라고 할 수 있다.
 
-#### 2) lower bound on the number of bits
+#### 2) Lower Bound on the Number of Bits
 
 Shannon은 문자열을 0,1과 같은 비트로 인코딩하는 방법을 연구하는 과정에서 엔트로피를 정의했다. Shannon의 논문 *noiseless coding theorem(1948)*에서는 엔트로피를 다음과 같이 정의한다.
 
@@ -105,9 +103,9 @@ p(f) = {1 \over 8} \\
 }
 $$
 
-##### (a) information gain에 따른 encoding
+##### (a) Information Gain에 따른 encoding
 
-이 경우 각각의 information gain은 다음과 같다.
+이 경우 각각의 Information Gain은 다음과 같다.
 
 $$
 \eqalign{
@@ -130,7 +128,7 @@ $$
 
 ##### (b) random distirubtion을 가정한 encoding
 
-모든 문자가 동일한 확률로 있다고 가정하면 각각의 문자의 information gain은 $$log_2 6$$이 된다. 이를 통해 엔트로피 $$H$$를 구하게 되면
+모든 문자가 동일한 확률로 있다고 가정하면 각각의 문자의 Information Gain은 $$log_2 6$$이 된다. 이를 통해 엔트로피 $$H$$를 구하게 되면
 
 $$
 H = {2 \over 4} \cdot \log_2 6 + {4 \over 8} \cdot \log_2 6 = \log_2 6
@@ -161,15 +159,15 @@ $$
 
 2.75로 가장 높은 것을 알 수 있다.
 
-## Entropy with Continuous variable
+## Entropy of Continuous Variable: Differential Entropy
 
-지금까지는 discrete distribution을 가정했었다. 하지만 이를 continuous distribution에 곧바로 적용하는 것에는 문제가 있다. 왜냐하면 continuous distribution에서는 개별 사건의 발생 확률이 0이기 때문이다. 이를 위해 여러 개의 bin으로 나누어 discrete distribution과 유사하게 접근하는 방법이 있다. bin의 크기를 $$\Delta$$로 가정하면 continuous distribution 또한 다음과 같이 표현이 가능하다.
+지금까지는 Discrete Distribution을 가정했었다. 하지만 이를 Continuous Distribution에 곧바로 적용하는 것에는 문제가 있다. 왜냐하면 Continuous Distribution에서는 개별 사건의 발생 확률이 0이기 때문이다. 이를 위해 여러 개의 bin으로 나누어 Discrete Distribution과 유사하게 접근하는 방법이 있다. bin의 크기를 $$\Delta$$로 가정하면 Continuous Distribution 또한 다음과 같이 표현이 가능하다.
 
 $$
 \int_{i\Delta}^{(i+1)\Delta} p(x) dx = p(x_i)\Delta
 $$
 
-이를 discrete distribution의 entropy를 구하는 수식에 적용하면 다음과 같이 수식을 전개할 수 있다.
+이를 Discrete Distribution의 entropy를 구하는 수식에 적용하면 다음과 같이 수식을 전개할 수 있다.
 
 $$
 \eqalign{
@@ -180,7 +178,7 @@ $$
 }
 $$
 
-continuous random variable을 가정하였기 때문에 수식 마지막 줄에서  $$\Delta$$를 0에 수렴하도록 하고 있다. 하지만 이 경우 문제가 발생하는데 두 번째 항 $$\lim_{\Delta \rightarrow 0} \log \Delta$$이 무한으로 발산한다는 점이다. 이러한 점 때문에 continuous distribution에서는 두 번째 항을 생략하고 첫 번째 항으로만 엔트로피를 구하게 되는데, 이를 **differential entropy**라고 한다.
+Continuous Random Variable을 가정하였기 때문에 수식 마지막 줄에서  $$\Delta$$를 0에 수렴하도록 하고 있다. 하지만 이 경우 문제가 발생하는데 두 번째 항 $$\lim_{\Delta \rightarrow 0} \log \Delta$$이 무한으로 발산한다는 점이다. 이러한 점 때문에 Continuous Distribution에서는 두 번째 항을 생략하고 첫 번째 항으로만 엔트로피를 구하게 되는데, 이를 **Differential Entropy**라고 한다.
 
 $$
 \eqalign{
@@ -259,7 +257,7 @@ $$
 
 이 되는데, 이러한 $$H(P,Q)$$를 **cross entropy**라고 한다. 위의 식에서도 알 수 있듯이 cross entropy는 두 분포 간의 KLD 값이 크면 클수록, 즉 두 분포의 차이가 크면 클수록 그 값이 커진다는 특성을 가진다.
 
-#### 손실함수로서 Cross entropy: Negative Log Likelihood
+#### Cross entropy as Loss Function: Negative Log Likelihood
 
 만약 $$p(x)$$를 고정된 데이터셋 $$(x_1, x_2, ... x_N)$$의 분포라 하고 $$q(x \lvert \theta)$$를 파라미터 $$\theta$$를 갖는 모델이 예측하는 데이터셋의 분포라고 한다면 모델의 학습 방향은 $$\theta$$를 업데이트하여 두 분포 $$p, q$$간의 차이를 줄이는 것이 된다. 이때 두 분포 간의 차이를 다음과 같이 쿨백 라이블러 발산 식으로 표현할 수 있다.
 

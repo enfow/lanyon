@@ -65,19 +65,19 @@ $$
 
 이때 평균을 의미하는 $$\mu$$는 central peak의 위치를 나타낸다.
 
-### 가우시안 분포의 장점
+### Characteristics of Gaussian
 
 가우시안 분포는 미지의 확률 분포를 가정할 때 많이 사용된다. 이는 다음과 같은 가우시안 분포의 특성 때문이다.
 
-##### 1. 많은 확률 분포가 가우시안 확률 분포와 유사하다
+##### 1. Many Probability Distributions are similar to Gaussian Distributions
 
 **중심 극한의 정리**(central limit theorem)에 따르면 여러 확률 변수의 합은 정규 분포에 근사한다고 한다.
 
-##### 2. 불확실성의 수준이 높다
+##### 2. Have High Uncertainty
 
 가우시안 분포는 동일한 variance를 가지는 다른 확률 분포보다 불확실성의 수준이 높다. 이는 maximum entropy를 가진다고도 표현된다. 이러한 점은 모델링의 대상이 되는 확률 분포를 정확히 알지 못할 때 가우시안 분포를 대신 사용하는 것이 좋은 이유가 된다.
 
-### 표준 정규 분포
+### Standard Normal Distribution
 
 가우시안 분포 중에서도 평균이 0, 분산이 1인 경우를 **표준 정규 분포**(standard normal distribution)라고 한다.
 
