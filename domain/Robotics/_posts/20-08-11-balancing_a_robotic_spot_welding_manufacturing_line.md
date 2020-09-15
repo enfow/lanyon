@@ -2,7 +2,7 @@
 layout: post
 title: "Balancing a Robotic Spot Welding Manufacturing Line: an Industrial Case Study"
 category_num : 1
-keyword: '[Automobile/Robotics]'
+keyword: '[Industrial Robot]'
 ---
 
 # 논문 제목 : Balancing a Robotic Spot Welding Manufacturing Line: an Industrial Case Study

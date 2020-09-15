@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Chip Placement with Deep Reinforcement Learning
-category_num : 11
-keyword: '[Semiconductor]'
+category_num : 1
+keyword: '[Placement]'
 ---
 
 # 논문 제목 : Chip Placement with Deep Reinforcement Learning

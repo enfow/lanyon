@@ -1,8 +1,8 @@
 ---
 layout: post
 title: VLSI Cell Placement Technique
-category_num : 12
-keyword: '[Semiconductor]'
+category_num : 2
+keyword: '[Placement]'
 ---
 
 # 논문 제목 : VLSI Cell Placement Technique
