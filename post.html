@@ -67,6 +67,33 @@ sidebar_num : 1
 
   <hr style="margin-top: 0em; margin-bottom: 3em;"/>
 
+  <!-- domain -->
+  <div class="cats-expo-section">
+    {% for dom in site.domain_category_list %}
+      {% for cat in site.categories %}
+        {% if cat[0] == dom %}
+          <div class = "single-category">
+            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <ul class="post_in_category">
+            {% assign category = cat[1] | sort: "category_num" %}
+            {% for post in category %}
+              <div><h3 class="single-post-in-category-title">
+                <a class="single-post-in-category-title-on-index"  href="{{ site.baseurl }}{{ post.url }}">
+                  <small>{{post.keyword}}</small>
+                  {{ post.title }}
+                  <small class="single-post-in-category-title-on-index_subtitle">{{post.subtitle}}</small>
+                </a>
+              </h3></div>
+            {% endfor %}
+            </ul><br>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </div>
+
+  <hr style="margin-top: 0em; margin-bottom: 3em;"/>
+
   <!-- developmemt -->
   <div class="cats-expo-section">
     {% for dev in site.development_category_list %}
