@@ -115,7 +115,7 @@ Matching Net의 목표는 한 번도 본적 없는 Task가 Test Time에 들어�
 
 <img src="{{site.image_url}}/paper-review/support_set_batch_set.png" style="width:35em; display: block; margin: 0px auto;">
 
-첫 번째 에피소드에는 강아지의 종류를 분류하고, 그에 따라 loss를 계산한 뒤 업데이트하고, 독같은 방식으로 두 번째 에피소드에는 고양이를 분류하고 학습하는 식으로 Training 하는 것을 **Episode Training** 이라고 한다. 전체 Task $$T$$에서 추출한 Dataset $$L$$이 있고, 여기서 다시 Support Set $$S$$와 Batch Set $$B$$를 추출한다면 다음과 같이 업데이트 식을 정의할 수 있다.
+첫 번째 에피소드에는 강아지의 종류를 입력으로 받고 그에 따라 loss를 계산한 뒤 모델을 학습하고, 똑같은 방식으로 두 번째 에피소드에는 고양이를 분류하고 학습하는 식으로 Training 하는 것을 **Episode Training** 이라고 한다. 전체 Task $$T$$에서 추출한 Dataset $$L$$이 있고, 여기서 다시 Support Set $$S$$와 Batch Set $$B$$를 추출한다면 다음과 같이 업데이트 식을 정의할 수 있다.
 
 $$
 \theta = \arg \max_\theta E_{L \backsim T} [ E_{S \backsim L, B \backsim L} [\Sigma_{(x,y) \in B} \log P_\theta (y \lvert x, S)] ]
