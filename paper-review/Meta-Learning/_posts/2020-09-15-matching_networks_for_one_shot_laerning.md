@@ -16,11 +16,11 @@ keyword: '[Matching Network]'
 
 - 데이터가 적은 상황에서도 충분히 좋은 성능을 낼 수 있도록 Matching Net Model과 Episode Training을 제안한다.
 - **Matching Net**은 LSTM을 통해 Support Set 전체 데이터의 정보를 반영하도록 하고, Attention Mechanism을 적용해 Non-Parametric한 특성을 가지도록 하고 있다. 이를 통해 적은 데이터로도 Fine Tuning 없이 유사한 Task대해 어느 정도 성능이 확보된다.
-- **Episode Training** 이란 Task에서 Batch Set과 Support Set을 샘플링하여 학습 데이터셋을 여러 개의 Episode로 구성하고 이에 따라 학습을 진행하는 Meta Learning의 학습 방법을 말한다.
+- **Episode Training** 이란 Batch Set과 Support Set으로 학습 데이터셋을 나누어 구성하고, 각각을 Episode 단위로 하여 학습을 진행하는 Meta Learning의 학습 방법을 말한다.
 
 ## Issue of Deep learning
 
-딥러닝의 가장 큰 문제 중 하나는 모델을 학습하는 데에 매우 많은 데이터가 필요하다는 것이다. 이러한 문제의 원인과 관련하여 논문에서는 딥러닝 모델이 가지는 Parametric한 특성으로 인해 대상을 느리게 학습하기 때문이라고 지적한다. 실제로 딥러닝 이외에 머신러닝의 다른 Non-Parametric 방법론들에서는 딥러닝에 있어 중요한 문제이자 한계로 지적받는 Catastrophic Forgetting 없이도 빠르게 학습이 이뤄진다. 이러한 점에서 논문에서는 Parametric과 Non-Parametric 두 가지 특성을 함께 가지도록 하여 새로운 것을 빠르게 학습하면서도 다른 일반적인 example들에 대해서도 어느 정도의 성능을 유지할 수 있는 모델 **Matching Nets**와 그에 맞는 학습 방법론 **Episode Training**을 제안하고 있다.
+딥러닝의 가장 큰 문제 중 하나는 모델을 학습하는 데에 매우 많은 데이터가 필요하다는 것이다. 이러한 문제의 원인과 관련하여 논문에서는 딥러닝 모델이 가지는 Parametric한 특성으로 인해 대상을 느리게 학습하기 때문이라고 지적한다. 실제로 딥러닝 이외에 머신러닝의 다른 Non-Parametric 방법론들에서는 딥러닝에 있어 중요한 문제이자 한계로 지적받는 Catastrophic Forgetting 없이도 빠르게 학습이 이뤄진다. 이러한 점에서 논문에서는 Non-Parametric 특성을 가지는 모델을 사용하여 새로운 것을 빠르게 학습하면서도 다른 일반적인 example들에 대해서도 어느 정도의 성능을 유지할 수 있는 모델 **Matching Nets**와 그에 맞는 학습 방법론 **Episode Training**을 제안하고 있다.
 
 ## Matching Net
 
