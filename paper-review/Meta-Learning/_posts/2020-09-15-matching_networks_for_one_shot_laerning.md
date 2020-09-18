@@ -15,18 +15,18 @@ keyword: '[Matching Network]'
 ## Summary
 
 - 데이터가 적은 상황에서도 충분히 좋은 성능을 낼 수 있도록 Matching Net Model과 Episode Training을 제안한다.
-- **Matching Net**은 LSTM을 통해 Support Set의 특성을 고루 반영하도록 하고, Attention Mechanism을 적용해 Non-Parametric한 특성을 가지도록 하고 있다. 이를 통해 적은 데이터로도 Fine Tuning 없이 유사한 Task대해 어느 정도 성능이 확보된다.
-- **Episode Training** 이란 Task에서 Batch Set과 Support Set을 샘플링하여 학습 데이터셋을 Episode 단위로 결정하고, Episode 단위로 학습을 진행하는 Meta Learning의 학습 방법을 말한다.
+- **Matching Net**은 LSTM을 통해 Support Set 전체 데이터의 정보를 반영하도록 하고, Attention Mechanism을 적용해 Non-Parametric한 특성을 가지도록 하고 있다. 이를 통해 적은 데이터로도 Fine Tuning 없이 유사한 Task대해 어느 정도 성능이 확보된다.
+- **Episode Training** 이란 Batch Set과 Support Set으로 학습 데이터셋을 나누어 구성하고, 각각을 Episode 단위로 하여 학습을 진행하는 Meta Learning의 학습 방법을 말한다.
 
 ## Issue of Deep learning
 
-딥러닝의 가장 큰 문제 중 하나는 모델을 학습하는 데에 매우 많은 데이터가 필요하다는 것이다. 이러한 문제의 원인과 관련하여 논문에서는 딥러닝 모델이 가지는 Parametric한 특성으로 인해 대상을 느리게 학습하기 때문이라고 지적한다. 실제로 딥러닝 이외에 머신러닝의 다른 Non-Parametric 방법론들에서는 딥러닝에 있어 중요한 문제이자 한계로 지적받는 Catastrophic Forgetting 없이도 빠르게 학습이 이뤄진다. 이러한 점에서 논문에서는 Parametric과 Non-Parametric 두 가지 특성을 함께 가지도록 하여 새로운 것을 빠르게 학습하면서도 다른 일반적인 example들에 대해서도 어느 정도의 성능을 유지할 수 있는 모델 **Matching Nets**와 그에 맞는 학습 방법론 **Episode Training**을 제안하고 있다.
+딥러닝의 가장 큰 문제 중 하나는 모델을 학습하는 데에 매우 많은 데이터가 필요하다는 것이다. 이러한 문제의 원인과 관련하여 논문에서는 딥러닝 모델이 가지는 Parametric한 특성으로 인해 대상을 느리게 학습하기 때문이라고 지적한다. 실제로 딥러닝 이외에 머신러닝의 다른 Non-Parametric 방법론들에서는 딥러닝에 있어 중요한 문제이자 한계로 지적받는 Catastrophic Forgetting 없이도 빠르게 학습이 이뤄진다. 이러한 점에서 논문에서는 Non-Parametric 특성을 가지는 모델을 사용하여 새로운 것을 빠르게 학습하면서도 다른 일반적인 example들에 대해서도 어느 정도의 성능을 유지할 수 있는 모델 **Matching Nets**와 그에 맞는 학습 방법론 **Episode Training**을 제안하고 있다.
 
 ## Matching Net
 
-Matching Net은 Task 자체를 학습하는 Meta-Laerning 모델이다. 일반적인 분류문제에서 모델은 (개, 고양이, 거북이, 닭, 코끼리, 양, 돼지, 말)로 이뤄진 데이터셋을 분류하는 하나의 Task를 학습하게 된다. 이 경우 Test에서 Training Set에 포함되어 있는 동물들에 대해서는 정확하게 분류할 가능성이 높지만 그렇지 않은 아르마딜로나 티라노 사우루스는 오분류할 가능성이 매우 높다. 그런데 (개, 고양이) 데이터 셋과 함께 (거북이, 닭), (코끼리, 양), (돼지, 말) 등을 함께 분류하도록 하여 특정 데이터를 분류하는 것이 아닌 '분류' 그 자체를 모델이 학습하도록 하는 것도 가능한데, 이와 같이 하나의 Task가 아닌 여러 개의 Task를 Meta적으로 학습한다고 하여 이와 같은 방법에 대한 연구 분야를 **Meta-Learning**이라고 한다.
+Matching Net은 Task 자체를 학습하는 Meta-Laerning 모델이다. 일반적인 분류문제에서 모델은 (개, 고양이, 거북이, 닭, 코끼리, 양, 돼지, 말)로 이뤄진 데이터셋을 분류하는 하나의 Task를 학습하게 된다. 이 경우 Test에서 Training Set에 포함되어 있는 동물들에 대해서는 정확하게 분류할 가능성이 높지만 그렇지 않은 아르마딜로나 티라노사우루스는 오분류할 가능성이 매우 높다. 이러한 문제를 (개, 고양이), (거북이, 닭), (코끼리, 양), (돼지, 말) 등으로 나누어 여러 개의 분류 문제를 만들고, 특정 데이터를 분류하는 것이 아닌 '분류' 그 자체를 모델이 학습하도록 하는 것도 가능하다. 이와 같이 하나의 Task가 아닌 여러 개의 Task를 Meta적으로 학습한다고 하여 이와 같은 방법에 대한 연구 분야를 **Meta-Learning**이라고 한다.
 
-논문의 제목에도 나오는 **One-Shot Learning**, 혹은 **Few-Shot Learing**이란 각 Task를 학습하는데에 사용되는 Training Set(Support Set)의 개수를 의미한다. 위의 예시대로라면 개, 고양이, 거북이, 닭, 코끼리, 양, 돼지, 말 각각 1장씩으로 Training Set을 구성한다면 One-Shot, 하나보다는 많지만 적은 숫자로 구성하게 되면 Few-Shot Learning이라고 부르는 식이다. 참고로 [위키](<https://en.wikipedia.org/wiki/One-shot_learning>)에서는 다음과 같이 One-Shot Learning을 정의하고 있다.
+논문의 제목에도 나오는 **One-Shot Learning**, 혹은 **Few-Shot Learing**이란 각 Task를 학습하는데에 사용되는 Training Set(Support Set)의 개수를 의미한다. 위의 예시대로라면 개, 고양이, 거북이, 닭, 코끼리, 양, 돼지, 말 각각 1장씩으로 Training Set을 구성한다면 One-Shot Learning, 하나보다는 많지만 적은 숫자로 구성하게 되면 Few-Shot Learning이라고 부르는 식이다. 참고로 [위키](<https://en.wikipedia.org/wiki/One-shot_learning>)에서는 다음과 같이 One-Shot Learning을 정의하고 있다.
 
 - One-shot learning aims to learn information about object categories from one, or only a few, training samples/images.
 

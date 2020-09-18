@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Chip Placement with Deep Reinforcement Learning
-category_num : 1
+category_num : 11
 keyword: '[Placement]'
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: VLSI Cell Placement Technique
-category_num : 2
+category_num : 12
 keyword: '[Placement]'
 ---
 
