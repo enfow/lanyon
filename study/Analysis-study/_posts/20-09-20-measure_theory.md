@@ -11,7 +11,7 @@ category_num : 1
 
 ## Measurable Space
 
-어떤 집합(공간) $$X$$와 그에 대한 멱집합(family of subsets of $$X$$)을 $$\mathcal P(X)$$라고 할 때, $$X$$에 대한 **$$\sigma$$-Algebra**는 다음 세 가지 조건을 만족하는 $$\mathcal M$$으로 정의된다.
+어떤 집합(공간) $$X$$와 그에 대한 멱집합(family of subsets of $$X$$)을 $$\mathcal P(X)$$라고 할 때, $$X$$에 대한 **$$\sigma$$-Algebra**는 다음 세 가지 조건을 만족하는 $$\mathcal M \subset \mathcal P(X)$$으로 정의된다.
 
 $$
 \eqalign{
