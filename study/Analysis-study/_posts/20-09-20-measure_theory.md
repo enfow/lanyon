@@ -11,23 +11,23 @@ category_num : 1
 
 ## Measurable Space
 
-어떤 집합 $$X$$와 그에 대한 멱집합(family of subsets of $$X$$) $$\mathcal M$$이 있다고 할 때, $$X$$에 대한 **$$\sigma$$-Algebra**는 다음 세 가지 조건을 만족하는 경우로 정의된다.
+어떤 집합(공간) $$X$$와 그에 대한 멱집합(family of subsets of $$X$$)을 $$\mathcal P(X)$$라고 할 때, $$X$$에 대한 **$$\sigma$$-Algebra**는 다음 세 가지 조건을 만족하는 $$\mathcal M$$으로 정의된다.
 
 $$
 \eqalign{
-& \ 1. \emptyset \in \mathcal M, X \in M\\
-& \ 2. \text{If } Y \in \mathcal M, \text{ then, the complement set } X - Y \text{ is also in } M\\
+& \ 1. \emptyset \in \mathcal M, X \in \mathcal M\\
+& \ 2. \text{If } Y \in \mathcal M, \text{ then, the complement set } X - Y \text{ is also in } \mathcal M\\
 & \ 3. \text{If } (Y_n) \text{ is any countable family of subsets } Y_n \in \mathcal M, \text{ then } \cup_{n \geq 1} Y_n \in \mathcal M \text{ and } \cap_{n \geq 1} Y_n \in \mathcal M
 }
 $$
 
-이때 어떤 집합 $$Y \in \mathcal M$$인 경우를 두고 $$Y$$는 $$M$$에 대해 측정 가능하다(is measurable for $$\mathcal M$$)이라고 한다. 그리고 $$(X, \mathcal M)$$을 **Measurable Space**라고 부른다.
+이때 어떤 집합 $$Y \in \mathcal M$$인 경우를 두고 $$Y$$는 $$\mathcal M$$에 대해 측정 가능하다(is measurable for $$\mathcal M$$)라고 표현한다. 그리고 $$(X, \mathcal M)$$을 **Measurable Space**라고 부른다. 
 
-이를 이용하여 **Measurable Function**도 정의할 수 있다. 두 Measurable Space $$(X, \mathcal M), (X', \mathcal M')$$가 있다고 할 때, $$Y \in \mathcal M'$$에 있어 $$f^{-1}(Y) = \{ x \in X \lvert f(x) \text{ in } Y \}$$가 $$\mathcal M$$에 속하면 $$f : X \rightarrow X'$$는 $$\mathcal M$$과 $$\mathcal M'$$에 대해 Measurable하다고 한다.
+이를 이용하여 **Measurable Function**도 정의할 수 있는데, 두 Measurable Space $$(X, \mathcal M), (X', \mathcal M')$$가 있을 때 $$Y \in \mathcal M'$$에 있어 $$f^{-1}(Y) = \{ x \in X \lvert f(x) \text{ in } Y \}$$가 $$\mathcal M$$에 속하면 함수 $$f : X \rightarrow X'$$는 $$\mathcal M$$과 $$\mathcal M'$$에 대해 Measurable하다고 한다.
 
 ## Borel $$\sigma$$-Algebra
 
-어떤 집합 $$X$$와 그에 대한 어떤 부분집합들의 집합 $$A$$가 있다고 할 때, $$A$$를 포함하는 가장 작은 $$\sigma$$-Algebra를 $$A$$에 의해 만들어진 $$\sigma$$-Algebra라고 하고(**generated $$\sigma$$-Algebra**) $$\sigma (A)$$로 표기한다. 참고로 $$X$$에 대해 가장 큰 $$\sigma$$-Algebra는 위에서 언급한 $$X$$의 멱집합 $$M$$이 된다.
+어떤 집합 $$X$$와 그에 대한 어떤 부분집합들의 집합 $$A$$가 있다고 할 때, $$A$$를 포함하는 가장 작은 $$\sigma$$-Algebra를 $$A$$에 의해 만들어진 $$\sigma$$-Algebra라고 하고(**generated $$\sigma$$-Algebra**) $$\sigma (A)$$로 표기한다. 참고로 $$X$$에 대해 가장 큰 $$\sigma$$-Algebra는 위에서 언급한 $$X$$의 멱집합 $$\mathcal P(X)$$가 된다.
 
 **Borel $$\sigma$$-Algebra**는 위상공간(Topology Space) $$(X, \mathcal T)$$에서 $$\mathcal T$$에 의해 만들어지는 $$\sigma$$-Algebra라고 할 수 있으며, $$\mathcal B_X$$로 표기한다. Borel Set이라는 표현도 자주 나오는데, Borel Set이란 Borel $$\sigma$$-Algebra의 원소를 말한다([위키](<https://ko.wikipedia.org/wiki/%EB%B3%B4%EB%A0%90_%EC%A7%91%ED%95%A9>)). 참고로 $$\mathcal T$$는 위상공간의 정의상 $$X$$의 멱집합의 부분집합이므로 위에서 언급한 $$A$$를 대신할 수 있다.
 
@@ -85,7 +85,7 @@ $$
 \int_Y s(x) d \mu (x) = \Sigma_{i=1}^n \alpha_i \mu (Y_i \cap Y) \in [0, +\infty]
 $$
 
-우변의 식을 간단하게 풀이해보면, $$s$$의 값이 $$\alpha_i$$인 경우에 속하는 $$Y$$를 $$Y \cap Y_i$$로 정의하고 그 크기 $$\mu(Y \cap Y_i)$$만큼 $$\alpha_i$$에 대해 가중 평균한 것으로 Integral로 이해할 수 있다. 위의 식은 아래와 같이 다양한 방식으로 보다 간단하게 나타내기도 한다.
+우변의 식을 간단하게 풀이해보면, $$s$$의 값이 $$\alpha_i$$인 경우에 속하는 $$Y$$를 $$Y \cap Y_i$$로 정의하고 그 크기 $$\mu(Y \cap Y_i)$$만큼 $$\alpha_i$$에 대해 가중 평균한 것으로 이해할 수 있다. 위의 식은 아래와 같이 다양한 방식으로 보다 간단하게 나타내기도 한다.
 
 $$
 \int_Y s d \mu, \qquad \int_Y s(x) d \mu, \qquad \int_Y s \mu,
