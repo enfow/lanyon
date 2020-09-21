@@ -43,7 +43,7 @@ $$
 | $$q(x_{t+1} \lvert x_t, a_t)$$ | Transition Distribution |
 | $$H$$ | Episode Length |
 
-Supervised Learning 뿐만 아니라 Reinforcement Leanring을 포함하여 다양한 경우를 고려하기 위해 Transition Distribution을 포함하고 있다. i.i.d Condition을 가정하는 Supervised Learning이라면 $$H=1$$이 되며, Initial Observation Distribution은 데이터의 분포가 된다. 이 경우 Transition Distribution은 사용하지 않는다.
+Supervised Learning 뿐만 아니라 Reinforcement Leanring 등 다양한 경우를 고려하기 위해 Transition Distribution을 포함하고 있다. i.i.d Condition을 가정하는 Supervised Learning이라면 $$H=1$$이 되며, Initial Observation Distribution은 데이터의 분포가 된다. 이 경우 Transition Distribution은 사용하지 않는다.
 
 Task가 위와 같이 정의된다면 학습하고자 하는 Task들의 분포는 $$p(T)$$로 정의할 수 있다. 그리고 학습 대상이 되는 개별 Task는 $$T_i \backsim p(T)$$가 된다. 만약 K-Shot Learning이라고 한다면 $$T_i$$에서 정의하는 $$q_i$$에서 K개의 Sample을 추출하고, $$L_{T_i}$$를 사용하여 Model을 업데이트하게 된다.
 
