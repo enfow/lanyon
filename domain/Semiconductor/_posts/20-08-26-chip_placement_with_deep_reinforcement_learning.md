@@ -14,9 +14,9 @@ keyword: '[Placement]'
 
 ## Summary
 
-- 반도체 설계에 있어 중요한 단계 중 하나인 Chip Placement 문제를 강화학습으로 해결하는 논문으로, 현재 사용되는 방법보다 더 빠르고 좋은 방법을 찾아낼 수 있다고 한다.
-- 도메인 지식에 근거하여 Reward 및 Constraint를 Wire Length, Placement Density, Routing Congestion을 기준으로 설정하며, 이를 통해 PPA(Power, Performance, Area)를 기준으로 최적 배치를 달성하는 것을 목표로 한다.
-- 네 가지 유형의 정보를 State로 받고 있으며, 각각의 의미를 정확히 파악하기 위해 GNN등을 사용한다. 또한 넓은 State Space에 대응하기 위해 Transfer Laerning을 적용하고 있다.
+- 반도체 설계에 있어 중요한 단계 중 하나인 Chip Placement 문제를 강화학습으로 해결하는 논문으로, 현재 업계에서 사용되는 방법보다 더 빠르고 좋은 결과물을 도출할 수 있다고 한다.
+- 도메인 지식에 근거하여 Reward 및 Constraint를 Wire Length, Placement Density, Routing Congestion로 설정하며, 이를 통해 PPA(Power, Performance, Area)를 기준으로 최적 배치를 달성하는 것을 목표로 한다.
+- 네 가지 유형의 정보를 State로 받고 있으며, 각각의 의미를 정확히 파악하기 위해 논문에서 제안하는 Graph Neural Network를 사용한다. 또한 넓은 State Space에 대응하기 위해 Transfer Laerning을 적용하고 있다.
 
 ## Keywords
 
@@ -58,7 +58,7 @@ SRAM, 레지스터 등과 같이 고유의 기능을 가지고 있으면서 기�
 
 ### What is Good Placement Design?
 
-논문에서 Chip Placement와 관련하여 중요하게 생각하는 지표는 다음 세 가지이다.
+반도체 설계에서 좋은 Placement Design이란 Power, Performance, Area 세 가지 모두에 대해 최적화를 달성한 Design이라고 할 수 있다. 즉 전력 소모가 적을수록, 성능이 높을수록(클럭 등), 배치 면적이 좁을 수록 좋다. 그런데 이 세 가지를 매번 계산하는 것은 시간이 오래 걸리는 등 비용이 높기 때문에 효율성을 위해 설계 과정에서 상대적으로 쉽고 빠르게 계산할 수 있는 지표들로 대신하곤 한다. 논문에서는 이러한 지표들로 다음 세 가지를 제시하고 있으며, 알고리즘 또한 아래 세 가지를 기준으로 학습한다.
 
 #### 1. WireLength
 
@@ -135,11 +135,11 @@ $$
 
 #### 1. WireLength
 
-WireLength를 빠르게 계산하기 위해 Shahookar & Mazumder가 제시한 Half-Perimenter WireLength(HPWL)을 사용한다. HPWL은 Netlist에 포함되어 있는 모든 노드들의 경계 상자의 절반으로 정의된다. ***조금 더 찾아보기**
+WireLength를 빠르게 계산하기 위해 Shahookar & Mazumder가 제시한 Half-Perimenter WireLength(HPWL)을 사용한다. HPWL은 Netlist에 포함되어 있는 모든 노드들의 경계 상자의 절반으로 정의된다.
 
 #### 2. Routing Congestion
 
-Routing Net은 각 Grid Cell의 Routing Resoure를 점유하게 된다. 논문에서는 Routing Congestion를 계산하기 위해 개별 Grid Cell의 수평/수직 할당량을 추적했고, 이 과정에서 $$5 \times 1$$ Convolution filter를 수평/수직 방향으로 적용했다고 한다. 또한 Routing이 모두 완료된 이후에는 MAPLE의 ABA10이라는 메트릭을 적용하여 상위 10%의 혼잡도의 평균을 최종적인 혼잡도 계산에 사용했다고 한다. ***조금 더 찾아보기**
+Routing Net은 각 Grid Cell의 Routing Resoure를 점유하게 된다. 논문에서는 Routing Congestion를 계산하기 위해 개별 Grid Cell의 수평/수직 할당량을 추적했고, 이 과정에서 $$5 \times 1$$ Convolution filter를 수평/수직 방향으로 적용했다고 한다. 또한 Routing이 모두 완료된 이후에는 MAPLE의 ABA10이라는 메트릭을 적용하여 상위 10%의 혼잡도의 평균을 최종적인 혼잡도 계산에 사용했다고 한다.
 
 #### 3. Placement Density
 
@@ -179,30 +179,30 @@ Macro를 어떠한 순서대로 배치할 것인지 또한 중요하다. 이와 
 
 ## Feature Embeddings: Transfer Learning with Supervised Model
 
-강화학습 알고리즘을 단순화한다면 어떤 state $$s$$를 보고 가장 탁월한 action $$a$$를 선택하는 것이라고 할 수 있으며, 논문에서 다루고 있는 Chip Placement 문제 또한 마찬가지이다. 이를 잘하기 위해서는 현재 내가 처해있는 상황, state $$s$$를 정확하게 이해하는 것이 중요하다. 논문의 표현을 빌리자면 **Representation of State Space**에 대해 모델이 학습을 해야 한다. 하지만 Chip Placement 문제에서는 다음 두 가지 이유 때문에 이를 달성하는 것이 쉽지 않다.
+강화학습 알고리즘을 단순화한다면 어떤 state $$s$$를 보고 가장 좋을 것으로 기대되는 action $$a$$를 선택하는 것이다. 논문에서 다루고 있는 Chip Placement 문제 또한 Action이 Grid 상의 한 점을 선택하는 것일 뿐, 좋은 Action을 선택하기 위해서는 현재 Agent가 처해있는 상황에 대한 정보인 state $$s$$를 정확하게 이해하는 것이 중요하다. 논문의 표현을 빌리자면 **Representation of State Space**에 대해 모델이 학습을 해야 한다. 하지만 Chip Placement 문제에서는 다음 두 가지 이유 때문에 이를 달성하는 것이 쉽지 않다.
 
-- 배치의 경우의 수가 너무 많다.
-- Netlist, Grid에 따라 너무 많은 것이 달라진다.
+- Netlist와 Grid의 조합에 따라 너무 많은 것이 달라진다.
+- 하나의 Netlist, Grid Setting에 대해 가능한 배치의 경우의 수가 많다.
 
-Policy Network가 정확하게 상황을 판단하기 위해서는 `Feature Embeddings`에서 본 적이 없는 State에 대해서도 충분한 의미를 추출할 수 있어야 한다. 이를 위해 논문에서는 Transfer Learning, 즉 Feature Embeddings를 미리 학습시키고 이를 전이(Transfer)하는 방법을 사용한다.
+Policy Network가 정확하게 State를 판단하기 위해서는 `Feature Embeddings`에서 본 적이 없는 State에 대해서도 충분한 의미를 추출할 수 있어야 한다. 이를 위해 논문에서는 Transfer Learning을 도입하여 Feature Embeddings를 다양한 Netlist, Grid, Placement에 대해 미리 학습시키고 이를 전이하는 방법을 사용한다.
 
 ### Dataset for Supervised Model
 
-구체적으로 논문에서는 State를 받아 특정 값의 Label을 예측하는 Supervised Model을 사용한다. Supervised Model이므로 각각의 Chip Place State과 이에 매치되는 Reward로 구성된 Dataset을 확보해야 한다. 이를 위해 5개의 서로 다른 Netlist를 사용하여 2,000번의 배치를 수행하게 되는데 이 과정에서 다양한 데이터를 확보하기 위해 다음 세 가지를 적용했다고 한다.
+구체적으로 논문에서는 State를 받아 그에 따른 Reward를 예측하는 Supervised Model을 Pre-Training하는 방법으로 접근한다. Supervised Model이므로 각각의 Chip Placement State와 이에 매치되는 Reward로 구성된 Dataset을 확보해야 한다. 이를 위해 5개의 서로 다른 Netlist를 사용하여 2,000번의 배치를 수행하게 되는데 이 과정에서 다양한 Placement의 경우의 수를 확보하기 위해 다음 세 가지를 적용했다고 한다.
 
-- Policy Network가 초기상태일 때부터 학습이 되는 과정 상의 모든 Placement를 수집하여 질적으로 다양한 경우를 보게 한다.
-- Routing Congestion에 대한 제약을 없애 혼잡도가 높은 경우도 보게 한다.
+- 초기화된 Policy Network부터 학습이 되는 과정 상의 모든 Placement Result를 수집하여 질적으로 다양한 경우를 보게 한다.
+- Routing Congestion Weight $$\lambda$$를 0과 1사이의 값 중에서 다양하게 설정한다.
 - Seed를 랜덤으로 한다.
 
-그리고 각 Placement에 대한 Label은 Reward Function에서 언급한 것과 마찬가지로 WireLength와 Routing Congestion의 평균 제곱의 가중 합으로 구하게 된다.
+그리고 각 Placement Result에 대한 Label은 Reward Function에서 언급한 것과 마찬가지로 WireLength와 Routing Congestion의 가중 합으로 구하게 된다.
 
 ### Architecture of Feature Embeddings
 
-State의 특성을 추출하는 Feature Embedding는 다음과 같이 세 단계로 이뤄져 있다.
+State의 특성을 추출하는 Feature Embedding은 다음과 같이 세 단계로 이뤄져 있다.
 
-#### - Node Feature & Node Adjacency
+#### (1) Node Feature & Node Adjacency
 
-우선 전체 Netlist와 배치의 대상이 되는 Macro에 대해서는 **Graph Neural Network**를 사용한다.
+우선 전체 Netlist와 배치의 대상이 되는 Macro에 대해서는 다음과 같은 **Graph Neural Network**를 사용하여 의미를 추출한다.
 
 - 개별 Node의 타입, 폭, 높이, x-y 좌표값을 concat하여 Vector 형태로 표현한다.
 - Node Vector와 Node Adjacency Matrix를 사용하여 아래 수식을 따라 $$v, e$$를 반복적으로 업데이트한다.
@@ -219,7 +219,7 @@ $$
 
 이러한 과정을 통해 두 가지를 얻을 수 있는데, 하나는 Model 이미지에서 파란 색으로 표현되는 **Edge Embeddings**이고, 다른 하나는 빨간 색으로 되어있는 **Macro(Node) Embeddings**이다.
 
-#### - Feature Embeddings: Netlist MetaData
+#### (2) Feature Embeddings: Netlist MetaData
 
 Nelist MetaData는 다음과 같은 정보들로 구성되며 Fully Connected Network로 정보를 추출하게 된다.
 
@@ -228,7 +228,7 @@ Nelist MetaData는 다음과 같은 정보들로 구성되며 Fully Connected Ne
 - Chip Canvas Size
 - Number of Row and Columns of Grid
 
-#### - Concatnation
+#### (3) Concatnation
 
 Feature Embedding의 마지막 단계는 지금까지 언급한 Edge Embeddings, Macro Embeddings, Netlist MetaData Embeddings를 모두 Concat하여 **State Embedding**을 만드는 것이다. 이때 Edge Embeddings와 Macro Embeddings는 통째로 사용하지는 않고 Edge Embeddings의 경우 reduce mean한 결과값을, Macro Embeddings에서는 현재 Macro Id에 맞는 정보만을 사용한다.
 
