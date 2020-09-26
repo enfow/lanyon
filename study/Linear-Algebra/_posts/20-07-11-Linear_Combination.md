@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 2. Linear Combination
+title: Linear Combination
 category_num : 2
 ---
 

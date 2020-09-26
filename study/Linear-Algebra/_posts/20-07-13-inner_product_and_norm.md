@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 4. Inner Product and Norm
+title: Inner Product and Norm
 category_num : 4
 ---
 

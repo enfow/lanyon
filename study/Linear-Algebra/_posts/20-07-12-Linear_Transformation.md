@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 3. Linear Transformation
+title: Linear Transformation
 category_num : 3
 ---
 

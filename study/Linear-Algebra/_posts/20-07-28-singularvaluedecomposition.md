@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 8. Singular Value Decomposition
+title: Singular Value Decomposition
 category_num : 8
 ---
 

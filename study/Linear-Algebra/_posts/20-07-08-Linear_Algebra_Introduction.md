@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 1. Linear Algebra Introduction
+title: Linear Algebra Introduction
 category_num : 1
 ---
 

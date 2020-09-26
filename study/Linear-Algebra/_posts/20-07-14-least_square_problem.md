@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 5. Least Square Problem
+title: Least Square Problem
 category_num : 5
 ---
 

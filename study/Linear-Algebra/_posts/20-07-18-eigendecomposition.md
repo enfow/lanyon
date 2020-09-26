@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 7. EigenDecomposition
+title: EigenDecomposition
 category_num : 7
 ---
 

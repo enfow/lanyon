@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 6. Orthogonality
+title: Orthogonality
 category_num : 6
 ---
 
