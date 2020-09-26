@@ -7,9 +7,9 @@ category_num : 1
 # Linear Algebra Introduction
 
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book과 주재걸 교수님의 강의 인공지능을 위한 선형대수를 듣고 작성했습니다.
-- update at : 2020.07.08
+- update at : 2020.07.08, 2020.09.26
 
-## "Linear"
+## Linearity
 
 선형대수에서 선형(Linear)은 "직선의 형태"를 말한다. 즉 선형대수란 직선의 형태를 띄고 있는 것에 관한 대수학이라고 할 수 있다. 수학적으로 **선형성(linearity)**이란 어떤 함수 $$f$$가 임의의 원소 $$x, y, a$$에 대해 다음 두 조건을 만족하는 경우를 말한다.
 
@@ -97,6 +97,23 @@ $$
 
 참고로 scalar는 소문자, vector는 두꺼운 소문자, matrix는 대문자로 표기한다.
 
+## Properties of Vector
+
+구체적으로 벡터는 다음 8가지의 특성을 가저야 한다.
+
+$$
+\eqalign{
+&1. \qquad \boldsymbol{u} (\boldsymbol{v} + \boldsymbol{w}) = (\boldsymbol{u} + \boldsymbol{v}) + \boldsymbol{w} \\
+&2. \qquad \boldsymbol{u} + \boldsymbol{v} = \boldsymbol{v} + \boldsymbol{u} \\
+&3. \qquad \boldsymbol{u} + \boldsymbol{0} = \boldsymbol{u} \\
+&4. \qquad \boldsymbol{u} + (- \boldsymbol{u}) = \boldsymbol{0}\\
+&5. \qquad \alpha (\boldsymbol{u} + \boldsymbol{v}) = \alpha \boldsymbol{u} + \alpha \boldsymbol{v} \\
+&6. \qquad (\alpha + \beta) \boldsymbol{u} = \alpha \boldsymbol{u} + \beta \boldsymbol{u} \\
+&7. \qquad \alpha(\beta \boldsymbol{u}) = (\alpha \beta) \boldsymbol{u} \\
+&8. \qquad 1 \cdot \boldsymbol{u} = \boldsymbol{u}
+}
+$$
+
 ## Geometrical meaning of vector
 
 선형대수는 벡터 공간을 가정하고 그 속에서 이뤄지는 벡터간 연산에 관한 것이라고 할 수 있다. 벡터 공간이란 쉽게 말해 좌표계인데 2차원 공간에서 벡터 $$
@@ -108,7 +125,7 @@ $$
 \end{bmatrix}
 $$ 은 다음과 같이 크기와 방향을 가진 화살표로 표현된다.
 
-<img src="{{site.image_url}}/study/2d_vector.png" style="width:22em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/linear_algebra_intro_2d_vector.png" style="width:22em; display: block; margin: 0px auto;">
 
 3차원 공간에서도 가능하다. $$\begin{bmatrix}
 1\\1\\2
@@ -118,7 +135,7 @@ $$ 은 다음과 같이 크기와 방향을 가진 화살표로 표현된다.
 \end{bmatrix}
 $$의 경우 아래 그림과 같다. 4차원, 그 이상도 가능하지만 평면의 그림으로 그리기에는 어려움이 있다.
 
-<img src="{{site.image_url}}/study/3d_vector.png" style="width:25em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/linear_algebra_intro_3d_vector.png" style="width:30em; display: block; margin: 0px auto;">
 
 벡터 간의 덧셈이 이뤄지는 과정은 다음과 같이 평행사변형 꼴로 표현된다.
 
@@ -136,7 +153,7 @@ $$
 \end{bmatrix}
 $$
 
-<img src="{{site.image_url}}/study/2d_vector_add.png" style="width:22em; display: block; margin: 0px auto;">
+<img src="{{site.image_url}}/study/linear_algebra_intro_2d_vector_add.png" style="width:25em; display: block; margin: 0px auto;">
 
 ## Linear Equation
 
