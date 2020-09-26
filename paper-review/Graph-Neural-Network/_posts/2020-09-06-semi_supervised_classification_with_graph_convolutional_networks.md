@@ -44,7 +44,7 @@ $$
 
 ### Laplacian Matrix
 
-먼저 일반적으로 말하는 Laplacian Matrix $$L$$이란 다음과 같이 Degree Matrix에 Adjecency Matrux를 뺀 것이다. 참고로 Degree Matrix는 $$D_{ii} = \Sigma_j A_{ij}$$즉, Node $$i$$의 이웃 Node 갯수를 Diagonal Element로 갖는 Diagonal Matrix를 말한다.
+먼저 일반적으로 말하는 Laplacian Matrix $$L$$이란 다음과 같이 Degree Matrix에 Adjecency Matrux를 뺀 것이다. 참고로 Degree Matrix는 $$D_{ii} = \Sigma_j A_{ij}$$, 즉 Node $$i$$의 이웃 Node 갯수를 Diagonal Element로 갖는 Diagonal Matrix를 말한다.
 
 
 $$
