@@ -111,19 +111,70 @@ $$
 
 <img src="{{site.image_url}}/study/norm2.png" style="width:32em; display: block; margin: 0px auto;">
 
-### $$L^2$$ norm과 inner product
+## $$L^2$$ norm과 Inner Product
 
-어떤 두 벡터 간의 inner product는 다음과 같이 $$L^2$$ Norm과 벡터 간 각도의 $$\cos \theta$$를 곱하여 표현할 수 있다.
+어떤 두 벡터 간의 Inner Product는 다음과 같이 $$L^2$$ Norm과 벡터 간 각도의 $$\cos \theta$$를 곱하여 표현할 수 있다.
 
 $$
-x^T y = \| x \|_2 \| y \|_2 \cos \theta, \qquad \theta \ \text{is the angle between x and y}
+\boldsymbol{a}^T \boldsymbol{b} = \| \boldsymbol{a} \|_2 \| \boldsymbol{b} \|_2 \cos \theta, \qquad \theta \ \text{is the angle between } \boldsymbol{a} \text{ and } \boldsymbol{b}
 $$
 
-이때 cosine 함수는 아래와 같이 0도에서 1, 직각에서(90도, 270도)에서 0의 값을 가진다.
+이는 다음과 같이 증명이 가능하다.
+
+<img src="{{site.image_url}}/study/linear_algebra_dot_product_and_cosine.png" style="width:25em; display: block; margin: 0px auto;">
+
+
+$$
+\eqalign{
+&\eqalign{
+(\| \boldsymbol{b} - \boldsymbol{a} \|)^2 &= \| \boldsymbol{b} \|^2 \sin^2 \theta + (\| \boldsymbol{b} \| \cos \theta - \| \boldsymbol{a} \|)^2 \\
+&= \| \boldsymbol{b} \|^2 \sin^2 \theta + \| \boldsymbol{b} \|^2 \cos^2 \theta -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta + \| \boldsymbol{a} \|^2 \\
+&= \| \boldsymbol{b} \|^2 (\sin^2 \theta + \cos^2 \theta) -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta + \| \boldsymbol{a} \|^2 \\
+&= \| \boldsymbol{b} \|^2 -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta + \| \boldsymbol{a} \|^2 \qquad \qquad \because \sin^2 \theta + \cos^2 \theta = 1 \\
+} \\ \\
+&\eqalign{
+& \Rightarrow (\boldsymbol{b}-\boldsymbol{a}) \cdot (\boldsymbol{b}-\boldsymbol{a}) = \boldsymbol{a} \cdot \boldsymbol{a} + \boldsymbol{b} \cdot \boldsymbol{b} -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta \qquad \because \| \boldsymbol{a} \| = {\root \of {\boldsymbol{a} \cdot \boldsymbol{a}}}, \ \| \boldsymbol{a} \|^2 = {\boldsymbol{a} \cdot \boldsymbol{a}}\\
+& \Rightarrow \boldsymbol{a} \cdot \boldsymbol{a} -2 \boldsymbol{a} \cdot \boldsymbol{b} + \boldsymbol{b} \cdot \boldsymbol{b} = \boldsymbol{a} \cdot \boldsymbol{a} + \boldsymbol{b} \cdot \boldsymbol{b} -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta \\
+& \Rightarrow -2 \boldsymbol{a} \cdot \boldsymbol{b} = -2 \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta \\
+& \Rightarrow \boldsymbol{a} \cdot \boldsymbol{b} = \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta \\
+}
+}
+$$
+
+이때 $$\cos$$ 함수는 아래와 같이 0도에서 1, 직각에서(90도, 270도)에서 0의 값을 가진다.
 
 <img src="{{site.image_url}}/study/cos_x.png" style="width:25em; display: block; margin: 0px auto;">
 
 이를 통해 두 가지를 추론할 수 있다.
 
-- 두 벡터의 크기가 일정하다고 한다면 방향이 동일할 때 내적의 크기가 가장 커진다.
-- 두 벡터의 내적이 0이고, 두 벡터가 모두 영백터가 아니라면 두 벡터는 직교(orthogonal)한다.
+- 두 벡터의 크기가 일정하다면 방향이 동일할 때 내적의 크기가 가장 커진다.
+- 두 벡터의 내적이 0이고, 두 벡터가 모두 영백터가 아니라면 두 벡터는 **직교(orthogonal)**한다.
+
+## Cauchy-Schwarz Inequality
+
+위에서 확인한 식
+
+$$
+\boldsymbol{a} \cdot \boldsymbol{b} = \| \boldsymbol{a} \|_2 \| \boldsymbol{b} \|_2 \cos \theta
+$$
+
+를 통해 다음과 같은 부등식을 유도할 수 있다.
+
+$$
+\| \boldsymbol{a} \|^2 \| \boldsymbol{b} \|^2  \geq \lvert \boldsymbol{a} \cdot \boldsymbol{b} \rvert^2
+$$
+
+이를 **코시 슈바르츠 부등식(Cauchy-Schwarz Inequality)**이라고 한다. 이는 다음과 같이 증명이 가능하다.
+
+$$
+\eqalign{
+&\eqalign{
+\| \boldsymbol{a} \|^2 \| \boldsymbol{b} \|^2  &\geq \lvert \| \boldsymbol{a} \| \| \boldsymbol{b} \| \cos \theta \rvert^2\\
+&= \| \boldsymbol{a} \|^2 \| \boldsymbol{b} \|^2 \cos^2 \theta\\
+}\\
+& \Rightarrow 1 \geq \cos^2 \theta \qquad \qquad (\because \| \boldsymbol{a} \|^2, \| \boldsymbol{b} \|^2 > 0) \\
+& \Rightarrow 1 \geq \lvert \cos \theta \rvert
+}
+$$
+
+$$\cos$$ 함수는 항상 1보다 작거나 같으므로 성립한다는 것을 알 수 있다. 이때 등호는 $$\cos \theta = 1$$일 때, 즉 $$\theta$$가 0 또는 $$\pi$$인 경우에만 가능하다.
