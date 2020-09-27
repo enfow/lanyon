@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Smooth Adversarial Training
-category_num : 3
+category_num : 10
 keyword: '[Activation]'
 ---
 
