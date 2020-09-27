@@ -41,36 +41,36 @@ $$
 
 ### Order Properties
 
-Order Properties는 간단히 말해 요소 간의 대소성이 있다는 특성을 의미하며, 이를 위해서는 양수성(Prsitivity)와 부등성(Inequality)을 가져야 한다. 우선 양수성에 대해 먼저 살펴보면, $$\mathcal R$$의 공집합이 아닌 부분집합으로서 다음과 같은 특성을 가지는 양의 실수(Positive Real Number) 집합 $$\mathcal P$$가 존재한다는 것을 의미한다.
+Order Properties는 간단히 말해 요소 간의 대소성이 있다는 특성을 의미하며, 이를 위해서는 **양수성(Positivity)**과 그에 따라 정의되는 **부등성(Inequality)**을 가져야 한다. 우선 양수성에 대해 먼저 살펴보면, $$\mathcal R$$의 공집합이 아닌 부분집합으로서 다음과 같은 특성을 가지는 양의 실수(Positive Real Number) 집합 $$\mathcal P$$가 존재한다는 것을 의미한다.
 
 $$
-\eqalign{
-&(1) \ \text{if } a, b \text{ belong to } \mathcal P, \text{ then } a + b \text{ belongs to } \mathcal P\\
-&(2) \ \text{if } a, b \text{ belong to } \mathcal P, \text{ then } ab \text{ belongs to } \mathcal P\\
-&(3) \ \text{if } a \text{ belong to } \mathcal P, \text{ then exactly one of the following holds: }\\
-& \qquad (i) \ a \in \mathcal P \qquad (ii) \ a = 0 \qquad (iii) \ -a \in \mathcal P
-}
+\begin{multline}
+\shoveleft (1) \ \text{if } a, b \text{ belong to } \mathcal P, \text{ then } a + b \text{ belongs to } \mathcal P\\
+\shoveleft (2) \ \text{if } a, b \text{ belong to } \mathcal P, \text{ then } ab \text{ belongs to } \mathcal P\\
+\shoveleft (3) \ \text{if } a \text{ belong to } \mathcal P, \text{ then exactly one of the following holds: }\\
+\shoveleft  \qquad (i) \ a \in \mathcal P \qquad (ii) \ a = 0 \qquad (iii) \ -a \in \mathcal P
+\end{multline}
 $$
 
-여기서 세 번째 특성은 실수의 삼분위성(Trichotomy Property)으로 실수는 양수, 0, 음수로 나누어진다는 특성을 나타낸다. 이와 같이 양수성을 먼저 정의하는 이유는 이를 통해 실수의 각 요소 간 대소 비교가 가능하기 때문이다.
+여기서 세 번째 특성은 실수의 삼분위성(Trichotomy Property)으로 실수는 양수, 0, 음수로 나누어진다는 특성을 나타낸다. 이와 같이 양수성을 먼저 정의하므로써 다음과 같이 요소 간의 대소 비교가 가능해진다.
 
 $$
-\eqalign{
-&\text{[Definition]}\\
-& \qquad (a) \ \text{if } a - b \in \mathcal P, \text{then we write } a > b \text{ or } b < a\\
-& \qquad (b) \ \text{if } a - b \in \mathcal P \cup \{ 0 \}, \text{then we write } a \geq b \text{ or } b \leq a\\
-}
+\begin{multline}
+\shoveleft \text{[Definition]}\\
+\shoveleft  \qquad (a) \ \text{if } a - b \in \mathcal P, \text{then we write } a > b \text{ or } b < a\\
+\shoveleft  \qquad (b) \ \text{if } a - b \in \mathcal P \cup \{ 0 \}, \text{then we write } a \geq b \text{ or } b \leq a\\
+\end{multline}
 $$
 
 실수의 삼분위성에 따라 모든 실수쌍 $$a, b$$ 는 서로 $$a < b$$, $$a = b$$ 또는 $$a > b$$ 중 하나의 관계를 가진다. 실수의 각 요소에 대한 대소의 의미를 정의했고, 이에 따라 아래 세 가지의 정리를 도출할 수 있다.
 
 $$
-\eqalign{
-& \text{[Theorem]} \\
-& \qquad (1) \text{If } a \in \mathcal R \text{ and } a \neq 0, \text{ then } a^2 > 0 \\
-& \qquad (2) 1 > 0 \\
-& \qquad (3) \text{If } n \in \mathcal N, \text{ then } n > 0
-}
+\begin{multline}
+\shoveleft \text{[Theorem]} \\
+\shoveleft \qquad (1) \text{If } a \in \mathcal R \text{ and } a \neq 0, \text{ then } a^2 > 0 \\
+\shoveleft \qquad (2) 1 > 0 \\
+\shoveleft \qquad (3) \text{If } n \in \mathcal N, \text{ then } n > 0
+\end{multline}
 $$
 
 각각에 대해 하나씩 살펴보면 $$(1)$$의 경우 $$a \neq 0$$이라고 했으므로, $$a$$는 $$a > 0$$ 또는 $$a < 0$$이라고 할 수 있다. 이때
