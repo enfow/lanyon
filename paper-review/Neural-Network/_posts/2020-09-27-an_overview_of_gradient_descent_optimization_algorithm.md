@@ -20,7 +20,7 @@ keyword: '[Optimizer]'
 
 ## Too Many Options
 
-딥러닝의 문제점 중 하나는 선택해야 하는 것이 너무 많다는 것인데, Mini Batch의 크기는 어떻게 할 것인지와 어떤 Optimizer를 쓸 것인지도 이에 포함된다. Mini Batch의 크기를 극단적으로 너무 크거나 작게 가져가는 경우는 많지 않지만, Task의 종류에 따라 크게 영향을 받기도 한다. Optimizer는 일반적으로 Adam을 많이 사용하지만 경우에 따라서는 Adagrad, RMSprop 또는 Vanilla SGD가 더 좋은 결과를 낳기도 한다. 이러한 점에서 Mini Batch의 크기는 어떻게 할지, 그리고 Optimzer는 무엇으로 할지 결정하는 것은 딥러닝에서 중요한 문제 중 하나다.
+딥러닝의 문제점 중 하나는 선택해야 하는 것이 너무 많다는 것인데, Mini Batch의 크기는 어떻게 할 것인지와 어떤 Optimizer를 쓸 것인지도 이에 포함된다. Mini Batch의 크기를 극단적으로 너무 크거나 작게 가져가는 경우는 많지 않지만, Task의 종류에 따라 Batch Size에 민감하게 반응하기도 한다. Optimizer는 일반적으로 Adam을 많이 사용하지만 경우에 따라서는 Adagrad, RMSprop 또는 Vanilla SGD가 더 좋은 결과를 낳기도 한다. 이러한 점에서 Mini Batch의 크기는 어떻게 할지, 그리고 Optimzer는 무엇으로 할지 결정하는 것은 딥러닝에서 중요한 문제 중 하나다.
 
 ## Gradient descent variants
 
