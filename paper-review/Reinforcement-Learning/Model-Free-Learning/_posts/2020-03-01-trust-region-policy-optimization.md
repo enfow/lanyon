@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Trust Region Policy Optimization
-category_num: 1
+category_num: 21
 keyword: '[TRPO]'
 ---
 

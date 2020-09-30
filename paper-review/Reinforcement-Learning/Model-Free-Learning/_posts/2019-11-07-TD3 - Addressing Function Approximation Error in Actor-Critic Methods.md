@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Addressing Function Approximation Error in Actor-Critic Methods
-category_num: 2
+category_num: 12
 keyword: '[TD3]'
 ---
 

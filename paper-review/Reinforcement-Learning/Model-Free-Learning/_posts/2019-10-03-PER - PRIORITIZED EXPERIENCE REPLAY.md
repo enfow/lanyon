@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Prioritized Experience Replay
-category_num : 4
+category_num : 100
 keyword: '[PER]'
 ---
 

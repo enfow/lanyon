@@ -1,7 +1,7 @@
 ---
 layout: post
 title: continuous control with deep reinforcement learning
-category_num: 1
+category_num: 11
 keyword: '[DDPG]'
 ---
 

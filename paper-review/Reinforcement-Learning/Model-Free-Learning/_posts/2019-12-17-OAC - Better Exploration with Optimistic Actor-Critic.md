@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Better Exploration with Optimistic Actor-Critic
-category_num: 4
+category_num: 14
 keyword: '[OAC]'
 ---
 
