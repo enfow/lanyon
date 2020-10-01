@@ -30,7 +30,7 @@ author:
 version:             1.0.0
 
 # category settings
-paper_review_category_list: ["Neural-Network", "Generative-Model", "Model-Free-Learning", "Model-Based-Learning", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Meta-Learning", "Anomaly-Detection", "Sequence-to-Sequence", "Segmentation", "Transfer-Learning", "Graph-Neural-Network", "Metric", "Domain"]
+paper_review_category_list: ["Neural-Network", "Generative-Model", "Model-Free-Learning", "Model-Based-Learning", "Parallel-RL", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Meta-Learning", "Anomaly-Detection", "Sequence-to-Sequence", "Segmentation", "Transfer-Learning", "Graph-Neural-Network", "Metric", "Domain"]
 development_category_list: ["Machine-Learning-project", 'Embedded', "Unity", "Environment-Settings", "Web-project", "Language", "C-language"]
 study_category_list: ["DL-study", "RL-study", "MetaLearning-study", "Statistics-study", "Linear-Algebra", "Analysis-study", "CS-study"]
 domain_category_list: ["Semiconductor", "Robotics"]
