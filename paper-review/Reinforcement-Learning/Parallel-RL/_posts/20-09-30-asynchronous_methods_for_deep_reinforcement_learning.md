@@ -15,7 +15,8 @@ keyword: '[A3C]'
 ## Summary
 
 - 복수의 Agent를 두고 Policy를 비동기적으로 업데이트하면 기존의 Replay Memory를 사용하는 방법들보다 더 빠르고 효율적인 학습이 가능하다.
-- 제시하는 Asynchronous RL Framework의 특징으로는 **Accumulating Gradient**, **Global Shared Parameter**, **Forward View** 등이 있으며, 대표적으로 **Asynchronous Advantaget Actor-Critic(A3C)**이 있다.
+- 동일한 환경에 대해 Parallel하게 Transaction을 수집하므로 Online Learning의 두 가지 문제, 즉 학습 데이터가 Non-Stationary하고 Correlated 되어 있다는 문제를 완화한다.
+- 제시하는 Asynchronous RL Framework의 특징으로는 **Accumulating Gradient**, **Global Shared Parameter**, **Forward View** 등이 있으며, 대표적인 알고리즘으로는 **Asynchronous Advantaget Actor-Critic(A3C)**이 있다.
 
 ## Online Learning is Hard
 
@@ -24,7 +25,7 @@ Online Learning, 즉 Agent가 Environment와 직접적으로 상호작용하며 
 - Non-Stationary
 - Correlated
 
-여기서 **Non-Stationary**란 Time Series Data에서 평균, 분산 등 파라미터가 시간이 지남에 따라 계속 바뀌는 특성을 말하고, **Correlated**는 Sequence의 각 Data Point 간에 상관 관계가 존재한다는 것을 말한다. 이러한 문제를 해결하기 위해서는 일종의 안정화가 필요한데, 대표적인 것이 Replay Memory를 사용하는 것이다. 
+여기서 **Non-Stationary**란 Time Series Data에서 평균, 분산 등 파라미터가 시간이 지남에 따라 계속 바뀌는 특성을 말하고, **Correlated**는 Sequence의 각 Data Point 간에 상관 관계가 존재한다는 것을 말한다. 이러한 문제를 해결하기 위해서는 일종의 안정화가 필요한데, 대표적인 것이 Replay Memory를 사용하는 것이다.
 
 ### Replay Memory
 
