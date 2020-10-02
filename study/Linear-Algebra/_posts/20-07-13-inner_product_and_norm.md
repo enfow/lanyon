@@ -7,7 +7,9 @@ category_num : 4
 # Inner Product and Norm
 
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book과 주재걸 교수님의 강의 인공지능을 위한 선형대수를 듣고 작성했습니다.
-- update at : 2020.07.13, 2020.09.27
+- 또한 Transformation과 관련된 부분은 [3Blue1Brown](<https://www.youtube.com/c/3blue1brown>)의 다음 영상을 참고하여 작성했습니다.
+  - [Dot products and duality](<https://www.youtube.com/watch?v=LyGKycYT2v0&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=9&t=721s&ab_channel=3Blue1Brown>)
+- update at : 2020.07.13, 2020.09.27, 2020.10.02
 
 ## Inner Product
 
@@ -32,7 +34,7 @@ $$
 \shoveleft 1. \  \boldsymbol{u} \cdot \boldsymbol{v} = \boldsymbol{v} \cdot \boldsymbol{u}\\
 \shoveleft 2. \  (\boldsymbol{u} + \boldsymbol{v}) \cdot \boldsymbol{w} = \boldsymbol{u} \cdot \boldsymbol{w} + \boldsymbol{v} \cdot \boldsymbol{w} \\
 \shoveleft 3. \ (c\boldsymbol{u}) \cdot \boldsymbol{v} = c (\boldsymbol{u} \cdot \boldsymbol{v}) = \boldsymbol{u} \cdot (c\boldsymbol{v}) \\
-\shoveleft 4. \ \boldsymbol{u} \cdot \boldsymbol{u} \geq	0, \ \text{and} \ \boldsymbol{u} \cdot \boldsymbol{u} = 0 \ \text{if and only if} \ \boldsymbol{u} = \boldsymbol{0}
+\shoveleft 4. \ \boldsymbol{u} \cdot \boldsymbol{u} \geq 0, \ \text{and} \ \boldsymbol{u} \cdot \boldsymbol{u} = 0 \ \text{if and only if} \ \boldsymbol{u} = \boldsymbol{0}
 \end{multline}
 $$
 
@@ -122,7 +124,6 @@ $$
 
 <img src="{{site.image_url}}/study/linear_algebra_dot_product_and_cosine.png" style="width:25em; display: block; margin: 0px auto;">
 
-
 $$
 \eqalign{
 &\eqalign{
@@ -177,3 +178,74 @@ $$
 $$
 
 $$\cos$$ 함수는 항상 1보다 작거나 같으므로 성립한다는 것을 알 수 있다. 이때 등호는 $$\cos \theta = 1$$일 때, 즉 $$\theta$$가 0 또는 $$\pi$$인 경우에만 가능하다.
+
+## Inner Product & Linear Transformation
+
+또한 아래 식을 통해 벡터의 내적과 선형 변환의 관계 또한 생각해 볼 수 있다.
+
+$$
+\boldsymbol{u} \cdot \boldsymbol{v} = \| \boldsymbol{u} \|_2 \| \boldsymbol{v} \|_2 \cos \theta, \qquad \theta \ \text{is the angle between } \boldsymbol{u} \text{ and } \boldsymbol{v}
+$$
+
+우선 위의 식을 그림으로 표현하면 다음과 같다.
+
+<img src="{{site.image_url}}/study/inner_product_and_outer_product_inner1.png" style="width:25em; display: block; margin: 0px auto;">
+
+위의 그림에서 벡터 $$\boldsymbol{r}$$은 $$\boldsymbol{u}$$에서 $$\boldsymbol{v}$$로 수선을 내렸을 때 얻어지는 벡터이다. 다르게 말하면 $$\boldsymbol{u}$$를 $$\text{span } \boldsymbol{v}$$상으로 선형변환을 통해 얻은 벡터라고 할 수 있다. 이때 $$\boldsymbol{u}$$와 $$\boldsymbol{r}$$은 직각삼각형을 이루므로 $$\| \boldsymbol{r} \| = \| \boldsymbol{u} \| \cos \theta$$가 성립한다 결과적으로 다음과 같이 적을 수 있다.
+
+$$
+\boldsymbol{u} \cdot \boldsymbol{v} = \| \boldsymbol{r} \| \| \boldsymbol{v} \|
+$$
+
+즉 $$\boldsymbol{u} \cdot \boldsymbol{v}$$는 $$\boldsymbol{u}$$에서 $$\boldsymbol{v}$$로 수선을 내려 구한 벡터 $$\boldsymbol{r}$$과 비교할 때 $$\boldsymbol{v}$$가 얼마나 더 큰지를 의미한다고 할 수 있다.
+
+그런데 위와 같은 두 벡터 $$\boldsymbol{u}, \boldsymbol{v}$$ 간의 내적 연산은 다음과 같은 **선형 변환(Linear Transformation)**식과 매우 유사하다. 즉 $$\boldsymbol{u} \cdot \boldsymbol{v}$$은 $$\boldsymbol{u}$$를 $$\text{span } \boldsymbol{v}$$에 매핑한 것과 어떤 관계가 있음을 생각해 볼 수 있다.
+
+$$
+\eqalign{
+& \text{[Inner Product]}\\
+& \qquad \begin{bmatrix}
+u_1 \\ u_2 \\ ... \\ u_n
+\end{bmatrix} \
+\cdot \begin{bmatrix}
+v_1 \\ v_2 \\ ... \\ v_n
+\end{bmatrix} = u_1v_1 + u_2v_2 + ... + u_nv_n\\ \\ \\
+
+& \text{[Linear Transformation]}\\
+&
+\qquad \begin{bmatrix}
+&v_1, &v_2, &..., &v_n
+\end{bmatrix}
+\begin{bmatrix}
+u_1 \\ u_2 \\ ... \\ u_n
+\end{bmatrix} = u_1v_1 + u_2v_2 + ... + u_nv_n
+}
+$$
+
+그렇다면 $$\boldsymbol{u}$$를 $$\text{span } \boldsymbol{v}$$ 상에 매핑하면 어떻게 될까. 이는 $$\boldsymbol{u}$$를 $$\text{span } \boldsymbol{v}$$의 Unit Vector $$\hat i$$로 선형 변환하면 쉽게 구할 수 있으며, 그 결과는 $$\| \boldsymbol{r} \|$$이 된다.
+
+$$
+\| \boldsymbol{r} \| = \begin{bmatrix}
+&i_1, &i_2
+\end{bmatrix}
+\begin{bmatrix}
+u_1 \\ u_2
+\end{bmatrix} = u_1i_1 + u_2i_2
+$$
+
+위 식은 $$\boldsymbol{v}$$에 맞춰 다음과 같이 표현할 수 있다. 그리고 이는 곧 $$\boldsymbol{u} \cdot \boldsymbol{v}$$가 된다.
+
+$$
+\boldsymbol{u} \cdot \boldsymbol{v} = \| \boldsymbol{r} \| \| \boldsymbol{v} \| = \begin{bmatrix}
+& \| \boldsymbol{v} \| i_1, & \| \boldsymbol{v} \| i_2
+\end{bmatrix}
+\begin{bmatrix}
+u_1 \\ u_2
+\end{bmatrix} = \| \boldsymbol{v} \| u_1i_1 + \| \boldsymbol{v} \| u_2i_2
+$$
+
+<img src="{{site.image_url}}/study/inner_product_and_outer_product_inner2.png" style="width:25em; display: block; margin: 0px auto;">
+
+이를 통해 한 가지 유추할 수 있는 것은 $$\hat i$$로의 선형 변환 결과가 $$\boldsymbol{r}$$인 모든 벡터는 $$\boldsymbol{v}$$와의 내적 값이 동일하다는 것이다. 즉 아래 그림에서 회색 선 위의 모든 벡터들은 $$\boldsymbol{v}$$와의 내적 값이 모두 같다.
+
+<img src="{{site.image_url}}/study/inner_product_and_outer_product_inner3.png" style="width:25em; display: block; margin: 0px auto;">
