@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Mujoco Environment
+title: Install Mujoco Environment
 keyword: '[RL]'
 category_num : 4
 ---
 
-# Mujoco Environment
+# Install Mujoco Environment
 
 - update at 2020.08.14
 - [Mujoco 홈페이지](<http://www.mujoco.org/>)
