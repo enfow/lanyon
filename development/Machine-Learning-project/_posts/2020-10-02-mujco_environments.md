@@ -13,9 +13,9 @@ category_num : 5
 
 ## Reacher-v2
 
-**Reacher-v2**는 아래 이미지와 같이 두 개의 관절로 이뤄진 로봇팔을 조작하는 환경으로, 끝 부분(Fingertip)을 임의로 생성되는 목표지점에 도달시키는 것을 목표로 한다. 
+**Reacher-v2**는 아래 이미지와 같이 두 개의 관절로 이뤄진 로봇팔을 조작하는 환경으로, 끝 부분(Fingertip)을 임의로 생성되는 목표지점에 도달시키는 것을 목표로 한다.
 
-이미지 - gym_reacher_v2
+<img src="{{site.image_url}}/development/gym_reacher_v2.png" style="width:22em; display: block; margin: 0px auto;">
 
 Python Package gym과 mujoco-py가 설치된 환경에서 다음과 같이 생성할 수 있다.
 
@@ -125,8 +125,6 @@ def reset_model(self):
 ## Hopper-v3
 
 **Hopper-v3**는 아래와 같이 외발이 중심을 잡아가며 앞으로 나아가도록 하는 환경이다. 따라서 넘어지지 않고 앞으로 멀리가면 갈수록 높은 Reward를 받는다.
-
-이미지 - gym_hopper_v3
 
 <img src="{{site.image_url}}/development/gym_hopper_v3.png" style="width:22em; display: block; margin: 0px auto;">
 
