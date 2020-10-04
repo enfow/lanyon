@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Outper Product & Determinant
+title: Outper Product and Determinant
 category_num : 9
 ---
 
-# Outper Product & Determinant
+# Outper Product and Determinant
 
 - [3Blue1Brown](<https://www.youtube.com/c/3blue1brown>)의 다음 영상을 참고하여 작성했습니다.
   - [Cross products](<https://www.youtube.com/watch?v=eu6i7WJeinw&list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab&index=10&ab_channel=3Blue1Brown>)
