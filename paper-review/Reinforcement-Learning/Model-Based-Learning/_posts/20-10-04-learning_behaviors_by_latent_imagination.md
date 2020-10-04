@@ -95,7 +95,7 @@ $$
 
 ## Algorithm
 
-<img src="{{site.image_url}}/paper-review/dreamer_3_part_of_algorithm.png" style="width:24em; display: block; margin: 1em auto;">
+<img src="{{site.image_url}}/paper-review/dreamer_3_part_of_algorithm.png" style="width:40em; display: block; margin: 1em auto;">
 
 Dreamer의 알고리즘은 위의 그림과 같이 크게 **Dynamic Learning, Behavior Learning, Environment Interaction** 세 부분으로 구성된다. Dynamic Learning에서는 Latent Dynamics를 정확하게 알기 위해 $$\theta$$를 업데이트하게 되고, Behavior Learning에서는 Trajectory를 예측하고 그에 따라 Action Model과 Value Model을 업데이트하게 된다. 마지막으로 Environment Interaction에서는 학습한 Action Model으로 실제 Environment와 상호작용하며 학습에 사용할 실제 Trajectory를 쌓게 된다.
 
