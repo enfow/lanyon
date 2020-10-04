@@ -1,7 +1,7 @@
 ---
 layout: post
 title: An overview of gradient descent optimization algorithms
-category_num : 1
+category_num : 10
 keyword: '[Optimizer]'
 ---
 
