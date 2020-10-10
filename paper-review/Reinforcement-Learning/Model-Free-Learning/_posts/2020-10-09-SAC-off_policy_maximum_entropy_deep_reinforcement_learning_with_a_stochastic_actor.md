@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Off-Policy Maximum Entropy Deep Reinforcement Learning with a Stochastic Actor"
-category_num: 12
+category_num: 13
 keyword: '[SAC]'
 ---
 
