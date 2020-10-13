@@ -15,13 +15,11 @@ category_num: 3
 
 <img src="{{site.image_url}}/study/agent_environment_interation.png" style="width:35em; display: block; margin: 0px auto;">
 
-위 그림은 Agent와 Environment 간의 상호작용을 보여주고 있다. Agent는 $$t$$ 시점에 State $$s$$에 따라 적절한 Action $$a_t \in A$$를 결정하여 Environment에 전달한다. 그럼 Environment는 그에 맞춰 Reward $$r_{t+1} \in R$$와 Next State $$s_{t+1} \in S$$을 정하여 Agent에게 알려주게 된다. 강화학습은 이와 같은 상호작용을 반복하며 누적 Reward(Cumulative Reward)를 극대화하는 방법을 찾아내는 것을 목표로 한다.
-
-이와 관련하여 강화학습의 주요 키워드로는 State, Action, Reward, Return, Policy 등이 있다.
+위 그림은 Agent와 Environment 간의 상호작용을 보여주고 있다. Agent는 현재 State $$s_t$$에 따라 가장 적절하다고 판단한 Action $$a$$를 Environment에 전달한다. 그럼 Environment는 그에 맞춰 Reward $$r_{t+1} \in R$$와 Next State $$s_{t+1} \in S$$을 정하여 Agent에게 알려주게 된다. 강화학습은 이와 같은 Agent-Environment 상호작용을 반복하며 누적 Reward(Cumulative Reward)를 극대화하는 방법을 찾아내는 것을 목표로 한다.
 
 ### State $$s_t$$
 
-State란 Environment가 Agent에게 현재 상태가 어떠한지 알려주는 정보라고 할 수 있다. 이때의 State는 반드시 해당 순간의 처리되지 않은 정보일 필요는 없고 복잡한 과정을 거쳐 특징을 추출하거나, 과거의 정보들을 Sequence로 제공해주는 것도 가능하다. Agent는 Environment에 의헤 제공된 State를 바탕으로 Action을 결정하게 된다.
+State란 Environment가 Agent에게 현재 상태가 어떠한지 알려주는 정보라고 할 수 있다. 이때의 State는 반드시 현재 상태를 알려주는 정보일 필요는 없고 복잡한 처리 과정을 거쳐 추출한 정보이거나, 과거의 정보들을 Sequence로 제공해주는 것도 가능하다.
 
 ### Action $$a_t$$
 
@@ -29,19 +27,21 @@ Agent가 현재 State를 바탕으로 결정한 행동을 의미한다. Action�
 
 ### Policy $$\pi(a \lvert s)$$
 
-Agent는 Environment로부터 현재 State를 전달받아 그에 맞춰 적절한 Action을 결정한다고 했었다. 즉 Agent는 내부적으로 State를 Action으로 매핑하는 기능을 가지게 되는데, 이를 Policy라고 부른다. 쉽게 말해 Policy는 State를 Action으로 매핑하는 함수이며 $$\pi(a \lvert s)$$로 표기한다. 그리고 강화학습의 목표는 이 Policy를 적절히 변화시켜 받을 수 있는 Reward의 총합을 극대화시키는 것이다.
+Agent는 Environment로부터 현재 State를 전달받아 그에 맞춰 적절한 Action을 결정한다고 했었다. 즉 Agent는 내부적으로 State를 Action으로 매핑하는 기능을 가지게 되는데, 이를 Policy라고 부른다. 한마디로 Policy는 State를 Action으로 매핑하는 함수이며 $$\pi(a \lvert s)$$로 표기한다. 그리고 강화학습의 목표는 이 Policy를 적절히 변화시켜 받을 수 있는 Reward의 총합을 극대화시키는 것이다.
 
 ### Reward $$r_t$$
 
-Reward는 Scalar 값으로, 매 time step 마다 주어지며, 이전 시점에서의 State, Action 조합이 얼마나 좋았는지 알려주는 지표라고 할 수 있다. 실제 문제에 강화학습을 적용할 때 학습에 큰 영향을 미치는 요소 중 하나가 Reward Shaping, 즉 Reward를 언제 어떻게 줄 것인가이다. 이와 관련하여 몇 가지 유의해야 할 특성으로는 다음과 같은 요소들이 있다. 
+Reward는  매 time step 마다 주어지며, 이전 시점에서의 State, Action 조합이 얼마나 좋았는지 알려주는 지표라고 할 수 있다. 실제 문제에 강화학습을 적용할 때 학습에 큰 영향을 미치는 요소 중 하나가 **Reward Shaping**, 그러니까 Reward를 언제 어떻게 줄 것인지 결정하는 것이다. 책에서는 Reward Shaping과 관련해 다음과 같은 내용들을 언급하고 있다.
 
 - Reward는 Agent에 의해 계산되는 것이 아닌 Environment에 의해 주어지는 것이어야 한다.
-- Reward는 우리가 진정으로 달성하고자 하는 것을 알려줘야 한다. 어떻게 해야하는지 지식을 알려주는 방향으로 설정하면 안 된다.
+- Reward는 Agent가 최종적으로 달성해야 하는 목표를 알려줘야 한다. 그 과정이나 방법을 알려주는 방향으로 Reward를 설정하면 안 된다.
 - Sub Goal을 여러 개 설정하면 비교적 쉬운 Sub Goal만 반복적으로 달성하고 Real Goal을 찾으려는 노력을 하지 않게 된다. 즉 Chess를 예로 들면 승리한 경우에만 Reward를 받아야 한다.
 
 ### Return $$G_t$$
 
-특정 시점 $$t$$ 이후에 받을 것으로 기대되는 Reward의 총합을 Return $$G_t$$라고 한다. 강화학습은 경험을 통해 Agent가 Policy를 변화시켜 누적적인 Reward를 극대화하는 것이라고 했는데, 이때 누적 Reward는 현재 시점 이후에 받을 것으로 기대되는 Expected Return을 의미한다고 할 수 있다.
+특정 시점 $$t$$ 이후에 받을 Reward의 총합을 Return 이라고 하고 $$G_t$$로 표기한다. 강화학습은 경험을 통해 Agent가 Policy를 변화시켜 누적 Reward를 극대화하는 것이라고 했는데, 이때 누적 Reward가 바로 Return이다.
+
+#### Simplist Sum Return
 
 Return을 계산하는 방법은 크게 두 가지가 있는데 첫 번째 방법은 아래와 같이 단순히 모든 time step에서의 Reward를 더하는 **Simplest Sum Return**이다.
 
@@ -49,9 +49,11 @@ $$
 G_t = r_{t+1} + r_{t+2} + ... + r_{T}
 $$
 
-여기서 $$T$$는 Terminal State로, 말 그대로 하나의 Episode가 끝나는 State를 의미하며 이에 도달하게 되면 Environment는 Starting State 또는 Starting State Distribution에 따라 임의로 결정한 State로 돌아가게 된다. 
+여기서 $$T$$는 Terminal State로, 말 그대로 하나의 Episode가 끝나는 State를 의미하며 이에 도달하게 되면 Environment는 Starting State 또는 Starting State Distribution에 따라 임의로 결정한 State로 돌아가게 된다.
 
-Terminal State를 가지는 문제를 **Episodic Task**라 하고 그렇지 않은 문제를 **Continuing Task**라고 한다. 그런데 Countinuing Task의 경우 위에서 제시한 Simplest Sum 방법으로는 Return이 무한이 되어버린다는 문제가 있다. 따라서 아래와 같이 Discounted Factor $$\gamma$$를 도입해 시점에 따라 가중치를 달리하여 더하는 방법이 있다. 이러한 Return을 **Discounted Return**이라고 한다.
+#### Continuing Task
+
+그런데 Task의 종류에 따라서는 Treminal State가 존재하지 않을 수도 있는데, 이 경우 위의 Simplest Sum 방법으로는 Return이 무한이 되어버린다. 따라서 아래와 같이 Discounted Factor $$\gamma$$를 도입해 시점에 따라 가중치를 달리하여 더하는 방법이 있다. 이러한 Return을 **Discounted Return**이라고 한다. 참고로 Terminal State를 가지는 문제를 **Episodic Task**라 하고 그렇지 않은 문제를 **Continuing Task**라고 한다.
 
 $$
 \eqalign{
@@ -63,28 +65,24 @@ Discounted Factor $$\gamma$$는 1보다 작아야 $$G$$의 크기가 무한히 �
 
 ## Markov Property
 
-강화학습에서 가장 중요한 가정 중 하나는 **Markov Property**라고 할 수 있다. Markov Property에 대해 [위키](<https://en.wikipedia.org/wiki/Markov_property>)에서는 다음과 같이 정의하고 있다.
+**Markov Property**는 강화학습에서 가장 중요한 가정이다. 이에 대해 [위키](<https://en.wikipedia.org/wiki/Markov_property>)에서는 다음과 같이 정의하고 있다.
 
 - In probability theory and statistics, the term Markov property refers to the **memoryless property** of a stochastic process. ... A stochastic process has the Markov property if the conditional probability distribution of future states of the process (conditional on both past and present values) **depends only upon the present state**.
 
-정리하자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. 핵심적인 키워드는 **Memoryless**로, 현재 State 이전의 State들에 대해서는 알 필요가 없다는 점에서 Memoryless 라는 표현이 쓰이는 것으로 이해할 수 있다.
+정리하자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. Markov Property의 핵심적인 키워드는 **Memoryless**로, 현재 State에 담긴 정보 만으로도 충분하여 과거 State 정보가 없더라도 미래에 어떤 일이 벌어질 지 알 수 있다는 것을 상징한다.
 
-포탄의 예시를 생각하면 보다 이해하기 쉬운데, 어떤 궤적을 그리며 날아가는 포탄이 있다고 하자. 이때 포탄이 어느 방향으로 어떤 속도로 날아갈지 알아내기 위해서는 현재 위치와 현재 속도만으로도 충분하다. 과거에 어떤 궤적으로 날아왔는지에 대한 정보는 필요하지 않다. 이러한 특성을 가지는 문제를 Markov Property의 속성을 가진다고 한다.
-
-Markov Property를 만족하면 아래 두 식이 완전히 동일해진다.
-
-$$ 
+$$
 \eqalign{
 &1. \ Pr \{ r_{t+1}=r, s_{t+1}=s' \lvert s_0, a_0, r_1, ... r_t, s_t, a_t  \} \\
 &2. \ Pr \{ r_{t+1}=r, s_{t+1}=s' \lvert s_t, a_t  \}
 }
 $$
 
-Markov Property를 만족하면 현재 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이를 반대로 생각해보면 Markov State만으로도 최선의 Action을 선택하는 것이 가능하다는 것이 된다. 이와 같은 Markov Property는 현재 State만으로도 Action을 결정하고, Value를 알아낼 수 있도록 해준다는 점에서 강화학습에서 중요하다.
+Markov Property를 만족하면 위의 두 식은 서로 완벽하게 동일해진다. 즉 현재 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이를 반대로 생각해보면 Markov State만으로도 최선의 Action을 선택하는 데에 충분하다는 것을 의미한다.
 
 ### Markov Decision Process(MDP)
 
-Markov Property를 만족하는 강화학습 문제를 Markov Decision Process(MDP)라고 한다. MDP는 $$<S, A, P, R, \gamma>$$로 정의되는데 각각의 의미는 다음과 같다.
+Markov Property를 만족하는 강화학습 문제를 **Markov Decision Process(MDP)**라고 한다. MDP는 $$<S, A, P, R, \gamma>$$로 정의되는데 각각의 의미는 다음과 같다.
 
 - $$S$$ : State Space
 - $$A$$ : Action Space
