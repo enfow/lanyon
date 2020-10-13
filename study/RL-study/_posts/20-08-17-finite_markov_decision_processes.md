@@ -51,7 +51,7 @@ $$
 
 여기서 $$T$$는 Terminal State로, 말 그대로 하나의 Episode가 끝나는 State를 의미하며 이에 도달하게 되면 Environment는 Starting State 또는 Starting State Distribution에 따라 임의로 결정한 State로 돌아가게 된다.
 
-#### Continuing Task
+#### Discounted Return
 
 그런데 Task의 종류에 따라서는 Treminal State가 존재하지 않을 수도 있는데, 이 경우 위의 Simplest Sum 방법으로는 Return이 무한이 되어버린다. 따라서 아래와 같이 Discounted Factor $$\gamma$$를 도입해 시점에 따라 가중치를 달리하여 더하는 방법이 있다. 이러한 Return을 **Discounted Return**이라고 한다. 참고로 Terminal State를 가지는 문제를 **Episodic Task**라 하고 그렇지 않은 문제를 **Continuing Task**라고 한다.
 
