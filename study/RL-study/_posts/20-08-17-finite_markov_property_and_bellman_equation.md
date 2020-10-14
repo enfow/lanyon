@@ -1,13 +1,19 @@
 ---
 layout: post
-title: Finite Markov Decision Processes
+title: Markov Property and Bellman Equation
 category_num: 3
 ---
 
-# Finite Markov Decision Processes
+# Markov Property and Bellman Equation
 
 - Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
 - update at : 2020.08.17
+
+## Summary
+
+- **Markov Property**란 현재 State에 담긴 정보 만으로도 과거 State 정보가 없더라도 충분히 미래에 어떤 일이 벌어질 지 알 수 있다는 특성을 의미한다.
+- **Bellman Equation**은 Current State Value와 Next State Value의 관계를 나타내는 식으로, 이를 통해 Value Function을 보다 정확하게 업데이트하는 것이 가능하다.
+- 더 좋은 Policy란 모든 State/State-Action Pair에 대해 Value Function의 값이 항상 더 큰 Policy를 의미한다.
 
 ## Agent-Environment Interaction
 
@@ -69,7 +75,7 @@ Discounted Factor $$\gamma$$는 1보다 작아야 $$G$$의 크기가 무한히 �
 
 - In probability theory and statistics, the term Markov property refers to the **memoryless property** of a stochastic process. ... A stochastic process has the Markov property if the conditional probability distribution of future states of the process (conditional on both past and present values) **depends only upon the present state**.
 
-정리하자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. Markov Property의 핵심적인 키워드는 **Memoryless**로, 현재 State에 담긴 정보 만으로도 충분하여 과거 State 정보가 없더라도 미래에 어떤 일이 벌어질 지 알 수 있다는 것을 상징한다.
+정리하자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. Markov Property의 핵심적인 키워드는 **Memoryless**로, 현재 State에 담긴 정보 만으로도 과거 State 정보가 없더라도 충분히 미래에 어떤 일이 벌어질 지 알 수 있다는 것을 상징한다.
 
 $$
 \eqalign{
@@ -78,7 +84,7 @@ $$
 }
 $$
 
-Markov Property를 만족하면 위의 두 식은 서로 완벽하게 동일해진다. 즉 현재 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이를 반대로 생각해보면 Markov State만으로도 최선의 Action을 선택하는 데에 충분하다는 것을 의미한다.
+Markov Property를 만족한다는 것은 위의 두 식이 완벽하게 동일하다는 것을 의미한다. 따라서 현재 시점의 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이를 반대로 생각해보면 Markov State만으로도 Agent가 최선의 Action을 선택하는 데에 충분한 정보를 담고 있다는 것으로도 받아들일 수 있다.
 
 ### Markov Decision Process(MDP)
 
@@ -90,31 +96,33 @@ Markov Property를 만족하는 강화학습 문제를 **Markov Decision Process
 - $$R$$ : Reward Space
 - $$\gamma$$ : Discounted Factor
 
-여기서 State, Action Space가 유한한 경우를 Finite MDP라고 하는데, Finite MDP는 전체 강화학습 문제의 90%를 차지한다. Finite MDP에서 State $$s$$, Action $$a$$와 Next State $$s'$$, Reward $$r$$의 관계는 다음과 같이 One-step dynamics로 정의할 수 있다.
+State Space와 Action Space가 유한한 경우를 Finite MDP라고 하는데, 강화학습의 많은 문제들이 Finite MDP라고 한다. Finite MDP를 만족한다면 State $$s$$, Action $$a$$와 Next State $$s'$$, Reward $$r$$의 관계는 다음과 같이 One-Step Dynamics로 정의할 수 있다.
 
 $$
 p(s', r \lvert s, a) = Pr \{ s_{t+1} = s', r_{t+1} \lvert s_t = s, a_t = a \}
 $$
 
-위의 식을 이용하여 Environment에 대해 다음 두 가지를 정의할 수 있다.
+위의 식을 이용하여 Environment에 대해 다음 두 함수를 정의할 수 있다.
 
 $$
 \eqalign{
 \text{Reward Function : }&r(s, a) = E[r_{t+1} \lvert s_t = s, a_t = a] \\
-\text{State-Transition Probability : }&p(s' \lvert s, a) = Pr \{ s_{t+1} = s' \lvert s_t = s, a_t = a \} 
+\text{State-Transition Probability : }&p(s' \lvert s, a) = Pr \{ s_{t+1} = s' \lvert s_t = s, a_t = a \}
 }
 $$
 
+Reward Function과 State-Transition Probability는 Environment의 특성을 결정하는 함수로서 시뮬레이터 환경에서는 필요에 따라 이를 조절하여 Agetnt가 특정한 행동을 선택하도록 만들 수 있다. Agent는 Environment가 어떤 Reward Function과 State-Transition Probability를 가지는지 추측할 수는 있어도 정확히 각 함수가 어떠한지에 대한 정보는 가질 수 없다. 대신 Agent는 각 State와 Action의 Value를 추정하는 **Value Function**을 학습하여 주어진 환경에 대해 적절한 Action을 선택할 수 있게 된다.
+
 ### Value Function
 
-**Value Function**이란 특정 State(또는 State- Action Pair)가 Agent에 있어 얼마나 좋은지 알려주는 함수를 말한다. 이때 좋은지 기준이 되는 것은 Expected Return 이다. 대부분의 강화학습 알고리즘은 이 Value Function을 정확하게 추정하는 방향으로 학습이 이뤄진다.
+**Value Function**은 특정 State(또는 State- Action Pair)가 얼마나 좋은지, 즉 기대할 수 있는 Expected Return이 어떻게 되는지 알려주는 함수를 말한다. 대부분의 강화학습 알고리즘은 이 Value Function을 정확하게 추정하는 방향으로 학습이 이뤄진다. Value Function을 정확하게 알면 그에 맞춰 Action을 선택하면 되기 때문이다.
 
-어떤 State의 정확한 Value를 알기 위해서는 다음에 어떤 Action을 취할 것인지 알아야 한다. 이러한 점에서 Value Function은 특정한 Policy 하에서 정의된다. State Value Function $$v$$는 특정 State가 얼마나 좋은지를 알려주는 함수로, 다음과 같이 구해진다.
+Value Function의 중요한 특징 중 하나는 특정 Policy에 따라 정의된다는 것이다. 예를 들어 $$V_\pi(s)$$는 State $$s$$에서 시작하여 어떤 Policy $$\pi$$에 따라 Action을 선택할 때 받을 수 있을 것으로 기대되는 Expected Return 이라고 할 수 있다. 그리고 Value Functiond에는 State Value Function과 Action Value Function 두 가지가 있는데, 각각 State, State-Action Pair에 대한 Expected Return을 추정한다. 구체적으로 State Value Function $$v$$는 특정 State가 얼마나 좋은지를 알려주는 함수로 다음과 같이 구해진다.
 
 $$
 \eqalign{
-v_\pi (s) 
-&= E_\pi [G_t \lvert s_t = s]\\ 
+v_\pi (s)
+&= E_\pi [G_t \lvert s_t = s]\\
 &= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s]
 }
 $$
@@ -124,14 +132,14 @@ $$
 $$
 \eqalign{
 q_\pi (s, a) 
-&= E_\pi [G_t \lvert s_t = s, a_t = a]\\ 
+&= E_\pi [G_t \lvert s_t = s, a_t = a]\\
 &= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s, a_t = a]
 }
 $$
 
- Environment와 최대한 많이 상호작용하고 이를 통해 Value function을 추정할 수 있다. 즉 여러 번 반복을 통해 value function의 seperate average를 구하고, 이를 value function의 값으로 사용하는 것이다. 이러한 방법을 **Monte Carlo**라고 한다.
+Value Function을 정확하게 추정하기 위해서는 당연히 Environment와 많은 상호작용을 해야 한다. 경우에 따라서는 동일한 State에서 동일한 Action을 하더라도 받게 되는 Reward가 달라질 수 있으며, 이 경우 Reward의 Variance를 줄이기 위해서라도 더 많은 상호작용이 필요할 것이다.
 
-### Bellman Equation 
+### Bellman Equation
 
 Value Fucntion의 가장 큰 특징 중 하나는 아래와 같이 재귀적으로 Next State $$s'$$에 대한 value function으로 표현할 수 있다는 점이다. 이를 **Bellman Equation**이라고 한다.
 
@@ -146,19 +154,19 @@ v_\pi(s)
 }
 $$
 
-Bellman Equation은 어느 State $$s_t$$의 Value를 Next State $$s_{t+1}$$의 기대 (Discounted) Value와 Reward $$r_{t+1}$$의 합으로 표현할 수 있게 해준다. 이에 따라 특정 시점의 State의 Value는 다음 State의 Value를 기준으로 업데이트 할 수 있다(Action Value에 대해서도 물론 가능하다). 이를 **Backup Operation**이라고 한다. Sutton은 책에서 Backup Operation을 강화학습 방법론의 심장이라고 표현하고 있다.
+Bellman Equation은 어느 State $$s_t$$의 Value를 Next State $$s_{t+1}$$의 기대 (Discounted) Value와 Reward $$r_{t+1}$$의 합으로 표현할 수 있게 해준다. 이에 따라 특정 시점의 State Value는 Next State Value를 기준으로 더욱 정확하게 업데이트 할 수 있게 되는데(Action Value에 대해서도 물론 가능하다), 이를 **Backup Operation**이라고 한다. Sutton은 책에서 Backup Operation을 강화학습 방법론의 심장이라고 표현하고 있다.
 
 <img src="{{site.image_url}}/study/backup_diagram.png" style="width:35em; display: block; margin: 0px auto;">
 
 ### Optimal Value Function
 
-어떤 Policy $$\pi$$가 다른 Policy $$\pi'$$보다 좋다고 하기 위해서는 다음과 같이 모든 State의 Value가 $$\pi'$$보다 커야 한다.
+Value Function을 정의했다면 이를 사용하여 어떠한 Policy가 더욱 좋은 Policy인지 개념적으로 정의하는 것도 가능하다. State Value Function의 값이 각 State에서 받을 수 있을 것으로 기대되는 Expected Return 이라고 했으므로 모든 State에 대해 $$v_\pi(s) > v_{\pi'}(s)$$가 성립한다면 $$\pi$$를 따를 때 $$\pi'$$를 따르는 것보다 어디에서나 더 큰 Return을 받는다는 것을 의미하게 된다. 이와 같은 경우에 대해서만 $$\pi$$가 $$\pi'$$보다 더 좋은 Policy라고 할 수 있다.
 
 $$
 \pi \geq \pi' \qquad \text{ if and only if } v_\pi(s) \geq v_{\pi'}(s) \text{ for all } s \in S
 $$
 
-다른 모든 Policy보다 좋은 Policy를 **Optimal Policy**라고 하고 $$\pi^*$$로 표기한다. 그리고 Optimal Policy를 따를 때의 Value Function을 **Optimal State-Value Function**이라 하고 다음과 같이 정의된다.
+그리고 모든 Policy에 대해 위의 식이 성립하는 Policy를 **Optimal Policy**라고 하고 $$\pi^*$$로 표기한다. Optimal Policy를 따를 때의 State Value Function은 아래와 같이 정의되며 **Optimal State Value Function**이라 한다.
 
 $$
 v^*(s) = \max_\pi v_\pi(s)
