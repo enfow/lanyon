@@ -77,7 +77,7 @@ $$
 
 <img src="{{site.image_url}}/paper-review/batch_norm_sigmoid_function_nonlinearity.png" style="width:35em; display: block; margin: 0px auto;">
 
-이러한 문제를 해결하기 위해서 Batch Normalization에서는 Normalizing 함수 뒤에 필요에 따라 Shifting과 Scaling이 가능하도록 Linear Transformation을 붙이게 된다. 즉 가능하다면 원 분포대로 복원이 가능하도록(identity transform) 하겠다는 것이다.
+이러한 문제를 해결하기 위해서 Batch Normalization에서는 Normalizing 함수 뒤에 필요에 따라 Shifting과 Scaling이 가능하도록 Linear Transformation을 붙이게 된다. 즉 필요하다면 원 분포대로 복원할 수 있도록(identity transform) 하겠다는 것이다.
 
 $$
 y^{(k)} = \gamma^{(k)} \hat x^{(k)} + \beta^{(k)}
