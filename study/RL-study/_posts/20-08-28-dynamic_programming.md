@@ -9,6 +9,12 @@ category_num: 4
 - Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
 - update at : 2020.08.28
 
+## Summary
+
+- 강화학습에서 Dynamic Programming이란 Optimal Policy를 구하기 위해 각각의 State에 대한 Value를 정확히 구하는 방법을 말한다.
+- **Policy Iteration**은 Value Function을 정확하게 구하는 **Policy Evaluation**과 새로운 Value Function에 맞춰 보다 나은 Policy를 찾는 **Policy Improvement** 두 가지로 구성되어 있다.
+- Policy Iteration의 비효율성을 해소하기 위해 수렴성을 봊장하면서도 보다 효율적인 **Value Iteration**, **Asynchronous Update** 등이 있다.
+
 ## Introduction
 
 **Dynamic Programming(DP)**이란 한 번에 해를 구하기 어려운 문제가 있을 때 이를 여러 개의 하위 문제로 분할하고 각각에 대한 해를 찾아 본래의 문제를 해결하는 방법이다. 기본적으로 DP는 본래의 문제를 해결할 수 없거나, 본래의 문제를 곧바로 해결하는 데에 소요되는 비용보다 복수의 하위 문제를 해결하는 데에 소요되는 총 비용이 더 작을 때에 유용하다.
