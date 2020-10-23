@@ -18,11 +18,39 @@ df = df.drop(["col2", "col3"], axis=1)
 df.drop(["col4", "col5"], axis=1, inplace=True)
 ```
 
+## df.fillna()
+
+```
+df = df.fillna(0)
+```
+
 ## pd.concat()
 
 ```python
 df = pd.concat([df1, df2, ...])
 ```
+
+## pd.merge()
+
+```python
+merged_df = pd.merge(df1, df2, left_on='df1_key', right_on='df2_key', how='inner')
+```
+
+## df.iterrows()
+
+```python
+for idx, row in df.iterrows():
+```
+
+## df.apply()
+
+```python
+def apply_function(df_each_row):
+        return row_of_new_col
+
+df["new_col"] = df.apply(apply_function, axis=1)
+```
+
 
 ## df.reset_index()
 
@@ -158,6 +186,11 @@ plt.show()
 ## Show all DataFrame
 
 ```python
+pd.options.display.max_columns = None
+pd.options.display.max_rows = None
+
+#or
+
 pd.set_option('display.max_columns', 100)
 pd.set_option('display.max_rows', 100)
 ```

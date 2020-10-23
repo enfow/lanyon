@@ -9,13 +9,13 @@ category_num: 5
 - Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
 - update at : 2020.09.03
 
-## 0. Introduction
+## Introduction
 
-**Monte Carlo Method**는 대표적인 강화학습 학습 방법론 중 하나로, 강화학습의 문제를 Sample Returns의 평균으로 해결하는 방법이다. **Return**이라는 표현에서도 알 수 있듯이 Value를 추정하거나 Policy를 업데이트 하기 위해서는 **Episode**가 끝나야 하며, 이러한 점에서 Monte Carlo Method를 step-by-step이 아닌 **episode-by-episode**한 특성을 가진다고 표현한다.
+**Monte Carlo Method**는 대표적인 강화학습 방법론 중 하나로, 강화학습의 문제를 Sample Returns의 평균으로 해결하는 방법이다. **Return**이라는 표현에서도 알 수 있듯이 Value를 추정하거나 Policy를 업데이트 하기 위해서는 **Episode**가 끝나야 하며, 이러한 점에서 Monte Carlo Method를 step-by-step이 아닌 **episode-by-episode**한 특성을 가진다고 표현한다.
 
 강화학습의 문제를 각 State-Action에 대한 Return들의 평균으로 해결한다는 점에서 Multi-Armed Bendit 문제와 유사하다고 할 수 있다. 하지만  Monte Carlo Method를 비롯하여 앞으로 보게 될 강화학습 알고리즘들은 State의 개수만큼 많은 수의 Multi-Armed Bendit 문제가 존재하는 환경에서 최적의 Policy를 찾는 것에 가깝다. 보다 구체적으로 단일의 State를 상정하는 Multi-Armed Bendit과 달리 Monte-Carlo Method는 기본적으로 Multi-State 환경을 가정하고 있고, 이전 State에서 결정한 Action에 현재 State가 영향을 받는다는 점에서 해결하고자 하는 문제의 상황 자체가 다르다.
 
-## 1. Monte Carlo Prediction
+## Monte Carlo Prediction
 
 어떤 Policy $$\pi$$에 대해 Value Function $$v_\pi(s)$$ 또는 $$q_\pi(s,a)$$를 추정한다는 것은 $$\pi$$를 따라 episode를 진행할 때 $$s$$에서 시작하는 경우 혹은 $$s$$에서 $$a$$를 선택하는 것에서 시작하는 경우 받을 것으로 기대되는 Return $$G$$를 추정하겠다는 것을 의미한다. Monte Carlo Method는 앞서 언급한대로 이를 매우 직관적으로 받아들여 현재 State $$s$$에서 Episode를 여러 번 진행하여 구한 Return들의 평균으로 Value를 예측하려는 접근 방법이다. 당연하게도 보다 정확한 예측을 위해서는 샘플, 즉 에피소드를 많이 확보해야 한다.
 
@@ -39,17 +39,17 @@ Monte Carlo Method와 관련하여 한 가지 짚고 넘어가야 할 점이 있
 
 시작에 randomness를 부여하는가, 과정 상에서 randomness를 부여하는가의 차이라고 할 수 있다. 이때 중요한 것은 모든 State-Action 쌍의 선택 확률이 0이상이어서 어떤 쌍도 선택이 가능해야 한다는 점이다.
 
-## 2. Monte Carlo Control
+## Monte Carlo Control
 
 다양한 $$q(s,a)$$를 경험하는 것과 관련해 Exploring Start와 Stochastic Policy 두 가지 방법이 있다고 했었다. **Monte Carlo ES**는 이 중  **Exploring Start**를 적용하여 Policy Iteration을 수행하는 방법이다.
 
-### 2.1. Monte Carlo ES
+### 1) Monte Carlo ES
 
 Monte Carlo Method는 Value Function을 추정하는 방법이라고 할 수 있는데, 이를 활용하여 Policy Evaluation을 진행하고 업데이트 된 Value Function에 따라 Policy를 업데이트하는 Policy Improvement를 진행하게 되면(Policy Iteration) 환경에 대한 정보 없이도((Model-Free) 충분히 Optimal Policy를 찾을 수 있다. 다양한 $$q(s,a)$$에 대해 충분히 정확하게 알기 위해 Exploring Start, Infinite Episode Sample 두 가지를 가정하며 이러한 점에서 **Monte Carlo ES(Exploring Start)**라고 한다. 알고리즘은 아래와 같다.
 
 <img src="{{site.image_url}}/study/monte_carlo_es_algorithm.png" style="width:34em; display: block; margin: 0px auto;">
 
-### 2.2. On-Policy & Off-Policy
+### 2) On-Policy & Off-Policy
 
 Exploring Start를 사용하지 않으려면 Policy가 다양한 Action을 확률적으로 선택하도록 해야 한다. 이와 관련해 두 가지 방법, On-Policy와 Off-Policy가 있다. **On-Policy**는 Action의 선택에 사용되는 Policy(**Behavior Policy**)와 업데이트의 대상이 되는 Policy(**Target Policy**)가 같은 경우를 의미하고, **Off-Policy**는 다른 경우를 말한다. 
 
@@ -58,7 +58,7 @@ Exploring Start를 사용하지 않으려면 Policy가 다양한 Action을 확�
 
 이와 같은 구분이 중요한 이유는 Behavior Policy가 학습에 사용되는 Episode를 모으는 데에 사용되는 Action을 결정하는 Policy이므로 On-Policy는 Stochastic Policy여야 하지만 Off-Policy는 Target Policy가 Deterministic해도 되기 때문이다.
 
-### 2.3. On-Policy: Policy Iteration with $$\epsilon$$-Greedy Policy
+### 3) On-Policy: Policy Iteration with $$\epsilon$$-Greedy Policy
 
 Stochastic Policy, 즉 어떤 State에서 Action이 확률적으로 결정되는 Policy의 대표적인 예로 $$\epsilon$$의 확률로 임의의 Action을 선택하는 $$\epsilon$$-Greedy Policy가 있다. 위의 Monte Carlo ES가 On-Policy이면서 Exploring Start를 적용하여 Policy Iteration을 수행하는 방법이었다면, $$\epsilon$$-Greedy Policy를 적용하여 Policy Iteration을 수행하는 것 또한 아래 알고리즘과 같이 가능하다고 할 수 있다. 이때 Policy는 확률적으로 어떠한 Action도 선택 가능한 **Soft Policy**여야 한다.
 
@@ -78,7 +78,7 @@ q_\pi(s, \pi'(s))
 }
 $$
 
-### 2.4. Off-Policy: Importance Sampling
+### 4) Off-Policy: Importance Sampling
 
 Off Policy는 Behavior Policy와 Target Policy가 다르다고 했었다. 이는 어떤 Policy를 업데이트 하기 위해 다른 Policy가 모아준 경험을 사용하겠다는 것을 의미하고, 따라서 Behavior Policy가 경험할 확률이 높은 Trajectory를 Target Policy는 경험할 확률이 매우 낮을 수 있다. 다른 말로 하면 Trajectory에 대해 부여하는 중요도가 다를 가능성이 있다는 것이다. 따라서 Behavior Policy에 의해 모은 Trajectory를 그대로 사용하지 않고, 중요도를 반영하여 Target Policy를 업데이트 해야 한다.
 
@@ -136,6 +136,6 @@ $$
 
 <img src="{{site.image_url}}/study/incremental_monte_carlo_off_policy_algorithm.png" style="width:30em; display: block; margin: 0px auto;">
 
-#### 2.5. Limitation of Off-Policy $$\epsilon$$-Greedy Algorithm
+#### 5) Limitation of Off-Policy $$\epsilon$$-Greedy Algorithm
 
 Off-Policy $$\epsilon$$-Greedy의 가장 큰 단점은 Non-Greedy Action의 비율이 높으면 높을 수록 학습에 오랜 시간이 소요된다는 것이다. 이는 업데이트를 하기 위해 전체 Episode가 필요하다는 Monte Carlo의 특징과 합쳐져 더욱 심화되며, Episode-by-Episode가 아닌 Step-by-Step으로 업데이트가 가능한 Temporal Difference 방법에서는 이러한 문제가 다소 완화된다.
