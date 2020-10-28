@@ -15,7 +15,7 @@ keyword: '[Universal Approximation]'
 ## Summary
 
 - Universal Approximation Theorem은 하나의 뉴럴 네트워크 레이어와 비선형 활성 함수만으로 가능한 모든 연속 함수를 근사할 수 있다는 것을 수학적으로 보이고 있다.
-- 이때 비선형 활성 함수 $$\theta$$는 **Continuous Discriminatory Function** 이어야 한다. 대표적으로 Sigmodal한 특성을 가지는 함수들이 있다.
+- 이때 비선형 활성 함수 $$\sigma$$는 **Continuous Discriminatory Function** 이어야 한다. 대표적으로 Sigmodal한 특성을 가지는 함수들이 있다.
 
 ## Artificial Neural Network
 
