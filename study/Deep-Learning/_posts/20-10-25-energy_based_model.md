@@ -15,7 +15,7 @@ Yann LeCun의 A Tutorial on Energy-Based Learning은 다음과 같은 문장으�
 
 - "Energy-Based Models (EBMs) capture dependencies between variables by associating a scalar energy to each configuration of the variables"
 
-**Energy Based Model**은 변수들 간의 의존성을 포착하는 모델이며, 각 변수들의 조합을 의존성의 정도를 스칼라 값으로 나타낸 것을 Energy라고 한다는 것이다. 가장 익숙한 통계적 모델링 방법인 **Probabilistic Model**은 조건부 확률 $$P(Y \lvert X)$$ 즉, 입력 $$X$$가 주어졌을 때 출력 $$Y$$가 나올 확률을 모델링한다면 **Energy Based Model**은 입력 $$X$$와 출력 $$Y$$의 조합을 통해 얻을 수 있는 Energy $$E(X, Y)$$의 값을 모델링한다. 정확하게 따지고 들어가면 LeCun도 강의에서
+**Energy Based Model**은 변수들 간의 의존성을 포착하는 모델이며, 각 변수들의 조합 간의 의존성 정도를 스칼라 값으로 나타낸 것을 **Energy**라고 한다는 것이다. 가장 익숙한 통계적 모델링 방법인 **Probabilistic Model**은 조건부 확률 $$P(Y \lvert X)$$ 즉, 입력 $$X$$가 주어졌을 때 출력 $$Y$$가 나올 확률을 모델링한다면 **Energy Based Model**은 입력 $$X$$와 출력 $$Y$$의 조합을 통해 얻을 수 있는 Energy $$E(X, Y)$$의 값을 모델링한다. 정확하게 따지고 들어가면 LeCun도 강의에서
 
 - "Probabilistic models are a special case of EBM"
 
