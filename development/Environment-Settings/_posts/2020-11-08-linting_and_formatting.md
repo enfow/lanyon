@@ -8,10 +8,11 @@ keyword: '[Tools]'
 # Linting & Formatting
 
 - update date: 2020.11.08
+- Environement Setttings: MacOS 10.15.6 \| Python 3.7.4
 
 ## Static & Dynamic Analysis
 
-소스코드를 분석하는 방법은 크게 **정적 분석(Static Analysis)**과 **동적 분석(Dynamic Analysis)** 두 가지로 나누어진다. 두 가지를 구분하는 기준은 소스코드의 실행 여부라고 할 수 있는데, 정적 분석은 코드를 런타임에 올리지 않은 채 텍스트로 보고 코드를 분석하는 것을, 동적 분석은 런타임에 올려 실제로 확인한 실행 결과를 바탕으로 코드를 분석하는 것을 가리킨다. 정적 분석의 대표적인 예로는 **Linting**과 **Formatting** 등이 있고, 동적 분석의 대표적인 예로는 **Unit Test**가 있다.
+내가 작성한 소스코드에 문제가 없는지 알아보는 방법은 크게 **정적 분석(Static Analysis)**과 **동적 분석(Dynamic Analysis)** 두 가지로 나누어진다. 두 가지를 구분하는 기준은 소스코드의 실행 여부라고 할 수 있는데, 정적 분석은 코드를 런타임에 올리지 않은 채 텍스트로 보고 코드를 분석하는 것을, 동적 분석은 런타임에 올려 실제로 확인한 실행 결과를 바탕으로 코드를 분석하는 것을 가리킨다. 정적 분석의 대표적인 예로는 **Linting**과 **Formatting** 등이 있고, 동적 분석의 대표적인 예로는 **Unit Test**가 있다.
 
 정적 분석과 동적 분석은 상호 보완적인 관계로 그 특성이 다르기 때문에 서로 잡아낼 수 있는 문제점 또한 다르다. 따라서 완벽성을 추구하기 위해서는 두 가지를 모두 사용하는 것이 좋다. 다만 코드가 런타임에서 어떻게 동작하는지 확인해야 하는 동적 분석은 정적 분석에 비해 무거울 수 밖에 없다. 따라서 큰 프로젝트를 수행할 때에는 하위 브랜치에서 작업할 때에는 정적 분석만 실시하고, master, develop과 같은 주요 브랜치에 merge 할 때에만 동적 분석을 실시하는 등 상황을 고려하여 유연하게 적용할 필요가 있다.
 
@@ -295,7 +296,7 @@ Python Code Formatter인 [Black](<https://pypi.org/project/black/>)에 대한 �
 
 - Black is the uncompromising **Python code formatter**. By using it, you agree to cede control over minutiae of hand-formatting. In return, **Black gives you speed, determinism, and freedom from pycodestyle nagging** about formatting. You will save time and mental energy for more important matters.
 
-쉽게 말해 빠르게 pycodestyle의 잔소리로부터 해방시켜 준다고 한다. 그도 그럴것이 black을 사용하면 매우 빠르고 쉽게 임의로 작성한 코드를 pycodestyle에 맞춰준다. 우선 black의 설치 방법은 다음과 같다.
+빠르게 pycodestyle의 잔소리로부터 해방시켜 준다고 한다. 그도 그럴것이 black을 사용하면 매우 빠르고 쉽게 임의로 작성한 코드를 pycodestyle에 맞춰준다. 우선 black의 설치 방법은 다음과 같다.
 
 ```bash
 # install black
