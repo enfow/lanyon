@@ -99,6 +99,8 @@ h2.without-underbar {
   font-size: 28px;
   margin-top: 2.5em;
   margin-bottom: 0.5em;
+  border-width:0;
+  padding-bottom: 0px
 }
 
 /*
