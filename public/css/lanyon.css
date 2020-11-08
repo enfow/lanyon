@@ -61,9 +61,16 @@ h1 {
 }
 
 h2 {
-  font-size: 27px;
+  font-size: 28px;
   margin-top: 2.5em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.7em;
+  padding-bottom: 7px;
+  border-color: #555;
+  border-style:solid;
+  border-width:thin;
+  border-top:0;
+  border-left:0;
+  border-right:0;
 }
 
 h3 {
@@ -86,6 +93,12 @@ h5 {
 h6 {
   font-size: 19px;
   margin-top: 1.5em;
+}
+
+h2.without-underbar {
+  font-size: 28px;
+  margin-top: 2.5em;
+  margin-bottom: 0.5em;
 }
 
 /*
