@@ -139,7 +139,7 @@ $$
 
 그리고 SGD와 같이 하나의 데이터에 따라 업데이트를 할 경우에는 전체가 아닌 일부의 data point만 사용하여 $$\nabla_\theta J(\theta)$$ 값을 결정하기 때문에 variance가 크고, 그 결과 $$\theta$$ 값의 변화 크기와 방향이 비교적 다양하게 나타난다. 이러한 이유로 SGD 또는 mini batch에서는 업데이트의 방향이 횡보하는 경우가 많다. 이것이 꼭 나쁘다고만 할 수는 없는 것이 local minimum에서 빠져나올 확률을 높여주는 방법이 되기 때문이다. 이는 보다 안정적인 수렴이 가능하다는 장점을 가지는 Batch Gradient Descent를 잘 사용하지 않는 이유 중 하나이다.
 
-### 1. Batch Gradient Descent
+### 1) Batch Gradient Descent
 
 Batch Gradient Descent는 전체 데이터셋(full training set)을 이용해 Gradient를 업데이트하는 방식을 말한다. 여기서 batch란 부분을 말하는 것이 아니라 전체를 의미한다.
 
@@ -153,7 +153,7 @@ Batch Gradient Descent는 전체 데이터셋(full training set)을 이용해 Gr
 - local minimum에 빠질 가능성이 높다.
 - 한 번 학습하는데에 시간이 오래 걸리며, 메모리 사용량이 높다.
 
-### Stochastic Gradient Descent
+### 2) Stochastic Gradient Descent
 
 SGD는 한 번의 업데이트에 하나의 데이터로 구해진 loss를 사용하는 것이다. 즉 데이터를 하나만 사용한다.
 
@@ -167,7 +167,7 @@ SGD는 한 번의 업데이트에 하나의 데이터로 구해진 loss를 사�
 - global opimta를 찾지 못할 가능성은 여전히 존재한다.
 - 메모리를 적게 요구한다는 점은 역으로 하드웨어를 효율적으로 사용하지 못한다는 것을 뜻한다.
 
-### Minibatch Gradient Descent
+### 3) Minibatch Gradient Descent
 
 위의 두 가지 방법의 절충안으로 정해진 크기의 데이터를 사용해 loss를 구하는 방법이다. 이때 한 번에 사용되는 데이터를 전체 batch보다 작다는 뜻으로 mini batch라고 한다. 순수한 의미의 SGD는 잘 사용하지 않으며, mini batch 방식을 SGD라고 하는 경우가 많다.
 
