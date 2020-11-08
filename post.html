@@ -9,9 +9,7 @@ sidebar_num : 1
 <div class="posts">
   <!-- <h1 style="margin-bottom: 2em;">POSTS</h1> -->
 
-  <img src="{{site.image_url}}/page/posts.png">
-
-  <hr style="margin-bottom: 4em;"/>
+  <img src="{{site.image_url}}/page/posts.png" style="margin-bottom: 5em;">
 
   <!-- study -->
   <div class="cats-expo-section">
@@ -46,7 +44,7 @@ sidebar_num : 1
       {% for cat in site.categories %}
         {% if cat[0] == pap %}
           <div class = "single-category">
-            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2>
+            <h2 class="single-category-title-on-index" id="{{ cat[0] | slugify }}">{{ cat[0] }} Papers</h2>
             <ul class="post_in_category">
             {% assign category = cat[1] | sort: "category_num" %}
             {% for post in category %}
