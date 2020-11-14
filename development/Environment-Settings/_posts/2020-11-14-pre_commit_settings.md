@@ -9,10 +9,8 @@ keyword: '[Git]'
 
 - Update Date: 2020.11.14
 - Environment: MacOS 10.15.6 \| Python 3.7.5
-- Reference
-    - [Pre-Commit](<https://pre-commit.com/>)
-    - [black](<https://github.com/psf/black>)
-    - [isort](<https://github.com/PyCQA/isort>)
+- Reference: [Pre-Commit](<https://pre-commit.com/>) \| [black](<https://github.com/psf/black>) \| [isort](<https://github.com/PyCQA/isort>) \| [flake8](<https://flake8.pycqa.org/en/latest/>) \| [pylint](<https://pypi.org/project/pylint/>) \| [mypy](<http://mypy-lang.org/>) \| [pytest](<https://docs.pytest.org/en/stable/>)
+- [Git Repo](<https://github.com/enfow/pre-commit-settings>)
 
 **Pre-Commit**이란 Commit을 하기 전에 작성된 코드를 검사하여 문제가 있는지 확인해보는 것을 말한다. 이러한 기능을 활용하면 Linting, Formatting을 일괄적으로 적용할 수 있어 코드의 품질을 일정 수준 이상으로 유지하도록 할 수 있다는 장점이 있다. 본 포스팅에서는 Formatting과 Linting을 Pre-Commit에 적용하여 두 가지를 해결하지 못하면 Commit을 막는 방법을 다루고자 한다. 
 
