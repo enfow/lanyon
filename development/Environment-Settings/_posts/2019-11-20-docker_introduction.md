@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Docker Introduction
-category_num : 2
+category_num : 30
 keyword: '[Docker]'
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Customizing Vim
-category_num : 7
+category_num : 2
 keyword: '[Vim]'
 ---
 

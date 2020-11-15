@@ -1,7 +1,7 @@
 ---
 layout: post
 title: pyenv, virtualenv, autoenv
-category_num : 3
+category_num : 1
 keyword: '[Python]'
 ---
 

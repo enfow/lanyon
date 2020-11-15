@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Git Pre-Commit Settings
-category_num : 8
+category_num : 12
 keyword: '[Git]'
 ---
 
@@ -12,9 +12,9 @@ keyword: '[Git]'
 - Reference: [Pre-Commit](<https://pre-commit.com/>) \| [black](<https://github.com/psf/black>) \| [isort](<https://github.com/PyCQA/isort>) \| [flake8](<https://flake8.pycqa.org/en/latest/>) \| [pylint](<https://pypi.org/project/pylint/>) \| [mypy](<http://mypy-lang.org/>) \| [pytest](<https://docs.pytest.org/en/stable/>)
 - [Git Repo](<https://github.com/enfow/pre-commit-settings>)
 
-**Pre-Commit**이란 Commit을 하기 전에 작성된 코드를 검사하여 문제가 있는지 확인해보는 것을 말한다. 이러한 기능을 활용하면 Linting, Formatting을 일괄적으로 적용할 수 있어 코드의 품질을 일정 수준 이상으로 유지하도록 할 수 있다는 장점이 있다. 본 포스팅에서는 Formatting과 Linting을 Pre-Commit에 적용하여 두 가지를 해결하지 못하면 Commit을 막는 방법을 다루고자 한다. 
+**Pre-Commit**이란 Commit을 하기 전에 작성된 코드를 검사하여 문제가 있는지 확인해보는 것을 말한다. 이러한 기능을 활용하면 Linting, Formatting을 일괄적으로 적용할 수 있어 코드의 품질을 일정 수준 이상으로 유지가 가능하다. 본 포스팅에서는 Formatting과 Linting을 Pre-Commit에 적용하는 방법을 다루고자 한다.
 
-참고로 Formatter와 Lintter는 버전에 따라 그 결과가 다를 수 있다. 따라서 설치 버전을 `requirements.txt`에 구체적으로 명시하여 공동 작업자 간에 버전을 맞추는 것이 중요하다. 포스팅을 위해 작성한 requirements.txt 파일은 다음과 같다.
+참고로 Formatter와 Lintter는 버전과 설정에 따라 그 결과가 다를 수 있다. 따라서 설치 버전을 `requirements.txt`에 구체적으로 명시하고, 각각의 설정 파일을 공동 작업자 간에 버전을 맞추는 것이 중요하다. 
 
 ```bash
 # requirement.txt

@@ -1,11 +1,11 @@
 ---
 layout: post
-title: Linux remote server settings
-category_num : 1
+title: Linux Remote Server Settings
+category_num : 20
 keyword: '[Linux]'
 ---
 
-# Linux remote server settings
+# Linux Remote Server Settings
 
 - update date : 2020.02.03, 2020.08.18
 
