@@ -13,7 +13,7 @@ category_num: 9
 
 10x10 Grid World와 같이 State와 Action의 개수가 적어 Table의 형태로 모든 State 혹은 State Action pair에 대한 Value를 저장해 두고 하나씩 업데이트하는 것이 가능한 경우를 Tabular RL Problem이라고 한다. 하지만 많은 문제, 특히 현실에 가까워질수록 State와 Action의 개수가 크게 많아지면서 모든 경우의 수에 대해 Table의 형태로 저장하는 것이 어려워진다. 이는 저장 공간(Memory)의 문제와 더불어 각각의 State 또는 State-Action Pair에 대해 개별적으로 Value를 업데이트해줘야 하기 때문에 연산량이 크게 늘어난다는 문제로 이어진다.
 
-이러한 문제를 해결하기 위해서는 **일반화 효과(Generalization)**, 즉 소수의 State에 대해서만 Policy가 업데이트 되었을지라도 경험하지 못한 State에서도 당황하지 않고 적절한 Action을 선택할 수 있도록 일반화 효과를 만들어줄 필요가 있다. 특히 현실적으로 모든 State를 경험하고 이를 학습한다는 것이 불가능할 만큼 State Space가 큰 상황이 많다는 점을 고려한다면 이러한 일반화 효과의 필요성은 더욱 중요해진다.
+이러한 문제를 해결하기 위해서는 **일반화 효과(Generalization)**, 즉 소수의 State에 대해서만 Policy가 업데이트 되었을지라도 경험하지 못한 State에서도 당황하지 않고 적절한 Action을 선택할 수 있도록 해야 한다. 특히 현실적으로 모든 State를 경험하고 이를 학습한다는 것이 불가능할 만큼 State Space가 큰 상황이 많다는 점을 고려한다면 이러한 일반화 효과의 필요성은 더욱 중요해진다.
 
 ## Function Approximation
 
