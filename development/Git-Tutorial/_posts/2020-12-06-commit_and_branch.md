@@ -18,11 +18,11 @@ category_num : 1
 
 ## Introduction
 
-[Git](<https://git-scm.com/>) 홈페이지에서는 Git을 다음과 같이 정의한다.
+[Git](<https://git-scm.com/>) 홈페이지에서는 Git을 다음과 같이 **분산 버전 관리 시스템**이라고 정의한다.
 
 - Git is a free and open source **distributed version control system** designed to handle everything from small to very large projects with speed and efficiency.
 
-Git은 **분산 버전 관리 시스템**이라고 한다. 여기서 **버전**이 작업하고 있는 코드의 상태를 의미하는데, 이러한 점에서 Git은 개발 과정에서 지속적으로 변경되는 코드를 관리해주는 프로그램이라고 할 수 있다. 그리고 **분산**이라는 표현에서 강조하고 있듯이 Git에서는 복수의 사람들이 작업하는 상황에서도 누가 어떤 코드를 언제 작성했는지 확인하고, 서로 다른 개발자의 코드를 일정한 규칙에 따라 하나로 합쳐주는 기능을 제공한다.
+여기서 **버전**은 작업하고 있는 코드의 상태를 의미하는데, 이러한 점에서 Git은 개발 과정에서 지속적으로 변경되는 코드를 관리해주는 프로그램이라고 할 수 있다. 그리고 **분산**이라는 표현에서 강조하고 있듯이 Git에서는 복수의 사람들이 작업하는 상황에서도 누가 어떤 코드를 언제 작성했는지 확인하고, 서로 다른 개발자의 코드를 일정한 규칙에 따라 하나로 합쳐주는 기능을 제공한다.
 
 ## Commit is SnapShot
 
