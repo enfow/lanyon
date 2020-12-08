@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Analyzing Algorithm
+title: Asymptotic Notation
 category_num: 1
 ---
 
