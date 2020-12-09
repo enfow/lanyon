@@ -30,9 +30,13 @@ Python에서는 Bulit-in Data Type으로 List, Set, Dictionary 등을 제공하�
 | remove | $$O(n)$$ | $$O(n)$$ |
 | pop | $$O(1)$$ | $$O(1)$$ |
 
+### List is Dynamic Array
+
+Python의 List는 **Dynamic Array**로 구현되어 있다. Array라는 것은 메모리 상에 연속적으로 저장되어있는 데이터 집합으로 정의되는데, C언어를 통해 확인해보면 보다 명확하다.
+
 ### Indexing
 
-Python의 List는 **Dynamic Array**로 구현되어 있다. Dynamic Array이기 때문에 모든 구성 요소들의 위치를 다음과 같이 쉽게 계산할 수 있다.
+List는 Dynamic Array이기 때문에 모든 구성 요소들의 위치를 다음과 같이 쉽게 계산할 수 있다.
 
 $$
 \text{element address = start address + (index }*\text{ element size)}
@@ -42,17 +46,21 @@ $$
 
 ### Search
 
-어떤 값이 List 내에 없다고 확신하기 위해서는 모든 element를 확인해보아야 한다. 따라서 최악의 경우에는 $$O(n)$$이 된다. 평균적인 경우는 다음과 같이 계산된다.
+어떤 값이 List 내에 없다고 확신하기 위해서는 모든 element를 확인해보아야 한다. 따라서 최악의 경우에는 $$O(n)$$이 된다. 평균적인 시간 복잡도는 다음과 같이 계산된다.
 
 $$
 {1+2+...+n \over n} = {n(n+1) \over 2n} = {n+1 \over 2}
 $$
+
+풀이하자면 분자에는 첫 번째 Index의 element를 탐색하는 경우 시간 시간복잡도($$1$$)부터 두 번째($$2$$), 세 번째($$n$$), 마지막 element의 원소를 찾는 경우까지, 가능한 모둔 경우의 시간 복잡도의 총합이 들어가고 분모에는 탐색의 경우의 수인 $$n$$이 들어가게 된다. 이를 계산해보면 $${n+1 \over 2}$$이 나오게 되고, Big-O 표기법에 따라 $$O(n)$$이 된다.
 
 ### Copy
 
 List를 복사할 때에는 전체 element를 하나씩 복사해야 하기 때문에 $$O(n)$$이 된다.
 
 ### Append
+
+Append를 비롯해 새로이 element를 추가하는 연산의 경우에는 Dynamic Array가 어떻게 동작하는지 알아야 정확한 시간 복잡도를 산출할 수 있다. 
 
 ### Assert
 
