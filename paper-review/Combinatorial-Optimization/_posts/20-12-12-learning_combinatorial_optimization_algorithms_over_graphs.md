@@ -125,7 +125,7 @@ $$
 
 ## Training: Q-learning
 
-이러한 Q function은 강화학습의 방법론(Q-learning)에 따라 업데이트하게 된다. Action과 State에 대해서는 위에서 여러 번 언급하였고, Action에 따라 다음 State는 deterministic 하게 결정되기 때문에 Transition도 중요한 고려대상이 아니다. **Reward Function**은 다음과 같이 각 문제의 목적 함수 $$c$$를 통해 구할 수 있다고 한다.
+이러한 Q function은 강화학습의 방법론(**Q-learning**)에 따라 업데이트하게 된다. Action과 State에 대해서는 위에서 여러 번 언급하였고, Action $$a_t$$에 따라 Next State $$s_{t+1}$$가 deterministic 하게 결정되기 때문에 Transition도 중요한 고려대상이 아니다. **Reward Function**은 다음과 같이 각 문제의 목적 함수 $$c$$를 통해 구할 수 있다고 한다.
 
 $$
 r(S, v) = c(h(S'), G) - c(h()s, G)
@@ -137,7 +137,7 @@ $$
 R(\hat S) = \Sigma_{i=1}^{\lvert \hat S \rvert} r(S_i, v_i) = c(h(\hat S), G)
 $$
 
-Reward Function까지 정의하였으므로 기본적인 Q-learning의 업데이트 식에 따라 Q Function을 업데이트하면 된다.
+Reward Function까지 정의하였으므로 아래와 같은 기본적인 Q-learning의 업데이트 식에 따라 Q Function을 업데이트할 수 있다.
 
 $$
 \eqalign{
