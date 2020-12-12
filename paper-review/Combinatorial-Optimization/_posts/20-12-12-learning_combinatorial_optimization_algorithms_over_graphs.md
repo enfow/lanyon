@@ -14,9 +14,9 @@ keyword: '[NP-hard graph]'
 
 ## Summary
 
-- Graph 구조를 가지고 있는 NP-Hard 문제를 해결하는 방법으로 (1) 제안하는 Graph Embedding Network 구조인 **Structue2Vec**에서 개별 Node의 특성을 추출하고, (2) 그에 따라 매 Step의 Action으로 Node를 선택하는 강화학습 방법론을 제시한다.
-- 알고리즘의 일반적인 성능 검증을 위해 세 가지 대표적인 NP-hard graph 문제인 Minimum Vertex Cover, Maximum Cut, Traveling Salesman Problem에 대한 실험을 진행했으며, 문제의 성격이 서로 다른 세 가지 실험 모두에서 성능을 확보할 수 있었다.
-- 전체 Graph를 고려한 Node Embedding을 추출하기 위해 반복적으로 Node Embedding을 업데이트한다. 그리고 Dealyed Reward로 인한 문제점을 줄이기 위해 Q-iteration Approach를 사용하여 Model을 업데이트한다.
+- Graph 구조를 가지고 있는 NP-Hard 문제를 해결하는 방법으로 (1) 제안하는 Graph Embedding Network 구조인 **Structue2Vec**로 개별 Node의 Feature Embedding을 추출하고, (2) 그에 따라 매 Step의 Action으로 하나의 Node를 선택하는 과정을 반복적으로 수행하는 강화학습 방법론을 제시한다.
+- 알고리즘의 일반적인 성능 검증을 위해 세 가지 대표적인 NP-hard graph 문제인 Minimum Vertex Cover, Maximum Cut, Traveling Salesman Problem에 대한 실험을 진행했으며, 서로 다른 성격의 세 가지 실험 모두에서 일정 성능을 확보할 수 있었다.
+- 전체 Graph를 고려한 Node Embedding을 추출하기 위해 반복적으로 Node Embedding을 업데이트한다. 그리고 Dealyed Reward로 인한 문제점을 줄이기 위해 Q-iteration Approach를 사용하여 Q function을 업데이트한다.
 
 ## NP-hard graph optimization problem
 
@@ -56,7 +56,9 @@ $$
 
 ## How to Solve: Greedy Algorithm
 
-MVC와 MAXCUT은 전체 Node 집합 $$V$$ 중 최적의 부분 집합 $$S \subset V$$를 선택하는 문제이고, TSP는 모든 Node $$V$$를 줄세우는 최적의 방법을 찾는 문제라고 할 수 있다. 논문은 이러한 문제들을 모두 포함하는 알고리즘을 제시하기 위해 문제를 보다 추상적으로 정의하고 있으며, 이러한 과정에서 Heuristic Algorithm 중 하나인 **Greedy Algorithm**을 적용했다고 한다. 구체적으로 논문에서 제안하는 알고리즘은 이미 선택된 Subset $$S$$와 선택되지 않은 node들에 대한 정보를 통해 한 번에 하나씩 Subset $$S$$에 새로운 node를 추가하는 방식을 택하고 있다.
+MVC와 MAXCUT은 전체 Node 집합 $$V$$ 중 최적의 부분 집합 $$S \subset V$$를 선택하는 문제이고, TSP는 모든 Node $$V$$를 줄세우는 최적의 방법을 찾는 문제라는 점에서 서로 다른 점을 가지고 있다. 따라서 세 가지 문제, 나아가 Graph 구조의 NP-hard 문제에 대한 일반적인 해결책을 제시하기 위해서는 문제들이 공통적으로 가지는 요소를 찾고, 그에 맞춰 추상화해야 한다. 
+
+논문에서는 세 가지 문제 모두 Node를 선택해야 한다는 점에 초점을 맞추고 있으며, 논문에서 제안하는 알고리즘은 이미 선택된 Subset $$S$$와 전체 Graph에 대한 정보를 가지고 한 번에 하나씩 Subset $$S$$에 새로운 node를 추가하는 방식을 택하고 있다. 이러한 방법론은 Heuristic Algorithm 중 하나인 Greedy Algorithm에서 영향을 받았다고 한다.
 
 - A generic greedy algorithm selects a node $$v$$ to add next such that $$v$$ maximizes an evaluation function, $$Q(h(s), v) \in \mathcal R$$, which depends on the combinatorial structure $$h(s)$$ of the current partial solution.
 
@@ -66,7 +68,7 @@ $$
 
 - The step is repeated untila termination criterion $$t(h(s))$$ is satisfied.
 
-이러한 방법론을 적용하여 위의 세 문제를 해결하기 위해서는 이에 맞춰 추가적으로 정의해야 할 것들(Objective Function $$c$$, Terminate Criterion $$t$$)이 있다.
+전체적으로는 이러한 방법론을 적용한다 하더라도, 어떤 Node를 선택하는 것이 최적인지는 문제의 특성에 따라 달라진다. 따라서 개별 문제의 특성에 따라 추가적으로 다음과 같이 정의하고 있다.
 
 ### Minimum Vertext Cover
 
@@ -125,7 +127,7 @@ $$
 
 ## Training: Q-learning
 
-이러한 Q function은 강화학습의 방법론(**Q-learning**)에 따라 업데이트하게 된다. Action과 State에 대해서는 위에서 여러 번 언급하였고, Action $$a_t$$에 따라 Next State $$s_{t+1}$$가 deterministic 하게 결정되기 때문에 Transition도 중요한 고려대상이 아니다. **Reward Function**은 다음과 같이 각 문제의 목적 함수 $$c$$를 통해 구할 수 있다고 한다.
+이러한 Q function은 강화학습의 방법론(**Q-learning**)에 따라 업데이트하게 된다. Action과 State에 대해서는 위에서 여러 번 언급하였고, Action $$a_t$$에 따라 Next State $$s_{t+1}$$가 deterministic 하게 결정되기 때문에 Transition도 문제의 특성상 중요한 고려대상이 아니다. **Reward Function**은 다음과 같이 각 문제의 목적 함수 $$c$$를 통해 구할 수 있다고 한다.
 
 $$
 r(S, v) = c(h(S'), G) - c(h()s, G)
