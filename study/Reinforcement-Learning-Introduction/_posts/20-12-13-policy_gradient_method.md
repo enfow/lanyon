@@ -60,9 +60,21 @@ $$
 
 마지막으로 Parameterized Policy가 $$\epsilon$$-Greedy를 사용하는 Q-learning과 비교해 볼 때 이론적으로 보다 수렴성 보장이 확실하다는 장점이 있다. $$\epsilon$$-Greedy의 특성상 선택하는 Action이 급격하게(dramatically) 변화할 수 있고 이것이 안정적인 수렴에 방해 요인이 되지만, Paramterized Policy에서는 Action이 조금씩(Smooth)하게 변화하여 수렴성이 보다 강하게 보장된다는 것이다.
 
+### Advantage in Continuous Action Space
+
+q-value를 바탕으로 Action을 결정하는 Q-learning에서는 Action Space가 Continuous하면 Action의 가짓수는 무한하기 때문에 모든 State-Action pair $$(s,a)$$에 대한 정확한 Value를 구하는 것은 불가능하다. 반면 Parameterized Policy를 사용하여 Policy 함수가 반환하는 값이 실수가 되는 Policy Gradient에서는 Continuous Action을 반환하는 것이 가능하다.
+
+Policy가 실수의 Action을 반환하고, 이를 그대로 사용하면 무한한 Action Space에서 동일한 Action을 뽑을 확률이 0이므로 학습이 제대로 이뤄지기 어렵다. 따라서 Continuous Action Space에서는 Gaussian과 같은 일정한 확률 분포를 정의하고, 그것의 통계량(Statistics)을 학습하는 방식으로 이뤄진다. 이 경우 Action은 당연히 해당 확률 분포에서 샘플링하는 방식으로 결정된다.
+
+$$
+p(x) = {1 \over \sigma \root \of 2 \pi} \exp (- {(x-\mu)^2 \over 2\sigma^2})
+$$
+
+예를 들어 위와 같이 Gaussian Distribution으로 Action의 확률 분포를 정의하면, Policy는 평균 $$\mu (s, \theta)$$와 표준 편차 $$\sigma(s, \theta)$$ 두 가지를 각각 Parameterize하고, 이를 적절하게 계산할 수 있도록 $$\theta = [\theta_\mu, \theta_\sigma]^\text{T}$$를 업데이트하게 된다.
+
 ## Policy Gradient Theorem
 
-이와 같은 여러 장점을 가지고 있지만 Paramterized Policy를 직접 업데이트하기 위해서는 Performance Measure $$J(\theta)$$에 대해 Gradient를 구해야 한다. **Policy Gradient Theorem**은 이것이 가능하다는 것을 보여주는 공식으로, 쉽게 말해 $$\nabla J(\theta)$$를 구하는 방법이라고 할 수 있다. 전개 과정에서는 Episodic Case, 즉 Terminal State가 존재하고, 매번 동일한 State $$s_0$$에서 시작한다는 것을 가정하는데, 구체적인 과정은 생략(Sutton, p325)하면 다음과 같다.
+이와 같은 여러 장점을 가지고 있지만 Paramterized Policy를 직접 업데이트하기 위해서는 Performance Measure $$J(\theta)$$에 대해 Gradient를 구해야 한다. **Policy Gradient Theorem**은 이것이 가능하다는 것을 보여주는 공식으로, 쉽게 말해 $$\nabla J(\theta)$$를 구하는 방법이라고 할 수 있다. 전개 과정에서는 Episodic Case, 즉 Terminal State가 존재하고, 매번 동일한 State $$s_0$$에서 시작한다는 것을 가정하면 다음과 같이 정리할 수 있다(Sutton, p325). 여기서 $$\mu (s)$$는 현재 Policy $$\pi$$의 **State Distribution**을 의미한다.
 
 $$
 \eqalign{
@@ -72,7 +84,18 @@ $$
 }
 $$
 
-여기서 $$\mu (s)$$는 현재 Policy $$\pi$$의 **State Distribution**을 의미한다. Policy Gradient 알고리즘들은 모두 이 공식을 통해 Policy를 업데이트하게 되는데, 직접적으로 이를 사용하는 알고리즘이자 가장 전통적인 Policy Gradient 방법론으로 **REINFORCE**가 있다.
+Terminal State가 없는 Continouing Case에서는 Performance Measure가 다음과 같이 일정 Step 내에서의 평균으로 정의할 수 있는데,
+
+$$
+\eqalign{
+J(\theta) = r(\pi) &= \lim_{h \rightarrow \infty} { 1 \over h } \Sigma_{t=1}^h E[R_t \lvert S_0, A_{0:t-1} \backsim \pi]\\
+&= \lim_{t \rightarrow \infty} E[R_t \lvert S_0, A_{0:t-1} \backsim \pi]\\
+&= \Sigma_s \mu(s) \Sigma_a \pi(a\lvert s) \Sigma_{s', r} p(s', r \lvert s, a) r \\
+\text{where }\mu(s) &= \lim_{t \rightarrow \infty} Pr(S_t = s \lvert A_{0:t} \backsim \pi)
+}
+$$
+
+이 경우 Episodic Case와 동일한 식이 성립한다는 것 또한 증명되어 있다(Sutton, p334). Policy Gradient 알고리즘들은 모두 이 공식을 통해 Policy를 업데이트하게 되는데, 직접적으로 이를 사용하는 알고리즘이자 가장 전통적인 Policy Gradient 방법론으로 **REINFORCE**가 있다.
 
 ## REINFORCE
 
@@ -128,7 +151,7 @@ $$
 
 마지막으로 REINFORCE는 현재 Policy를 따랏을 때 얻어지는 Return $$G_t$$를 사용하여 업데이트한다. 따라서 한 번의 업데이트를 위해 전체 Episode를 진행해보고, 그 과정에서 얻은 Reward 값의 총합을 알아야 한다. 이러한 점에서 Monte Carlo Algorithm으로 분류된다. 알고리즘은 아래와 같다.
 
-<img src="{{site.image_url}}/study/policy_gradient_method_reinforce_algorithm.png" style="width:36em; display: block; margin: 15px auto;">
+<img src="{{site.image_url}}/study/policy_gradient_method_reinforce_algorithm.png" style="width:40em; display: block; margin: 15px auto;">
 
 **REINFORMCE**는 Step Size $$\alpha$$가 충분히 작고, 학습 과정에서 점차 줄어들면 이론적으로 수렴이 보장된다는 장점을 가지고 있다. 그러나 Monte Carlo를 사용한다는 점에서 Variance가 크고, 이로 인해 학습의 속도가 느리다는 문제를 가지고 있다. 하나의 Episode로 단 한 번만 업데이트가 가능하며, 업데이트가 되고 나면 기존의 Transaction은 모두 버려야 한다는 점에서 Sample Efficiency도 낮다.
 
@@ -148,13 +171,23 @@ $$
 
 참고로 Baseline $$b(s)$$는 Action $$a$$에 의해 결정되는 값만 아니면 된다. random variable이어도 된다. 가장 기본적인 방법은 Value Function $$\hat v(S_t, w)$$로 설정하는 것이다. 아래 알고리즘을 보면 $$w$$로 parameterized 되는 Value Function $$\hat v$$가 있고, 이를 Return Value $$G$$에 빼어준 값 $$\delta$$로 본래의 REINFORCE 업데이트 식에서의 $$G$$를 대체하고 있다.
 
-<img src="{{site.image_url}}/study/policy_gradient_method_reinforce_with_baselint_algorithm.png" style="width:36em; display: block; margin: 15px auto;">
+<img src="{{site.image_url}}/study/policy_gradient_method_reinforce_with_baselint_algorithm.png" style="width:40em; display: block; margin: 15px auto;">
 
 이와같이 Baseline을 적용하면 보다 빠르게 수렴한다고 한다.
 
 ## Actor-Critic
 
-Actor-Critic은 Return $$G_t$$를 One-Step Return $$G_{t:t+1}$$로 대체하는 방법이라고 할 수 있다.
+Actor-Critic은 말 그대로 Actor와 Critic 두 부분으로 이뤄진 구조를 말한다. 여기서 Actor는 State $$S_t$$를 입력으로 받아 Action $$A_t$$를 선택하는 역할을 수행하고, Critic은 Actor가 선택한 Action $$A_t$$가 얼마나 좋은지 평가한다.
+
+앞서 살펴본 REINFORCE 알고리즘과 그것에 Baseline을 적용한 알고리즘에서는 현재 Policy가 $$S_t$$에서 $$A_t$$를 선택하는 것이 얼마나 좋은지(얼마나 강화할지) 확인하기 위한 척도로 각각 스칼라 값 $$G_t$$와 $$G_t - b(S_t)$$를 사용한다. 그런데 $$G_t$$는 현재 State에서 선택한 Action 만이 아니라 전체 Policy에 대한 평가 척도라고 할 수 있고, Baseline으로 사용되는 Value Function $$\hat v(S_t)$$ 또한 현재 State에 관한 것이지, 선택한 Action에 대한 평가를 반영하지 못한다.
+
+Actor-Critic 구조는 현재 선택된 Action $$A_t$$가 얼마나 좋은지 평가하는데 집중하며, 이를 위해 Full Step Return $$G_t$$를 One-Step Return $$G_{t:t+1}$$로 대체한다. 아래 식으로 $$G_t$$를 대신하므로써 Action $$A_t$$의 결과로 얻은 Reward $$R_{t+1}$$과 Next State $$v(S_{t+1})$$를 고려하여 평가하겠다는 것이다.
+
+$$
+G_{t:t+1} = R_{t+1} + v(S_{t+1})
+$$
+
+이를 REINFORCE WITH BASELINE에 적용하면 다음과 같이 식을 전개할 수 있다.
 
 $$
 \eqalign{
@@ -164,4 +197,6 @@ $$
 }
 $$
 
-One-Step Return은 일반적인 Return과 비교하여 Variance는 줄어드는 대신 Bias가 발생하게 된다(MC vs TD).
+$$R_{t+1} + \hat v(S_{t+1}) - \hat v(S_t)$$는 Temporal Difference(TD) 식과 동일하다는 점에서 사실상 Monte Calro(MC)를 Temporal Difference(TD)로 대체한 것과 다름없다. Actor-Critic 알고리즘의 장단점 또한 MC와 TD의 그것과 동일한데, REINFORCE 알고리즘과 비교해 볼 때 One-Step Return을 사용하여 Variance는 줄어드는 대신 Bias가 발생한다는 특성을 갖는다.
+
+<img src="{{site.image_url}}/study/policy_gradient_method_actor_critic_algorithm.png" style="width:40em; display: block; margin: 15px auto;">
