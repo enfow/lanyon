@@ -20,17 +20,21 @@ keyword: '[COMA]'
 
 ## Multi-Agent RL
 
-**Multi-Agent Reinforcement Learning**은 하나의 환경에 여러 Agent가 존재하고, 각 Agent의 Action이 환경에 영향을 미칠 수 있는 상황을 상정한다. 실제로 현실 속 많은 문제들이 Multi Agent의 특성을 가지는데 교통 혼잡이 대표적이다. 한 대의 자동차가 교통 혼잡을 피해 우회하도록 하는 알고리즘은 Single Agent로도 가능하나, 교통 혼잡 자체를 해소하고 싶다면 전체 자동차의 진로를 함께 결정해야 한다. 즉 쉽게 말해 Multi Agent는 여러 agent를 동시에 훈련하여 global reward가 극대화되는 것을 목표로 하는 강화학습의 한 분야라고 할 수 있다.
+**Multi-Agent Reinforcement Learning(MARL)**은 하나의 환경에 여러 Agent가 존재하고, 각 Agent의 Action이 개별적으로 환경에 영향을 미칠 수 있는 상황을 상정한다. 이때 **Agent**란 Environment로부터 Observation을 수집하고, Policy에 의해 결정된 Action을 수행하는 단위를 말한다.
+
+실제로 현실 속 많은 문제들이 Multi Agent의 특성을 가지는데 교통 혼잡이 대표적이다. 한 대의 자동차가 교통 혼잡을 피해 우회하도록 하는 알고리즘은 Single Agent로도 가능하나, 교통 혼잡 자체를 해소하고 싶다면 전체 자동차의 진로를 함께 결정해야 한다. 이러한 관점에서 Multi Agent는 여러 Agent를 동시에 훈련하여 Global Reward가 극대화되는 것을 목표로 하는 강화학습의 한 분야라고 할 수 있다.
 
 ### Single Agent & Multi Agent
 
-Multi Agent 문제 또한 Single Agent 알고리즘들로도 해결할 수 있다. 결정해야 할 Agent의 수에 비례하여 Action을 뱉어내도록 하면 되기 때문이다. 하지만 이 경우 agent의 숫자에 따라 Action Space가 지수적으로 증가하여 차원의 저주에 빠진다는 문제점이 있다. 또한 경우에 따라서는 각 Agent는 전체 환경의 일부분에 대해서만 알 수 있어 Global State를 알기 어려울 수도 있다. 이러한 환경적인 특성 또한 Single Agent만으로는 다루기 어렵게 하는 요인이 된다.
+물론 Multi Agent의 특성을 가지는 문제들은 일반적인 Single Agent 알고리즘들로도 해결이 가능하다. Agent의 갯수에 상관없이 모든 Agent가 수집한 Observation을 하나의 Observation으로 보고, 이에 따라 Policy가 모든 Agent의 Action을 결정하도록 하기만 하면 되기 때문이다. 하지만 이 경우 Agent의 갯수가 늘어남에 따라 Action Space 또한 증가하여 차원의 저주에서 자유롭지 못하다.  Multi-Agent 알고리즘들은 Single Agent 알고리즘들이 가지는 이러한 한계를 해결하는 데에 집중한다.
 
-### Centralised Policy & Decentralised Polices
+### Centralised Training of Decentralised Policies
 
-Single Agent로 해결하는 것을 중앙에 하나의 Policy만이 존재한다고 하여 **Centralised Policy**라고 한다. 반대로 각각의 Agent가 자신만의 Observation을 바탕으로 Action을 결정하는 경우를 **Decentralised Polices**라고 한다. 
+Multi Agent 환경에서는 Observation을 수집하고 Action을 결정하는 단위로서 Agent가 복수로 존재한다. 이때 Action을 결정하는 Policy의 위치에 따라 **Centralised Policy**와 **Decentralised Policies** 두 가지로 나누어 볼 수 있다. 단어의 의미에서 직접적으로 알 수 있듯이 Centralised Policy는 중앙에 하나의 Policy가 존재하고, 여기서 결정되는 Action을 각 Agent가 나누어 수행하는 구조를 말한다. 반면 Decentralised Polices는 각각의 Agent가 개별적인 Policy를 가지고 있고 자신만의 Observation을 바탕으로 Action을 결정하는 구조를 말한다.
 
-몇몇 환경에서는 Decentralised Polices를 훈련하는데 있어 Global State를 알기 어렵다는 점, 각각의 Agent 간에 정보 전달이 쉽지 않다는 점 등으로 인해 Centralised Training이 어렵기도 하다. 하지만 대부분의 경우에서는 Centralised Training이 가능하기 때문에 Centralised Training 방식으로 Decentralised Polices를 학습시키는 것이 기본적인 Multi Agent RL의 패러다임이라고 한다.
+Centralised Policy가 보다 단순하지만 문제 상황에 따라 Decentralized Execution을 수행해야 하는 경우에는 사용하지 못한다는 단점이 있다(실제 환경에서는 Agent 간의 Connection이 완전하지 못한 경우가 많은데 이러한 상황에서는 Centralized Policy를 사용하는 것은 다소 위험하다). 이러한 점 때문에 Decentralised Policies를 효율적으로 학습시키는 방법에 대한 연구가 활발히 이뤄지고 있으며, 논문에서는 보다 효율적인 학습이 가능하다는 장점을 가지는 **Centralised Training of Decentralised Policies**가 MARL 연구에 있어 주된 패러다임이라고 언급하고 있다.
+
+**Centralised Training of Decentralised Policies**는 연구실과 같은 제한된 환경에서 Centralised Training에 따라 모델을 학습하고, 실제 환경에 Deploy 할 때에는 Decentralised Execution이 가능하도록 하는 방법론을 말한다. 그런데 이와 같이 Decentralised Policies를 Centralised Training에 따라 일괄적으로 학습하게 되면 Global Reward가 주어졌을 때 어떤 Policy가 얼마나 잘해서 이러한 Reward를 얻게 되었는지 정확히 알 수 없다는 문제가 있다. 이를 **Multi Agent Credit Assignment** 문제라고 부르며 논문에서 제시하는 모델 COMA는 이를 **counterfactual baseline**으로 해결하려는 접근 방법이라고 할 수 있다.
 
 ### Multi Agent MDP Notation
 
