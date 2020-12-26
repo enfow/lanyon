@@ -187,7 +187,7 @@ Off-Policy에서는 Stochastic Actor-Critic을 참고하여 다음과 같이 Per
 
 $$
 \eqalign{
-\nabla_\theta J_\beta(\mu_\theta) &\approx \int_S \rho^\beta(s) [\nabla_\theta \mu_\theta(s) Q^\mu] ds \\
+\nabla_\theta J_\beta(\mu_\theta) &\approx \int_S \rho^\beta(s) [\nabla_\theta \mu_\theta(s) Q^\mu(s,a)] ds \\
 &= E_{s \backsim \rho^\beta} [\nabla_\theta \mu_\theta(s) \nabla_a Q^\mu(s,a) \lvert_{a = \mu_\theta(s)} ]
 }
 $$
