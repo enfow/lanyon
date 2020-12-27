@@ -30,7 +30,7 @@ Python에서는 Bulit-in Data Type으로 List, Set, Dictionary 등을 제공하�
 | remove | $$O(n)$$ | $$O(n)$$ | $$O(n)$$ |
 | pop | $$O(1)$$ | $$O(1)$$ | $$O(1)$$ |
 
-Average Case, Amortimzed Worst Case 그리고 Worst Case는 어떤 연산의 시간 복잡도를 구하는 방법들이다. 여기서 **Average Case**와 **Worst Case**는 이름이 가지는 의미 그대로 이해할 수 있는데, 각각 가능한 모든 경우 시간 복잡도의 평균, 최악의 경우 시간 복잡도를 의미한다. **Amortimzed Worst Case**는 두 가지에 비해서는 다소 복잡한데, 쉽게 말하면 연산 Sequence 상에서 Worst Case가 어떤 비중으로 발생하는지 고려하여 시간 복잡도를 산정하는 방식이다. Worst Case가 분명 존재하지만 전체 연산 Sequence에서 매우 드문 간격으로 한 번씩 발생한다면 그 중요도를 상각(amortize)할 필요가 있다는 이유에서 고안되었다고 한다.
+Average Case, Amortimzed Worst Case 그리고 Worst Case는 어떤 연산의 시간 복잡도를 구하는 방법들이다. 여기서 **Average Case**와 **Worst Case**는 이름이 가지는 의미 그대로 각각 가능한 모든 경우 시간 복잡도의 평균, 최악의 경우 시간 복잡도를 의미한다. 두 가지에 비해서는 다소 복잡한 **Amortimzed Worst Case**는 쉽게 말하면 연산 Sequence 상에서 Worst Case가 어떤 비중으로 발생하는지 고려하여 시간 복잡도를 산정하는 방식이다. Worst Case가 분명 존재하지만 전체 연산 Sequence에서 매우 드문 간격으로 한 번씩 발생한다면 그 중요도를 상각(amortize)할 필요가 있다는 이유에서 고안되었다고 한다.
 
 여기서 Average Case와 Amortimzed Worst Case는 [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)의 내용을 참고했지만 Worst Case는 직접 계산한 결과이다. 따라서 오류가 있을 수 있다.
 
