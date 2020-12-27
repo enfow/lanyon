@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Python Bulit-in Time Complexity
+title: "Python Bulit-in Time Complexity: List"
 category_num: 2
 ---
 
-# Python Bulit-in Time Complexity
+# Python Bulit-in Time Complexity: List
 
 - [Python Data Structures](<https://docs.python.org/3/tutorial/datastructures.html>)
 - [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)
@@ -30,9 +30,9 @@ Python에서는 Bulit-in Data Type으로 List, Set, Dictionary 등을 제공하�
 | remove | $$O(n)$$ | $$O(n)$$ | $$O(n)$$ |
 | pop | $$O(1)$$ | $$O(1)$$ | $$O(1)$$ |
 
-Average Case, Amortimzed Worst Case 그리고 Worst Case는 어떤 연산의 시간 복잡도를 구하는 방법들이다. 여기서 **Average Case**와 **Worst Case**는 이름이 가지는 의미 그대로 각각 가능한 모든 경우 시간 복잡도의 평균, 최악의 경우 시간 복잡도를 의미한다. 두 가지에 비해서는 다소 복잡한 **Amortimzed Worst Case**는 쉽게 말하면 연산 Sequence 상에서 Worst Case가 어떤 비중으로 발생하는지 고려하여 시간 복잡도를 산정하는 방식이다. Worst Case가 분명 존재하지만 전체 연산 Sequence에서 매우 드문 간격으로 한 번씩 발생한다면 그 중요도를 상각(amortize)할 필요가 있다는 이유에서 고안되었다고 한다.
+Average Case, Amortimzed Case 그리고 Worst Case는 어떤 연산의 시간 복잡도를 구하는 방법들이다. 여기서 **Average Case**와 **Worst Case**는 이름이 가지는 의미 그대로 각각 가능한 모든 경우에 있어 평균적인 시간 복잡도와 최악의 경우 시간 복잡도를 의미한다. 두 가지에 비해서는 다소 복잡한 **Amortimzed Case**는 쉽게 말하면 연산 Sequence 상에서 Worst Case가 어떤 비중으로 발생하는지 고려하여 시간 복잡도를 산정하는 방식이다. Worst Case가 분명 존재하지만 전체 연산 Sequence에서 매우 드문 간격으로 한 번씩 발생한다면 그 중요도를 상각(amortize)할 필요가 있다는 이유에서 고안되었다고 한다.
 
-여기서 Average Case와 Amortimzed Worst Case는 [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)의 내용을 참고했지만 Worst Case는 직접 계산한 결과이다. 따라서 오류가 있을 수 있다.
+여기서 Average Case는 [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)의 내용을 참고했지만 Worst Case는 직접 계산한 결과이다. 따라서 오류가 있을 수 있다.
 
 ### List is Dynamic Array
 
@@ -94,7 +94,7 @@ $$
 
 ### Search
 
-어떤 값이 List 내에 없다고 확신하기 위해서는 모든 element를 확인해보아야 한다. 따라서 최악의 경우에는 $$O(n)$$이 된다. 평균적인 시간 복잡도는 다음과 같이 계산된다.
+어떤 값이 List 내에 없다고 확신하기 위해서는 모든 Element를 확인해보아야 한다. 따라서 최악의 경우에는 $$O(n)$$이 된다. 평균적인 시간 복잡도는 다음과 같이 계산된다.
 
 $$
 {1+2+...+n \over n} = {n(n+1) \over 2n} = {n+1 \over 2}
@@ -161,146 +161,3 @@ $$
 ### Pop
 
 pop 연산을 수행하면 List의 마지막 element를 제거하고 이를 반환하게 된다. 이 경우 재할당의 필요성이 없기 때문에 마지막 값을 찾아 제거만 하면 된다. 따라서 indexing 연산과 동일한 시간 복잡도를 갖는다.
-
-## Set: Hash Table
-
-- [cpython setobject.c](<https://github.com/python/cpython/blob/master/Objects/setobject.c>)
-- [cpython dictobject.c](<https://github.com/python/cpython/blob/master/Objects/dictobject.c>)
-
-| Opertaion | Average Case | Worst Case |
-|:-----:| :-----: | :-----: |
-| search | $$O(1)$$ | $$O(n)$$ |
-| copy | $$O(n)$$ | $$O(n)$$ |
-| append | $$O(1)$$ | $$O(1)$$ |
-| remove | $$O(1)$$ | $$O(n)$$ |
-
-Python의 Set은 **Hash Table**로 구현되어 있으며, Hash table의 개략적인 구조는 다음과 같다.
-
-<img src="{{site.image_url}}/study/python_set_hash_table.png" style="width:40em; display: block; margin: 15px auto;">
-
-Hash Table에 새로운 값을 추가한다고 하면, 다음과 같은 과정을 따른다.
-
-1. 새로운 값을 **hash function**에 입력으로 전달하여 값을 저장할 Array를 찾는다(없으면 새로 만든다).
-2. Array에서 저장 가능한 공간에 값을 저장한다.
-
-Dynamic Array와 비교해보면 다소 복잡해보이지만 **Hash Table**은 위에 제시된 표에서 확인할 수 있듯이 Average Case에서의 시간 복잡도가 낮다는 장점을 가진다.
-
-### Python Set and Dictionary
-
-Python에서 Set과 Dictionary는 모두 Hash Table을 사용하며, Set을 구현하는 데에도 Dictionary의 구현을 많이 참조하고 있다. 가장 단순하게 말하자면 Set은 Dictionary에서 Key만 존재하는 경우라고 생각할 수 있다. 이러한 점 때문에 두 경우의 시간 복잡도는 거의 동일하다.
-
-```c
-// cpython/Objects/setobject.c, set_lookkey()
-if (startkey == key)
-    return entry;
-if (PyUnicode_CheckExact(startkey)
-    && PyUnicode_CheckExact(key)
-    && _PyUnicode_EQ(startkey, key))
-    return entry;
-```
-
-위 코드는 Python Set에서 동일한 값이 있는지 찾는 부분이다. 첫 번째 if branch는 현재 확인하고자 하는 위치에 저장된 주소 값(startkey)과 찾고자 하는 변수의 주소 값(key)를 비교하는 부분이다. Python의 모든 요소들은 referece로 접근하게 되며, Set이나 Dictionary에도 저장된 값은 각 객체의 주소 값이 된다는 것을 여기서도 확인할 수 있다. 두 번째 if branch는 각 주소 값에 저장된 값이 동일한지 확인하는 부분이다. 둘 중 하나라도 동일한 것이라면 같은 값이 Set에 있다고 할 수 있으므로 해당 주소 값의 위치라고 할 수 있는 entry value를 반환하게 된다.
-
-### Search
-
-Hash Table의 약점 중 하나는 Hash Function이 어떻게 구현되는가에 따라서 자료 구조의 성능이 결정된다는 것이다. 만약 Hash Function이 항상 하나의 값만 반환한다면(Hash Collision) Hash Table은 Static Array와 동일해진다. 따라서 Worst Case에 대한 Search 시간 복잡도는 $$O(n)$$이 된다. Average Case는 $$O(1)$$이다.
-
-### Copy
-
-모든 값을 복사해야하므로 $$O(n)$$의 시간 복잡도를 가진다.
-
-### Append
-
-List에서 Append를 수행하는 경우와 동일하다. 다만 여기서는 동적 할당을 하지 않아도 되므로 Worst Case에 대해서도 시간 복잡도가 $$O(1)$$이 된다.
-
-### Remove
-
-Search와 동일하다. 즉 Average Case는 $$O(1)$$, Worst Case는 $$O(n)$$이 된다.
-
-### Cpython code for Set
-
-cpython에서 set과 관련된 코드와 기본적인 구조는 다음과 같다.
-
-<img src="{{site.image_url}}/study/python_set_hash_table_code.png" style="width:42em; display: block; margin: 15px auto;">
-
-```c
-// cpython/Include/setobject.h
-typedef struct {
-    PyObject *key;
-    Py_hash_t hash;             /* Cached hash code of the key */
-} setentry;
-
-...
-
-typedef struct {
-    PyObject_HEAD
-
-    Py_ssize_t fill;            /* Number active and dummy entries*/
-    Py_ssize_t used;            /* Number active entries */
-
-    /* The table contains mask + 1 slots, and that's a power of 2.
-     * We store the mask instead of the size because the mask is more
-     * frequently needed.
-     */
-    Py_ssize_t mask;
-
-    /* The table points to a fixed-size smalltable for small tables
-     * or to additional malloc'ed memory for bigger tables.
-     * The table pointer is never NULL which saves us from repeated
-     * runtime null-tests.
-     */
-    setentry *table;
-    Py_hash_t hash;             /* Only used by frozenset objects */
-    Py_ssize_t finger;          /* Search finger for pop() */
-
-    setentry smalltable[PySet_MINSIZE];
-    PyObject *weakreflist;      /* List of weak references */
-} PySetObject;
-
-// cpython/Objects/setobject.c
-static setentry *
-set_lookkey(PySetObject *so, PyObject *key, Py_hash_t hash)
-{
-    setentry *table;
-    setentry *entry;
-    size_t perturb = hash;
-    size_t mask = so->mask;
-    size_t i = (size_t)hash & mask; /* Unsigned for defined overflow behavior */
-    int probes;
-    int cmp;
-
-    while (1) {
-        entry = &so->table[i];
-        probes = (i + LINEAR_PROBES <= mask) ? LINEAR_PROBES: 0;
-        do {
-            if (entry->hash == 0 && entry->key == NULL)
-                return entry;
-            if (entry->hash == hash) {
-                PyObject *startkey = entry->key;
-                assert(startkey != dummy);
-                if (startkey == key)
-                    return entry;
-                if (PyUnicode_CheckExact(startkey)
-                    && PyUnicode_CheckExact(key)
-                    && _PyUnicode_EQ(startkey, key))
-                    return entry;
-                table = so->table;
-                Py_INCREF(startkey);
-                cmp = PyObject_RichCompareBool(startkey, key, Py_EQ);
-                Py_DECREF(startkey);
-                if (cmp < 0)
-                    return NULL;
-                if (table != so->table || entry->key != startkey)
-                    return set_lookkey(so, key, hash);
-                if (cmp > 0)
-                    return entry;
-                mask = so->mask;
-            }
-            entry++;
-        } while (probes--);
-        perturb >>= PERTURB_SHIFT;
-        i = (i * 5 + 1 + perturb) & mask;
-    }
-}
-
-```
