@@ -13,9 +13,11 @@ category_num : 2
 
 ## Summary
 
-AI가 인간의 지적 수준을 달성하기 위해서는 Combinatorial Generalization가 필수적이다.
+## Inductive Bias
 
-Combinatorial Generalization이란 알고 있는(knowing) Building Block으로 새로운 추론, 예측 등을 구성하는 것을 말한다. 이를 통해 유한한 자원으로 무한한 성능을 내는 것이 가능해진다.
+딥러닝 모델에는 다양한 기본 구조들이 존재한다. 가장 단순하면서도 기본적인 구조라고 할 수 있는 **Fully Connected Network(FCN)**, 이미지를 다루는 분야에서 많이 사용되는 **Convolution Neural Network(CNN)**, 언어를 비롯한 시계열 데이터에서 효과적인 **Recurrent Neural Network(RNN)** 등이 가장 널리 알려진 구조들이다. 특정 분야에서 가장 효과적이라고 알려진 딥러닝 모델들은 결국 이러한 기본 구조들을 적절하게 조합한 결과라고 할 수 있다.
+
+사실 위에서 언급한 각각의 구조들이 가지는 상대적인 장점들은 잘 알려져 있다. 이미지가 대표적이라고 할 수 있을텐데, 기본적인 MNIST Classification에서 시작하여 Semantic Segmentation, Facial Recognition까지 이미지를 다루는 대부분의 딥러닝 모델들은 모두 CNN을 사용한다. CNN을 사용하지 않고도 이미지를 적절히 처리할 수 있는 방법이 향후 나오게 될 수도 있겠지만 적어도 지금은 CNN을 사용하지 않고 이미지를 처리한다고 한다면 적지 않은 반론들이 제기될 것이다.
 
 딥러닝 구조를 사용하면서 어떻게 Relational Inductive Biases를 잘 사용할 것인지를 탐색한다.
 
