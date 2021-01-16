@@ -17,7 +17,33 @@ category_num : 2
 
 딥러닝 모델에는 다양한 기본 구조들이 존재한다. 가장 단순하면서도 기본적인 구조라고 할 수 있는 **Fully Connected Network(FCN)**, 이미지를 다루는 분야에서 많이 사용되는 **Convolution Neural Network(CNN)**, 언어를 비롯한 시계열 데이터에서 효과적인 **Recurrent Neural Network(RNN)** 등이 가장 널리 알려진 구조들이다. 특정 분야에서 가장 효과적이라고 알려진 딥러닝 모델들은 결국 이러한 기본 구조들을 적절하게 조합한 결과라고 할 수 있다.
 
-사실 위에서 언급한 각각의 구조들이 가지는 상대적인 장점들은 잘 알려져 있다. 이미지가 대표적이라고 할 수 있을텐데, 기본적인 MNIST Classification에서 시작하여 Semantic Segmentation, Facial Recognition까지 이미지를 다루는 대부분의 딥러닝 모델들은 모두 CNN을 사용한다. CNN을 사용하지 않고도 이미지를 적절히 처리할 수 있는 방법이 향후 나오게 될 수도 있겠지만 적어도 지금은 CNN을 사용하지 않고 이미지를 처리한다고 한다면 적지 않은 반론들이 제기될 것이다.
+사실 위에서 언급한 각각의 구조들이 가지는 상대적인 장점들은 잘 알려져 있다. 이미지가 대표적이라고 할 수 있을텐데, 기본적인 MNIST Classification에서 시작하여 Semantic Segmentation, Facial Recognition까지 이미지를 다루는 대부분의 딥러닝 모델들은 모두 CNN을 사용한다.
+
+**Inductive Bias**는 이와 같이 CNN이 왜 이미지를 다루는 작업에 있어 강점을 보이는지에 대한 설명이라고 할 수 있다. 여기서 말하는 Inductive Bias는 다음과 같이 정의된다([Springer](<https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-9863-7_927>)).
+
+- In machine learning, the term inductive bias refers to a set of (explicit or implicit) assumptions made by a learning algorithm in order to perform induction, that is, to generalize a finite set of observation (training data) into a general model of the domain.
+
+쉽게 말해 Training에서 보지 못한 데이터에 대해서도 적절한 귀납적 추론이 가능하도록 하기 위해 알고리즘(모델)이 가지고 있는 가정들의 집합이라는 것이다. 예를 들어 선형 회귀 모델을 사용한다는 것은 입력 데이터에 선형성이 존재한다는 것을 확인했거나, 혹은 선형성을 띈다고 가정해도 충분하다고 생각하기 때문이라고 할 수 있을 것인데, 이러한 것들이 Inductive Bias의 대표적인 예시가 된다.
+
+### Relational Inductive Bias
+
+Inductive Bias는 크게 **Relational Inductive Bias**와 **Non-relational Inductive Bias** 두 개로 나뉜다. 이때 Relational Inductive Bias는 말 그대로 Inductive Bias 중에서도 어떤 관계에 초점을 맞춘 것이라고 할 수 있는데, 여기서 말하는 관계란 입력 Element와 출력 Element 간의 관계를 말한다.
+
+<img src="{{site.image_url}}/paper-review/relational_inductive_bias_table.png" style="width:48em; display: block; margin: 2em auto;">
+
+<img src="{{site.image_url}}/paper-review/relational_inductive_bias_compare_buliding_blocks.png" style="width:48em; display: block; margin: 2em auto;">
+
+위의 표와 그림을 보면 보다 명확한데, FCN은 입력 Entities가 개별 Unit으로 정의되며, 이들은 서로 모두 연결되어 있는 것으로 가정한다(All-to-all Relations). 모든 입력 Element가 모든 출력 Element에 영향을 미친다는 점에서 구조적으로 특별한 Relational Inductive Bias를 가정하지 않는다(Weak).
+
+반면 CNN은 입력이 이미지처럼 격자(Grid) 구조로 되어 있다. 일반적으로 입력의 크기보다 작은 Convolution Filter를 사용하여 전체의 일부만을 대상으로 Convolution Operation을 수행하여 출력을 결정한다. 이러한 점에서 CNN에서는 Entities 간의 Relation이 지역성, 즉 서로 가까운 Element 간에만 존재한다고 가정하는 것으로 볼 수 있으며, 결과적으로 어떤 특성을 가지는 Element들이 서로 뭉쳐있는지 중요한 경우에 탁월한 구조가 된다(Relational Inductive Bias - Locality). CNN이 Spatial Translation에 강력한(Robust) 이유이기도 하다(Spatial Invariance).
+
+
+
+- 보지 못한 데이터에 대해서도 귀납적 추론을 하기 위해 모델(알고리즘)에서 가지고 있는 가정들의 집합. 선형회귀의 선형성 가정, 베이지안 모델에서 주어지는 Prior Distribution 등이 대표적이다.
+- Regularization Term 또한 Inductive Bias 중 하나라고 할 수 있다.
+
+
+
 
 딥러닝 구조를 사용하면서 어떻게 Relational Inductive Biases를 잘 사용할 것인지를 탐색한다.
 
@@ -47,14 +73,6 @@ Graph Network는 Relational Reasoning과 Combinatorial Generalization을 제공�
 
 [Inductive Bias]
 
-- Inductive Bias의 정의([Springer Link](<https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-9863-7_927>))
-
-```
-In machine learning, the term inductive bias refers to a set of (explicit or implicit) assumptions made by a learning algorithm in order to perform induction, that is, to generalize a finite set of observation (training data) into a general model of the domain.
-```
-
-- 보지 못한 데이터에 대해서도 귀납적 추론을 하기 위해 모델(알고리즘)에서 가지고 있는 가정들의 집합. 선형회귀의 선형성 가정, 베이지안 모델에서 주어지는 Prior Distribution 등이 대표적이다.
-- Regularization Term 또한 Inductive Bias 중 하나라고 할 수 있다.
 
 Building Block의 대표적인 예로 MLP, CNN, RNN, GNN 등이 있다.
 
