@@ -31,7 +31,7 @@ version:             1.0.0
 
 # category settings
 paper_review_category_list: ["Neural-Network", "Generative-Model", "Model-Free-RL", "Model-Based-RL", "Parallel-RL", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Meta-Learning", "Sequence-to-Sequence", "Transfer-Learning", "Graph-Neural-Network", "Combinatorial-Optimization", "Anomaly-Detection", "Segmentation", "Metric", "Domain"]
-development_category_list: ["Agile", "Machine-Learning-project", "Environment-Settings", "Git-Tutorial", 'Embedded', "Unity", "Web-project", "Language", "C-language"]
+development_category_list: ["Clean_Code", "Machine-Learning-project", "Environment-Settings", "Git-Tutorial", 'Embedded', "Unity", "Web-project", "Language", "C-language"]
 study_category_list: ["Deep-Learning", "Reinforcement-Learning-Introduction", "Meta-Learning-Introduction", "Statistics", "Linear-Algebra", "Convex-Optimization", "Mathematics-for-ML", "Analysis", "Computer-Science", "Algorithm", "Design-Pattern", "Experiments"]
 domain_category_list: ["Semiconductor", "Robotics"]
 
