@@ -1,10 +1,10 @@
 ---
 layout: post
-title: "Testings for Machine Learning"
+title: "Testings for Machine Learning: Introduction"
 category_num : 1
 ---
 
-# Testings for Machine Learning
+# Testings for Machine Learning: Introduction
 
 - 머신러닝 리서치 엔지니어로 일하면서 느낀 Software Testing의 필요성에 대해 정리해보았습니다.
 - Update at: 2021.01.21
