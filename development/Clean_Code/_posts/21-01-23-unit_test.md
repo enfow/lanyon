@@ -104,4 +104,4 @@ utest:
 	env PYTHONPATH=. pytest ./tests/ -s --verbose --ignore tests/test_example_01.py
 ```
 
-위와 같이 설정해두면 아래 명령어로 `./tests` 디렉토리에서 Test Case들을 찾되 test_example_01.py는 무시하는 Unit Test를 수행할 수 있다. `env PYTHONPATH=.`는 때때로 PyTest가 디렉토리를 잘못 잡는 경우가 있어 방어적으로 추가한 것이라고 이해하면 된다.
+위와 같이 설정해두면 아래 명령어로 `./tests` 디렉토리에서 Test Case들을 찾되 test_example_01.py는 무시하는 Unit Test를 수행할 수 있다. 추가적인 option 값들은 [PyTest 홈페이지](<https://docs.pytest.org/en/stable/reference.html#command-line-flags>)에서 확인 가능하다. 참고로 `env PYTHONPATH=.`는 때때로 PyTest가 디렉토리를 잘못 잡는 경우가 있어 방어적으로 추가한 것이라고 이해하면 된다.
