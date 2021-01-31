@@ -21,7 +21,7 @@ category_num: 3
 
 <img src="{{site.image_url}}/study/agent_environment_interation.png" style="width:35em; display: block; margin: 0px auto;">
 
-위 그림은 Agent와 Environment 간의 상호작용을 보여주고 있다. Agent는 현재 State $$s_t$$에 따라 가장 적절하다고 판단한 Action $$a$$를 Environment에 전달한다. 그럼 Environment는 그에 맞춰 Reward $$r_{t+1} \in R$$와 Next State $$s_{t+1} \in S$$을 정하여 Agent에게 알려주게 된다. 강화학습은 이와 같은 Agent-Environment 상호작용을 반복하며 누적 Reward(Cumulative Reward)를 극대화하는 방법을 찾아내는 것을 목표로 한다.
+위 그림은 Agent와 Environment 간의 상호작용을 보여주고 있다. 하나씩 살펴보면 Agent는 현재 State $$s_t$$에 따라 가장 적절하다고 판단한 Action $$a$$를 Environment에 전달한다. 그럼 Environment는 그에 맞춰 Reward $$r_{t+1} \in R$$와 Next State $$s_{t+1} \in S$$을 정하여 Agent에게 알려주는 식이다. 강화학습은 이러한 Agent와 Environment 간의 반복적인 상호작용의 결과로 장기적인 관점에서 좋은 행동을 취하는 Agent를 학습하는 것을 목표로 한다. Agent와 Environment 간의 상호작용을 정의하는 데에 사용되는 기본적인 개념들로는 아래와 같은 것들이 있다.
 
 ### State $$s_t$$
 
@@ -71,11 +71,11 @@ Discounted Factor $$\gamma$$는 1보다 작아야 $$G$$의 크기가 무한히 �
 
 ## Markov Property
 
-**Markov Property**는 강화학습에서 가장 중요한 가정이다. 이에 대해 [위키](<https://en.wikipedia.org/wiki/Markov_property>)에서는 다음과 같이 정의하고 있다.
+강화학습에서 가장 중요한 가정 중 하나인 **Markov Property**에 대한 정의는 다음과 같다.
 
-- In probability theory and statistics, the term Markov property refers to the **memoryless property** of a stochastic process. ... A stochastic process has the Markov property if the conditional probability distribution of future states of the process (conditional on both past and present values) **depends only upon the present state**.
+- In probability theory and statistics, the term Markov property refers to the **memoryless property** of a stochastic process. ... A stochastic process has the Markov property if the conditional probability distribution of future states of the process (conditional on both past and present values) **depends only upon the present state** ([Wiki](<https://en.wikipedia.org/wiki/Markov_property>)).
 
-정리하자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. Markov Property의 핵심적인 키워드는 **Memoryless**로, 현재 State에 담긴 정보 만으로도 과거 State 정보가 없더라도 충분히 미래에 어떤 일이 벌어질 지 알 수 있다는 것을 상징한다.
+한 마디로 풀어보자면 Markov Property란 확률 프로세스 중 현재 State만을 조건으로 미래 State 프로세스의 확률분포가 결정되는 특성을 말한다. Markov Property의 핵심적인 키워드는 **Memoryless**로, 과거 State에 대한 기억 없이 현재 State에 담긴 정보 만으로도 미래에 벌어질 일을 예측하는 것이 가능하다는 의미로 이해할 수 있다.
 
 $$
 \eqalign{
@@ -84,34 +84,48 @@ $$
 }
 $$
 
-Markov Property를 만족한다는 것은 위의 두 식이 완벽하게 동일하다는 것을 의미한다. 따라서 현재 시점의 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이를 반대로 생각해보면 Markov State만으로도 Agent가 최선의 Action을 선택하는 데에 충분한 정보를 담고 있다는 것으로도 받아들일 수 있다.
+Markov Property를 만족한다는 것은 위의 두 식이 완벽하게 동일하다는 것을 의미한다. 따라서 현재 시점의 State와 Action 만으로도 충분히 그에 대한 Reward와 Next State를 알 수 있다. 이는 곧 Markov State만으로도 Agent가 최선의 Action을 선택하는 데에 충분한 정보를 담고 있다는 것을 의미한다.
 
 ### Markov Decision Process(MDP)
 
-Markov Property를 만족하는 강화학습 문제를 **Markov Decision Process(MDP)**라고 한다. MDP는 $$<S, A, P, R, \gamma>$$로 정의되는데 각각의 의미는 다음과 같다.
+Markov Property가 중요한 이유는 강화학습이 **Markov Decision Process(MDP)**에 기반하여 문제를 정의하고 있기 때문이다. MDP는 확률적인 환경 속에서 일정 시간마다 의사결정을 내려야 하는 상황을 수학적으로 모델링하는 방법이라고 할 수 있다. MDP의 주요 키워드는 다음과 같다.
+
+- **Stochastic(Randomness)**: MDP는 불확실성이 존재하는 환경을 가정한다. Agent가 결정할 수 있는 것은 Action 하나 뿐이며, 이외의 모든 것은 임의로 주어질 수 있다.
+- **Discrete Decision Making**: MDP는 Time Step마다 의사결정을 해야 하는 경우를 가정한다. 이때 Time Step 간의 간격은 가변적일 수 있다.
+- **Sequential Decision Making**: MDP는 과거의 결정이 현재의 상황에 영향을 주는 상황에서 반복적으로 의사결정을 해야 하는 경우를 가정한다.
+
+MDP는 $$<S, A, P, R>$$ 네 가지 요소로 정의된다.
 
 - $$S$$ : State Space
 - $$A$$ : Action Space
 - $$P$$ : State Transition Probability
-- $$R$$ : Reward Space
-- $$\gamma$$ : Discounted Factor
+- $$R$$ : Reward Function
 
-State Space와 Action Space가 유한한 경우를 Finite MDP라고 하는데, 강화학습의 많은 문제들이 Finite MDP라고 한다. Finite MDP를 만족한다면 State $$s$$, Action $$a$$와 Next State $$s'$$, Reward $$r$$의 관계는 다음과 같이 One-Step Dynamics로 정의할 수 있다.
+State Space와 Action Space가 유한한 경우를 Finite MDP라고 하는데, 강화학습에서 다루는 많은 문제들이 Finite MDP라고 한다. Finite MDP를 만족한다면 State $$s$$, Action $$a$$와 Next State $$s'$$, Reward $$r$$의 관계는 다음과 같이 One-Step Dynamics로 정의할 수 있다.
 
 $$
-p(s', r \lvert s, a) = Pr \{ s_{t+1} = s', r_{t+1} \lvert s_t = s, a_t = a \}
+P(s', r \lvert s, a) = Pr \{ s_{t+1} = s', r_{t+1} \lvert s_t = s, a_t = a \}
 $$
 
-위의 식을 이용하여 Environment에 대해 다음 두 함수를 정의할 수 있다.
+현재 State $$s$$에서 어떤 Action $$a$$를 선택했을 때 환경으로부터 다음 State $$s'$$와 Reward $$r$$을 받을 확률을 의미한다. 위의 식을 기반으로 하여 MDP의 구성 요소로 현재 State $$s$$에서 Action $$a$$를 취했을 때 다음 State로 $$s'$$이 주어질 확률을 의미하는 State Transition Probability $$P$$를 정의할 수 있다.
 
 $$
 \eqalign{
-\text{Reward Function : }&r(s, a) = E[r_{t+1} \lvert s_t = s, a_t = a] \\
-\text{State-Transition Probability : }&p(s' \lvert s, a) = Pr \{ s_{t+1} = s' \lvert s_t = s, a_t = a \}
+\text{State-Transition Probability : }P(s' \lvert s, a) &= Pr \{ s_{t+1} = s' \lvert s_t = s, a_t = a \} \\
+&= \Sigma_{r \in R} p(s', r \vert s, a)
 }
 $$
 
-Reward Function과 State-Transition Probability는 Environment의 특성을 결정하는 함수로서 시뮬레이터 환경에서는 필요에 따라 이를 조절하여 Agetnt가 특정한 행동을 선택하도록 만들 수 있다. Agent는 Environment가 어떤 Reward Function과 State-Transition Probability를 가지는지 추측할 수는 있어도 정확히 각 함수가 어떠한지에 대한 정보는 가질 수 없다. 대신 Agent는 각 State와 Action의 Value를 추정하는 **Value Function**을 학습하여 주어진 환경에 대해 적절한 Action을 선택할 수 있게 된다.
+Reward Function $$R$$ 또한 다음과 같이 정의할 수 있다.
+
+$$
+\eqalign{
+\text{Reward Function : }r(s, a) &= E[r_{t+1} \lvert s_t = s, a_t = a]\\ 
+&= \Sigma_{r \in R} r \Sigma_{s' \in S} p(s',r \vert s, a) \\
+}
+$$
+
+Reward Function과 State-Transition Probability는 Environment의 특성을 결정하는 함수로서 시뮬레이터 환경에서는 필요에 따라 이를 조절하여 Agetnt가 특정한 행동을 선택하도록 만들 수 있다. 이때 중요한 것은 Agent는 Environment가 어떤 Reward Function과 State-Transition Probability를 가지는지 추측할 수 있는 정보는 충분히 가지되, 환경 내부에 정의된 각 함수에는 접근할 수 없어야 한다는 것이다. 즉 Agent 입장에서 Next State와 Reward는 철저하게 주어지는 것이어야 한다.
 
 ### Value Function
 
