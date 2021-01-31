@@ -183,13 +183,13 @@ $$
 그리고 모든 Policy에 대해 위의 식이 성립하는 Policy를 **Optimal Policy**라고 하고 $$\pi^*$$로 표기한다. Optimal Policy를 따를 때의 State Value Function은 아래와 같이 정의되며 **Optimal State Value Function**이라 한다.
 
 $$
-v^*(s) = \max_\pi v_\pi(s)
+v^*(s) = \max_\pi v_\pi(s) \quad \text{For all state } s \in S
 $$
 
 **Optimal Action-Value Function**은 다음과 같다.
 
 $$
-q^*(s, a) = \max_\pi q_\pi(s, a)
+q^*(s, a) = \max_\pi q_\pi(s, a) \quad \text{For all state } s \in S \text{ and action } a \in A 
 $$
 
 그리고 둘 사이에는 다음과 같은 관계가 성립한다.
