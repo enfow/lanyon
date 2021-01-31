@@ -236,12 +236,12 @@ Optimal에서의 Back-up Diagram은 다음과 같다.
 
 ### Optimality and Approximation
 
-강화학습 문제는 결국 Optimal Policy가 무엇인지 알아내는 과정이다. 하지만 Optimal Policy를 정확하게 구하기 위해서는 매우 많은 비용이 든다. 이와 관련해서는 구체적으로 다음 두 가지 문제를 생각해 볼 수 있다.
+강화학습 문제는 결국 Optimal Policy가 무엇인지 알아내는 과정이다. 하지만 Optimal Policy를 정확하게 구하기 위해서는 매우 많은 비용이 드는데, 구체적으로 다음 두 가지 문제를 생각해 볼 수 있다.
 
-- Environment에 대해 완벽하고 정확하게 알고 있더라고 Optimal Policy를 구하는 것은 어렵다.
-- 정확히 Optimal을 알아내기 위해서는 매우 큰 메모리가 필요하다.
+- Optimal Policy를 Bellman Equation으로 구하기 위해서는 매우 많은 연산량을 요구한다.
+- Optimal Policy 혹은 Optimal Value Function을 구했다고 할지라도 모든 State, Action에 대해서 정보를 저장하려면 매우 많은 메모리가 필요하다.
 
-이때 State의 개수가 적고 유한하다면 array, table 형태로 데이터를 저장하고 이를 바탕으로 Optimal Policy를 근사하는 것이 가능하다. 이를 **tabular case**라고 하며 이러한 방법으로 근사하는 것을 **tabular method**라고 한다.
+이때 State의 개수가 적고 유한하다면 array, table 형태로 데이터를 저장하고 이를 바탕으로 Optimal Policy를 근사하는 것이 가능하다. 이를 **Tabular Case**라고 하며 이러한 방법으로 근사하는 것을 **Tabular Method**라고 한다.
 
 Agent-Environment Interaction을 샘플링하고 이를 기준으로 근사하는 방법은 state의 방문 빈도에 따라 정확도가 달라질 수 있다는 문제에서 자유롭지 못하다. 방문할 확률이 낮은 state의 경우 그 값이 정확하지 않을 가능성이 높고, 이 경우 좋지 못한 행동을 할 가능성이 높아진다. 이러한 문제는
 
