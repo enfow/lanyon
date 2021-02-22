@@ -7,7 +7,7 @@ category_num: 1
 # Talyor Series
 
 - 김홍종 교수님의 **미적분학 1,2**를 참고하여 개인 공부를 목적으로 작성했습니다.
-- Update at: 2021.01.02
+- Update at: 2020.01.02
 - References
   - [CMU lecture Appendix-Big O and Little o Notation](<https://www.stat.cmu.edu/~cshalizi/uADA/13/lectures/app-b.pdf>)
 
