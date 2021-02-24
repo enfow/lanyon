@@ -197,8 +197,6 @@ Policy Network를 직접 업데이트해야 하기 때문에 Policy Gradient 계
 
 <img src="{{site.image_url}}/paper-review/chip_pre_training_is_need.png" style="width:40em; display: block; margin: 0px auto;">
 
-x축을 기준으로 오른쪽으로 갈수록 복잡도가 높은 문제라고 합니다. 가장 왼쪽의 TPU Block 하나만 가지고 Test를 진행한 경우에는 Pre-Training에 따른 성능 차이가 크지 않으나 문제가 복잡해질수록 그 차이가 커진다는 것을 확인할 수 있습니다. 또한 모든 경우에서 12시간 동안 Test 문제에 대해 Fine Tuning을 실시한 Pre-trained Model이 성능이 가장 좋음을 알 수 있습니다.
-
 모든 Netlist에 대해 Pre-Training을 수행한 후 12시간 동안 Fine Tuning을 추가적으로 진행했을 때 가장 성능이 좋음을 알 수 있습니다.
 
 <img src="{{site.image_url}}/paper-review/chip_pre_training_make_it_faster.png" style="width:40em; display: block; margin: 0px auto;">
