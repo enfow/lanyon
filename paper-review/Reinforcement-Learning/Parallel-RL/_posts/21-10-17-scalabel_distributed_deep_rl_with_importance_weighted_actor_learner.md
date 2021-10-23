@@ -15,6 +15,10 @@ keyword: '[IMPALA]'
 
 ## Summary
 
+- Actor에서 수집한 Trajectory를 Learner에게 곧바로 전달하여 Policy를 업데이트하는 알고리즘 IMPALA를 제시한다.
+- Off-Policy의 Policy-Lag 문제를 해소하기 위해 도입한 V-Trace Target은 Truncated Importance Sampling 을 통해 Value function의 Target을 결정하게 된다.
+- Sample Efficiency, GPU Utilization의 측면에서 장점을 가진다.
+
 ## Distributed RL with decoupled architecture
 
 Return의 기대값을 극대화하는 방향으로 Policy를 업데이트하는 강화학습에서는 현재 Policy에 따른 State, Action, Reward Transaction이 많으면 많을수록 빠르고 안정적인 학습이 가능해진다고 할 수 있다. Distributed RL은 복수의 Agent-Environment를 생성하여 Transaction을 동시에 수집하도록 하므로써 강화학습의 학습 속도를 높이는 방법이다.
@@ -164,6 +168,6 @@ $$
 
 V-Trace Target을 적용한 이유는 Off-Policy의 문제점 중 하나인 Policy-Lag를 해소하는 것에 있다. 이를 통해 얻을 수 있는 이점은 다음 그림에서 확인할 수 있다.
 
-<img src="{{site.image_url}}/paper-review/impala_vs_batch_a2cimpala_vs_batch_a2c" style="width:45em; margin: 0px auto;">
+<img src="{{site.image_url}}/paper-review/impala_vs_batch_a2c" style="width:45em; margin: 0px auto;">
 
 위의 이미지에서 좌측은 Batched A2C를, 우측은 IMPALA의 업데이트 방식을 나타낸다. Batched A2C의 경우 step을 맞추느냐, trajectory를 맞추느냐에 따라 다시 구분되지만, 어떠한 방식으로 하더라도 Trajectory의 길이에 따라 쉬는 Worker가 생기게 된다. 반면 IMPALA는 Worker는 Trajectory를 수집하고, 이렇게 수집된 모든 Worker의 Trajectory에 Learner가 접근하여 업데이트하기 때문에 Worker는 업데이트를 기다릴 필요가 없어진다. 이러한 점에서 GPU Utilization 등에서 이점이 있다고 논문에서는 언급하고 있다. 
