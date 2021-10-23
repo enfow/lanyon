@@ -89,7 +89,7 @@ IMPALA의 Update Loss는 다음 세 가지로 구성된다.
 
 #### 1. Policy Gradient Loss
 
-우선 위의 Off-Policy Policy Gradient 식과 비교해 볼 때 Action Value Function을 $$r_t + \gamma v_{t+1} - V_w(s_t)$$로 대체되었다. 이는 Action Value Function $$Q$$(s,a)에서 Baseline $$V(s)$$를 뺀 값, 즉 Advantage 이다. 이와같이 Action Value Function에 Baseline을 빼어주게 되면 Policy Gradient의 Variance가 줄어든다는 장점을 가진다. 참고로 $$V$$는 Value function, $$v$$는 **V-Trace Target**이다. $$\rho_t$$는 Importance Sampling Weight로 뒤에 정리해 두었다.
+우선 위의 Off-Policy Policy Gradient 식과 비교해 볼 때 Action Value Function을 $$r_t + \gamma v_{t+1} - V_w(s_t)$$로 대체되었다. 이는 Action Value Function $$Q$$(s,a)에서 Baseline $$V(s)$$를 뺀 값, 즉 Advantage 이다. 이와같이 Action Value Function에 Baseline을 빼어주게 되면 Policy Gradient의 Variance가 줄어든다는 장점을 가진다. 참고로 $$V$$는 Value function, $$v$$는 **V-Trace Target**이다. $$\rho_t$$는 Truncated Importance Sampling Weight로 뒤에 정리해 두었다.
 
 $$
 \rho_t \nabla_\theta \log \pi_\theta (a_t \vert s_t) (r_t + \gamma v_{t+1} - V_w(s_t))
@@ -146,7 +146,7 @@ V(s_t) &+ \gamma^0 \rho_t (r_t + \gamma V(s_{t+1}) - V(s_t) ) \qquad \qquad  \be
 }
 $$
 
-$$n$$-step Target을 구할 때 $$k-1$$ step까지는 $$c$$가 적용되고 마지막 $$k$$번째 Step에서는 $$\rho$$가 적용됨을 알 수 있다. $$\rho$$는 $$k$$번째 Step의 Temporal Difference $$r_k + \gamma V(s_{k+1}) - V(s_k)$$에 적용되는 Weight이고, $$c$$는 $$k$$번째 Step에 도달하는 과정에서의 누적되는 Weight라고 할 수 있다. 논문에서는 Temporal Difference Term을 아예 다음과 같이 정의하여 이를 보다 명확하게 하고 있다.
+$$n$$-step Target을 구할 때 $$k-1$$ step까지는 $$c$$가 적용되고 마지막 $$k$$번째 Step에서는 $$\rho$$가 적용됨을 알 수 있다. 이러한 점에서 $$\rho$$는 $$k$$번째 Step의 Temporal Difference $$r_k + \gamma V(s_{k+1}) - V(s_k)$$에 적용되는 Weight이고, $$c$$는 $$k$$번째 Step에 도달하는 과정에서의 누적되는 Weight라고 할 수 있다. 논문에서는 Temporal Difference Term을 아예 다음과 같이 정의하여 이를 보다 명확하게 하고 있다.
 
 $$
 \delta_k V = \rho_k (r_k + \gamma V(x_{k+1}) + V(s_k))
