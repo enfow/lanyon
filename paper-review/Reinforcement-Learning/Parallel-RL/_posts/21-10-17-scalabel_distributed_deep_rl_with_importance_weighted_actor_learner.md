@@ -16,7 +16,7 @@ keyword: '[IMPALA]'
 ## Summary
 
 - Actor에서 수집한 Trajectory를 Learner에게 곧바로 전달하여 Policy를 업데이트하는 알고리즘 IMPALA를 제시한다.
-- Off-Policy의 Policy-Lag 문제를 해소하기 위해 도입한 V-Trace Target은 Truncated Importance Sampling 을 통해 Value function의 Target을 결정하는 방법이다.
+- Off-Policy의 Policy-Lag 문제를 해소하기 위해 도입한 V-Trace Target은 Truncated Importance Sampling 을 통해 Value를 결정하는 방법이다.
 - Sample Efficiency, GPU Utilization의 측면에서 장점을 가진다.
 
 ## Distributed RL with decoupled architecture
