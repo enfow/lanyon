@@ -6,8 +6,7 @@ category_num: 10
 
 # Policy Gradient Method
 
-- Sutton과 Barto의 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.12.13
+- Sutton과 Barto의 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Policy Gradient
 
@@ -52,7 +51,7 @@ $$
 
 ### Advantage as Stochastic Policy
 
-두 번째 장점은 Parameterized Policy는 Optimal Policy가 Deterministic한 경우는 물론 Stochastic한 경우에도 잘 대처한다는 것이다. 어떤 State $$s$$에 대해 $$q(s,q)$$ value가 가장 큰 Action $$a$$를 선택하기 때문에 Q-learning에서의 Policy는 항상 Deterministic하다. 이는 몇몇 경우에서 성능을 제한하는 원인이 될 수 있는데, 특히 Poker처럼 다양한 경우의 수가 존재하는 경쟁적 게임에서 항상 동일한 전략을 구사하는 모델을 만들게 된다. 
+두 번째 장점은 Parameterized Policy는 Optimal Policy가 Deterministic한 경우는 물론 Stochastic한 경우에도 잘 대처한다는 것이다. 어떤 State $$s$$에 대해 $$q(s,q)$$ value가 가장 큰 Action $$a$$를 선택하기 때문에 Q-learning에서의 Policy는 항상 Deterministic하다. 이는 몇몇 경우에서 성능을 제한하는 원인이 될 수 있는데, 특히 Poker처럼 다양한 경우의 수가 존재하는 경쟁적 게임에서 항상 동일한 전략을 구사하는 모델을 만들게 된다.
 
 반면 Policy Gradient에서는 항상 모든 Action을 선택할 가능성이 존재하기 때문에 기본적으로 Stochastic하나, Optical Policy가 Deterministic한 경우라면 학습 과정에서 Optimal Action의 선택 가능성이 sub-optimal과 비교해 무한히 높아지게 되고, 따라서 Deterministic Policy와 거의 유사해진다.
 
@@ -78,7 +77,7 @@ $$
 
 $$
 \eqalign{
-\nabla J(\theta) 
+\nabla J(\theta)
 & = \nabla v_\pi (s_0) \\
 &\varpropto \Sigma_s \mu(s) \Sigma_a q_\pi (s,a) \nabla \pi(a \lvert s, \theta)
 }
@@ -127,7 +126,7 @@ State 뿐만 아니라 Action에 대해서도 유사한 문제가 있는데, 위
 
 $$
 \eqalign{
-\nabla J(\theta) 
+\nabla J(\theta)
 &\varpropto  E_\pi [\Sigma_a q_\pi (S_t, a) \nabla \pi (a \lvert S_t, \theta)]\\
 & = E_\pi [\Sigma_a \pi (a \lvert S_t, \theta) q_\pi (S_t, a) { \nabla \pi (a \lvert S_t, \theta) \over \pi (a \lvert S_t, \theta)}]\\
 & = E_\pi [q_\pi (S_t, A_t) { \nabla \pi (A_t \lvert S_t, \theta) \over \pi (A_t \lvert S_t, \theta)}]\\
@@ -191,7 +190,7 @@ $$
 
 $$
 \eqalign{
-\theta_{t+1} 
+\theta_{t+1}
 &= \theta_t + \alpha (G_{t:t+1} - \hat v(S_t)) { \nabla \pi (A_t \lvert S_t, \theta_t) \over \pi (A_t \lvert S_t, \theta_t)}\\
 &= \theta_t + \alpha (R_{t+1} + \hat v(S_{t+1}) - \hat v(S_t)) { \nabla \pi (A_t \lvert S_t, \theta_t) \over \pi (A_t \lvert S_t, \theta_t)}\\
 }

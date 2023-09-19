@@ -6,8 +6,7 @@ category_num: 8
 
 # Planning and Learning
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.11.25
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Introduction
 

@@ -6,8 +6,7 @@ category_num: 6
 
 # Temporal Difference
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.09.10
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Introduction
 
@@ -29,7 +28,7 @@ $$
 V(s_t) \leftarrow V(s_t) + \alpha [R_{t+1} + \gamma V(s_{t+1}) - V(s_t)]
 $$
 
-TD의 업데이트 식은 아래의 MC의 업데이트 식과 비교해서 보면 
+TD의 업데이트 식은 아래의 MC의 업데이트 식과 비교해서 보면
 
 $$
 V(s_t) \leftarrow V(s_t) + \alpha [G_t - V(s_t)]

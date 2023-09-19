@@ -6,8 +6,7 @@ category_num: 4
 
 # Dynamic Programming
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.08.28
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Summary
 
@@ -51,7 +50,7 @@ Policy Evaluation은 아래와 같이 Bellman Equation을 모든 State에 대해
 
 $$
 \eqalign{
-v_{k+1}^\pi(s) 
+v_{k+1}^\pi(s)
 &= E_\pi [r_{t+1} + \gamma v(s_{t+1}) \lvert s_t = s]\\
 &= \Sigma_a \pi (a \lvert s) \Sigma_{s', r} p(s', r \lvert s, a) [r + \gamma v^\pi_k(s')]
 }
@@ -73,7 +72,7 @@ $$
 
 위와 같이 반복적으로 업데이트하여 $$v_\pi$$와 매우 근접한 Value Function을 구할 수 있다. 모든 State 각각에 대해 업데이트를 수행하게 되며(Full Backup) 전체 반복문의 탈출 조건은 업데이트의 크기 $$\Delta$$가 일정 수준 이하인 경우로 설정(Fixed Point Algorithm)하고 있다. 참고로 모든 State에 대해 차례대로 업데이트 하는 것을 **Sweep**이라고 한다.
 
-### Policy Improvement 
+### Policy Improvement
 
 위에서 언급한대로 Value Function을 정확하게 아는 것만으로는 Optimal Value Function를 구할 수 없다. 하지만 Value Function을 알고 있다면 보다 나은 Policy가 무엇인지 힌트를 얻을 수 있다.
 
@@ -105,7 +104,7 @@ $$
 \eqalign{
 \pi'(s) &= \arg_a \max q_\pi (s,a)\\
 &= \arg_a \max \Sigma_{s', r} p(s',r \lvert s, a)[r + \gamma v_\pi (s')]
-} 
+}
 $$
 
 이와 같이 Value Function에 기반하여 더 나은 Policy를 구하는 방법을 **Policy Improvement**라고 한다. 그리고 $$\pi = \pi^*$$인 경우를 제외하고는 Policy Improvement를 따를 때 항상 더 좋은 Policy를 만든다.
@@ -135,7 +134,7 @@ Policy Iteration은 수렴성이 보장되지만 (1) 모든 State에 대해 Valu
 
 ### 1) Value Iteration
 
-**Value Iteration**은 수렴은 하지 않았으나 적절한 수준에서 Policy Evaluation을 멈추고(Truncated) Policy Improvement를 수행하는 방법이다. 
+**Value Iteration**은 수렴은 하지 않았으나 적절한 수준에서 Policy Evaluation을 멈추고(Truncated) Policy Improvement를 수행하는 방법이다.
 
 - Policy Iteration = Multi Evaluation Sweep + Single Improvement Sweep
 - Value Iteration = Single Evaluation Sweep + Single Improvement Sweep
@@ -158,7 +157,7 @@ DP를 이용하여 강화학습의 문제를 해결하는 방법은 매우 오�
 - Direct Search보다 빠르게 Optimal Policy를 찾을 수 있다.
 - Linear Programming보다 넓은 State Space를 커버할 수 있다.
 
-특히 컴퓨터 연산 속도의 발전으로 DP 방법을 통해 수백만 State를 가지는 Finite MDP 환경에서도 최적 Policy를 찾을 수 있다고 한다. 하지만 기본적으로 DP를 강화학습에 적용하는 것은 
+특히 컴퓨터 연산 속도의 발전으로 DP 방법을 통해 수백만 State를 가지는 Finite MDP 환경에서도 최적 Policy를 찾을 수 있다고 한다. 하지만 기본적으로 DP를 강화학습에 적용하는 것은
 
 - Model에 대한 완벽한 정보를 가정한다.
 - 매우 큰 연산량을 필요로 한다.

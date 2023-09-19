@@ -6,8 +6,7 @@ category_num: 3
 
 # Markov Property and Bellman Equation
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.08.17
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Summary
 
@@ -120,7 +119,7 @@ Reward Function $$R$$ 또한 다음과 같이 정의할 수 있다.
 
 $$
 \eqalign{
-\text{Reward Function : }r(s, a) &= E[r_{t+1} \lvert s_t = s, a_t = a]\\ 
+\text{Reward Function : }r(s, a) &= E[r_{t+1} \lvert s_t = s, a_t = a]\\
 &= \Sigma_{r \in R} r \Sigma_{s' \in S} p(s',r \vert s, a) \\
 }
 $$
@@ -145,7 +144,7 @@ $$
 
 $$
 \eqalign{
-q_\pi (s, a) 
+q_\pi (s, a)
 &= E_\pi [G_t \lvert s_t = s, a_t = a]\\
 &= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s, a_t = a]
 }
@@ -159,7 +158,7 @@ Value Fucntion의 가장 큰 특징 중 하나는 아래와 같이 재귀적으�
 
 $$
 \eqalign{
-v_\pi(s) 
+v_\pi(s)
 &= E_\pi[G_t \lvert s_t = s] \\
 &= E_\pi [\Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s]\\
 &= E_\pi [r_{t+1} + \gamma \Sigma_{k=0}^\infty \gamma^k r_{t+k+1} \lvert s_t = s]\\
@@ -189,7 +188,7 @@ $$
 **Optimal Action-Value Function**은 다음과 같다.
 
 $$
-q^*(s, a) = \max_\pi q_\pi(s, a) \quad \text{For all state } s \in S \text{ and action } a \in A 
+q^*(s, a) = \max_\pi q_\pi(s, a) \quad \text{For all state } s \in S \text{ and action } a \in A
 $$
 
 그리고 둘 사이에는 다음과 같은 관계가 성립한다.
@@ -245,7 +244,7 @@ Optimal에서의 Back-up Diagram은 다음과 같다.
 
 Agent-Environment Interaction을 샘플링하고 이를 기준으로 근사하는 방법은 state의 방문 빈도에 따라 정확도가 달라질 수 있다는 문제에서 자유롭지 못하다. 방문할 확률이 낮은 state의 경우 그 값이 정확하지 않을 가능성이 높고, 이 경우 좋지 못한 행동을 할 가능성이 높아진다. 이러한 문제는
 
-- 자주 방문하는 State에 대해서만 많이 학습하게 된다는 점 
-- 방문 빈도가 낮은 경우 Sub Optimal을 선택하더라도 전체에 미치는 영향이 낮다는 점 
+- 자주 방문하는 State에 대해서만 많이 학습하게 된다는 점
+- 방문 빈도가 낮은 경우 Sub Optimal을 선택하더라도 전체에 미치는 영향이 낮다는 점
 
 등으로 인해 발생한다. 이러한 문제 때문에 경우에 따라서는 프로들과만 바둑을 두며 높은 승률을 기록한 강화학습 알고리즘이 초보들과의 바둑에서는 승률이 그보다 낮을 수 있다.

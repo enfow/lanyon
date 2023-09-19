@@ -6,8 +6,7 @@ category_num: 2
 
 # Multi-armed Bandit
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.08.09
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Keywords
 

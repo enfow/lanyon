@@ -6,8 +6,7 @@ category_num: 5
 
 # Monte Carlo Methods
 
-- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.  
-- update at : 2020.09.03
+- Sutton의 2011년 책 Reinforcement Learning: An Introduction 2nd edition을 참고해 작성했습니다.
 
 ## Introduction
 
@@ -51,7 +50,7 @@ Monte Carlo Method는 Value Function을 추정하는 방법이라고 할 수 있
 
 ### 2) On-Policy & Off-Policy
 
-Exploring Start를 사용하지 않으려면 Policy가 다양한 Action을 확률적으로 선택하도록 해야 한다. 이와 관련해 두 가지 방법, On-Policy와 Off-Policy가 있다. **On-Policy**는 Action의 선택에 사용되는 Policy(**Behavior Policy**)와 업데이트의 대상이 되는 Policy(**Target Policy**)가 같은 경우를 의미하고, **Off-Policy**는 다른 경우를 말한다. 
+Exploring Start를 사용하지 않으려면 Policy가 다양한 Action을 확률적으로 선택하도록 해야 한다. 이와 관련해 두 가지 방법, On-Policy와 Off-Policy가 있다. **On-Policy**는 Action의 선택에 사용되는 Policy(**Behavior Policy**)와 업데이트의 대상이 되는 Policy(**Target Policy**)가 같은 경우를 의미하고, **Off-Policy**는 다른 경우를 말한다.
 
 - On-Policy: Behevior Policy $$\mu(a \lvert s)$$ $$=$$ Target Policy $$\pi(a \lvert s)$$
 - Off-Policy: Behevior Policy $$\mu(a \lvert s)$$ $$\neq$$ Target Policy $$\pi(a \lvert s)$$
@@ -68,7 +67,7 @@ Stochastic Policy, 즉 어떤 State에서 Action이 확률적으로 결정되는
 
 $$
 \eqalign{
-q_\pi(s, \pi'(s)) 
+q_\pi(s, \pi'(s))
 &= \Sigma_a \pi'(a \lvert s) q_\pi (s,a)\\
 &= { \epsilon \over {\lvert A(s) \rvert}} \Sigma_a q_\pi (s, a) + (1 - \epsilon) \max_a q_\pi (s,a)\\
 &\geqq { \epsilon \over {\lvert A(s) \rvert}} \Sigma_a q_\pi (s, a) + (1 - \epsilon) \Sigma_a { \pi (a \lvert s) - {\epsilon \over \lvert A(s) \rvert} \over 1 - \epsilon} q_\pi(s, a)\\
@@ -91,7 +90,7 @@ $$
 이를 활용하면 Trajectory $$(A_t, S_{t+1}, A_{t+1}, ... S_T)$$에 대해 $$\mu$$를 따를 때의 그럼직한 정도와 비교해 $$\pi$$를 따를 때의 그럼직한 정도가 얼마나 큰지를 다음과 같이 표현할 수 있다.
 
 $$
-\rho^T_t = {\Pi_{k=t}^{T-1} \pi(A_k \lvert S_k) p(S_{k+1} \lvert S_k, A_k) \over \Pi_{k=t}^{T-1} \mu(A_k \lvert S_k) p(S_{k+1} \lvert S_k, A_k)} = {\Pi_{k=t}^{T-1} \pi(A_k \lvert S_k) \over \Pi_{k=t}^{T-1} \mu(A_k \lvert S_k) } 
+\rho^T_t = {\Pi_{k=t}^{T-1} \pi(A_k \lvert S_k) p(S_{k+1} \lvert S_k, A_k) \over \Pi_{k=t}^{T-1} \mu(A_k \lvert S_k) p(S_{k+1} \lvert S_k, A_k)} = {\Pi_{k=t}^{T-1} \pi(A_k \lvert S_k) \over \Pi_{k=t}^{T-1} \mu(A_k \lvert S_k) }
 $$
 
 이를 **Importance Sampling Ratio**라고 한다. **Importance Sampling**이란 알기 어려운 확률 분포를 알아내기 위해 상대적으로 알기 쉬운 확률 분포의 샘플과 두 확률 분포 간의 관계를 사용하는 방법이며, 여기서는 알기 쉬운 확률분포의 샘플이라고 할 수 있는 Behavior Policy $$\mu$$로 추출한 Episode들과 Behavior Policy $$\mu$$와 Target Policy $$\pi$$의 관계라고 할 수 있는 Importance Sampling Ratio를 사용하게 된다.
