@@ -8,7 +8,7 @@ title: Home
   <img src="{{site.image_url}}/page/enfow_home.png">
 
   <div class="recent">
-    
+
     <a class="post-title" href="{{ site.baseurl }}/post">
       <p class = "single-post-in-category">
           <div>
@@ -21,7 +21,6 @@ title: Home
       {% for post in site.posts limit:7 %}
         <li>
           <h3>
-            <small>{{ post.date | date:"%F" }}</small>
             <small>{{ post.categories[-1] }}</small>
             <div>
             <a href="{{ site.baseurl }}{{ post.url }}">
