@@ -7,7 +7,6 @@ category_num: 3
 # Convolution Neural Network
 
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book을 참고하여 작성했습니다.
-- update at : 20.02.11
 
 ## CNN의 정의
 

@@ -6,8 +6,6 @@ category_num: 5
 
 # Loss function과 Maximum likelihood
 
-- update at : 20.01.12
-
 ## Introduction
 
 딥러닝은 **gradient descent** 방법을 이용하여 최적의 모델을 찾는다. 즉 딥러닝 모델을 어떤 함수 $$ f_\theta(\cdot) $$라고 할 때 학습과정에서 이 함수가 가지는 파라미터 $$\theta$$는 loss function $$L(\cdot)$$을 최소화하는 방향으로 변화하며, 이때 loss를 최소화하는 변화의 방향과 크기를 loss function의 미분값인 gradient를 이용해 결정한다. 그리고 이 gradient를 back propagation 방법을 통해 업데이트하는 것이 기본적인 딥러닝의 개념이다.

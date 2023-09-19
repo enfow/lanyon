@@ -2,13 +2,12 @@
 layout: post
 title: Gradient Descent
 category_num: 1
-subtitle: 
+subtitle:
 ---
 
 # Gradient Descent
 
 - Ian Goodfellow, Yoshua Bengio, Aaron Courville의 Deep Learning Book을 참고하여 작성했습니다.
-- update at : 20.01.18
 
 ## Gradient Descent
 

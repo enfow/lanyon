@@ -7,7 +7,6 @@ category_num: 20
 # Energy Based Model
 
 - Yann LeCun의 [A Tutorial on Energy-Based Learning](<http://yann.lecun.com/exdb/publis/pdf/lecun-06.pdf>)과 [Energy-based Approaches to Representation Learning](<https://www.youtube.com/watch?v=m17B-cXcZFI&ab_channel=InstituteforAdvancedStudy>)을 참고하여 작성했습니다.
-- update at : 20.10.25
 
 ## Introduction
 
