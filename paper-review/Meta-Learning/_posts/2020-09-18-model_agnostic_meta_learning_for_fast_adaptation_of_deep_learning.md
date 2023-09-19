@@ -10,7 +10,6 @@ keyword: '[MAML]'
 - Chelsea Finn, Pieter Abbeel,Sergey Levine
 - 2017
 - [Paper Link](<https://arxiv.org/abs/1703.03400>)
-- 2020.09.18 정리
 
 ## Summary
 

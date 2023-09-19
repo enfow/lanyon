@@ -10,7 +10,6 @@ keyword: '[TRPO]'
 - John Schulman, Sergey Levine 등
 - 2015
 - [논문 링크](<https://arxiv.org/abs/1502.05477>)
-- 2020.03.01 정리 / 2020.08.05 업데이트
 
 ## Summary
 
@@ -46,11 +45,11 @@ $$
 \eta(\pi) = E_{s_0, a_0 ...} [\Sigma_{t=0}^\infty \gamma^t r(s_t)]
 $$
 
-식은 현재 가지고 있는 policy $$\pi$$가 가지는 expected return 이라고 했었다. 이때 policy가 $$\pi$$에서 $$\tilde \pi$$로 업데이트 되었다면 
+식은 현재 가지고 있는 policy $$\pi$$가 가지는 expected return 이라고 했었다. 이때 policy가 $$\pi$$에서 $$\tilde \pi$$로 업데이트 되었다면
 
 $$
 \eqalign{
-E_{\tau \lvert \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t A_\pi (s_t, a_t)] 
+E_{\tau \lvert \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t A_\pi (s_t, a_t)]
 &= E_{\tau \lvert \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t Q_\pi(s_t, a_t) - V_\pi(s_t)] \\
 &= E_{\tau \lvert \tilde \pi} [\Sigma_{t=0}^\infty \gamma^t (r(s_t) + \gamma V_\pi (s_{t+1}) - V_\pi (s_t))] \\
 &= E_{\tau \lvert \tilde \pi} [-V_\pi(s_0) + \Sigma_{t=0}^\infty \gamma^t r(s_t)] \\
@@ -280,7 +279,7 @@ $$
 
 $$
 \eqalign{
-E_{x \backsim p}[f(x)] 
+E_{x \backsim p}[f(x)]
 &= \int f(x)p(x) dx\\
 &= \int (f(x) {p(x) \over q(x)})q(x) dx \qquad \forall q \text{ s.t. } q(x) = 0 \rightarrow p(x) \\
 &= E_{x \backsim q} [f(x) {p(x) \over q(x)}] \\

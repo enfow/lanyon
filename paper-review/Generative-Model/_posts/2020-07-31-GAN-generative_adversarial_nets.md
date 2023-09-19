@@ -11,7 +11,6 @@ keyword: '[GAN]'
 - 2014
 - [논문 링크](<https://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf>)
 - [튜토리얼 링크](<https://arxiv.org/abs/1701.00160>)
-- 2020.07.31 정리
 
 ## Summary
 

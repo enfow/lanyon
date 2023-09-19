@@ -10,7 +10,6 @@ keyword: '[Dueling DQN]'
 - Ziyu Wang 등
 - 2015
 - <https://arxiv.org/abs/1511.06581>
-- 2019.09.21 정리
 
 ## Summary
 

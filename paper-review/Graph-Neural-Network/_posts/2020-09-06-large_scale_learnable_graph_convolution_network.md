@@ -10,7 +10,6 @@ keyword: '[LGCN]'
 - Hongyang Gao, Zhengyang Wang, Shuiwang Ji
 - 2018
 - [Paper Link](<https://arxiv.org/abs/1808.03965>)
-- 2020.09.06 정리
 
 ## Summary
 
@@ -61,7 +60,7 @@ $$
 1. $$X_l \in R^{N \times C}$$로, 각각의 row $$x_l^i$$는 $$i$$번째 Node의 특징을 나타낸다. 이들 중 Node $$i$$와 이웃하는 Matrix를 Adjecency Matrix $$A$$를 통해 확인하여 골라낸다.
 2. 이렇게 구해진 Node $$i$$의 이웃 Node들의 Feature $$\{ x_l^{i1} ... x_l^{in} \}$$을 Concat한다. 이렇게 만들어진 Matrix를 $$M_l^i$$라고 한다. 이때 $$N < k$$인 경우에는 0 padding을 추가하여 $$N \times C$$에 맞추어 준다.
 3. $$M_l^i$$에 대해 $$k$$-largest node selection을 수행하게 된다. 여기서 중요한 것은 node selection이라 하여 개별 node의 feature를 유지하며 sorting하는 것이 아니라는 점이다. 즉 어떤 node의 feature인지와 무관하게 $$M_l^i$$의 column 별로 오름차순으로 정렬한다.
-4. $$M_l^i$$에서 $$K+1$$번 row 부터는 모두 버린다. 그리고 첫 번째 row로 $$X_l^i$$, 즉 자기 자신 Node를 Concat하여 붙인다. 
+4. $$M_l^i$$에서 $$K+1$$번 row 부터는 모두 버린다. 그리고 첫 번째 row로 $$X_l^i$$, 즉 자기 자신 Node를 Concat하여 붙인다.
 5. 모든 Node에 대해 똑같이 수행한다. 최종적으로 $$\tilde X_l$$은 $$R^{N \times (k+1)\times C }$$의 크기를 가지게 된다. 이를 $$g(\cdot)$$의 출력값 $$\tilde X_l$$이라고 한다.
 
 ### (2) 1-D Convolution Networks
@@ -99,6 +98,6 @@ LGCN은 GCN 등에 비해 연산량은 줄였지만, 곧바로 전체 Graph에 �
 
 <img src="{{site.image_url}}/paper-review/lgcn_sub_graph_selection_algorithm.png" style="width:32em; display: block; margin: 0em auto;">
 
-Sub-Graph는 전체 Graph를 임의로 crop하여 구성하게 된다. 그런데 임의로 Node를 선택하는 것이므로 각 Node의 모든 이웃 Node가 Sub-Graph에 포함되지 않을 수도 있다. 이 경우 이웃 Node를 결정할 때 BFS 알고리즘을 사용하여 Sub-Node에 포함된 Node만으로 학습이 이뤄질 수 있도록 한다. 
+Sub-Graph는 전체 Graph를 임의로 crop하여 구성하게 된다. 그런데 임의로 Node를 선택하는 것이므로 각 Node의 모든 이웃 Node가 Sub-Graph에 포함되지 않을 수도 있다. 이 경우 이웃 Node를 결정할 때 BFS 알고리즘을 사용하여 Sub-Node에 포함된 Node만으로 학습이 이뤄질 수 있도록 한다.
 
 <img src="{{site.image_url}}/paper-review/lgcn_sub_graph_bfs_example.png" style="width:32em; display: block; margin: 0em auto;">

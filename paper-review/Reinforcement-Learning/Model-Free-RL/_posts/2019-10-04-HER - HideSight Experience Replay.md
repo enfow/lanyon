@@ -10,7 +10,6 @@ keyword: '[HER]'
 - Marcin Andrychowicz 등(OpenAI)
 - 2018
 - [paper link](<https://arxiv.org/abs/1707.01495>)
-- 2019.10.04 정리
 
 ## Summary
 

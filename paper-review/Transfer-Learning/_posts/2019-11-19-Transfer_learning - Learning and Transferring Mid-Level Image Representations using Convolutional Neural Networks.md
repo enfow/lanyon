@@ -9,7 +9,6 @@ keyword: '[Transfer Learning]'
 - Maxime Oquab, Leon Bottou 등
 - 2014
 - <https://ieeexplore.ieee.org/document/6909618>
-- 2019.11.19 정리
 
 ## Summary
 
@@ -60,7 +59,7 @@ keyword: '[Transfer Learning]'
 ### sliding window strategy
 
 - 하나의 target data 상에서 여러 크기의 window를 이동시켜가며 patch를 추출하고, patch를 단위로 하여 레이블링과 리스케일링을 통해 학습이 가능하도록 하는 방법을 말한다.
-- 특정 물체가 전체 patch에서 차지하는 비중이 작거나, 부분적으로 존재하는 경우에는 background로 판단하게 되며, 동시에 두 개 이상의 물체가 일정 크기 이상으로 존재하면 해당 patch는 학습 대상에서 제외한다. 
+- 특정 물체가 전체 patch에서 차지하는 비중이 작거나, 부분적으로 존재하는 경우에는 background로 판단하게 되며, 동시에 두 개 이상의 물체가 일정 크기 이상으로 존재하면 해당 patch는 학습 대상에서 제외한다.
 - 논문에서는 8 종류의 window를 이용하여 하나의 target data에서 500여 개의 patch를 추출했다고 한다.
 
 ### dealing with background

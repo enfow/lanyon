@@ -11,7 +11,6 @@ keyword: '[IMPALA]'
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1802.01561>)
 - [PyTorch 구현 - Facebook torchbeast](<https://github.com/facebookresearch/torchbeast>)
-- 2021.10.19 정리
 
 ## Summary
 
@@ -34,7 +33,7 @@ Distributed RL 알고리즘으로서 IMPALA 모델은 다음 두 가지 주요�
 
 ## IMPALA Update Rule
 
-IMPALA는 기본적으로 Actor-Critic 구조를 가지고 있어, Policy $$\pi$$와 Value function $$V^{\pi}$$를 가진다. 또한 Trajectory를 수집하는 Actor와, 수집된 Traejectory를 가지고 학습을 진행하는 Learner가 구분된다. 이때 각각의 Actor들은 자신만의 Policy $$\mu$$를 가진다. 
+IMPALA는 기본적으로 Actor-Critic 구조를 가지고 있어, Policy $$\pi$$와 Value function $$V^{\pi}$$를 가진다. 또한 Trajectory를 수집하는 Actor와, 수집된 Traejectory를 가지고 학습을 진행하는 Learner가 구분된다. 이때 각각의 Actor들은 자신만의 Policy $$\mu$$를 가진다.
 
 간단히 IMPALA의 Learner Policy Update을 살펴보면 다음과 같다.
 
@@ -135,7 +134,7 @@ Importance Sampling을 적용하되, 일정 수준 이하로는 Weight가 떨어
 
 $$
 \eqalign{
-v_{s_t} =^{def} 
+v_{s_t} =^{def}
 V(s_t) &+ \gamma^0 \rho_t (r_t + \gamma V(s_{t+1}) - V(s_t) ) \qquad \qquad  \because \Pi_{i = t}^{t - 1} c_i =^{def} 1 \\
 
 &+ \gamma^1 c_t \rho_{t+1} (r_{t+1} + \gamma V(s_{t+2}) - V(s_{t+1}) )\\
@@ -170,4 +169,4 @@ V-Trace Target을 적용한 이유는 Off-Policy의 문제점 중 하나인 Poli
 
 <img src="{{site.image_url}}/paper-review/impala_vs_batch_a2c.png" style="width:30em; margin: 0px auto;">
 
-위의 이미지에서 좌측은 Batched A2C를, 우측은 IMPALA의 업데이트 방식을 나타낸다. Batched A2C의 경우 step을 맞추느냐, trajectory를 맞추느냐에 따라 다시 구분되지만, 어떠한 방식으로 하더라도 Trajectory의 길이에 따라 쉬는 Worker가 생기게 된다. 반면 IMPALA는 Worker는 Trajectory를 수집하고, 이렇게 수집된 모든 Worker의 Trajectory에 Learner가 접근하여 업데이트하기 때문에 Worker는 업데이트를 기다릴 필요가 없어진다. 이러한 점에서 GPU Utilization 등에서 이점이 있다고 논문에서는 언급하고 있다. 
+위의 이미지에서 좌측은 Batched A2C를, 우측은 IMPALA의 업데이트 방식을 나타낸다. Batched A2C의 경우 step을 맞추느냐, trajectory를 맞추느냐에 따라 다시 구분되지만, 어떠한 방식으로 하더라도 Trajectory의 길이에 따라 쉬는 Worker가 생기게 된다. 반면 IMPALA는 Worker는 Trajectory를 수집하고, 이렇게 수집된 모든 Worker의 Trajectory에 Learner가 접근하여 업데이트하기 때문에 Worker는 업데이트를 기다릴 필요가 없어진다. 이러한 점에서 GPU Utilization 등에서 이점이 있다고 논문에서는 언급하고 있다.

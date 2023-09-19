@@ -10,7 +10,6 @@ keyword: '[WorldModel]'
 - DavidHa, JurgenSchmidhuber
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1803.10122>)
-- 2020.09.08 정리
 
 ## Summary
 
@@ -126,7 +125,7 @@ V Model만을 사용한 경우에도 성능이 A3C와 유사하게 나오는 것
 
 3번 식에서 나오듯이 Iterative Training Procedure에서는 M Model을 학습할 때
 
-$$P(z_{t+1} \lvert a_t, z_t, h_t)$$ 
+$$P(z_{t+1} \lvert a_t, z_t, h_t)$$
 
 가 아니라
 

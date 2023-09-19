@@ -10,7 +10,6 @@ keyword: '[FCN]'
 - Jonathan Long, Evan Shelhammer 등
 - 2014
 - [논문 링크](<https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf>)
-- 2020.02.13 정리
 
 ## 세 줄 요약
 

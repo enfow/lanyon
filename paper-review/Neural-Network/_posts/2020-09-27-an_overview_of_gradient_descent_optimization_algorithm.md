@@ -10,7 +10,6 @@ keyword: '[Optimizer]'
 - Sebastian Ruder
 - 2017
 - [논문 링크](<https://arxiv.org/abs/1609.04747>)
-- 2020.09.27 정리
 
 ## Summary
 

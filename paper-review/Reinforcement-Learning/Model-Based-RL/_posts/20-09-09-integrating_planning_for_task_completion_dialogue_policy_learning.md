@@ -10,7 +10,6 @@ keyword: '[DeepDyna Q]'
 - Baolin Peng, Xiujun Li, Jianfeng Gao, Jingjing Liu, Kam-Fai Wong, Shang-Yu Su
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1801.06176>)
-- 2020.09.09 정리
 
 ## Summary
 
@@ -82,7 +81,7 @@ $$
     &h = \text{tanh}(W_h(s,a) + b_h)\\
     &r = W_r h + b_r\\
     &a^u = \text{softmax}(W_a h + b_a)\\
-    &t = \text{sigmoid}(W_t h + b_t) 
+    &t = \text{sigmoid}(W_t h + b_t)
 }
 
 $$

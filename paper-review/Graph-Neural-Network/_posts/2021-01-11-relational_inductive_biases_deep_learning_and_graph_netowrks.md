@@ -10,7 +10,6 @@ category_num : 2
 - 2018
 - [Paper Link](<https://arxiv.org/pdf/1806.01261.pdf>)
 - [Vedio](<https://www.youtube.com/watch?v=sTGKOUzIpaQ&ab_channel=MITCBMM>)
-- 2021.01.11 정리
 
 ## Summary
 

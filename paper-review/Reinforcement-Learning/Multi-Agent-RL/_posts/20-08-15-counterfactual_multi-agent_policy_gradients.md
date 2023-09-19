@@ -10,7 +10,6 @@ keyword: '[COMA]'
 - Jakob N. Foerster, Gregory Farquhar 등
 - 2017
 - [논문 링크](<https://arxiv.org/abs/1705.08926>)
-- 2020.08.15 정리
 
 ## Summary
 
@@ -119,7 +118,7 @@ $$
 
 $$
 \eqalign{
-A^a(s, \boldsymbol{u}) 
+A^a(s, \boldsymbol{u})
 &= Q(s, \boldsymbol{u}) - V(s) \\
 &= Q(s, \boldsymbol{u}) - \Sigma_{u'^a} \pi^a ({u'}^a \lvert \tau^a) Q(s, ( \boldsymbol{u}^{-a}, {u'}^a)) \\
 }

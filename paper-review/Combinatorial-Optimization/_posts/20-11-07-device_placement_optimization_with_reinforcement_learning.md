@@ -10,7 +10,6 @@ keyword: '[Placement]'
 - Azalia Mirhoseini, Hieu Pham, Quoc V. Le, Benoit Steiner, Rasmus Larsen, Yuefeng Zhou, Naveen Kumar, Mohammad Norouzi, Samy Bengio, Jeff Dean
 - 2017
 - [논문 링크](<https://arxiv.org/abs/1706.04972>)
-- 2020.11.07 정리
 
 ## Summary
 

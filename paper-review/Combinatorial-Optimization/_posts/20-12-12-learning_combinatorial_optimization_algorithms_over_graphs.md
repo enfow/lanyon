@@ -10,7 +10,6 @@ keyword: '[NP-hard graph]'
 - Hanjun Dai, Elias B. Khalil, Yuyu Zhang, Bistra Dilkina, Le Song
 - 2017
 - [논문 링크](<https://arxiv.org/abs/1704.01665>)
-- 2020.12.12 정리
 
 ## Summary
 
@@ -35,7 +34,7 @@ keyword: '[NP-hard graph]'
 $$
 \eqalign{
     &\text{Given Graph } G, \text{ Minimize } \lvert S \rvert \\
-    &\text{When } S \text{ covers all of the Edges } E  
+    &\text{When } S \text{ covers all of the Edges } E
 }
 $$
 
@@ -56,7 +55,7 @@ $$
 
 ## How to Solve: Greedy Algorithm
 
-MVC와 MAXCUT은 전체 Node 집합 $$V$$ 중 최적의 부분 집합 $$S \subset V$$를 선택하는 문제이고, TSP는 모든 Node $$V$$를 줄세우는 최적의 방법을 찾는 문제라는 점에서 서로 다른 점을 가지고 있다. 따라서 세 가지 문제, 나아가 Graph 구조의 NP-hard 문제에 대한 일반적인 해결책을 제시하기 위해서는 문제들이 공통적으로 가지는 요소를 찾고, 그에 맞춰 추상화해야 한다. 
+MVC와 MAXCUT은 전체 Node 집합 $$V$$ 중 최적의 부분 집합 $$S \subset V$$를 선택하는 문제이고, TSP는 모든 Node $$V$$를 줄세우는 최적의 방법을 찾는 문제라는 점에서 서로 다른 점을 가지고 있다. 따라서 세 가지 문제, 나아가 Graph 구조의 NP-hard 문제에 대한 일반적인 해결책을 제시하기 위해서는 문제들이 공통적으로 가지는 요소를 찾고, 그에 맞춰 추상화해야 한다.
 
 논문에서는 세 가지 문제 모두 Node를 선택해야 한다는 점에 초점을 맞추고 있으며, 논문에서 제안하는 알고리즘은 이미 선택된 Subset $$S$$와 전체 Graph에 대한 정보를 가지고 한 번에 하나씩 Subset $$S$$에 새로운 node를 추가하는 방식을 택하고 있다. 이러한 방법론은 Heuristic Algorithm 중 하나인 Greedy Algorithm에서 영향을 받았다고 한다.
 
@@ -80,7 +79,7 @@ MVC의 목표는 최소한의 Node를 선택하는 것이므로, 목적 함수�
 ### Maximum Cut
 
 - **Objective Function**: $$c(h(S), G) = \Sigma_{(u,v) \in C} w(u, v)$$
-- **Terminal Criterion**: No need. 
+- **Terminal Criterion**: No need.
 
 MAXCUT의 목표는 Edge 집합의 Weight $$w$$의 총합을 극대화하는 것이며, 이 때 Edge 집합은 아래와 같이 정의된다.
 

@@ -10,7 +10,6 @@ keyword: '[TD3]'
 - Scott Fujimoto 등
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1802.09477>)
-- 2019.11.07 정리
 
 ## Summary
 

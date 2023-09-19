@@ -10,7 +10,6 @@ keyword: '[Placement]'
 - Azalia Mirhoseini, Anna Goldie, Mustafa Yazgan, Joe Jiang, Ebrahim Songhori, Shen Wang, Young-Joon Lee 등
 - 2020
 - [논문 링크](<https://arxiv.org/abs/2004.10746>)
-- 2020.08.26 정리
 
 ## Summary
 

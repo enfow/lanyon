@@ -10,7 +10,6 @@ keyword: '[SAC]'
 - Tuomas Haarnoja, Aurick Zhou, Pieter Abbeel, Sergey Levine
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1801.01290>)
-- 2020.10.09
 
 ## Summary
 

@@ -9,7 +9,6 @@ keyword: '[C51]'
 - Bellemare 등
 - 2017
 - [논문 링크](<https://arxiv.org/abs/1707.06887>)
-- 2020.01.15 정리
 
 ## Summary
 

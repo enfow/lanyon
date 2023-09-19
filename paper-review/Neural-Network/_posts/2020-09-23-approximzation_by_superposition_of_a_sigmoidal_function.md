@@ -10,7 +10,6 @@ keyword: '[Universal Approximation]'
 - G. Cybenko
 - 1989
 - [논문 링크](<https://link.springer.com/article/10.1007/BF02551274>)
-- 2020.09.23 정리
 
 ## Summary
 

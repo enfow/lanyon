@@ -9,7 +9,6 @@ keyword: '[DQN]'
 
 - David Silver 등
 - 2013
-- 2019.09.17 내용 정리
 
 ## Summary
 
@@ -32,7 +31,7 @@ Bellman equation은 expectatation exquation과 optimality equation 두 가지가
 - expectation equation : $$q_\pi(s, a) = R_{t+1} + \gamma q_\pi(s', a')$$
 - optimality equation : $$ q^*(s, a) = \max_\pi q_\pi(s, a) $$
 
-여기서 q 함수는 현재 policy $$\pi$$를 따라 state $$s$$ 에서 action $$a$$ 를 취했을 때 기대되는 return 의 기대값이다. expectation 식을 보면 state $$s$$ 에서 action $$a$$를 했을 때 환경으로부터 주어지는 보상 $$R_{t+1}$$ 과 다음 state $$s'$$과 policy $$\pi$$에 따라 결정된 다음 action $$a'$$의 q value 값의 합으로 되어 있다. 여기서 $$\gamma$$는 감가항이다. 
+여기서 q 함수는 현재 policy $$\pi$$를 따라 state $$s$$ 에서 action $$a$$ 를 취했을 때 기대되는 return 의 기대값이다. expectation 식을 보면 state $$s$$ 에서 action $$a$$를 했을 때 환경으로부터 주어지는 보상 $$R_{t+1}$$ 과 다음 state $$s'$$과 policy $$\pi$$에 따라 결정된 다음 action $$a'$$의 q value 값의 합으로 되어 있다. 여기서 $$\gamma$$는 감가항이다.
 
 즉, expecation equation은 현재의 policy를 따를 때 받을 것으로 기대되는 return의 크기를 의미한다.
 

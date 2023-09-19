@@ -10,7 +10,6 @@ keyword: '[GCN]'
 - Thomas N. Kipf, Max Welling
 - 2017
 - [Paper Link](<https://arxiv.org/abs/1609.02907>)
-- 2020.09.06 정리
 
 ## Summary
 
@@ -22,7 +21,7 @@ keyword: '[GCN]'
 
 **Graph Convolution Network(GCN)**이란 이미지에 많이 사용되는 Convolution 연산을 Graph의 특징을 추출하는 데에 사용하는 방법이라고 할 수 있다. 이미지라는 것은 격자(Grip)의 Node들이 서로 일정하게 연결되어 있는 Graph의 특수한 형태로 볼 수 있는데, 이를 격자 구조가 아닌 일반적인 Graph에서도 사용할 수 있도록 하겠다는 것이다.
 
-물론 이를 곧바로 적용하기에는 몇 가지 문제들이 존재한다. 개별 Node마다 인접 Node의 개수가 다른 상황을 어떻게 처리할 것인지에 대한 문제가 대표적이다. 즉 이미지와 같은 격자 구조에서는 주변부에 있는 Node를 제외한 나머지 Node들은 모두 상하좌우 및 대각의 총 8개의 이웃 Node를 가지며, 각각의 이웃 Node의 위치를 현재 Node를 기준으로 규정할 수 있다. 하지만 일반적인 Graph는 개별 Node가 가지는 이웃 Node의 개수가 모두 다를 뿐 아니라 각 이웃 Node 간의 순서를 규정할 만한 방법이 쉽게 떠오르지 않는다. 
+물론 이를 곧바로 적용하기에는 몇 가지 문제들이 존재한다. 개별 Node마다 인접 Node의 개수가 다른 상황을 어떻게 처리할 것인지에 대한 문제가 대표적이다. 즉 이미지와 같은 격자 구조에서는 주변부에 있는 Node를 제외한 나머지 Node들은 모두 상하좌우 및 대각의 총 8개의 이웃 Node를 가지며, 각각의 이웃 Node의 위치를 현재 Node를 기준으로 규정할 수 있다. 하지만 일반적인 Graph는 개별 Node가 가지는 이웃 Node의 개수가 모두 다를 뿐 아니라 각 이웃 Node 간의 순서를 규정할 만한 방법이 쉽게 떠오르지 않는다.
 
 <img src="{{site.image_url}}/paper-review/two_graph_is_same.png" style="width:48em; display: block; margin: 0em auto;">
 
@@ -34,7 +33,7 @@ Graph Convolution Network는 **Spectral Convolution**을 통해 이러한 문제
 
 ## Spectral Convolution
 
-[Spectral Graph Theory](<https://en.wikipedia.org/wiki/Spectral_graph_theory>)란 Adjacency Matrix, Laplacian Matrix 등과 같이 Graph와 관련된 행렬을 사용한 특성 다항식 및 고유 값 및 고유 벡터를 통해 그래프의 특성을 분석하는 방법에 관한 학문이라고 한다. Spectral Convolution이란 Spectral Graph Theory에 기반하고 있으며 다음과 같이 정의된다. 
+[Spectral Graph Theory](<https://en.wikipedia.org/wiki/Spectral_graph_theory>)란 Adjacency Matrix, Laplacian Matrix 등과 같이 Graph와 관련된 행렬을 사용한 특성 다항식 및 고유 값 및 고유 벡터를 통해 그래프의 특성을 분석하는 방법에 관한 학문이라고 한다. Spectral Convolution이란 Spectral Graph Theory에 기반하고 있으며 다음과 같이 정의된다.
 
 $$
 g_\theta \star x = Ug_\theta U^Tx

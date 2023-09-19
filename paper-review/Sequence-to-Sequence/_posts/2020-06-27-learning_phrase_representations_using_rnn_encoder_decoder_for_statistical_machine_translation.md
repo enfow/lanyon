@@ -10,7 +10,6 @@ keyword: '[RNN Encoder-Decoder]'
 - Kyunghyun Cho, Dzmitry Bahdanau, Fethi Bougares,Holger Schwenk, Yoshua Bengio
 - 2014
 - [논문 링크](<https://arxiv.org/abs/1406.1078>)
-- 2020.06.27 정리
 
 ## 세 줄 요약
 
@@ -20,7 +19,7 @@ keyword: '[RNN Encoder-Decoder]'
 
 ## Sequence to Sequence
 
-`Sequence to Sequence`란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 것을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다. 
+`Sequence to Sequence`란 말 그대로 sequence를 받아서 다른 sequence를 출력하는 것을 말한다. Sequence to Sequence model이 적용되는 대표적인 문제로는 기계번역이 있다.
 
 <img src="{{site.image_url}}/paper-review/papago.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
 
@@ -30,7 +29,7 @@ keyword: '[RNN Encoder-Decoder]'
 이 문장은 Sequence to Sequence 모델을 통해 번역되는 것입니다.
 ```
 
-영어 문장이자 영어 단어의 sequence인 
+영어 문장이자 영어 단어의 sequence인
 
 ```
 This sentence is translated through the Sequence to Sequence model.
@@ -92,7 +91,7 @@ $$
 
 ## New Hideden Unit: GRU
 
-LSTM(Long Short Term Memory)은 Vanilla RNN 구조의 가장 큰 문제로 지적되던 long-term dependency 문제를 long-term state와 short-term state를 구별하는 방식으로 해결했었다. 논문에서는 Hidden Unit that Adaptively Remembers and Forgets라는 이름으로 새로운 RNN model architecture를 제시하고 있는데 이것이 GRU(Gated Recurrent Unit)이다. 
+LSTM(Long Short Term Memory)은 Vanilla RNN 구조의 가장 큰 문제로 지적되던 long-term dependency 문제를 long-term state와 short-term state를 구별하는 방식으로 해결했었다. 논문에서는 Hidden Unit that Adaptively Remembers and Forgets라는 이름으로 새로운 RNN model architecture를 제시하고 있는데 이것이 GRU(Gated Recurrent Unit)이다.
 
 LSTM과 비교해 볼 때 GRU는 비슷한 특성을 유지하면서도 구현이 단순하고 연산량이 적다. 구체적으로 LSTM은 input gate, output gate, forget gate 라는 세 개의 gate를 가지고 있는 반면 GRU는 reset gate와 update gate 두 개 만을 가지고 있다.
 
@@ -108,7 +107,7 @@ $$
 z = \sigma([Wx] + [Uh_{t-1}])
 $$
 
-그리고 기존 hidden state $$h_{t-1}$$에 더해져서 hidden state의 업데이트 방향이라고 할 수 있는 $$\tilde h$$의 수식은 다음과 같다. 
+그리고 기존 hidden state $$h_{t-1}$$에 더해져서 hidden state의 업데이트 방향이라고 할 수 있는 $$\tilde h$$의 수식은 다음과 같다.
 
 $$
 \tilde h_j = \phi([Wx]_j + [U(r \cdot h_{t-1}])

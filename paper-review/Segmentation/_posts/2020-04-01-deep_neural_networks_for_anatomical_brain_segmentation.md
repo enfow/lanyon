@@ -10,7 +10,6 @@ keyword: '[3D Segmentation]'
 - Brebisson, Montana
 - 2015
 - [논문 링크](<https://arxiv.org/abs/1502.02445>)
-- 2020.04.01 정리
 
 ## Summary
 

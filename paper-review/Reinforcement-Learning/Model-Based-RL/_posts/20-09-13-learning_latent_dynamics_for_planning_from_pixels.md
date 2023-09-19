@@ -7,10 +7,9 @@ keyword: '[PlaNet]'
 
 # 논문 제목 : Learning Latent Dynamics for Planning from Pixels
 
-- Danijar Hafner, Timothy Lillicrap, Ian Fischer, Ruben Villegas, David Ha, Honglak Lee, James Davidson 
+- Danijar Hafner, Timothy Lillicrap, Ian Fischer, Ruben Villegas, David Ha, Honglak Lee, James Davidson
 - 2018
 - [논문 링크](<https://arxiv.org/abs/1811.04551>)
-- 2020.09.13 정리
 
 ## Summary
 
@@ -50,7 +49,7 @@ PlaNet은 하나의 이미지 Observation을 현재 Enviroment의 State로 보�
 | $$s_t \backsim q(s_t \lvert o_{\leq t}, a_{<t})$$ | Encoder |
 | $$a_t \backsim p(a_t \lvert o_{\leq t}, a_{<t})$$ | Policy |
 
-여기서 $$o_t$$는 Environment로부터 전달받은 이미지를, $$s_t$$는 $$o_t$$를 인코딩하여 얻은 Latent State를 의미한다. PlaNet의 목표는 위의 세 가지 Model과 Encoder를 Experience를 통해 학습하여 $$E_p[\Sigma_{t=1}^T r_t]$$를 극대화하는 Policy를 찾는 것이다. 
+여기서 $$o_t$$는 Environment로부터 전달받은 이미지를, $$s_t$$는 $$o_t$$를 인코딩하여 얻은 Latent State를 의미한다. PlaNet의 목표는 위의 세 가지 Model과 Encoder를 Experience를 통해 학습하여 $$E_p[\Sigma_{t=1}^T r_t]$$를 극대화하는 Policy를 찾는 것이다.
 
 참고로 논문에서 **Current State Belief** 라는 표현이 자주 등장하는데 이는 Observation을 인코딩하여 얻은 Latent State $$s_t \backsim q(s_t \lvert o_{\leq t}, a_{<t})$$를 지칭한다. 즉, 엄밀히 말해 $$s_t$$는 Environment가 제공하는 State와는 다른 것이기 때문에 Belief라는 표현을 쓰는 것 같다.
 
@@ -64,10 +63,10 @@ PlaNet은 하나의 이미지 Observation을 현재 Enviroment의 State로 보�
 
 참고로 논문의 실험에 사용된 Planning Hyperparameter는 다음과 같다.
 
-- Horizon Length $$H = 12$$ 
-- Optimization Iteration $$I = 10$$ 
-- Number of Samples $$J = 1000$$ 
-- Number of Bset Samples $$K = 100$$ 
+- Horizon Length $$H = 12$$
+- Optimization Iteration $$I = 10$$
+- Number of Samples $$J = 1000$$
+- Number of Bset Samples $$K = 100$$
 
 ## Recurrent State Space Model
 
@@ -83,7 +82,7 @@ $$
 
 #### One-Step Predictive Distribution
 
-[VAE](<https://enfow.github.io/paper-review/generative-model/2020/03/28/VAE-auto_encoding_variational_bayes/>)의 Lower Bound 식을 먼저 확인해보면 다음과 같다. 
+[VAE](<https://enfow.github.io/paper-review/generative-model/2020/03/28/VAE-auto_encoding_variational_bayes/>)의 Lower Bound 식을 먼저 확인해보면 다음과 같다.
 
 $$
 \eqalign{
@@ -109,7 +108,7 @@ $$
 
 ### Deterministic and Shocastic Path
 
-이와 관련하여 Transition Model $$s_t \backsim p(s_t \lvert s_{t-1}, a_{t-1})$$과 관련해 이를 Stochastic Model로 할 것인지, Deterministic Model(variance=0)로 할 것인지 또한 중요한 문제가 된다. 왜냐하면 Stochstic하다고 가정하는 경우 Transition Model이 Multiple Step을 예측하는 것을 어렵게 한다는 단점을 가지고, Deterministic하다고 가정하는 경우에는 Optimization 과정에서 Solution을 찾는 것이 너무 어려워 학습이 어려워진다는 단점을 각각 가지기 때문이다. 
+이와 관련하여 Transition Model $$s_t \backsim p(s_t \lvert s_{t-1}, a_{t-1})$$과 관련해 이를 Stochastic Model로 할 것인지, Deterministic Model(variance=0)로 할 것인지 또한 중요한 문제가 된다. 왜냐하면 Stochstic하다고 가정하는 경우 Transition Model이 Multiple Step을 예측하는 것을 어렵게 한다는 단점을 가지고, Deterministic하다고 가정하는 경우에는 Optimization 과정에서 Solution을 찾는 것이 너무 어려워 학습이 어려워진다는 단점을 각각 가지기 때문이다.
 
 <img src="{{site.image_url}}/paper-review/planet_recurrent_state_space_model.png" style="width:42em; display: block; margin: 1em auto;">
 

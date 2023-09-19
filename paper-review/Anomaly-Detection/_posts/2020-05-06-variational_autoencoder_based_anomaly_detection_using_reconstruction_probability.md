@@ -9,7 +9,6 @@ category_num: 2
 - Jinwon An, Sungzoon Cho
 - 2015
 - [paper link](<http://dm.snu.ac.kr/static/docs/TR/SNUDM-TR-2015-03.pdf>)
-- 2020.05.06 정리
 
 ## Summary
 
@@ -50,7 +49,7 @@ $$
 }
 $$
 
-학습은 입력 값과 복원 값 간의 차이인 $$\lvert x - \hat x \rvert$$ 를 최소화하는 방향으로 이뤄지는데, 이때 차이를 **reconstruction error**라고 한다. 
+학습은 입력 값과 복원 값 간의 차이인 $$\lvert x - \hat x \rvert$$ 를 최소화하는 방향으로 이뤄지는데, 이때 차이를 **reconstruction error**라고 한다.
 
 AutoEncoder로 이상치 탐지를 실시하는 경우에는 기본적으로 정상 데이터만을 이용하여 학습을 진행해 우선 정상 데이터를 잘 복원하는 모델을 만든 후, 추론 과정에서는 정상 데이터와 이상 데이터를 함께 넣어 reconstruction error가 크게 나오는 것을 이상 데이터로 판단하는 방법을 따른다.
 

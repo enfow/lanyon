@@ -10,7 +10,6 @@ keyword: '[Activation]'
 - Cihang Xie, Mingxing Tan, Boqing Gong, Alan Yuille, Quoc V. Le
 - 2020
 - [논문 링크](<https://arxiv.org/abs/2006.14536>)
-- 2020.08.06 정리
 
 ## Summary
 

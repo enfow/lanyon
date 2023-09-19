@@ -11,7 +11,6 @@ keyword: '[DPG]'
 - 2018
 - [논문 링크](<http://proceedings.mlr.press/v32/silver14.pdf?CFID=6293331&CFTOKEN=eaaee2b6cc8c9889-7610350E-DCAB-7633-E69F572DC210F301>)
 - [보충 자료](<http://proceedings.mlr.press/v32/silver14-supp.pdf>)
-- 2020.12.25
 
 ## Summary
 

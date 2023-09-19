@@ -10,7 +10,6 @@ keyword: '[VAE]'
 - Diederic Kingma, Max Welling
 - 2013
 - [논문 링크](<https://arxiv.org/abs/1312.6114>)
-- 2020.03.28 정리
 
 ## Summary
 

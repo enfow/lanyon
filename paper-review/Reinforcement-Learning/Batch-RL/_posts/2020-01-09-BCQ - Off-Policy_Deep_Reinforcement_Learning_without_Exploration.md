@@ -10,7 +10,6 @@ keyword: '[BCQ]'
 - Scott Fujimoto, David Meger 등
 - 2019
 - [paper link](<https://arxiv.org/abs/1812.02900>)
-- 2020.01.09 정리
 
 ## Summary
 

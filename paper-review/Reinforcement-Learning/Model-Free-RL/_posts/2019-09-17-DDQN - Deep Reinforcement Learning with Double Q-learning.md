@@ -10,7 +10,6 @@ keyword: '[DDQN]'
 - David Silver 등
 - 2015
 - [논문 링크](<https://arxiv.org/abs/1509.06461>)
-- 2019.09.17 정리
 
 ## Summary
 

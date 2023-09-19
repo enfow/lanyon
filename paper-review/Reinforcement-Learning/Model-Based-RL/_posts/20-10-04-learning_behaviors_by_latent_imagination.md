@@ -10,7 +10,6 @@ keyword: '[Dreamer]'
 - Danijar Hafner, Timothy Lillicrap, Jimmy Ba, Mohammad Norouzi
 - 2020
 - [논문 링크](<https://arxiv.org/abs/1912.01603>)
-- 2020.10.04 정리
 
 ## Summary
 

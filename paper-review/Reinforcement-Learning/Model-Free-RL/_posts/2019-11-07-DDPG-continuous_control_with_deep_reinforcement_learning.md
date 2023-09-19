@@ -10,7 +10,6 @@ keyword: '[DDPG]'
 - P. Lillicrap 등
 - 2016
 - [논문 링크](<https://arxiv.org/abs/1509.02971>)
-- 2019.11.07 정리, 2020.12.26 업데이트
 
 ## Summary
 

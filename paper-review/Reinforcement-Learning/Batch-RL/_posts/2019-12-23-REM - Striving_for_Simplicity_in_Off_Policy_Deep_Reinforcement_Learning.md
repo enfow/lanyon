@@ -10,7 +10,6 @@ keyword: '[REM]'
 - Rishabh Agarwal 등
 - 2019
 - [paper link](<https://arxiv.org/abs/1907.04543>) [git link](<https://github.com/google-research/batch_rl>)
-- 2019.12.23 정리
 
 ## Summary
 

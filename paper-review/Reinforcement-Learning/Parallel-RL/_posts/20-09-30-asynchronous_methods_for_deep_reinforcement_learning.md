@@ -10,7 +10,6 @@ keyword: '[A3C]'
 - Volodymyr Mnih, Adrià Puigdomènech Badia, Mehdi Mirza 등
 - 2016
 - [논문 링크](<https://arxiv.org/abs/1602.01783>)
-- 2020.09.30 정리
 
 ## Summary
 

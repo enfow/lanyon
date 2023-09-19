@@ -10,7 +10,6 @@ keyword: '[Matching Network]'
 - Oriol Vinyals, Charles Blundell, Timothy Lillicrap, Koray Kavukcuoglu, Daan Wierstra
 - 2016
 - [Paper Link](<https://arxiv.org/abs/1606.04080>)
-- 2020.09.15 정리
 
 ## Summary
 

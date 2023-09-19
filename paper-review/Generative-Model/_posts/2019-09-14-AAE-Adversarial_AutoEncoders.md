@@ -10,7 +10,6 @@ keyword: '[AAE]'
 - Alireza Makhzani 등
 - 2016
 - [논문 링크](<https://arxiv.org/abs/1511.05644>)
-- 2019.09.14 정리
 
 ## Summary
 

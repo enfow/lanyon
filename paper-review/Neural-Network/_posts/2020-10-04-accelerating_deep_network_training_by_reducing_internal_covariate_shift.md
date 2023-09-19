@@ -10,7 +10,6 @@ keyword: '[Batch Normalization]'
 - Sergey Ioffe, Christian Szegedy
 - 2015
 - [논문 링크](<https://arxiv.org/abs/1502.03167>)
-- 2020.10.04 정리
 
 ## Summary
 

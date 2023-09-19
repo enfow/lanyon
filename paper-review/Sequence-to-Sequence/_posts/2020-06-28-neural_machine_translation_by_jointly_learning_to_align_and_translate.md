@@ -10,7 +10,6 @@ keyword: '[Attention]'
 - Dzmitry Bahdanau, Kyunghyun Cho, Yoshua Bengio
 - 2014
 - [논문 링크](<https://arxiv.org/abs/1409.0473>)
-- 2020.06.28 정리
 
 ## 세 줄 요약
 
@@ -40,15 +39,15 @@ RNN Encoder-Decoder 구조는 딥러닝을 Sequence to Sequence 문제에 적용
 I ate an apple yesterday.
 ```
 
-이라는 영어 문장으로 번역해본다고 하자. 
+이라는 영어 문장으로 번역해본다고 하자.
 
-매 time step에 단어 별로 입력이 주어진다면 `apple`을 출력하는 디코더의 4번째 time step에서는 인코더의 입력 중 다른 어떤 단어들보다 `사과를`이라는 단어에 집중해야 한다. 
+매 time step에 단어 별로 입력이 주어진다면 `apple`을 출력하는 디코더의 4번째 time step에서는 인코더의 입력 중 다른 어떤 단어들보다 `사과를`이라는 단어에 집중해야 한다.
 
 어텐션은 인코더의 모든 hidden state를 필요에 따라 적절히 합하여 디코더에게 전달한다. 따라서 디코더는 time step마다 다른 context vector를 전달받게 되어 매 time step에 보다 적응력 높게 대처할 수 있게 된다. 위의 경우에서라면 인코더의 세 번째 hidden state의 비율이 높게 구성된 context vector가 디코더에 전달되는 것이 바람직하다고 할 수 있다.
 
 ### Encoder: Bidirectional RNN
 
-어텐션 구조에서는 인코더의 마지막 hidden state만을 사용하는 것이 아니라 각 time step의 모든 hidden state를 사용한다. 그런데 이 경우 RNN Encoder Decoder 구조와 같이 순방향 hidden state 만으로 구성하게 되면 이른 시점의 hidden state에 들어있는 정보들은 초기의 몇몇 단어들의 특성만을 반영한다는 문제점이 있다. 
+어텐션 구조에서는 인코더의 마지막 hidden state만을 사용하는 것이 아니라 각 time step의 모든 hidden state를 사용한다. 그런데 이 경우 RNN Encoder Decoder 구조와 같이 순방향 hidden state 만으로 구성하게 되면 이른 시점의 hidden state에 들어있는 정보들은 초기의 몇몇 단어들의 특성만을 반영한다는 문제점이 있다.
 
 <img src="{{site.image_url}}/paper-review/bidirectional_rnn.png" style="width:35em; display: block; margin: 0px auto; padding: 15px">
 
@@ -109,4 +108,4 @@ $$
 
 #### Attention Score with $$s_{i-1}$$ or $$s_i$$
 
-어텐션에 대해 찾아보면 Attention Score를 구하기 위해 사용하는 디코더의 hidden state가 $$s_{i-1}$$인 경우도 있고, $$s_i$$을 사용하는 경우도 있다. 본 논문에서는 $$s_{i-1}$$를 사용하는데 이러한 방식의 어텐션을 논문의 저자 이름을 따 **Bahdanau Attention**이라고 부른다. 참고로 $$s_i$$를 사용하는 것은 조금 뒤에 나온 **Loung Attention**이라고 하는데, Loung Attention 논문에서는 $$s_i$$를 사용하는 방법을 제시하고 나아가 다양한 score function을 시도한다. 
+어텐션에 대해 찾아보면 Attention Score를 구하기 위해 사용하는 디코더의 hidden state가 $$s_{i-1}$$인 경우도 있고, $$s_i$$을 사용하는 경우도 있다. 본 논문에서는 $$s_{i-1}$$를 사용하는데 이러한 방식의 어텐션을 논문의 저자 이름을 따 **Bahdanau Attention**이라고 부른다. 참고로 $$s_i$$를 사용하는 것은 조금 뒤에 나온 **Loung Attention**이라고 하는데, Loung Attention 논문에서는 $$s_i$$를 사용하는 방법을 제시하고 나아가 다양한 score function을 시도한다.

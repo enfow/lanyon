@@ -10,7 +10,6 @@ keyword: '[OAC]'
 - Kamil Ciosek, Quan Vuong 등
 - 2019
 - [논문 링크](<https://arxiv.org/abs/1910.12807>)
-- 2019.12.17 정리
 
 ## Summary
 
