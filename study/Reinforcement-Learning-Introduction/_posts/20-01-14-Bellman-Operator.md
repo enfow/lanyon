@@ -6,8 +6,6 @@ category_num: 20
 
 # Bellman Operator
 
-- update date : 20.01.15
-
 ## Bellman Equation to Bellman Operator
 
 ### Expected Bellman Equation
