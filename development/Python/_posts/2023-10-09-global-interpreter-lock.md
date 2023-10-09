@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Python GIL
+title: Python Global Interpreter Lock
 category_num: 3
 ---
 
