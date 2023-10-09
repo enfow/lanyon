@@ -2,7 +2,6 @@
 layout: post
 title: Python import system
 category_num: 2
-subtitle: 파이썬의 상대경로, 절대경로
 ---
 
 # Python import system 이해하기

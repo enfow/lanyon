@@ -1,5 +1,5 @@
 docker-run:
-	docker run --rm \
+	docker run --rm -d \
 	--name my-blog \
 	--volume="$(PWD):/srv/jekyll:Z" \
 	-p 4000:4000 \

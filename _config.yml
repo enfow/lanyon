@@ -30,9 +30,11 @@ author:
 version:             1.0.0
 
 # category settings
+cs_study_category_list: ["Computer-Science", "Computer-Science-Classes", "Algorithm", "Design-Pattern"]
+development_category_list: ["Python", "Java"]
+ml_study_category_list: ["Deep-Learning", "Reinforcement-Learning-Introduction", "Statistics", "Linear-Algebra", "Mathematics-for-ML", "Experiments"]
 paper_review_category_list: ["Neural-Network", "Generative-Model", "Model-Free-RL", "Model-Based-RL", "Parallel-RL", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Meta-Learning", "Sequence-to-Sequence", "Transfer-Learning", "Graph-Neural-Network", "Combinatorial-Optimization", "Anomaly-Detection", "Segmentation", "Metric", "Domain"]
-development_category_list: ["Clean_Code", "Machine-Learning-project", "Environment-Settings", "Git-Tutorial", 'Embedded', "Web-project"]
-study_category_list: ["Deep-Learning", "Reinforcement-Learning-Introduction", "Meta-Learning-Introduction", "Statistics", "Linear-Algebra", "Optimization", "Mathematics-for-ML", "Computer-Science", "Algorithm", "Design-Pattern", "Experiments"]
 domain_category_list: ["Semiconductor", "Robotics"]
+etc_category_list: ["Machine-Learning-project", "Environment-Settings", 'Embedded']
 
 markdown: kramdown

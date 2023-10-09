@@ -1,42 +1,11 @@
 ---
 layout: page
-title: Python, Pandas, Pytorch
+title: Pandas, Pytorch
 category_num : 1
 keyword: '[Python]'
 ---
 
-<h1> Python, Pandas, Pytorch </h1>
-
-<h2> Python Tips </h2>
-
-<div class="cats-expo">
-  <div class="cats-expo-list">
-  </div>
-  <hr/>
-
-  <div class="cats-expo-section">
-    {% for cat in site.categories %}
-    {% if cat[0] == "Python-tips" %}
-        <div class = "single-category">
-        <!-- <h2 class="single-category-title" id="{{ cat[0] | slugify }}">{{ cat[0] }}</h2> -->
-        <ul class="post_in_category">
-        {% assign category = cat[1] | sort: "category_num" %}
-        {% for post in category %}
-          <div><a class="post-title" href="{{ site.baseurl }}{{ post.url }}">
-            <p class="single-post-in-category">
-              <div>
-                <h3 class="single-post-in-category-title-in-page">{{ post.title }}</h3>
-                <small>{{ post.subtitle }}</small>
-              </div>
-            </p>
-          </a></div>
-        {% endfor %}
-        </ul><br>
-        </div>
-    {% endif %}
-    {% endfor %}
-  </div>
-</div>
+<h1> Pandas, Pytorch </h1>
 
 <h2> Pandas Tips </h2>
 

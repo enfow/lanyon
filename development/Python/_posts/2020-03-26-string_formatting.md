@@ -2,10 +2,10 @@
 layout: post
 title: 파이썬에서 String을 다루는 3가지 방법
 category_num: 1
-subtitle: 파이썬의 문자열 포맷팅 - % operator, format(), f'string'
+subtitle: "% operator, format(), f'string'"
 ---
 
-# 파이썬에서 String을 다루는 3가지 방법
+# 파이썬의 문자열 포맷팅
 
 - update data : 2020.03.26
 - 한 줄 요약 : 기호에 맞게 `format()` 또는 `f'string'` 방식을 사용하자.
