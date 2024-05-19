@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python import system
-category_num: 2
+category_num: 3
 ---
 
 # Python import system 이해하기
@@ -11,7 +11,7 @@ category_num: 2
 ## Summary
 
 - 절대 경로는 `sys.path`에 포함된 경로를 탐색하고, 상대 경로는 `__name__`에 정의된 위치를 기준으로 탐색한다
-- 실행 파일의 `__name__`은 항상 **"__main__"**이다.
+- 실행 파일의 `__name__`은 항상 **"**main**"**이다.
   - 따라서 실행 파일에서는 상대 경로를 사용하면 안 된다.
 - `__name__` 에서 상위 디렉토리가 정의되지 않은 경우 해당 파일을 최상단으로 본다.
   - 따라서 실행파일과 동일한 디렉토리에서 모듈 간 상대 경로로 import를 하면 찾을 수 없다.
@@ -26,7 +26,7 @@ category_num: 2
 
 #### PEP 328
 
-- [link](<https://www.python.org/dev/peps/pep-0328/>)
+- [link](https://www.python.org/dev/peps/pep-0328/)
 
 ##### Absolute import
 
@@ -47,11 +47,11 @@ Relative imports use a module's __name__ attribute to determine that module's po
 ```
 
 - 상대경로는 `__name__`을 기준으로 결정된다.
-- `__name__`이 **"__main__"**인 경우를 비롯하여 패키지의 정보를 담고 있지 않으면 해당 모듈을 파일 시스템의 최상단에 위치한 것으로 간주한다. 
+- `__name__`이 **"**main**"**인 경우를 비롯하여 패키지의 정보를 담고 있지 않으면 해당 모듈을 파일 시스템의 최상단에 위치한 것으로 간주한다.
 
 #### PEP 338
 
-- [link](<https://www.python.org/dev/peps/pep-0338/>)
+- [link](https://www.python.org/dev/peps/pep-0338/)
 
 ```
 This is due to the fact that relative imports rely on __name__ to determine the current module's position in the package hierarchy. In a main module, the value of __name__ is always '__main__', so explicit relative imports will always fail (as they only work for a module inside a package)
@@ -122,7 +122,7 @@ def return_module111_name():
     return str(__name__)
 ```
 
-복잡해 보일 수 있으나, 각 module에서 __name__ 값을 반환하여 module1.py를 실행하면 모두 출력되도록 하는 코드이다. 여기서 module1.py 를 실행하면 문제 없이 정상적으로 아래와같이 출력되는 것을 확인할 수 있다.
+복잡해 보일 수 있으나, 각 module에서 **name** 값을 반환하여 module1.py를 실행하면 모두 출력되도록 하는 코드이다. 여기서 module1.py 를 실행하면 문제 없이 정상적으로 아래와같이 출력되는 것을 확인할 수 있다.
 
 ```
 $ python pkg1/module1.py
@@ -199,7 +199,7 @@ ImportError: attempted relative import with no known parent package
 - 첫 번째의 경우 `ModuleNotFoundError` 로, 이는 `__main__.module11` 라는 파일이 존재하지 않기 때문에 생기는 문제이다.
 - 두 번째는 `ImportError` 이다. 이는 에러 코드에서도 명시되어 있듯이 `pkg1/` 디렉토리를 찾을 수 없어 생기는 문제이다.
 
-**PEP 338**에서는 실행되는 모듈의 `__name__`은 **"__main__"**이 된다고 정의하고 있으며, 이러한 이유로 첫 번째 에러가 발생하는 것이다. 두 번째 에러는 **PEP 328**의 내용과 관련된 것으로, `__name__`에서 상위 디렉토리인 `pkg1/`를 찾을 수 없기 때문에 최상단으로 간주되고, 이로 인해 동일한 디렉토리에 위치한 다른 module을 찾을 수 없는 경우이다.
+**PEP 338**에서는 실행되는 모듈의 `__name__`은 **"**main**"**이 된다고 정의하고 있으며, 이러한 이유로 첫 번째 에러가 발생하는 것이다. 두 번째 에러는 **PEP 328**의 내용과 관련된 것으로, `__name__`에서 상위 디렉토리인 `pkg1/`를 찾을 수 없기 때문에 최상단으로 간주되고, 이로 인해 동일한 디렉토리에 위치한 다른 module을 찾을 수 없는 경우이다.
 
 ---
 

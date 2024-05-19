@@ -1,7 +1,7 @@
 ---
 layout: post
-title: 파이썬에서 String을 다루는 3가지 방법
-category_num: 1
+title: Python String Formatting
+category_num: 5
 subtitle: "% operator, format(), f'string'"
 ---
 

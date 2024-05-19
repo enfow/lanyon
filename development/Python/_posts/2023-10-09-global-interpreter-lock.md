@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Python Global Interpreter Lock
-category_num: 3
+category_num: 4
 ---
 
 # Python Global Interpreter Lock
@@ -18,11 +18,11 @@ this mutex is necessary mainly because CPython's memory management is not thread
 https://wiki.python.org/moin/GlobalInterpreterLock
 ```
 
- python wiki 에서는 GIL이 존재하는 이유를 파이썬의 메모리 관리가 thread-safe 하지 않다는 점에서 찾고 있다. 보다 깊이 들어가면, Python Memory Manager는 모든 파이썬 객체들의 reference count 를 가지고 있으며, 이를 기준으로 garbage collection 을 수행한다. 
+python wiki 에서는 GIL이 존재하는 이유를 파이썬의 메모리 관리가 thread-safe 하지 않다는 점에서 찾고 있다. 보다 깊이 들어가면, Python Memory Manager는 모든 파이썬 객체들의 reference count 를 가지고 있으며, 이를 기준으로 garbage collection 을 수행한다.
 
- 그런데 병렬로 여러 개의 Thread 가 실행되면 race condition의 상황이 발생하여 이 reference count 가 정확히 계산되지 않을 수 있다. 물론 개별 reference count 에 mutex를 건다면 해결할 수 있지만, 매우 비효율적이므로 실행 단위인 쓰레드를 단위로 Lock 을 만든 것이다.
+그런데 병렬로 여러 개의 Thread 가 실행되면 race condition의 상황이 발생하여 이 reference count 가 정확히 계산되지 않을 수 있다. 물론 개별 reference count 에 mutex를 건다면 해결할 수 있지만, 매우 비효율적이므로 실행 단위인 쓰레드를 단위로 Lock 을 만든 것이다.
 
 ## Reference
 
-- [Python wiki](<https://wiki.python.org/moin/GlobalInterpreterLock>)
-- [Python dev guide](<https://devguide.python.org/internals/garbage-collector/>)
+- [Python wiki](https://wiki.python.org/moin/GlobalInterpreterLock)
+- [Python dev guide](https://devguide.python.org/internals/garbage-collector/)

@@ -1,31 +1,32 @@
 ---
 layout: post
 title: "Python Bulit-in Time Complexity: Set & Dictionary"
-category_num: 3
+category_num: 2
 ---
 
 # Python Bulit-in Time Complexity: Set & Dictionary
 
-- [Python Data Structures](<https://docs.python.org/3/tutorial/datastructures.html>)
-- [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)
+- [Python Data Structures](https://docs.python.org/3/tutorial/datastructures.html)
+- [Python Wiki-Time Complexity](https://wiki.python.org/moin/TimeComplexity)
 - Update at : 20.12.27
 
 ## Set: Hash Table
 
-- [cpython setobject.c](<https://github.com/python/cpython/blob/master/Objects/setobject.c>)
-- [cpython dictobject.c](<https://github.com/python/cpython/blob/master/Objects/dictobject.c>)
+- [cpython setobject.c](https://github.com/python/cpython/blob/master/Objects/setobject.c)
+- [cpython dictobject.c](https://github.com/python/cpython/blob/master/Objects/dictobject.c)
 
 | Opertaion | Average Case | Worst Case |
-|:-----:| :-----: | :-----: |
-| search | $$O(1)$$ | $$O(n)$$ |
-| copy | $$O(n)$$ | $$O(n)$$ |
-| add | $$O(1)$$ | $$O(n)$$ |
-| remove | $$O(1)$$ | $$O(n)$$ |
+| :-------: | :----------: | :--------: |
+|  search   |   $$O(1)$$   |  $$O(n)$$  |
+|   copy    |   $$O(n)$$   |  $$O(n)$$  |
+|    add    |   $$O(1)$$   |  $$O(n)$$  |
+|  remove   |   $$O(1)$$   |  $$O(n)$$  |
 
 Python의 Set은 **Hash Table**로 구현되어 있다. 이러한 Hash Table을 사용할 때 가장 문제되는 것은 **Hash Collision**, 즉 Hash 값에 따라 Table 상에서 저장하고자 하는 위치를 사전에 저장된 값이 이미 차지하고 있어 사용하지 못하는 경우이다. Hash Table에서 Hash Collision을 해결하기 위한 방법으로는 Chaining과 Open Address 두 가지가 대표적인데, Cpython에서는 Open Address, 그 중에서도 **Linear Probing**을 사용한다. 새로운 Element를 Set에 추가한다고 할 때 구체적인 과정은 다음과 같다.
 
 1. Hash 값에 따라 Table 상에서 탐색을 시작할 Index를 찾는다.
 2. Index부터 Max Linear Probing Size(기본값=9)만큼 Entry를 순차적으로 탐색한다.
+
 - **동일 Element를 찾은 경우** -> Set은 중복을 허용하지 않으므로 추가하지 않는다.
 - **빈 공간을 찾은 경우** -> Set 내에 동일 Element가 없다는 뜻이므로 해당 공간에 저장한다.
 - **Max Linear Probing Size만큼 모두 탐색한 경우** -> PERTURB_SHIFT에 따라 다음 장소로 이동하여 다시 탐색한다.
@@ -284,6 +285,6 @@ set_table_resize(PySetObject *so, Py_ssize_t minused)
                 set_insert_clean(newtable, newmask, entry->key, entry->hash);
             }
         }
-    }  
+    }
 }
 ```

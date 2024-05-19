@@ -1,38 +1,38 @@
 ---
 layout: post
 title: "Python Bulit-in Time Complexity: List"
-category_num: 2
+category_num: 1
 ---
 
 # Python Bulit-in Time Complexity: List
 
-- [Python Data Structures](<https://docs.python.org/3/tutorial/datastructures.html>)
-- [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)
+- [Python Data Structures](https://docs.python.org/3/tutorial/datastructures.html)
+- [Python Wiki-Time Complexity](https://wiki.python.org/moin/TimeComplexity)
 - Update at : 20.12.07
 
 ## Introduction
 
 Python에서는 Bulit-in Data Type으로 List, Set, Dictionary 등을 제공하고 있다. 이들은 각각의 특성에 맞게 필요에 따라 달리 사용되는데, 단순히 List는 중복을 허용하고 Set은 그렇지 않다는 표면적인 특성 외에도 Data Type에 따라 동일한 연산에 대해서도 시간 복잡도가 달라질 수 있어 이 또한 고려하여 선택하는 것이 좋다.
 
-[Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)에서는 Python Interpreter 중 하나인 [cpython](<https://github.com/python/cpython>)을 사용하는 경우 각 Data Type의 연산들에 대한 시간 복잡도를 확인할 수 있다. 여기서는 cpython을 기준으로 이와 같은 시간 복잡도 계산이 어떻게 구해진 것인지 확인해보고자 한다.
+[Python Wiki-Time Complexity](https://wiki.python.org/moin/TimeComplexity)에서는 Python Interpreter 중 하나인 [cpython](https://github.com/python/cpython)을 사용하는 경우 각 Data Type의 연산들에 대한 시간 복잡도를 확인할 수 있다. 여기서는 cpython을 기준으로 이와 같은 시간 복잡도 계산이 어떻게 구해진 것인지 확인해보고자 한다.
 
 ## List: Dynamic Array
 
-- [cpython listobject.c](<https://github.com/python/cpython/blob/master/Objects/listobject.c>)
+- [cpython listobject.c](https://github.com/python/cpython/blob/master/Objects/listobject.c)
 
 | Opertaion | Average Case | Amortized Worst Case | Worst Case |
-|:-----:| :-----: | :-----: | :-----: |
-| indexing | $$O(1)$$ | $$O(1)$$ | $$O(1)$$ |
-| search | $$O(n)$$ | - | $$O(n)$$ |
-| copy | $$O(n)$$ | $$O(n)$$ | $$O(n)$$ |
-| append | $$O(1)$$ | $$O(1)$$ | $$O(n)$$ |
-| insert | $$O(n)$$ | $$O(n)$$ | $$O(n)$$ |
-| remove | $$O(n)$$ | $$O(n)$$ | $$O(n)$$ |
-| pop | $$O(1)$$ | $$O(1)$$ | $$O(1)$$ |
+| :-------: | :----------: | :------------------: | :--------: |
+| indexing  |   $$O(1)$$   |       $$O(1)$$       |  $$O(1)$$  |
+|  search   |   $$O(n)$$   |          -           |  $$O(n)$$  |
+|   copy    |   $$O(n)$$   |       $$O(n)$$       |  $$O(n)$$  |
+|  append   |   $$O(1)$$   |       $$O(1)$$       |  $$O(n)$$  |
+|  insert   |   $$O(n)$$   |       $$O(n)$$       |  $$O(n)$$  |
+|  remove   |   $$O(n)$$   |       $$O(n)$$       |  $$O(n)$$  |
+|    pop    |   $$O(1)$$   |       $$O(1)$$       |  $$O(1)$$  |
 
 Average Case, Amortimzed Case 그리고 Worst Case는 어떤 연산의 시간 복잡도를 구하는 방법들이다. 여기서 **Average Case**와 **Worst Case**는 이름이 가지는 의미 그대로 각각 가능한 모든 경우에 있어 평균적인 시간 복잡도와 최악의 경우 시간 복잡도를 의미한다. 두 가지에 비해서는 다소 복잡한 **Amortimzed Case**는 쉽게 말하면 연산 Sequence 상에서 Worst Case가 어떤 비중으로 발생하는지 고려하여 시간 복잡도를 산정하는 방식이다. Worst Case가 분명 존재하지만 전체 연산 Sequence에서 매우 드문 간격으로 한 번씩 발생한다면 그 중요도를 상각(amortize)할 필요가 있다는 이유에서 고안되었다고 한다.
 
-여기서 Average Case는 [Python Wiki-Time Complexity](<https://wiki.python.org/moin/TimeComplexity>)의 내용을 참고했지만 Worst Case는 직접 계산한 결과이다. 따라서 오류가 있을 수 있다.
+여기서 Average Case는 [Python Wiki-Time Complexity](https://wiki.python.org/moin/TimeComplexity)의 내용을 참고했지만 Worst Case는 직접 계산한 결과이다. 따라서 오류가 있을 수 있다.
 
 ### List is Dynamic Array
 
@@ -74,7 +74,7 @@ C에서 Integer의 크기는 4바이트 이므로 array에서 접근하고자 �
 
 그렇다면 Dynamic Array는 어떻게 가변적인 크기를 가질 수 있을까. 저장하고자 하는 데이터의 개수가 가변적인 상황에서 사용할 수 있는 자료구조의 가장 대표적인 예시로 Linked List가 있다. 이를 사용하면 사용할 수 있는 메모리가 가득 찰 때까지 계속해서 새로운 element를 저장하는 것이 가능하다. 그런데 이는 Array의 정의, 모든 데이터가 연속적으로 할당된다는 특성을 만족하지 못한다. Dynamic Array도 엄연한 'Array'이기 때문에 항상 데이터들이 연속적으로 메모리 공간을 점유해야 하는 형태로 구현되어 있다.
 
-이것이 가능한 이유는 Dynamic Array에서는 런타임에 List의 크기를 넘어서 element를 추가하고자 하면 전체 List를 통째로 복사하여 새롭게 할당해버리기 때문이다([위키](<https://en.wikipedia.org/wiki/Dynamic_array#:~:text=In%20computer%20science%2C%20a%20dynamic,many%20modern%20mainstream%20programming%20languages.>)). 아래 그림을 보면 보다 쉽게 이해할 수 있다.
+이것이 가능한 이유는 Dynamic Array에서는 런타임에 List의 크기를 넘어서 element를 추가하고자 하면 전체 List를 통째로 복사하여 새롭게 할당해버리기 때문이다([위키](https://en.wikipedia.org/wiki/Dynamic_array#:~:text=In%20computer%20science%2C%20a%20dynamic,many%20modern%20mainstream%20programming%20languages.)). 아래 그림을 보면 보다 쉽게 이해할 수 있다.
 
 <img src="{{site.image_url}}/study/python_list_and_dynamic_array.png" style="width:30em; display: block; margin: 15px auto;">
 
