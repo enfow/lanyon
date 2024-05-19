@@ -2,7 +2,7 @@
 layout: post
 title: Convex Optimization Introduction
 category_num: 1
-keyword: "[Optimization]"
+keyword: "[ConvexOptimization]"
 ---
 
 # Convex Optimization Introduction
