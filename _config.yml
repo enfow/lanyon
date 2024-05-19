@@ -67,4 +67,6 @@ domain_category_list: ["Semiconductor", "Robotics"]
 etc_category_list:
   ["Machine-Learning-project", "Environment-Settings", "Embedded"]
 
+draft_list: ["draft", "archived"]
+
 markdown: kramdown
