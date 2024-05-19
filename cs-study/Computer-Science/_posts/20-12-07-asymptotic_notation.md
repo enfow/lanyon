@@ -1,12 +1,13 @@
 ---
 layout: post
 title: Asymptotic Notation
-category_num: 1
+category_num: 600
+keyword: "[Algorithm]"
 ---
 
 # Asymptotic Notation
 
-- [Introduction to Algorithms](<https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844>) 3판을 참고했습니다.
+- [Introduction to Algorithms](https://www.amazon.com/Introduction-Algorithms-3rd-MIT-Press/dp/0262033844) 3판을 참고했습니다.
 - 고려대학교 박성빈 교수님의 2018년 가을학기 <알고리즘> 강의를 수강했고, 복습을 목적으로 작성했습니다.
 - Update at : 20.12.07
 
