@@ -7,3 +7,6 @@ docker-run:
 	-p 4000:4000 \
 	jekyll/jekyll:4.2.0 \
 	jekyll serve
+
+docker-kill:
+	docker kill my-blog
