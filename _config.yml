@@ -38,6 +38,7 @@ ml_study_category_list:
     "Reinforcement-Learning-Introduction",
     "Statistics",
     "Linear-Algebra",
+    "Optimization",
     "Mathematics-for-ML",
     "Experiments",
   ]
