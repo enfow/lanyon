@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Routing Protocol BGP & OSPF
-category_num: 510
-keyword: '[IP]'
+category_num: 300
+keyword: "[IP]"
 ---
 
 # Routing Protocol: BGP & OSPF
@@ -43,7 +43,7 @@ AS는 크게 Stub AS와 Transit AS 두 가지로 나누어 볼 수 있다. 먼�
 
 <img src="{{site.image_url}}/study/bgp_aspath.png" style="width:35em; display: block; margin: 0px auto;">
 
-위의 그림과 같이 ip prefix 180.100.100.0/24를 가지고 있는 stub AS에 연결된 transit AS(ASN 200)는 해당 IP prefix로 보내어진 패킷을 자신에게 오도록 해야 한다. 이를 위해 BGP 프로토콜을 사용하여 자신과 연결된 모든 다른 AS 들에게 180.100.100.0/24에 가기 위해서는 자신을 통해야 한다는 BGP 패킷을 전달한다. 이를 받은 다른 AS(ASN 201, 204)들은 또다시 자신과 연결된 다른 AS들에게 180.100.100.0/24로 가기 위해서는 자신을 통과해야 한다는 내용을 담아 알리게 된다. 이를 반복적으로 수행하면 모든 AS가 어떤 IP prefix에 도달하기 위한 AS 경로를 알 수 있게 된다. 
+위의 그림과 같이 ip prefix 180.100.100.0/24를 가지고 있는 stub AS에 연결된 transit AS(ASN 200)는 해당 IP prefix로 보내어진 패킷을 자신에게 오도록 해야 한다. 이를 위해 BGP 프로토콜을 사용하여 자신과 연결된 모든 다른 AS 들에게 180.100.100.0/24에 가기 위해서는 자신을 통해야 한다는 BGP 패킷을 전달한다. 이를 받은 다른 AS(ASN 201, 204)들은 또다시 자신과 연결된 다른 AS들에게 180.100.100.0/24로 가기 위해서는 자신을 통과해야 한다는 내용을 담아 알리게 된다. 이를 반복적으로 수행하면 모든 AS가 어떤 IP prefix에 도달하기 위한 AS 경로를 알 수 있게 된다.
 
 이때 자신과 다른 AS 간의 연결을 Peering이라고 하는데, 이러한 Peering은 각 AS의 이해관계에 따라 결정된다. 비슷한 규모의 AS 간에는 반대급부 없이도 Peering을 맺기도 하나 일반적으로 규모가 작은 AS는 수행할 수 있는 역할이 작으므로 규모가 큰 AS에 비용을 지불하고 Peering을 맺는 경우가 많다고 한다.
 
@@ -61,16 +61,16 @@ Internal BGP의 경우 위의 그림과 같이 AS 내의 다른 모든 BGP Speak
 
 BGP 패킷은 총 4개의 타입을 가지고 있다.
 
-|Type|Number|description|
-|:------:|:---:|:---|
-|**Open**|1|BGP Peering을 위한 BGP 세션 생성|
-|**Update**|2|BGP 세션 업데이트|
-|**Notification**|3|Error 발생|
-|**Keep Alive**|4|BGP 세션 유지|
+|       Type       | Number | description                      |
+| :--------------: | :----: | :------------------------------- |
+|     **Open**     |   1    | BGP Peering을 위한 BGP 세션 생성 |
+|    **Update**    |   2    | BGP 세션 업데이트                |
+| **Notification** |   3    | Error 발생                       |
+|  **Keep Alive**  |   4    | BGP 세션 유지                    |
 
 #### BGP Open
 
-AS간 Peering이 이뤄지기 위해서는 각 AS의 BGP Speaker 간에 BGP Open 메시지를 주고 받는 작업이 필요하다. BGP Open 메시지를 통해 상대 AS가 무엇인지 인식하고, BGP 프로토콜을 위한 기본적인 정보들을 주고받으며 TCP 세션이 만들어진다. 
+AS간 Peering이 이뤄지기 위해서는 각 AS의 BGP Speaker 간에 BGP Open 메시지를 주고 받는 작업이 필요하다. BGP Open 메시지를 통해 상대 AS가 무엇인지 인식하고, BGP 프로토콜을 위한 기본적인 정보들을 주고받으며 TCP 세션이 만들어진다.
 
 #### BGP KeepAlive
 
@@ -112,13 +112,13 @@ LSA는 11개의 타입을 가지는데 대표적으로 다음과 같은 것들�
 
 OSPF 패킷은 총 5개의 타입을 가지고 있다.
 
-|Type|Number|description|
-|:------:|:---:|:---|
-|**Hello**|1|라우터 간 연결을 유지하기 위해 사용|
-|**DBD**|2|라우터가 가지고 있는 LSDB에 대한 요약 정보를 다른 라우터에 전달하기 위해 사용|
-|**LSR**|3|수신한 DBD가 자신이 가진 것과 다른 경우 정확한 정보를 요청하기 위해 사용|
-|**LSU**|4|LSR에 대한 응답으로 정확한 LSA를 알리기 위해 사용|
-|**LSAck**|5|LSU를 정확하게 받았음을 알리기 위해 사용|
+|   Type    | Number | description                                                                   |
+| :-------: | :----: | :---------------------------------------------------------------------------- |
+| **Hello** |   1    | 라우터 간 연결을 유지하기 위해 사용                                           |
+|  **DBD**  |   2    | 라우터가 가지고 있는 LSDB에 대한 요약 정보를 다른 라우터에 전달하기 위해 사용 |
+|  **LSR**  |   3    | 수신한 DBD가 자신이 가진 것과 다른 경우 정확한 정보를 요청하기 위해 사용      |
+|  **LSU**  |   4    | LSR에 대한 응답으로 정확한 LSA를 알리기 위해 사용                             |
+| **LSAck** |   5    | LSU를 정확하게 받았음을 알리기 위해 사용                                      |
 
 #### OSPF DBD
 

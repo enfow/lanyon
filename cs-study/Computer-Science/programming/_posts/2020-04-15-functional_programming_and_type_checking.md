@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Functional Programming and Static Type Checking With Ocaml
-category_num: 400
-keyword: '[Programming]'
+category_num: 501
+keyword: "[Programming]"
 ---
 
 # Functional Programming and Static Type Checking With Ocaml
@@ -19,7 +19,7 @@ keyword: '[Programming]'
 
 - `OCaml is a functional programming language`
 
-[Ocaml 공식 홈페이지](<https://ocaml.org/learn/description.html>)에서는 ocaml을 함수형 프로그래밍 언어라고 정의한다. 이와 관련하여 위키에서는 [함수형 프로그래밍](<https://en.wikipedia.org/wiki/Functional_programming>)에 대해 다음과 같이 언급하고 있다.
+[Ocaml 공식 홈페이지](https://ocaml.org/learn/description.html)에서는 ocaml을 함수형 프로그래밍 언어라고 정의한다. 이와 관련하여 위키에서는 [함수형 프로그래밍](https://en.wikipedia.org/wiki/Functional_programming)에 대해 다음과 같이 언급하고 있다.
 
 ```
 In computer science, functional programming is a programming paradigm—a style of building the structure and elements of computer programs—that treats computation as the evaluation of mathematical functions and avoids changing-state and mutable data. It is a declarative programming paradigm in that programming is done with expressions or declarations instead of statements.
@@ -48,12 +48,12 @@ let d = 10;;
 
 반면 함수형 프로그래밍인 **ocaml**에서는 integer 10에 `d`라는 이름을 붙였다고 표현한다. 함수형 프로그래밍에서는 명령형 언어와 달리 어떠한 state도 바뀌지 않는다. 정확하게 말해 함수형 프로그래밍에서는 state가 존재하지 않고, 그저 integer 10을 부르는 다른 이름이 생겼다고 보아야 한다. 바꾸어야 할 state가 존재하지 않으므로 당연히 state를 바꾸는 역할을 하는 **statement**도 함수형 프로그래밍에는 존재하지 않는다. 오직 declaration과 expression 밖에 없다.
 
-이와 관련하여 [wiki](<https://en.wikipedia.org/wiki/Comparison_of_programming_paradigms>)에서는 다음과 같이 명령형 프로그래밍과 함수형 프로그래밍을 다음과 같이 정의하고 있다.
+이와 관련하여 [wiki](https://en.wikipedia.org/wiki/Comparison_of_programming_paradigms)에서는 다음과 같이 명령형 프로그래밍과 함수형 프로그래밍을 다음과 같이 정의하고 있다.
 
 - **Imperative Programming**: focuses on how to execute, defines control flow as statements that change a program state.
 - **Functional Programming**: treats programs as evaluating mathematical functions and avoids state and mutable data
 
-추가적으로 [Microsoft](<https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/functional-programming-vs-imperative-programming>)에서는 다음과 같이 두 가지 패러다임의 특성을 구별한다.
+추가적으로 [Microsoft](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/functional-programming-vs-imperative-programming)에서는 다음과 같이 두 가지 패러다임의 특성을 구별한다.
 
 - **Imperative Programming**: How to perform tasks (algorithms) and how to track changes in state.
 - **Functional Programming**: What information is desired and what transformations are required.

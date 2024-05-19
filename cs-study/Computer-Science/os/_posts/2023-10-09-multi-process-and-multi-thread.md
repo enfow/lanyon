@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Multi Process와 Multi Thread
-category_num: 7
+category_num: 107
 keyword: "[OS]"
 ---
 

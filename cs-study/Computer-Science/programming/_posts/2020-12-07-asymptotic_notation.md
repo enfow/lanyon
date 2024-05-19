@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Asymptotic Notation
-category_num: 600
-keyword: "[Algorithm]"
+category_num: 501
+keyword: "[Programming]"
 ---
 
 # Asymptotic Notation

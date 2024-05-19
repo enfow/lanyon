@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Kernel and System call
-category_num: 1
-keyword: '[OS]'
+category_num: 101
+keyword: "[OS]"
 ---
 
 # Kernel and System Call

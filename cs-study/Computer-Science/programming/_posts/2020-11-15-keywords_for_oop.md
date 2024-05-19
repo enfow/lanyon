@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Keywords for OOP
-category_num: 700
-keyword: "[DesignPattern]"
+category_num: 502
+keyword: "[Programming]"
 ---
 
 # Keywords for OOP

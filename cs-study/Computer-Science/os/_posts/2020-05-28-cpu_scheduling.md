@@ -1,8 +1,8 @@
 ---
 layout: post
 title: CPU Scheduling
-category_num: 5
-keyword: '[OS]'
+category_num: 105
+keyword: "[OS]"
 ---
 
 # CPU Scheduling
@@ -37,7 +37,7 @@ Scheduling은 복수의 프로세스가 메모리 상에 올려져 있어 그 �
 
 <img src="{{site.image_url}}/study/preemptive_and_non_preemptive.png" style="width:35em; display: block; margin: 0px auto;">
 
-여기서 첫 번째와 네 번째는 I/O 또는 exit으로 인해 Process가 더 이상 진행될 수 없어 자진하여 CPU를 다른 프로세스에게 넘겨주는 경우이다. 즉 운영체제가 강제로 process로부터 CPU를 빼앗는 것이 아니다. 이러한 점에서 **Non-preemptive scheduling**(비선점형 스케쥴링)라고 표현한다. 
+여기서 첫 번째와 네 번째는 I/O 또는 exit으로 인해 Process가 더 이상 진행될 수 없어 자진하여 CPU를 다른 프로세스에게 넘겨주는 경우이다. 즉 운영체제가 강제로 process로부터 CPU를 빼앗는 것이 아니다. 이러한 점에서 **Non-preemptive scheduling**(비선점형 스케쥴링)라고 표현한다.
 
 반면에 두 번째와 세 번째는 time interrupt 등으로 인하여 운영체제가 프로세스로부터 강제로 CPU를 빼앗았기 때문에 다음에 동작할 프로세스를 결정해야하는 상황이다. 이는 **preemptive scheduling**(선점형 스케쥴링)이라고 한다. 복수의 프로세스가 동작하고 있고 프로세스가 완료되기 전에 다른 프로세스가 처리를 시작할 수 있다는 점에서 preemptive scheduling에서는 동기화 문제가 존재한다.
 
@@ -45,7 +45,7 @@ Multi-programming과 Time-sharing의 차이는 프로세스가 스스로 내려�
 
 ### CPU burst and I/O burst
 
-프로세스가 CPU 상에서 수행되고 있는 시간은 크게 **CPU burst**와 **I/O burst** 두 가지로 나누어지며 종료되기 전까지 필요에 따라 두 가지를 반복하게 된다. 
+프로세스가 CPU 상에서 수행되고 있는 시간은 크게 **CPU burst**와 **I/O burst** 두 가지로 나누어지며 종료되기 전까지 필요에 따라 두 가지를 반복하게 된다.
 
 <img src="{{site.image_url}}/study/cpu_burst_io_burst.png" style="width:45em; display: block; margin: 0px auto;">
 
@@ -110,4 +110,4 @@ Priority Scheduling에서는 Aging을 도입하여 Starvation 문제를 해결�
 
 <img src="{{site.image_url}}/study/multi_level_feedback_scheduling.png" style="width:35em; display: block; margin: 0px auto;">
 
-Multi level Queue Scheduling 에서는 priority에 따라 프로세스가 진입하는 Queue가 달랐지만 Multi level Feedback Queue Scheduling에서는 모두 최상위 Queue에서 시작하고 동일한 time quantum을 부여받는다. 이렇게 되면 동일한 시간 내에 완료되는 프로세스가 있는 반면 그렇지 못한 프로세스도 있을 것인데 아직 처리할 것이 남은 프로세스는 하위 Queue로 보내어 보다 긴 Time quantum을 가지고 처리하도록 한다. 여기서 각 level 별 Queue의 Scheduling 방식, downgrade 되는 규칙 등은 모두 정해진 것 없이 구현 과정에서 결정해야 하는 design choice이다. 
+Multi level Queue Scheduling 에서는 priority에 따라 프로세스가 진입하는 Queue가 달랐지만 Multi level Feedback Queue Scheduling에서는 모두 최상위 Queue에서 시작하고 동일한 time quantum을 부여받는다. 이렇게 되면 동일한 시간 내에 완료되는 프로세스가 있는 반면 그렇지 못한 프로세스도 있을 것인데 아직 처리할 것이 남은 프로세스는 하위 Queue로 보내어 보다 긴 Time quantum을 가지고 처리하도록 한다. 여기서 각 level 별 Queue의 Scheduling 방식, downgrade 되는 규칙 등은 모두 정해진 것 없이 구현 과정에서 결정해야 하는 design choice이다.

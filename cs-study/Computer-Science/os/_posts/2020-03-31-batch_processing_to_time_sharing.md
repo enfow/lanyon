@@ -1,8 +1,8 @@
 ---
 layout: post
 title: from Batch processing to Time sharing
-category_num: 0
-keyword: '[OS]'
+category_num: 100
+keyword: "[OS]"
 ---
 
 # Batch processing 부터 Time sharing 까지
@@ -20,7 +20,7 @@ keyword: '[OS]'
 
 Batch processing은 어떤 작업이 주어지면 끝날 때까지 컴퓨터는 해당 작업만 수행하는 방식이다. 이때에는 기본적인 프로세서 Scheduling이 도입되기 이전이었고, 따라서 다음에 어떤 작업을 수행할 것인가를 사람이 직접 지정해주어야 했다. 즉, 어떤 프로그램의 수행이 완료되면 사람이 이를 확인하고 다음으로 수행해야 할 프로그램을 전달해주는 방식으로 동작했다.
 
-초창기 기술인 만큼 비효율적이고 다소 답답해보이기도 한다. 특히 무엇보다도 중간중간에 사람이 관여해야 한다는 점에서 그러하다. 다음에 오는 Autometic job seqeuncing은 *Autometic* 이라는 표현에서도 느낌이 오듯, 작업과 작업 사이에 사람이 관여하는 부분을 없앤 기술이다.
+초창기 기술인 만큼 비효율적이고 다소 답답해보이기도 한다. 특히 무엇보다도 중간중간에 사람이 관여해야 한다는 점에서 그러하다. 다음에 오는 Autometic job seqeuncing은 _Autometic_ 이라는 표현에서도 느낌이 오듯, 작업과 작업 사이에 사람이 관여하는 부분을 없앤 기술이다.
 
 ## 2. Autometic job sequencing
 

@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Monolithic kernel and MicroKernel
-category_num: 2
-keyword: '[OS]'
+category_num: 102
+keyword: "[OS]"
 ---
 
 # Monolithic Kernel and MicroKernel
@@ -31,4 +31,4 @@ Monolithic structure는 UNIX의 초기 버전에도 사용될 정도로 역사�
 
 Kernel의 크기를 줄이는 것에 초점맞춰 개발된 Microkernel은 기존에 Monolithic kernel과 비교해 커널의 유지 보수가 쉽고 비교적 안정적이다라는 장점을 갖는다. 기능별로 쪼개어져 있으므로 특정 기능을 추가한다고 할 때 해당 모듈만 다시 만들면 되고, 특정 모듈에 문제가 생겨 멈추더라도 해당 모듈만 다시 띄우면 되기 때문이다. 하지만 반대로 Monolithic kernel의 장점이었던 속도는 Microkernel의 단점이 된다. 즉 Microkernel에서는 기존에 kernel mode에서 수행하는 작업들도 user mode에서 수행하기 때문에 context switch가 빈번하게 발생하고, 프로세스 간에 message 전달 과정에서 불필요한 작업이 추가되어 속도가 떨어진다는 문제가 있다.
 
-참고로 Microkernel은 카네기 멜론 대학에서 1980년대 중반 Mach라는 이름으로 처음 공개되었고, 최근에는 Apple macOS, iOS의 기반이 되는 [Darwin](<https://www.operating-system.org/betriebssystem/_english/bs-darwin.htm>)으로 명맥을 이어오고 있다.
+참고로 Microkernel은 카네기 멜론 대학에서 1980년대 중반 Mach라는 이름으로 처음 공개되었고, 최근에는 Apple macOS, iOS의 기반이 되는 [Darwin](https://www.operating-system.org/betriebssystem/_english/bs-darwin.htm)으로 명맥을 이어오고 있다.
