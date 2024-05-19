@@ -1,40 +1,69 @@
 # Permalinks
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
-permalink:           pretty
+permalink: pretty
 
 # Setup
 # title 옆에 소제목 처럼 나오는 부분
-title:               Enfow's Blog
+title: Enfow's Blog
 # tagline:             'A Jekyll theme'
 # 사이드 바 상단에 나오는 부분. html tag 사용이 가능
 # description:         'A reserved <a href="http://jekyllrb.com" target="_blank">Jekyll</a> theme that places the utmost gravity on content with a hidden drawer. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.'
 description1: ""
 description2: ""
 
-url:                 https://enfow.github.io
-baseurl:             ''
-image_url:           https://enfow.github.io/image
+url: https://enfow.github.io
+baseurl: ""
+image_url: https://enfow.github.io/image
 # 한 페이지에 보여지는 포스트 수
-paginate:            1
+paginate: 1
 plugins: [jekyll-paginate]
 gems: [jekyll-paginate]
 
 # About/contact
 author:
-  name:              Enfow
-  url:               https://enfow.github.io
-  email:             wgm0601@gmail.com
+  name: Enfow
+  url: https://enfow.github.io
+  email: wgm0601@gmail.com
 
 # Custom vars
-version:             1.0.0
+version: 1.0.0
 
 # category settings
-cs_study_category_list: ["Computer-Science", "Computer-Science-Classes", "Algorithm", "Design-Pattern"]
-development_category_list: ["Python", "Java"]
-ml_study_category_list: ["Deep-Learning", "Reinforcement-Learning-Introduction", "Statistics", "Linear-Algebra", "Mathematics-for-ML", "Experiments"]
-paper_review_category_list: ["Neural-Network", "Generative-Model", "Model-Free-RL", "Model-Based-RL", "Parallel-RL", "Multi-Agent-RL", "Batch-RL", "Distributional-RL", "Meta-Learning", "Sequence-to-Sequence", "Large-Language-Model", "Transfer-Learning", "Graph-Neural-Network", "Combinatorial-Optimization", "Anomaly-Detection", "Segmentation", "Metric", "Domain"]
+cs_study_category_list: ["Computer-Science"]
+development_category_list: ["Python"]
+ml_study_category_list:
+  [
+    "Deep-Learning",
+    "Reinforcement-Learning-Introduction",
+    "Statistics",
+    "Linear-Algebra",
+    "Mathematics-for-ML",
+    "Experiments",
+  ]
+paper_review_category_list:
+  [
+    "Neural-Network",
+    "Generative-Model",
+    "Model-Free-RL",
+    "Model-Based-RL",
+    "Parallel-RL",
+    "Multi-Agent-RL",
+    "Batch-RL",
+    "Distributional-RL",
+    "Meta-Learning",
+    "Sequence-to-Sequence",
+    "Large-Language-Model",
+    "Transfer-Learning",
+    "Graph-Neural-Network",
+    "Combinatorial-Optimization",
+    "Anomaly-Detection",
+    "Segmentation",
+    "Metric",
+    "Domain",
+  ]
 domain_category_list: ["Semiconductor", "Robotics"]
-etc_category_list: ["Machine-Learning-project", "Environment-Settings", 'Embedded']
+etc_category_list:
+  ["Machine-Learning-project", "Environment-Settings", "Embedded"]
 
 markdown: kramdown
