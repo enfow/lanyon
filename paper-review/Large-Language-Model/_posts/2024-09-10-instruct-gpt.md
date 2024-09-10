@@ -9,6 +9,9 @@ keyword: "[Instruct GPT]"
 
 ## Summary
 
+- **RLHF(Human Feedback + PPO Algorithm)**을 적용하여 사용자가 보다 선호하는 출력을 만들어내는 Langunage Model 을 만들 수 있다.
+- RLHF의 강화학습 업데이트 시 Pre-Training 에 사용된 데이터에 대해서도 학습을 진행하여 Benchmark 성능이 저하되는 Alignment Tax 를 줄일 수 있다.
+
 ## Alignment Problem
 
 GPT-3과 같은 Language model 의 문제점 중 하나는 때때로 사용자의 의도에서 벗어난 결과를 생성한다는 것이다. 이를 Alignment Problem 이라고 하는데, 대표적인 에시로는 다음과 같은 것들이 있다.
@@ -47,7 +50,7 @@ Language Model 에 이를 적용하기 위해 논문에서는 다음 3개의 ste
 ### Step3 Reinforcement Learning(RL)
 
 1. Sample a Prompt: 프롬프트를 샘플링한다.
-2. Reinforcement Learning: Step2 에서 확보한 Reward Model을 적용한 PPO 알고리즘으로 강화학습 모델을 학슴한다.
+2. Reinforcement Learning: Step2 에서 확보한 Reward Model을 적용한 PPO 알고리즘으로 강화학습 모델 학습을 진행한다.
 
 ## Dataset
 
@@ -161,7 +164,7 @@ Alignment problem 을 해결하기 위해 제안된 모델인 만큼 그 평가 
 
 **사용자들은 InstructGPT의 출력 값을 보다 선호한다**
 
-<img src="{{site.image_url}}/paper-review/instruct-gpt-win-rate-sft-175.png" alt="instruct-gpt-win-rate-sft-175" style="width: 100%; margin: auto; display: block">
+<img src="{{site.image_url}}/paper-review/instruct-gpt-win-rate-sft-175.png" alt="instruct-gpt-win-rate-sft-175" style="width: 80%; margin: auto; display: block">
 
 위 이미지는 GPT-3 SFT 175B 모델을 기준으로 Labeler가 직접 출력 값에 대한 선호도를 평가한 것이다.
 
@@ -199,7 +202,6 @@ theWinogender (Rudinger et al., 2018) and CrowS-Pairs (Nangia et al., 2020) data
 **RLHF fine-tuning procedure 를 개선하여 NLP dataset 에 대한 성능 저하 문제를 개선할 수 있다.**
 
 <img src="{{site.image_url}}/paper-review/instruct-gpt-rlhf-nlp-dataset-result.png" alt="instruct-gpt-rlhf-nlp-dataset-result" style="width: 100%; margin: auto; display: block">
-![alt text](image.png)
 
 Alignment 를 진행한 후에 Benchmark 성능은 오히려 저하되는 것을 소위 Alignment Tax 라고 부른다. RL 업데이트에서 PPO Gradient 항과 더불어 Pretraining Gradient 항을 더한 것(PPO-ptx)이 이러한 문제를 해소하기 위해서인데, PPO-ptx가 PPO에 비해 실험한 모든 benchmark dataset에서 성능이 좋아졌음을 확인할 수 있다.
 
