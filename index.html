@@ -9,12 +9,16 @@ title: Home
 
   <div class="recent">
 
-    <a class="post-title" href="{{ site.baseurl }}/post">
+    <!-- <a class="post-title" href="{{ site.baseurl }}/post">
       <p class = "single-post-in-category">
           <div>
             <h2 class="without-underbar">Recent Posts</h2>
           </div>
       </p>
+    </a> -->
+
+    <a class="post-title index-page-recent-post" href="{{ site.baseurl }}/post">
+      <h1 class="without-underbar">Recent Posts</h1>
     </a>
 
     <ul class="related-posts">
@@ -25,9 +29,7 @@ title: Home
               <small>{{ post.categories[-1] }}</small>
               <div>
               <a href="{{ site.baseurl }}{{ post.url }}">
-                <small>{{post.keyword}}</small>
-                {{ post.title }}
-              <small style="font-size: 17.4px;">{{post.subtitle}}</small>
+                <small>{{post.keyword}}</small> {{ post.title }}
               </a>
               </div>
             </h3>
@@ -36,8 +38,8 @@ title: Home
       {% endfor %}
     </ul>
 
-    <a class="post-title index-button-keep-reading" href="{{ site.baseurl }}/post">
-      <h2 class="without-underbar">There are {{ site.posts | size }} more posts beyond this page</h2>
+    <a class="post-title index-page-keep-reading" href="{{ site.baseurl }}/post">
+      <h2 class="without-underbar">🚀 There are {{ site.posts | size }} more posts beyond this page 🚀</h2>
     </a>
 
   <div style="height : 6.5em"></div>
