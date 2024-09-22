@@ -1,0 +1,44 @@
+.index-button-keep-reading {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    color: #000; /* Adjust text color as needed */
+    text-decoration: none;
+    margin: 0;
+  }
+  
+  .index-button-keep-reading:hover {
+    background-color: #f0f0f0; /* Slightly grey background on hover */
+  }
+  
+
+  .index-button-keep-reading h2 {
+    margin: 0;
+    font-size: 1em; /* Increase font size */
+    font-weight: bold; /* Make text bold */
+    letter-spacing: 1px; /* Slightly increase letter spacing */
+    text-transform: uppercase; /* Uppercase letters */
+    font-family: 'Montserrat', sans-serif; /* Use a stylish font */
+    color: #333; /* Adjust text color */
+  
+    /* Add a gradient to the text */
+    /* background: linear-gradient(45deg, #ff6b6b, #f94d6a); */
+    /* -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
+  
+    /* Add text shadow for depth */
+    /* text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .index-button-keep-reading h2:hover {
+    /* Change gradient on hover */
+    /* background: linear-gradient(45deg, #f94d6a, #ff6b6b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  } */
+  }
+
+  .without-underbar {
+    margin: 0;
+  }
