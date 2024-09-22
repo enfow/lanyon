@@ -12,7 +12,7 @@ title: Home
     <a class="post-title" href="{{ site.baseurl }}/post">
       <p class = "single-post-in-category">
           <div>
-            <h2 class="without-underbar">Posts</h2>
+            <h2 class="without-underbar">Recent Posts</h2>
           </div>
       </p>
     </a>
@@ -35,6 +35,10 @@ title: Home
         {% endunless %}
       {% endfor %}
     </ul>
+
+    <a class="post-title index-button-keep-reading" href="{{ site.baseurl }}/post">
+      <h2 class="without-underbar">There are {{ site.posts | size }} more posts beyond this page</h2>
+    </a>
 
   <div style="height : 6.5em"></div>
   </div>
