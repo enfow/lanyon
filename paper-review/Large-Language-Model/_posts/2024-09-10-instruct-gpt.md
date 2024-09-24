@@ -62,10 +62,10 @@ OpenAI Playground 에서는 model training 으로 사용될 것이라는 고지�
 
 ## SFT: Supervised Fine-Tuning
 
-16 epoch 만큼 진행하였고, residual dropout(p=0.2)과 cosine LR Scheduler 를 학습에 적용하였다. Residual Dropout 이란 identity branch에는 적용하지 않고, residual branch에 대해서만 dropout 을 적용하는 방법을 말한다. Cosine LR Scheduler 는 2017년 논문 "SGDR: Stochastic Gradient Descent with Warm Restarts"에 적용된 방법으로 다음 식에 따라 Learning Rate 를 업데이트하게 된다.
+16 epoch 만큼 진행하였고, **Residual Dropout(p=0.2)**과 **Cosine LR Scheduler** 를 학습에 적용하였다. Residual Dropout 이란 identity branch에는 적용하지 않고, residual branch에 대해서만 dropout 을 적용하는 방법을 말한다. Cosine LR Scheduler 는 2017년 논문 ["SGDR: Stochastic Gradient Descent with Warm Restarts"](https://arxiv.org/abs/1608.03983)에 적용된 방법으로 다음 식에 따라 Learning Rate 를 업데이트하게 된다.
 
 $$
-\eta_t = \eta_{\text{min}}^i + \frac{1}{2} \left( \eta_{\text{max}}^i - \eta_{\text{min}}^i \right) \left( 1 + \cos\left(\frac{T_{\text{cur}}}{T_i} \pi\right)\right),
+\eta_t = \eta_{\text{min}}^i + \frac{1}{2} \left( \eta_{\text{max}}^i - \eta_{\text{min}}^i \right) \left( 1 + \cos\left(\frac{T_{\text{cur}}}{T_i} \pi\right)\right)
 $$
 
 이러한 과정을 통해 확보된 모델은 RM 과 RL 단계에서 초기 모델로 사용된다.
