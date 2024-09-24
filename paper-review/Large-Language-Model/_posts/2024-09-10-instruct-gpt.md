@@ -9,7 +9,8 @@ keyword: "[Instruct GPT]"
 
 ## Summary
 
-- **RLHF(Human Feedback + PPO Algorithm)**을 적용하여 사용자가 보다 선호하는 출력을 만들어내는 Langunage Model 을 만들 수 있다.
+- **SFT(Supervised Fine-Tuning)**과 **RLHF(Human Feedback + PPO Algorithm)**을 적용하여 사용자가 보다 선호하는 출력을 만들어내는 Langunage Model 을 만들 수 있다.
+- SFT에서는 사람이 직접 작성한 응답을 생성하도록 학습하고, RLHF에서는 생성된 출력 값 중 사람이 직접 선호를 매기고, 긍정적인 응답을 강화하도록 학습한다.
 - RLHF의 강화학습 업데이트 시 Pre-Training 에 사용된 데이터에 대해서도 학습을 진행하여 Benchmark 성능이 저하되는 Alignment Tax 를 줄일 수 있다.
 
 ## Alignment Problem
@@ -33,7 +34,6 @@ RLHF(Reinforcement Learning from Human Feedback)란 사람이 직접 Trajectory 
 
 Language Model 에 이를 적용하기 위해 논문에서는 다음 3개의 step 을 구성하였다.
 
-
 ### Step1: Supervised Fine-Tuning(SFT)
 
 1. Sample a Prompt: 프롬프트 데이터셋에서 프롬프트를 샘플링한다.
@@ -45,7 +45,7 @@ Language Model 에 이를 적용하기 위해 논문에서는 다음 3개의 ste
 1. Sample a Prompt: 프롬프트를 샘플링한다.
 2. Create responses: 동일 프롬프트에 대해 생성된 여러 출력 값을 생성한다.
 3. Rank responses: 여러 출력 값에 대해 사람이 선호도에 따라 순위를 매긴다.
-4. Train Reword model: 강화학습에 사용할 Reward model 을 선호 순위에 따라 학습을 진행한다. 
+4. Train Reword model: 강화학습에 사용할 Reward model 을 선호 순위에 따라 학습을 진행한다.
 
 ### Step3 Reinforcement Learning(RL)
 
@@ -78,7 +78,7 @@ $$
 \text{loss}(\theta) = -\frac{1}{\binom{K}{2}} \mathbb{E}_{(x, y_w, y_l) \sim D} \left[ \log \left( \sigma \left( r_\theta (x, y_w) - r_\theta (x, y_l) \right) \right) \right]
 $$
 
-Objective Function을 뜯어보자. 우선 Dataset에서 $$x, y_w, y_l$$를 샘플링한다. 이때 $$x$$ 는 프롬프트를, $$y_w$$ 는 선호하는 출력 문장을, 그리고 $$y_l$$은 상대적으로 선호하지 않는 출력 문장을 의미한다. 그리고 $$r_\theta$$ 는 reward function, $$\sigma$$ 는 sigmoid function 이다. 
+Objective Function을 뜯어보자. 우선 Dataset에서 $$x, y_w, y_l$$를 샘플링한다. 이때 $$x$$ 는 프롬프트를, $$y_w$$ 는 선호하는 출력 문장을, 그리고 $$y_l$$은 상대적으로 선호하지 않는 출력 문장을 의미한다. 그리고 $$r_\theta$$ 는 reward function, $$\sigma$$ 는 sigmoid function 이다.
 
 그럼 Expectation 안의 수식 $$\log \left( \sigma \left( r_\theta (x, y_w) - r_\theta (x, y_l) \right) \right)$$ 은 선호하는 답변에 대한 reward 와 그렇지 않은 reward 간의 차이가 크면 클수록 커지게 된다. 이때 맨 앞에 음수 기호가 있고, 이를 최소화하는 방향으로 $$\theta$$에 대한 업데이트가 이루어질 것이므로 선호하는 답변에 대한 reward 값은 크게, 그렇지 않은 답변은 작은 reward 가 나오도록 Objective Function 을 구성했음을 알 수 있다.
 
@@ -86,11 +86,13 @@ Objective Function을 뜯어보자. 우선 Dataset에서 $$x, y_w, y_l$$를 샘�
 
 이러한 관점에서 보면 $$\frac{1}{\binom{K}{2}}$$ 는 출력 값이 많은 프롬프트가 학습에 너무 많은 영향을 끼치는 것을 조절해주는 텀이라고 할 수 있다. 이는 단순히 모든 프롬프트와 그 출력 값에 대한 조합들을 모두 Random sampling 하여 Mini-Batch 를 구성하지 않고, 동일 프롬프트로 나온 조합들은 함께 Mini-Batch 에 모두 포함시켜 학습을 진행한다는 점을 암시하는 것이기도 하다. 실제로 Random Shuffling 을 하였더니 Overfitting 문제가 있었고, 비용의 측면에서도 여러 번 $$x$$를 inference 해야한다는 점에서 불리했다고 한다.
 
-끝으로 모델 사이즈에 관해서는 175B 모델이 validation loss 가 더욱 떨어지기는 했지만 175B의 경우 PPO 적용 시 학습의 안정성이 떨어지고, PPO 업데이트를 할 때 비용이 너무 많이 든다는 두 가지 이유 때문에 6B 모델을 사용했다.
+끝으로 모델은 6B 사이즈의 모델을 선택했다. 175B 모델이 validation loss 측면에서는 보다 탁월했으나, 175B의 경우 PPO 적용 시 학습의 안정성이 떨어지고, PPO 업데이트를 할 때 비용이 너무 많이 드는 것을 고려했다고 한다.
+
+이렇게 만들어진 Reward Model은 Reinforcement Learning 페이즈에서 활용된다.
 
 ## RL: RLHF fine-tuning
 
-RLHF 또한 RM 과 마찬가지로 SFT Model 을 베이스로 하여, RM 모델을 적용한 PPO 알고리즘(Proximal Policy Optimization Algorithms)으로 업데이트한다.
+RLHF 또한 Reward Model과 마찬가지로 SFT Model을 베이스로 한다. 이때 RL 모델은 PPO 알고리즘(Proximal Policy Optimization Algorithms)으로 업데이트하며, 이때 앞선 페이즈에서 업데이트 한 Reward Model을 사용하게 된다.
 
 PG 계열의 PPO 알고리즘을 적용하였으므로, 학습의 단위는 Trajectory와 그에 대한 Return 이 된다. 여기서는 프롬프트를 입력 State로 삼고, Autoregressive 하게 생성되는 개별 Token 을 step 별 Action 으로 본다면, 강화학습의 관점에서 이 문제는 전체 Trajectory에서 단 한 번 Reward를 받는 문제가 된다.
 
@@ -106,7 +108,7 @@ $$
  \mathbb{E}_{(x, y) \sim \mathcal{D}_{\pi_{\phi}^{\text{RL}}}} \left[ r_{\theta}(x, y) - \beta \log \left( \frac{\pi_{\phi}^{\text{RL}}(y | x)}{\pi^{\text{SFT}}(y | x)} \right) \right]
 $$
 
-첫 번째 항은 $$(x, y) \sim \mathcal{D}_{\pi_{\phi}^{\text{RL}}}$$, 즉 어떤 프롬프트 $$x$$와 그에 대한 강화학습 모델 $$\pi$$로 생성한 출력 $$y$$의 샘플링에서 시작된다. Expectation 내의 첫 번째 항은 두 조합에 대한 Reward로, 선호가 크면 클수록 값이 커진다. 이는 강화학습 모델이 사용자의 선호에 더 맞는 출력 값을 만들어내도록 가이드하는 역할을 하게 된다.
+첫 번째 항은 $$(x, y) \sim \mathcal{D}_{\pi_{\phi}^{\text{RL}}}$$, 즉 어떤 프롬프트 $$x$$와 그에 대한 강화학습 모델 $$\pi$$로 생성한 출력 $$y$$의 샘플링에서 시작된다. Expectation 내의 첫 번째 항은 두 조합에 대한 Reward를 의미하는데 선호가 크면 클수록 값이 커진다. Reward Model의 출력 값이자, 강화학습 모델이 사용자의 선호에 더 맞는 출력 값을 만들어내도록 가이드하는 역할을 하게 된다.
 
 Expectation 의 두 번째 항은 [KL Penalty](<{{ site.baseurl }}/ml-study/statistics/2020/02/06/shannon_entropy/>) 항이다. 즉 두 개의 분포가 일정 수준 이상으로 벌어지는 것을 막는 역할을 하게 된다. SFT 모델의 성능이 우수한 만큼, 그것과 너무 동떨어진 방향으로 학습이 이뤄지는 것을 제한하는 것으로도 이해할 수 있다.
 
@@ -114,7 +116,7 @@ $$
 D_{\text{KL}}(p || q) = \sum_x p(x) \log \left( \frac{p(x)}{q(x)} \right)
 $$
 
-지금까지 Language Model 의 입장에서 바라보았다면 강화학습의 관점에서 Objective Function 을 이해해보자. PPO 알고리즘은 [TRPO 알고리즘(Trust Region Policy Optimization)](<{{ site.baseurl }}/paper-review/reinforcement-learning/model-free-rl/2020/03/01/trust-region-policy-optimization/>)을 효율적으로 만든 알고리즘이다. 즉 'Trust Region' 을 계산하는 방법을 간소화한 것인데, Clipping 과 KL Penalty 두 가지 방법으로 주로 구현된다. 
+지금까지 Language Model 의 입장에서 바라보았다면 강화학습의 관점에서 Objective Function 을 이해해보자. PPO 알고리즘은 [TRPO 알고리즘(Trust Region Policy Optimization)](<{{ site.baseurl }}/paper-review/reinforcement-learning/model-free-rl/2020/03/01/trust-region-policy-optimization/>)을 효율적으로 만든 알고리즘이다. 즉 'Trust Region' 을 계산하는 방법을 간소화한 것인데, Clipping 과 KL Penalty 두 가지 방법으로 주로 구현된다.
 
 $$
 \begin{equation}    L^{CLIP}(\theta) = \mathbb{E}_t \left[ \min \left( r_t(\theta) \hat{A}_t, \text{clip}(r_t(\theta), 1 - \epsilon, 1 + \epsilon) \hat{A}_t \right) \right]\end{equation}
@@ -124,7 +126,7 @@ $$
 \begin{equation}    L^{KL}(\theta) = \mathbb{E}_t \left[ r_t(\theta) \hat{A}_t - \beta \, \text{KL}\left[ \pi_{\theta_{\text{old}}}(\cdot | s_t) \,||\, \pi_\theta(\cdot | s_t) \right] \right]\end{equation}
 $$
 
-여기서는 두 번째 구현, KL Penalty 구현 방법을 적용한 것이다. 그리고 Trust Region 을 계산할 때 사용되는 기준 Policy 로는 SFT 모델을 사용한 것으로 볼 수 있다.
+여기서는 두 번째 구현, KL Penalty 구현 방법을 적용하였다. 그리고 Trust Region 을 계산할 때 사용되는 기준 Policy 로는 SFT 모델을 사용한 것으로 볼 수 있다.
 
 **Pretraining Gradient**
 
@@ -140,13 +142,13 @@ $$
 
 Alignment problem 을 해결하기 위해 제안된 모델인 만큼 그 평가 또한 그에 맞춰 진행하였다. 우선 논문에서는 aligned model 을 다음 두 논문을 인용하여 다음과 같이 정의하고 있다.
 
-- models that act in accordance with user intentions([Leike et al.(2018)](<https://arxiv.org/abs/1811.07871>)).
-- models to be aligned if they are helpful, honest, and harmless([Askell et al. (2021)](<>)).
+- models that act in accordance with user intentions([Leike et al.(2018)](https://arxiv.org/abs/1811.07871)).
+- models to be aligned if they are helpful, honest, and harmless([Askell et al. (2021)]()).
 
 쉽게 말해서 사람 말 잘 듣고, 안전하며 정직한 모델이라는 것이다. 두 번째 정의를 차용하여 다음 세 가지 요소들 각각에 대한 테스트 방법을 다음과 가이 고려하였다고 한다.
 
 **helpful**
- 
+
 - 주관이 개입될 수 밖에 없는 영역으로, labeler의 판단으로 평가한다.
 - labeler 또한 prompt를 작성한 사람은 아니기 때문에 실제 작성한 사람의 의도와 평가자의 판단 결과 간에는 divergence 가 존재할 수 있다.
 
@@ -154,7 +156,7 @@ Alignment problem 을 해결하기 위해 제안된 모델인 만큼 그 평가 
 
 - closed domain task 에 대한 결과물들의 경향성(hallucination)과 Benchmark dataset(TruthfulQA) 으로 평가한다.
 - 신뢰, 솔직함은 모델이 가지고 있는 ‘믿음(belief)’에 관한 문제인데, model 은 그 자체로 big black box 이기 때문에 들여다 볼 수 없기 때문에 어렵고 모호한 부분이 있다.
- 
+
 **harmless**
 
 - Honest와 유사하게 어려움이 있다.
@@ -183,7 +185,7 @@ Alignment problem 을 해결하기 위해 제안된 모델인 만큼 그 평가 
 
 ### Evaluations by Benchmarks
 
-**[trustfulQA](<https://arxiv.org/abs/2109.07958>) 데이터셋 기준으로 GPT-3 보다 성능이 좋았다.**
+**[trustfulQA](https://arxiv.org/abs/2109.07958) 데이터셋 기준으로 GPT-3 보다 성능이 좋았다.**
 
 <img src="{{site.image_url}}/paper-review/instruct-gpt-truthfulqa-result.png" alt="instruct-gpt-truthfulqa-result" style="width: 100%; margin: auto; display: block">
 
@@ -228,10 +230,9 @@ alignment research 관점에서 정리하자면, Instruct GPT 를 통해 다음 
 
 ## Reference
 
-- [Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C.L., Mishkin, P., Zhang, C., Agarwal, S., Slama, K., Ray, A., Schulman, J., Hilton, J., Kelton, F., Miller, L., Simens, M., Askell, A., Welinder, P., Christiano, P., Leike, J. and Lowe, R. (2022). Training language models to follow instructions with human feedback.](<https://arxiv.org/abs/2203.02155>).
+- [Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C.L., Mishkin, P., Zhang, C., Agarwal, S., Slama, K., Ray, A., Schulman, J., Hilton, J., Kelton, F., Miller, L., Simens, M., Askell, A., Welinder, P., Christiano, P., Leike, J. and Lowe, R. (2022). Training language models to follow instructions with human feedback.](https://arxiv.org/abs/2203.02155).
 - [Christiano, P., Leike, J., Brown, T.B., Martic, M., Legg, S. and Amodei, D. (2017). Deep reinforcement learning from human preferences.](< https://arxiv.org/abs/1706.03741>)
-- [Loshchilov, I. and Hutter, F. (2016). SGDR: Stochastic Gradient Descent with Warm Restarts.](<https://arxiv.org/abs/1608.03983>)
--[Schulman, J., Wolski, F., Dhariwal, P., Radford, A. and Klimov, O. (2017). Proximal Policy Optimization Algorithms.](<https://arxiv.org/abs/1707.06347>)
-- [Leike, J., Krueger, D., Everitt, T., Martic, M., Maini, V. and Legg, S. (2018). Scalable agent alignment via reward modeling: a research direction.](<https://arxiv.org/abs/1811.07871>)
-- [Askell, A., Bai, Y., Chen, A., Drain, D., Ganguli, D., Henighan, T., Jones, A., Joseph, N., Mann, B., DasSarma, N., Elhage, N., Hatfield-Dodds, Z., Hernandez, D., Kernion, J., Ndousse, K., Olsson, C., Amodei, D., Brown, T., Clark, J. and McCandlish, S. (2021). A General Language Assistant as a Laboratory for Alignment.](<https://arxiv.org/abs/2112.00861>)
-- [Lin, S., Hilton, J. and Evans, O. (2021). TruthfulQA: Measuring How Models Mimic Human Falsehoods.](<https://arxiv.org/abs/2109.07958>)
+- [Loshchilov, I. and Hutter, F. (2016). SGDR: Stochastic Gradient Descent with Warm Restarts.](https://arxiv.org/abs/1608.03983) -[Schulman, J., Wolski, F., Dhariwal, P., Radford, A. and Klimov, O. (2017). Proximal Policy Optimization Algorithms.](https://arxiv.org/abs/1707.06347)
+- [Leike, J., Krueger, D., Everitt, T., Martic, M., Maini, V. and Legg, S. (2018). Scalable agent alignment via reward modeling: a research direction.](https://arxiv.org/abs/1811.07871)
+- [Askell, A., Bai, Y., Chen, A., Drain, D., Ganguli, D., Henighan, T., Jones, A., Joseph, N., Mann, B., DasSarma, N., Elhage, N., Hatfield-Dodds, Z., Hernandez, D., Kernion, J., Ndousse, K., Olsson, C., Amodei, D., Brown, T., Clark, J. and McCandlish, S. (2021). A General Language Assistant as a Laboratory for Alignment.](https://arxiv.org/abs/2112.00861)
+- [Lin, S., Hilton, J. and Evans, O. (2021). TruthfulQA: Measuring How Models Mimic Human Falsehoods.](https://arxiv.org/abs/2109.07958)
