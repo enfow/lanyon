@@ -9,7 +9,7 @@ keyword: "[Dialogue-generation]"
 
 ## Summary
 
-- 소설 속 캐릭터의 특성과 대화가 이뤄지는 맥락을 고려한 응답을 생성하는 것은 어려운 문제이다.
+- 소설 속 캐릭터의 특성과 대화가 이뤄지는 맥락을 고려한 응답을 생성하는 것은 쉽지 않다.
 - 적절한 추가 정보가 제공되면 이러한 어려움을 완화할 수 있다.
 
 ## Align agent with specific character
@@ -91,7 +91,7 @@ $$
 
 <img src="{{site.image_url}}/paper-review/harry-potter-llm-base-setting-prompt.png" alt="harry-potter-llm-base-setting-prompt" style="width: 100%; margin: auto; display: block">
 
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-rich-setting-prompt.png" alt="harry-potter-rich-base-setting-prompt" style="width: 100%; margin: auto; display: block">
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-rich-setting-prompt.png" alt="harry-potter-rich-setting-prompt" style="width: 100%; margin: auto; display: block">
 
 ## Evaluation
 
@@ -125,4 +125,5 @@ GPT-4와 Human based 평가에서 rich persona 모델들이 base setting 의 모
 
 ## Reference
 
-https://nuochenpku.github.io/HPD.github.io/download
+- [Chen, N., Wang, Y., Jiang, H., Cai, D., Li, Y., Chen, Z., Wang, L. and Li, J. (2022). Large Language Models Meet Harry Potter: A Bilingual Dataset for Aligning Dialogue Agents with Characters.](<https://arxiv.org/abs/2211.06869>)
+- [Github.io. (2024). Harry Potter Dialogue (HPD).](https://nuochenpku.github.io/HPD.github.io/download)
