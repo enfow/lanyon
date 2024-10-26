@@ -9,6 +9,9 @@ keyword: "[Dialogue-generation]"
 
 ## Summary
 
+- 소설 속 캐릭터의 특성과 대화가 이뤄지는 맥락을 고려한 응답을 생성하는 것은 어려운 문제이다.
+- 적절한 추가 정보가 제공되면 이러한 어려움을 완화할 수 있다.
+
 ## Align agent with specific character
 
 ChatGPT와 같은 dialogue style 의 LLM 모델들이 많이 개발되었지만 캐릭터의 특성과 상황에 맞춰 답변하도록 만드는 것은 여전히 어려운 문제다. 예를 들어 소설 해리 포터의 4권, 불의 잔에서는 가장 친한 친구인 해리와 론이 반목하는 장면이 자주 등장하고, 이에 맞춰 갈등을 겪는 내용의 대화들이 주를 이루지만 LLM 모델들은 이러한 대화 내용을 생성하는 것에 자주 어려움을 겪는다.
@@ -36,6 +39,8 @@ $$
 논문에서는 위의 내용들에 맞게 Dataset을 구성하고, 논문의 주된 기여로서 이를 [HPD(Harry Potter Dialogue)](<https://nuochenpku.github.io/HPD.github.io/download>)라는 이름으로 공개하였다.
 
 ## Dataset Construction
+
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-overview.png" alt="harry-potter-llm-overview" style="width: 100%; margin: auto; display: block">
 
 우선 해리의 응답을 적절히 생성하는 것을 목표로 설정하고, 이를 위해 소설 상에서 해리가 참여하는 모든 대화들을 수집하여였다. Training Set의 경우 해리가 참여하는 대화 중 multi-turn 으로 구성되어 있는 경우에 대해서만 수집하였고 이때 발화자가 누구인지 발화 단위로 레이블링 했다.
 
@@ -65,6 +70,8 @@ $$
   - (3) someone’s Familiarity with Harry,
   - (4) someone’s Affection for Harry.
 
+  <img src="{{site.image_url}}/paper-review/harry-potter-affection-familiarity.png" alt="harry-potter-affection-familiarity" style="width: 60%; margin: auto; display: block">
+
 여기서 discrete relation 의 Familiarity 는 -10 에서 10까지 21 단계로, Affection은 0에서 10까지 총 11 단계로 구성된다. Familiarity 와 Affection 의 차이는 아래 두 가지 예시를 보면 쉽게 이해할 수 있다.
 
 - Draco 는 Harry 를 잘 알지만(familarity), 해리를 적대시한다(Affection)
@@ -82,7 +89,13 @@ $$
 - **Base settting**: Task에 대한 설명, 하나의 대화 예시, 대화 기록만 제공
 - **Rich-Persona setting(Per-Modl)**: in-context learning 시 base setting 과 함께 데이터 셋의 모든 정보들을 함께 제공
 
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-base-setting-prompt.png" alt="harry-potter-llm-base-setting-prompt" style="width: 100%; margin: auto; display: block">
+
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-rich-setting-prompt.png" alt="harry-potter-rich-base-setting-prompt" style="width: 100%; margin: auto; display: block">
+
 ## Evaluation
+
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-exp-result.png" alt="harry-potter-llm-exp-result" style="width: 100%; margin: auto; display: block">
 
 총 세 가지 방법으로 평가를 진행하고 있다.
 
@@ -104,21 +117,11 @@ generated text 들에 대해 GPT-4로 평가하는 것이 유용하다는 연구
 
 ## Results
 
-GPT-4와 Human based 평가에서 rich persona 모델들이 base setting 의 모델들에 비해 성능이 더욱 좋게 나왔으나, 사람과의 대결에서는 여전히 사람이 더욱 잘하는 모습을 보였다. 특히 사람보다 잘한 경우는 30%에 그쳤다는 점에서, Specific character 에 align 하도록 만드는 것은 여전히 쉽지 않다는 것을 확인할 수 있었다.
+<img src="{{site.image_url}}/paper-review/harry-potter-llm-exp-result-2.png" alt="harry-potter-llm-exp-result-2" style="width: 60%; margin: auto; display: block">
 
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-exp-result.png" alt="harry-potter-llm-exp-result" style="width: 100%; margin: auto; display: block">
-
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-exp-result-2.png" alt="harry-potter-llm-exp-result-2" style="width: 100%; margin: auto; display: block">
+GPT-4와 Human based 평가에서 rich persona 모델들이 base setting 의 모델들에 비해 성능이 더욱 좋게 나왔으나, 사람과의 대결에서는 여전히 사람이 더욱 잘하는 모습을 보였다. 특히 사람보다 잘한 경우는 30%에 그쳤다는 점에서 Specific character 에 align 하도록 만드는 것은 여전히 쉽지 않다는 것을 확인할 수 있었다.
 
 <img src="{{site.image_url}}/paper-review/harry-potter-llm-exp-result-3.png" alt="harry-potter-llm-exp-result-3" style="width: 100%; margin: auto; display: block">
-
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-base-setting-prompt.png" alt="harry-potter-llm-base-setting-prompt" style="width: 100%; margin: auto; display: block">
-
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-rich-setting-prompt.png" alt="harry-potter-rich-base-setting-prompt" style="width: 100%; margin: auto; display: block">
-
-<img src="{{site.image_url}}/paper-review/harry-potter-affection-familiarity.png" alt="harry-potter-affection-familiarity" style="width: 100%; margin: auto; display: block">
-
-<img src="{{site.image_url}}/paper-review/harry-potter-llm-overview.png" alt="harry-potter-llm-overview" style="width: 100%; margin: auto; display: block">
 
 ## Reference
 
