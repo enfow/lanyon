@@ -32,7 +32,7 @@ $$
 
 ### Similarity Measure
 
-Query, Text 임베딩 간의 유사도를 측정하는 함수$$f$$r로는 Inner Product, Cosine similarity, Euclidean Distance 등이 있다. 다양한 연구를 통해 세 가지 방법 중 무엇을 사용하더라도 성능에 큰 차이가 없다는 것이 확인되었다. 따라서 연산이 가장 쉬운 Inner Product 를 많이 사용한다.
+Query, Text 임베딩 간의 유사도를 측정하는 함수$$f$$로는 Inner Product, Cosine similarity, Euclidean Distance 등이 있다. 다양한 연구를 통해 세 가지 방법 중 무엇을 사용하더라도 성능에 큰 차이가 없다는 것이 확인되었다. 따라서 연산이 가장 쉬운 Inner Product 를 많이 사용한다.
 
 ## Trainer: Major Training Issues
 
@@ -59,15 +59,17 @@ Query, Text 임베딩 간의 유사도를 측정하는 함수$$f$$r로는 Inner 
 
 ## Trainer: Negative Selection
 
-Dense Retriever의 업데이트 식에서도 보았듯이 학습에는 다수의 Negative Sample 이 필요하고, 이를 어떻게 구성하느냐가 학습 성능에 많은 영향을 미친다.
+Dense Retriever의 업데이트 식에서도 보았듯이 학습에는 다수의 Negative Sample 이 필요하고, 이를 어떻게 구성하느냐가 학습 성능에 많은 영향을 미친다. 특히 논문에서 Dense Retriever 학습에 있어 첫 번째 Issue 로 제기된 Large-Scale candidate space 문제를 해결하기 위해서는 좋은 Negatives 를 효율적으로 샘플링하는 방법이 요구된다.
 
 ### In-Batch Negatives
+
+<img src="{{site.image_url}}/paper-review/ir-negative-sampling.png" alt="ir-negative-sampling" style="width: 100%; margin: auto; display: block">
 
 가장 쉬운 방법은 어떤 한 Query 에 대해 매번 Negative Sample 들을 랜덤하게 추출하는 것이다. 하나의 Query 에 대한 Positive Sample 하나와 다수의 임의 추출된 Negative Samples 로 Batch 를 구성하는 것이다. 하지만 이 방법은 한 배치당 하나의 Query 에 대해서만 학습할 수 있다는 점에서 비효율적이다.
 
 In Batch Negative Sampling 은 Query/Positive text Pair를 Batch Size 만큼 샘플링하고, 각 Query 에 매칭되는 Positive Text 이외에는 모두 Negative text 로 취급하여 학습하도록 하는 방법이다. 이렇게 하면 배치마다 batch size - 1 만큼의 Negative Sample을 배치마다 확보할 수 있다는 점에서 Ramdom Sampling 방법과 동일하지만, 하나의 Batch 로 Batch Size 만큼의 학습을 진행할 수 있다는 점에서 메모리 효율적이다.
     
-실험적으로는 Negative Sample 의 갯수가 커지면 커질수록 성능이 좋아진다고 한다.
+실험을 통해 In-Batch Sampling 에서 Negative Sample 의 갯수가 많아질수록, 즉 Batch 의 크기가 커질수록 성능이 좋아지는 경향을 보이기도 했다.
 
 ### Cross-Batch Negatives
 
@@ -75,18 +77,14 @@ In Batch Negative Sampling 은 Query/Positive text Pair를 Batch Size 만큼 샘
 
 ### Hard Negatives
 
-Hard negative 란 구별하기 어려운 Negatives, 즉 의미적으로는 유사하나, query와 무관한 텍스트를 뜻한다. 앞선 두 가지 방법은 Ramdom Sampling 을 통해 Negatives 를 구성하기 때문에 Hard Negatives 를 적절하게 처리하지 못한다는 한계를 가지고 있다. Hard negatives 를 골라 이를 집중적으로 학습에 사용하는 방법들에 대한 실험들이 있었고, Retrieval 성능이 높아지는 것을 보여주기도 했다.
+Hard negative 란 구별하기 어려운 Negatives, 즉 의미적으로는 유사하나 query와 무관한 텍스트를 뜻한다. 앞선 두 가지 방법은 Ramdom Sampling 을 통해 Negatives 를 구성하기 때문에 Hard Negatives 를 적절하게 처리하지 못한다는 한계를 가지고 있다. Hard negatives 를 골라 이를 집중적으로 학습에 사용하는 방법들에 대한 실험들이 있었고, 이를 통해 Retrieval 성능이 높아지는 것을 보여주기도 했다.
 
-Hard Negative Sampling 은 Random Negative Sampling 과 비교해 볼 떄, 효율적인 방법이다. 왜냐하면 Easy Negative 보다 Hard Negative 가 Loss에 미치는 영향이 상대적으로 클 수 밖에 없고, 이를 반대로 말하면 Easy Negatives 가 학습에 많이 포함될수록 효율성이 떨어진다고 할 수 있기 떄문이다. 
-
-이러한 점에서 Easy Negatives로 Batch를 구성할 가능성이 큰 Random Negative Sampling 는 비효율적이고, 몇몇 Hard Negative 이 학습에 과도하게 영향을 미칠 가능성이 크다. 반면 Hard Negatives 만 적극적으로 샘플링하여 학습에 이용하게 되면 이러한 문제들이 완화될 것이다.
-
-Hard Negatives 를 선정하는 것 또한 쉬운 문제가 아닐 것인데, 이와 관련하여 논문에서는 그 방법들에 대해 다음 세 가지로 분류하고 있다.
+하지만 Hard Negatives 를 선정하는 것 또한 쉬운 문제가 아닐 것인데, 이와 관련하여 논문에서는 그 방법들에 대해 다음 세 가지로 분류하고 있다.
 
 #### Static hard negative
 
 - training 내내 고정된 negative selector 를 사용하는 방법
-- BM25 등을 사용하여 유사하지만 정답을 포함하지 않는 text 를 샘플링한다.
+- lexically similar texts(e.g. BM25)를 사용하여 유사하지만 정답을 포함하지 않는 text 를 샘플링한다.
 
 #### Dynamic hard negative
 
@@ -98,10 +96,12 @@ Hard Negatives 를 선정하는 것 또한 쉬운 문제가 아닐 것인데, �
 
 - Negative의 신뢰도와 난이도 등을 계산하고 이를 고려하여 Negative 를 샘플링하는 기법
 - Hard Negatives를 찾아 학습에 사용하는 방법의 단점 중 하나는 False Negative 일 가능성이 높다는 점이다.
-- Query와 유사도가 높지만 Positive로 라벨링되지 않은 Text를 Negative로 하여 학습에 사용하다보니 Positive 이지만 Negative 로 학습이 이뤄질 수 있다는  것이다.
+- Query와 유사도가 높지만 Positive로 라벨링되지 않은 Text를 Negative로 하여 학습에 사용하다보니 Positive 이지만 Negative 로 학습이 이뤄질 수 있다.
 - 이러한 문제를 해결하기 위해 신뢰도를 별도로 측정하거나(RocketQA), 모호한 샘플을 배제(SimANS)하는 방법 등이 제안되었다.
 
 ## Trainer: Data augmentation
+
+Query-Answer 구조로 되어 있는 데이터는 사람의 판단이 들어가야 한다는 점에서 확보하기 어렵다. 특히 일반적인 도메인이 아닌 특수한 지식을 요구하는 경우에는 더욱 그러한데, Large Model 을 안정적으로 학습시키기 위해 필요한 데이터를 전문가들이 모두 레이블링하도록 하는 것은 제한된 자원으로는 불가능에 가깝다. 여기서는 Issue 2 와 관련하여 Dense Retriever 학습에 사용할 데이터 셋을 확보하는 방법을 다룬다.
 
 ### Auxiliary Labeled Dataset
 
