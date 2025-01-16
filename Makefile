@@ -1,5 +1,3 @@
-
-
 docker-run:
 	docker run --rm -it \
 	--name my-blog \
