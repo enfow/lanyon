@@ -201,7 +201,7 @@ TSDAE 에 대한 간략한 설명을 덧붙이면 다음과 같다.
   - Training time 에는 noise input 을 넣어 original output 을 복원
   - Inference time 에는 encoder 만 사용하여 sentence 의 embedding 을 추출할 수 있음
 
-![alt text](tsdae-archtecture.png)
+<img src="{{site.image_url}}/paper-review/tsdae-archtecture.png" alt="tsdae-archtecture" style="width: 100%; margin: auto; display: block">
 
 #### Contrastive learning
 
@@ -215,3 +215,6 @@ Contrastive learning은 augmentation 과 discrimination 두 가지 단계로 주
 - ConSERT: 토큰 셔플링, 어휘 삭제, 드롭아웃 등 조금 더 다양한 방법으로 positive 생성
 
 ## Reference
+
+- [Zhao, W.X., Liu, J., Ren, R. and Wen, J.-R. (2022). Dense Text Retrieval based on Pretrained Language Models: A Survey. arXiv:2211.14876 [Accessed 12 Dec. 2022].](<https://arxiv.org/abs/2211.14876>)
+- [Wang, K., Reimers, N. and Gurevych, I. (2021). TSDAE: Using Transformer-based Sequential Denoising Auto-Encoder for Unsupervised Sentence Embedding Learning. 2022](<https://arxiv.org/abs/2104>)
