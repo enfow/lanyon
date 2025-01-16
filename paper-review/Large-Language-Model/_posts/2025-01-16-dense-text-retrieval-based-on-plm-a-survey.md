@@ -9,6 +9,11 @@ keyword: "[Informational Retrieval]"
 
 ## Summary
 
+- Dense Retriever 의 학습에는 Constrative Learning 에서 자주 사용되는 InfoNCE 와 유사한 loss function 이 사용된다.
+- Negative 를 샘플링하는 방법, 다량의 데이터를 확보하는 방법, Informational Retriever Task 에 맞게 Pre-Training 하는 방법 등에 대한 연구가 있어왔다.
+
+## Introduction
+
 Dense Retrieval 이란 pretrained language model(PLM)을 활용하여 Query에 맞는 적절한 Answer 를 찾아내는 것이다.
 
 - 딥러닝의 발전은 Text를 latent space에 잘 매핑하게 해주었고, 이를 통해 Query 와 의미론적으로 매칭이 되는 Answer를 더욱 잘 찾을 수 있게 되었다. 
